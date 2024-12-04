@@ -1,3 +1,3 @@
-import { scrape } from './artist'
+import { scrape } from './artists/scrape'
 
-scrape('https://en.wikipedia.org/wiki/Nirvana_(band)', 0)
+scrape({name: "Nirvana", url: 'https://en.wikipedia.org/wiki/Nirvana_(band)', graph:{depth: 0}});
