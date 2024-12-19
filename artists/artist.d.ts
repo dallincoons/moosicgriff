@@ -1,7 +1,15 @@
-declare interface Artist {
-    name: string
-    url: string
+export interface Artist {
+    readonly name: string
+    readonly url: string
     graph: {
-        depth: number
+        readonly parentUrl: string
     }
+}
+
+export interface DBArtist {
+    id: number,
+    artistname: string,
+    wikilink: string,
+    foundpeers: boolean,
+    parent_wikilink: string,
 }

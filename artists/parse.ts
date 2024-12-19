@@ -1,6 +1,6 @@
-import Artist from 'artists/artist.ts';
+import { Artist } from 'artists/artist';
 
-export function parseArtists(rawContents: string, depth: number): Artist[] {
+export function parseArtists(rawContents: string, parentArtist: Artist): Artist[] {
     let pattern = /\[(.*?)[\s-]*?(?:\(.+\))?(?:Wikipedia)?\]\((.+)\)/g
 
     let matches = [...rawContents.matchAll(pattern)];
@@ -11,13 +11,12 @@ export function parseArtists(rawContents: string, depth: number): Artist[] {
 
     return matches.filter(function(m) {
         return m[2].startsWith("https");
-    }).
-    map(function(m) {
+    }).map(function(m) {
         return {
             name: m[1],
             url: m[2],
             graph: {
-                depth: depth+1
+                parentUrl: parentArtist.url,
             }
         }
     })

@@ -3,7 +3,10 @@
     "cheerio": "^1.0.0",
     "dotenv": "^16.4.5",
     "esrun": "^3.2.26",
-    "openai": "^4.73.1"
+    "openai": "^4.73.1",
+    "postgres": "^3.4.5",
+    "winston": "^3.17.0",
+    "winston-daily-rotate-file": "^5.0.0"
   },
   "devDependencies": {
     "@types/jest": "^29.5.14",
@@ -11,6 +14,8 @@
     "typescript": "^5.7.2"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "migrate-up": "GOOSE_MIGRATION_DIR=./migrations GOOSE_DBSTRING=\"postgresql://postgres:password@127.0.0.1:5432/moosicgraff\" GOOSE_DRIVER=postgres goose up",
+    "migrate-status": "GOOSE_MIGRATION_DIR=./migrations GOOSE_DBSTRING=\"postgresql://postgres:password@127.0.0.1:5432/moosicgraff\" GOOSE_DRIVER=postgres goose status"
   }
 }

@@ -1,4 +1,13 @@
-import { parseArtists } from 'artists/parse.ts'
+import { parseArtists } from 'artists/parse'
+
+const emptyArtist = {
+    name: "",
+    url: "",
+    graph: {
+        parentUrl: "",
+        depth: 0,
+    }
+}
 
 let testContent = 'Certainly! Here are the Wikipedia page links to the bands mentioned in the article:\n' +
     '\n' +
@@ -21,7 +30,7 @@ let testContent = 'Certainly! Here are the Wikipedia page links to the bands men
 
 describe("artist link parsing", () => {
     it("pull out band names and URLs", () => {
-        expect(parseArtists(testContent, 0)).toEqual([
+        expect(parseArtists(testContent, emptyArtist)).toEqual([
             {name: "Nirvana", url: "https://en.wikipedia.org/wiki/Nirvana_(band)", graph: {depth: 1}},
             {name: "Melvins", url: "https://en.wikipedia.org/wiki/Melvins", graph: {depth: 1}},
             {name: "Mudhoney", url: "https://en.wikipedia.org/wiki/Mudhoney", graph: {depth: 1}},
@@ -29,3 +38,4 @@ describe("artist link parsing", () => {
         ]);
     });
 });
+
