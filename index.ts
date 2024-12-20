@@ -1,4 +1,4 @@
-import { scrape } from './artists/scrape'
+import { scrape } from './app/artists/scrape'
 import postgres from "postgres";
 import {DB_STRING} from "./config";
 

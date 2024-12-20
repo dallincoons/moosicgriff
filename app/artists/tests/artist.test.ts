@@ -1,4 +1,4 @@
-import { parseArtists } from 'artists/parse'
+import { parseArtists } from 'app/artists/parse'
 
 const emptyArtist = {
     name: "",

@@ -1,4 +1,4 @@
-import { Artist } from 'artists/artist';
+import { Artist } from 'app/artists/artist';
 
 export function parseArtists(rawContents: string, parentArtist: Artist): Artist[] {
     let pattern = /\[(.*?)[\s-]*?(?:\(.+\))?(?:Wikipedia)?\]\((.+)\)/g
