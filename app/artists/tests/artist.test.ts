@@ -5,7 +5,6 @@ const emptyArtist = {
     url: "",
     graph: {
         parentUrl: "",
-        depth: 0,
     }
 }
 
@@ -15,12 +14,10 @@ let testContent = 'Certainly! Here are the Wikipedia page links to the bands men
     '2. **Melvins**: [Melvins](https://en.wikipedia.org/wiki/Melvins)\n' +
     '4. **Mudhoney**: [Mudhoney (American band)](https://en.wikipedia.org/wiki/Mudhoney)\n' +
     '5. **Black Sabbath**: [Black Sabbath - Wikipedia](https://en.wikipedia.org/wiki/Black_Sabbath)\n' +
-    // '6. **The Jesus Lizard**: [The Jesus Lizard](https://en.wikipedia.org/wiki/The_Jesus_Lizard)\n' +
-    // '7. **Soundgarden**: [Soundgarden](https://en.wikipedia.org/wiki/Soundgarden)\n' +
-    // '8. **Alice in Chains**: [Alice in Chains](https://en.wikipedia.org/wiki/Alice_in_Chains)\n' +
-    // '9. **Sonic Youth**: [Sonic Youth](https://en.wikipedia.org/wiki/Sonic_Youth)\n' +
-    // '10. **The Breeders**: [The Breeders](https://en.wikipedia.org/wiki/The_Breeders)\n' +
-    // '11. **The Germs**: [Germs (band)](https://en.wikipedia.org/wiki/Germs_(band))\n' +
+    '6. **The Jesus Lizard**: [https://en.wikipedia.org/wiki/The_Jesus_Lizard](https://en.wikipedia.org/wiki/The_Jesus_Lizard)\n' +
+    '9. **Wikipedia - Sonic Youth**: [Sonic Youth](https://en.wikipedia.org/wiki/Sonic_Youth)\n' +
+    '10. **The Breeders Wikipedia page**: [The Breeders](https://en.wikipedia.org/wiki/The_Breeders)\n' +
+    '11. **The Germs (American band)**: [Germs (band)](https://en.wikipedia.org/wiki/Germs_(American_band))\n' +
     // '12. **Meat Puppets**: [Meat Puppets](https://en.wikipedia.org/wiki/Meat_Puppets)\n' +
     // '13. **Foo Fighters**: [Foo Fighters](https://en.wikipedia.org/wiki/Foo_Fighters)\n' +
     // '14. **Pixies**: [Pixies (band)](https://en.wikipedia.org/wiki/Pixies_(band))\n' +
@@ -30,11 +27,17 @@ let testContent = 'Certainly! Here are the Wikipedia page links to the bands men
 
 describe("artist link parsing", () => {
     it("pull out band names and URLs", () => {
-        expect(parseArtists(testContent, emptyArtist)).toEqual([
-            {name: "Nirvana", url: "https://en.wikipedia.org/wiki/Nirvana_(band)", graph: {depth: 1}},
-            {name: "Melvins", url: "https://en.wikipedia.org/wiki/Melvins", graph: {depth: 1}},
-            {name: "Mudhoney", url: "https://en.wikipedia.org/wiki/Mudhoney", graph: {depth: 1}},
-            {name: "Black Sabbath", url: "https://en.wikipedia.org/wiki/Black_Sabbath", graph: {depth: 1}},
+        expect(parseArtists(testContent,
+            {name: "Tom Waits", url: "https://en.wikipedia.org/wiki/Tom_Waits", graph: {parentUrl: "",}})
+        ).toEqual([
+            {name: "Nirvana", url: "https://en.wikipedia.org/wiki/Nirvana_(band)", graph: {parentUrl: "https://en.wikipedia.org/wiki/Tom_Waits",}},
+            {name: "Melvins", url: "https://en.wikipedia.org/wiki/Melvins", graph: {parentUrl: "https://en.wikipedia.org/wiki/Tom_Waits",}},
+            {name: "Mudhoney", url: "https://en.wikipedia.org/wiki/Mudhoney", graph: {parentUrl: "https://en.wikipedia.org/wiki/Tom_Waits",}},
+            {name: "Black Sabbath", url: "https://en.wikipedia.org/wiki/Black_Sabbath", graph: {parentUrl: "https://en.wikipedia.org/wiki/Tom_Waits",}},
+            {name: "The Jesus Lizard", url: "https://en.wikipedia.org/wiki/The_Jesus_Lizard", graph: {parentUrl: "https://en.wikipedia.org/wiki/Tom_Waits",}},
+            {name: "Sonic Youth", url: "https://en.wikipedia.org/wiki/Sonic_Youth", graph: {parentUrl: "https://en.wikipedia.org/wiki/Tom_Waits",}},
+            {name: "The Breeders", url: "https://en.wikipedia.org/wiki/The_Breeders", graph: {parentUrl: "https://en.wikipedia.org/wiki/Tom_Waits",}},
+            {name: "Germs", url: "https://en.wikipedia.org/wiki/Germs_(American_band)", graph: {parentUrl: "https://en.wikipedia.org/wiki/Tom_Waits",}},
         ]);
     });
 });

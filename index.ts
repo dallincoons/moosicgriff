@@ -1,19 +1,18 @@
-import { scrape } from './app/artists/scrape'
-import postgres from "postgres";
-import {DB_STRING} from "./config";
+import { scrape as artistScrape } from './app/artists/scrape';
+import { scrape as labelScrape } from './app/labels/scrape';
 
-// const db = postgres(DB_STRING);
-//
-// const
-//     name = "Nirvana",
-//     url = 'https://en.wikipedia.org/wiki/Nirvana_(band)',
-//     parentUrl = ""
-//
-//
-// await db`
-//         insert into artists
-//         (artistname, wikilink, parent_wikilink) VALUES
-//         (${ name }::text, ${ url }::text, ${ parentUrl }::text)
-//         `
+const args = process.argv.slice(2);
 
-scrape();
+if (args.length > 1) {
+    console.log("you can't give more than one argument, dumb shit");
+}
+
+switch (args[0]) {
+    case 'artists':
+        artistScrape();
+        break;
+    case 'labels':
+        labelScrape();
+        break;
+}
+
