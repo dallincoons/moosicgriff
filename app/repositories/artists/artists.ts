@@ -39,6 +39,18 @@ class Artists {
     async delete(url: string) {
         await db`DELETE FROM artists where wikilink = ${url}`
     }
+
+    async getWhereNotInDiscography(): Promise<DBArtist|undefined> {
+        const [artist]: [DBArtist?] = await db`
+            SELECT * FROM artists
+            LEFT OUTER JOIN releases
+            ON artists.id = releases.artist_id
+            WHERE releases.artist_id IS NULL
+            LIMIT 1
+        `
+
+        return artist;
+    }
 }
 
 export default new Artists();

@@ -39,11 +39,11 @@ export async function scrape() {
     console.log(children);
 
     for (const child of children) {
-        console.log("persisting child: " + JSON.stringify(child));
         try {
             await artists.insertNew(child.name, child.url, child.graph.parentUrl);
+            console.log("saved new artist: " + JSON.stringify(child));
         } catch(e) {
-            console.log("error persisting child: " + e);
+            // console.log("error persisting child: " + e);
         }
     }
 

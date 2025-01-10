@@ -28,7 +28,7 @@ export function parseArtists(rawContents: string, parentArtist: Artist): Artist[
         }
 
         return {
-            name: name,
+            name: decodeURI(name),
             url: m[2],
             graph: {
                 parentUrl: parentArtist.url,
