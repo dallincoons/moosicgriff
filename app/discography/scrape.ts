@@ -2,6 +2,7 @@ import * as cheerio from "cheerio";
 import artists from "app/repositories/artists/artists";
 import {getDiscographyFromArtists} from "./chat";
 import {DBArtist} from "../artists/artist";
+import {parseReleases} from "app/discography/parse"
 
 export async function scrape() {
     // const artist = await <DBArtist>artists.getWhereNotInDiscography();
@@ -21,7 +22,7 @@ export async function scrape() {
     }
 
     console.log(response);
-    console.log(artistLink);
+    console.log(parseReleases(<string>response));
 
     // let releases = parseReleases();
 }
@@ -33,8 +34,10 @@ async function getDiscographyFromDiscographyPage(artistLink:string) {
         let pattern = /(.+)_\(.+/
         let matches = pattern.exec(artistLink);
         if (matches && matches.length > 1) {
-            artistLink = `${matches[1]}_discography`;
-            $ = await cheerio.fromURL(`${matches[1]}_discography`);
+            const discogLink = `${matches[1]}_discography`;
+            $ = await cheerio.fromURL(discogLink);
+        } else {
+            $ = await cheerio.fromURL(artistLink);
         }
     } catch (e: any) {
         if (e.status == 404) {

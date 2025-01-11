@@ -12,14 +12,14 @@ const emptyArtist = {
 let testContent = 'Certainly! Here are the Wikipedia page links to the bands mentioned in the article:\n' +
     '\n' +
     '### Studio Albums\n' +
-    '1. **Bleach**\n' +
+    '1. - Release name: Bleach\n' +
     '   - Producer: Jack Endino\n' +
     '   - Type of release: Studio Album\n' +
     '   - Label: Sub Pop\n' +
     '   - Year released: 1989\n' +
     '   - [Link to Wikipedia page](https://en.wikipedia.org/wiki/Bleach_(Nirvana_album))\n' +
     '\n' +
-    '2. **Nevermind**\n' +
+    '2. - Release name: Nevermind\n' +
     '   - Producer: Butch Vig\n' +
     '   - Type of release: Studio Album\n' +
     '   - Label: DGC\n' +
@@ -27,14 +27,14 @@ let testContent = 'Certainly! Here are the Wikipedia page links to the bands men
     '   - [Link to Wikipedia page](https://en.wikipedia.org/wiki/Nevermind_(Nirvana_album))\n' +
     '\n' +
     '### Live Albums\n' +
-    '1. **MTV Unplugged in New York**\n' +
+    '1. - Release name: MTV Unplugged in New York\n' +
     '   - Producer: Scott Litt, Nirvana\n' +
     '   - Type of release: Live Album\n' +
     '   - Labels: DGC, Geffen\n' +
     '   - Year released: 1994\n' +
     '   - [Link to Wikipedia page](https://en.wikipedia.org/wiki/MTV_Unplugged_in_New_York)\n' +
     '\n' +
-    '2. **From the Muddy Banks of the Wishkah**\n' +
+    '2. - Release name: From the Muddy Banks of the Wishkah\n' +
     '   - Producer: Nirvana\n' +
     '   - Type of release: Live Album\n' +
     '   - Labels: DGC, Geffen\n' +
@@ -42,7 +42,7 @@ let testContent = 'Certainly! Here are the Wikipedia page links to the bands men
     '   - [Link to Wikipedia page](https://en.wikipedia.org/wiki/From_the_Muddy_Banks_of_the_Wishkah)\n' +
     '\n' +
     '### Compilation Albums\n' +
-    '1. **Incesticide**\n' +
+    '1. - Release name: Incesticide\n' +
     '   - Producer: Various\n' +
     '   - Type of release: Compilation Album\n' +
     '   - Labels: Sub Pop, DGC\n' +
@@ -50,7 +50,7 @@ let testContent = 'Certainly! Here are the Wikipedia page links to the bands men
     '   - [Link to Wikipedia page](https://en.wikipedia.org/wiki/Incesticide)\n' +
     '\n' +
     '### Box Sets\n' +
-    '1. **Singles**\n' +
+    '1. - Release name: Singles\n' +
     '   - Producer: Various\n' +
     '   - Type of release: Box Set\n' +
     '   - Labels: DGC, Geffen\n' +
@@ -58,7 +58,7 @@ let testContent = 'Certainly! Here are the Wikipedia page links to the bands men
     '   - (No dedicated Wikipedia page)\n' +
     '\n' +
     '### Extended Plays\n' +
-    '1. **Blew**\n' +
+    '1. - Release name: Blew\n' +
     '   - Producer: Jack Endino\n' +
     '   - Type of release: EP\n' +
     '   - Label: Tupelo\n' +
@@ -66,9 +66,7 @@ let testContent = 'Certainly! Here are the Wikipedia page links to the bands men
     '   - (No dedicated Wikipedia page)\n';
 
 describe("discography parsing", () => {
-    it("pull out band names and URLs", () => {
-        console.log(testContent);
-        console.log(parseReleases(testContent));
+    it("pull out release info", () => {
         expect(parseReleases(testContent)).toEqual([
             {
                 name: "Bleach",
