@@ -16,7 +16,7 @@
 // export async function scrape() {
 //     const [nextArtist]: [DBArtist?] = await db`
 //     SELECT * FROM artists
-//     WHERE foundpeers = false LIMIT 1
+//     WHERE found_peers = false LIMIT 1
 //     `
 //
 //     if (!nextArtist) {
@@ -33,7 +33,7 @@
 //     `
 //
 //
-//     if (persistedArtist && persistedArtist.foundpeers) {
+//     if (persistedArtist && persistedArtist.found_peers) {
 //         return;
 //     }
 //
@@ -54,7 +54,7 @@
 //     }
 //
 //     await db`
-//         UPDATE artists SET foundpeers = true WHERE wikilink = ${artist.url}
+//         UPDATE artists SET found_peers = true WHERE wikilink = ${artist.url}
 //     `
 //
 //     await scrape();

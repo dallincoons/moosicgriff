@@ -1,12 +1,13 @@
 import {DBArtist} from "app/artists/artist";
 import {db} from 'app/repositories/db';
+import {Release} from "../../discography/release";
 
 class Artists {
     async nextInQueue(): Promise<DBArtist|undefined> {
         const [nextArtist]: [DBArtist?] = await db`
             SELECT *
             FROM artists
-            WHERE foundpeers = false
+            WHERE found_peers = false
             LIMIT 1
         `
 
@@ -24,7 +25,13 @@ class Artists {
 
     async markAsPeersFound(url: string) {
         await db`
-            UPDATE artists SET foundpeers = true WHERE wikilink = ${url}
+            UPDATE artists SET found_peers = true WHERE wikilink = ${url}
+        `
+    }
+
+    async markAsDiscographyFound(url: string) {
+        await db`
+            UPDATE artists SET found_discography = true WHERE wikilink = ${url}
         `
     }
 
@@ -40,6 +47,18 @@ class Artists {
         await db`DELETE FROM artists where wikilink = ${url}`
     }
 
+    async getWhereDiscographyNotFound(): Promise<DBArtist|undefined> {
+        const [nextArtist]: [DBArtist?] = await db`
+            SELECT *
+            FROM artists
+            WHERE found_discography = false
+            LIMIT 1
+        `
+
+        return nextArtist
+    }
+
+    // Delete?
     async getWhereNotInDiscography(): Promise<DBArtist|undefined> {
         const [artist]: [DBArtist?] = await db`
             SELECT * FROM artists

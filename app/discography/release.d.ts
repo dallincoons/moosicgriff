@@ -1,17 +1,22 @@
 export interface Release {
+    artist_wikilink: string
     name: string
     producer: string
     type: string
     label: string
-    year: number
+    year: number|null,
+    month: string,
+    day: number|null,
     wikilink: string
 }
 
 export interface DBRelease {
     artist_id: number
-    releasename: string
-    releaseyear: string
+    title: string
+    dateyear: number
+    datemonth: number
+    dateday: number
     releasetype: string
-    releaselabel: string
+    label: string
     producer: number
 }

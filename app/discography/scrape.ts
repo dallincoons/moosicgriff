@@ -1,30 +1,40 @@
 import * as cheerio from "cheerio";
 import artists from "app/repositories/artists/artists";
+import discography from "app/repositories/discography/discography";
 import {getDiscographyFromArtists} from "./chat";
 import {DBArtist} from "../artists/artist";
 import {parseReleases} from "app/discography/parse"
 
 export async function scrape() {
-    // const artist = await <DBArtist>artists.getWhereNotInDiscography();
-    //
-    // if (!artist) {
-    //     return;
-    // }
-    //
-    // let artistLink = artist.wikilink;
+    const artist = await <DBArtist>artists.getWhereDiscographyNotFound();
+
+    if (!artist) {
+        return;
+    }
+
+    let artistLink = artist.wikilink;
+    // let artistLink = "https://en.wikipedia.org/wiki/Nirvana_(band)";
     let response;
-    let artistLink = "https://en.wikipedia.org/wiki/Nirvana_(band)";
 
     response = await getDiscographyFromDiscographyPage(artistLink);
 
-    if (!response) {
+    console.log({response});
+
+    if (!response || response.length === 0) {
         response = await getDiscographyFromArtistPage(artistLink);
     }
 
-    console.log(response);
-    console.log(parseReleases(<string>response));
+    const releases = parseReleases(<string>response);
 
-    // let releases = parseReleases();
+    releases.forEach(async (release) => {
+        await discography.insertRelease(release, artist);
+    });
+
+    await artists.markAsDiscographyFound(artist.wikilink);
+
+    scrape();
+
+    return;
 }
 
 async function getDiscographyFromDiscographyPage(artistLink:string) {
@@ -64,6 +74,8 @@ async function getDiscographyFromArtistPage(artistLink:string) {
 
     let base: string = "h2:contains('Discography')";
     let content = $(base).parent().nextUntil("h2:contains('References')").text();
+
+    console.log({content});
 
     return await getDiscographyFromArtists(content);
 }

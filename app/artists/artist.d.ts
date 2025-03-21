@@ -10,6 +10,6 @@ export interface DBArtist {
     id: number,
     artistname: string,
     wikilink: string,
-    foundpeers: boolean,
+    found_peers: boolean,
     parent_wikilink: string,
 }

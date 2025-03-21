@@ -30,7 +30,7 @@ export async function scrape() {
     const persistedArtist = await artists.getArtistByUrl(artist.url);
 
 
-    if (persistedArtist && persistedArtist.foundpeers) {
+    if (persistedArtist && persistedArtist.found_peers) {
         return;
     }
 
