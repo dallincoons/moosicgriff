@@ -13,7 +13,6 @@ export async function scrape() {
     }
 
     let artistLink = artist.wikilink;
-    // let artistLink = "https://en.wikipedia.org/wiki/Nirvana_(band)";
     let response;
 
     response = await getDiscographyFromDiscographyPage(artistLink);
@@ -37,10 +36,11 @@ export async function scrape() {
     return;
 }
 
-async function getDiscographyFromDiscographyPage(artistLink:string) {
-    let $;
+export async function getDiscographyFromDiscographyPage(artistLink:string) {
+    let content = '';
 
     try {
+        let $;
         let pattern = /(.+)_\(.+/
         let matches = pattern.exec(artistLink);
         if (matches && matches.length > 1) {
@@ -49,19 +49,19 @@ async function getDiscographyFromDiscographyPage(artistLink:string) {
         } else {
             $ = await cheerio.fromURL(artistLink);
         }
+
+        let base: string = "h2:contains('Albums')";
+        content = $(base).parent().nextUntil("h2:contains('References')").text();
     } catch (e: any) {
         if (e.status == 404) {
         }
         return [];
     }
 
-    let base: string = "h2:contains('Albums')";
-    let content = $(base).parent().nextUntil("h2:contains('References')").text();
-
     return await getDiscographyFromArtists(content);
 }
 
-async function getDiscographyFromArtistPage(artistLink:string) {
+export async function getDiscographyFromArtistPage(artistLink:string) {
     let $;
 
     try {

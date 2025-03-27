@@ -53,23 +53,16 @@ export async function scrape() {
 }
 
 async function getChildren(artist:Artist): Promise<Artist[]> {
-    logger.info("fetching: " + artist.url);
-    let $;
+    let response;
     try {
-        $ = await cheerio.fromURL(artist.url);
+        response = await getArtistPeersFromUrl(artist.url);
     } catch (e: any) {
         if (e.status == 404) {
             console.log("deleting: " + artist.url);
             artists.delete(artist.url);
         }
         return [];
-    }
-
-    let base: string = '#mw-content-text div';
-    let p: string = 'p';
-    let content: string = $(base).children(p).text();
-
-    const response = await getArtistLinksFromContent(content);
+}
 
     logger.info('ai response: ' + response);
 
@@ -78,6 +71,20 @@ async function getChildren(artist:Artist): Promise<Artist[]> {
     logger.info('parsed artists: ' + JSON.stringify(extractedArtists));
 
     return extractedArtists;
+}
+
+export async function getArtistPeersFromUrl(artistUrl: string) {
+    logger.info("fetching: " + artistUrl);
+
+    let $;
+        $ = await cheerio.fromURL(artistUrl);
+
+
+    let base: string = '#mw-content-text div';
+    let p: string = 'p';
+    let content: string = $(base).children(p).text();
+
+    return await getArtistLinksFromContent(content);
 }
 
 function translateDBArtist(artist:DBArtist): Artist {
