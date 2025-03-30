@@ -10,7 +10,7 @@ export async function getArtistLinksFromContent(content: string): Promise<string
         messages: [
             {
                 role: "user",
-                content: `give me wikipedia page links to the solo artists and bands listed in this article who have a discography \n Respond in this format: **band name**: [band name](link to wikipedia page) \n ${content}`,
+                content: `give me wikipedia page links to the solo artists and bands listed in this article who have a discography (but don't include the discography page) \n Respond in this format: **band name**: [band name](link to wikipedia page) \n ${content}`,
             },
         ],
         model: "gpt-4o",

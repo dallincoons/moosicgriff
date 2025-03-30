@@ -29,7 +29,6 @@ export async function scrape() {
 
     const persistedArtist = await artists.getArtistByUrl(artist.url);
 
-
     if (persistedArtist && persistedArtist.found_peers) {
         return;
     }
@@ -60,9 +59,11 @@ async function getChildren(artist:Artist): Promise<Artist[]> {
         if (e.status == 404) {
             console.log("deleting: " + artist.url);
             artists.delete(artist.url);
+            return [];
         }
-        return [];
-}
+        console.log("error" + e);
+        throw e;
+    }
 
     logger.info('ai response: ' + response);
 
