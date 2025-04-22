@@ -4,6 +4,10 @@ import {DBArtist} from "../../artists/artist.d.ts";
 
 class Discography {
     async insertRelease(release: Release, artist: DBArtist) {
+        if (!release.year) {
+            console.error(`missing release year: ${artist.artistname}, ${release.name}`);
+            return;
+        }
         console.log({release});
         await db`
             insert into releases

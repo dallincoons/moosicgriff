@@ -1,5 +1,7 @@
 import {OPEN_API_API_KEY} from "../../config";
 import OpenAI from "openai";
+import {CheerioAPI} from "cheerio";
+import * as cheerio from "cheerio";
 
 const openai = new OpenAI({
     apiKey: OPEN_API_API_KEY
@@ -21,4 +23,24 @@ export async function getArtistLinksFromContent(content: string): Promise<string
     }
 
     return response.choices[0].message.content!.toString();
+}
+
+export async function getBandName(link: string): Promise<string> {
+    try {
+        let $: CheerioAPI = await cheerio.fromURL(link);
+        let html = $.html();
+
+        const isBandPage = /Template:Infobox_musical_artist|Template:Infobox_band/i.test(html);
+        if (!isBandPage) return '';
+
+        const match = html.match(/<title>(.*?) - Wikipedia<\/title>/);
+        if (!match) return '';
+
+        let bandName = match[1];
+
+        return bandName.replace(/\s*\(.*?\)\s*$/, '');
+    } catch (e) {
+        console.log("failed to get band name. " + e);
+        return '';
+    }
 }

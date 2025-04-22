@@ -2,7 +2,6 @@ import {Artist} from "../artists/artist";
 import {Release} from "app/discography/release";
 
 export function parseReleases(rawContents: string): Release[] {
-    console.log({rawContents});
     let pattern = `Release name:[ ]*(.+).*\n.+Producer:[ ]{0,1}(.+).*\n.+Type of release:[ ]*(.+)\n.+Label(?:s)*: (.+)\n.+Year released:[ ]*(.+)\n.+Month released:[ ]*(.+)\n.+Day released:[ ]*(.+)\n(?:.+(https.+)\\))?`
 
     const regex = new RegExp(pattern, "gi")
