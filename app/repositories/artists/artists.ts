@@ -29,6 +29,12 @@ class Artists {
         `
     }
 
+    async updatePageContentHash(url: string, pageContentHash: string): Promise<void> {
+        await db`
+            UPDATE artists SET page_content_hash = ${pageContentHash} WHERE wikilink = ${url}
+        `
+    }
+
     async markAsDiscographyFound(url: string) {
         await db`
             UPDATE artists SET found_discography = true WHERE wikilink = ${url}

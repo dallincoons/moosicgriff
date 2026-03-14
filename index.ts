@@ -1,7 +1,36 @@
 const args = process.argv.slice(2);
+let isShuttingDown = false;
+let sigintCount = 0;
 
 if (args.length > 2) {
     console.log("you can't give more than two arguments, dumb shit");
+}
+
+async function shutdown(): Promise<void> {
+    if (isShuttingDown) {
+        return;
+    }
+    isShuttingDown = true;
+
+    if (args[0] === "artists") {
+        try {
+            const { printRunSummary } = await import("./app/artists/runsummary");
+            printRunSummary();
+        } catch (e) {
+        }
+    }
+
+    try {
+        const { closeArtistScrapeResources } = await import("./app/artists/scrape");
+        closeArtistScrapeResources();
+    } catch (e) {
+    }
+
+    try {
+        const { closeDb } = await import("./app/repositories/db");
+        await closeDb();
+    } catch (e) {
+    }
 }
 
 async function main(): Promise<void> {
@@ -17,7 +46,7 @@ async function main(): Promise<void> {
             return;
         }
         case 'artists.reset.all': {
-            const { artistsRerunAll } = await import("./app/artists/query/rerunall");
+            const { artistsRerunAll } = await import("./app/artists/query/resetall");
             await artistsRerunAll();
             return;
         }
@@ -46,21 +75,38 @@ async function main(): Promise<void> {
     }
 }
 
+process.on("SIGINT", async () => {
+    sigintCount += 1;
+
+    if (sigintCount === 1) {
+        process.exitCode = 130;
+
+        try {
+            const { requestStop } = await import("./app/runtime/stop");
+            requestStop();
+        } catch (e) {
+        }
+
+        if (args[0] === "artists") {
+            try {
+                const { printRunSummary } = await import("./app/artists/runsummary");
+                printRunSummary();
+            } catch (e) {
+            }
+        }
+
+        process.exit(130);
+    }
+
+    console.log("Force exiting.");
+    process.exit(130);
+});
+
 main()
     .catch((err) => {
         console.error(err);
         process.exitCode = 1;
     })
     .finally(async () => {
-        try {
-            const { closeArtistScrapeResources } = await import("./app/artists/scrape");
-            closeArtistScrapeResources();
-        } catch (e) {
-        }
-
-        try {
-            const { closeDb } = await import("./app/repositories/db");
-            await closeDb();
-        } catch (e) {
-        }
+        await shutdown();
     });

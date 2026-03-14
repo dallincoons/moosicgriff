@@ -7,6 +7,25 @@ export async function getHtml(url: string): Promise<string> {
     const $ = await loadWikipediaPage(url);
     return $.html();
 }
+
+export async function getHtmlAndWikiLinks(url: string): Promise<{ html: string; wikiLinks: string[] }> {
+    const $ = await loadWikipediaPage(url);
+    const wikiLinks: string[] = [];
+
+    $('a[href^="/wiki/"]').each((_, element) => {
+        const href = $(element).attr("href");
+        if (!href) {
+            return;
+        }
+
+        wikiLinks.push(`https://en.wikipedia.org${href}`);
+    });
+
+    return {
+        html: $.html(),
+        wikiLinks,
+    };
+}
 export async function getPageText(url: string): Promise<string> {
     const $ = await loadWikipediaPage(url);
     return $.text();

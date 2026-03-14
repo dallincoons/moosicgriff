@@ -1,4 +1,4 @@
-import {getPageText, getWikiLinks} from "app/clients/wikipedia";
+import {getHtmlAndWikiLinks} from "app/clients/wikipedia";
 import {parseArtists} from "./parse";
 import winston from "winston";
 import DailyRotateFile from "winston-daily-rotate-file";
@@ -6,8 +6,17 @@ import {Artist, DBArtist} from 'app/artists/artist';
 import artists from 'app/repositories/artists/artists'
 import deadlinks from 'app/repositories/deadlinks/deadlinks'
 import {getArtistLinksFromContent, getBandName} from "./chat";
+import {recordDeadlinkAdded, recordNewArtist} from "./runsummary";
+import {createHash} from "crypto";
+import {isStopRequested} from "app/runtime/stop";
 
 const logger = winston.createLogger({
+    format: winston.format.combine(
+        winston.format.timestamp({ format: "YYYY-MM-DD HH:mm:ss" }),
+        winston.format.printf(({ level, message, timestamp }) => {
+            return `\n[${timestamp}] ${level.toUpperCase()}: ${message}\n`;
+        }),
+    ),
     transports: [new DailyRotateFile({
         filename: 'logs/%DATE%.log',
         datePattern: 'YYYY-MM-DD-HH',
@@ -34,13 +43,21 @@ export async function handleLink(link: string, parentLink: string = ""): Promise
 
     if (!bandName || bandName == `""`) {
         console.log("inserting dead link: " + link);
-        // await deadlinks.insertNew(link);
+        if (isStopRequested()) {
+            return;
+        }
+        await deadlinks.insertNew(link);
+        recordDeadlinkAdded();
         return;
     }
 
     try {
         console.log("inserting new artist: " + bandName);
+        if (isStopRequested()) {
+            return;
+        }
         await artists.insertNew(bandName, link, parentLink);
+        recordNewArtist(bandName, link);
         console.log("saved new artist: " + link);
     } catch (e) {
         // console.log("error persisting child: " + e);
@@ -57,34 +74,55 @@ export async function scrape(hasProcessedArtists: boolean = false) {
 
     const artist = translateDBArtist(nextArtist);
 
-    console.log(artist);
-
     const persistedArtist = await artists.getArtistByUrl(artist.url);
 
     if (persistedArtist && persistedArtist.found_peers) {
         return;
     }
 
-    const links: string[] = await getChildren(artist);
+    const pageData = await getChildren(artist);
+    const pageContentHash = hashContent(pageData.html);
+
+    if (persistedArtist?.page_content_hash && persistedArtist.page_content_hash === pageContentHash) {
+        if (isStopRequested()) {
+            return;
+        }
+        console.log(`No page changes detected for ${artist.url}; skipping.`);
+        await artists.markAsPeersFound(artist.url);
+        await scrape(true);
+        return;
+    }
+
+    const links: string[] = pageData.links;
 
     for (const link of links) {
+        if (isStopRequested()) {
+            break;
+        }
         await handleLink(link, artist.url);
     }
 
+    if (isStopRequested()) {
+        return;
+    }
+    await artists.updatePageContentHash(artist.url, pageContentHash);
     await artists.markAsPeersFound(artist.url);
 
     await scrape(true);
 }
 
-async function getChildren(artist:Artist): Promise<string[]> {
+async function getChildren(artist:Artist): Promise<{html: string; links: string[]}> {
     // let response;
     try {
-        return await getArtistPeersFromUrl(artist.url);
+        return await getArtistPageDataFromUrl(artist.url);
     } catch (e: any) {
         if (e.status == 404) {
             console.log("deleting: " + artist.url);
-            artists.delete(artist.url);
-            return [];
+            if (isStopRequested()) {
+                return { html: "", links: [] };
+            }
+            await artists.delete(artist.url);
+            return { html: "", links: [] };
         }
         console.log("error" + e);
         throw e;
@@ -92,9 +130,15 @@ async function getChildren(artist:Artist): Promise<string[]> {
 }
 
 export async function getArtistPeersFromUrl(artistUrl: string) {
+    const pageData = await getArtistPageDataFromUrl(artistUrl);
+    return pageData.links;
+}
+
+async function getArtistPageDataFromUrl(artistUrl: string): Promise<{html: string; links: string[]}> {
     logger.info("fetching: " + artistUrl);
 
-    let rawLinks = await getWikiLinks(artistUrl);
+    let pageData = await getHtmlAndWikiLinks(artistUrl);
+    let rawLinks = pageData.wikiLinks;
 
     let links: string[] = [];
 
@@ -243,9 +287,11 @@ export async function getArtistPeersFromUrl(artistUrl: string) {
         }
     });
 
-    console.log(await getPageText(artistUrl));
+    return { html: pageData.html, links };
+}
 
-    return links;
+function hashContent(content: string): string {
+    return createHash("sha256").update(content).digest("hex");
 }
 
 function translateDBArtist(artist:DBArtist): Artist {

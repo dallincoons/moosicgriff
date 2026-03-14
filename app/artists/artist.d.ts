@@ -12,4 +12,5 @@ export interface DBArtist {
     wikilink: string,
     found_peers: boolean,
     parent_wikilink: string,
+    page_content_hash?: string | null,
 }
