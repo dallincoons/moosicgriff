@@ -1,15 +1,16 @@
-import * as cheerio from "cheerio";
 import artists from "app/repositories/artists/artists";
 import discography from "app/repositories/discography/discography";
 import {getDiscographyFromArtists} from "./chat";
 import {DBArtist} from "../artists/artist";
 import {parseReleases} from "app/discography/parse"
 import {Release} from "./release";
+import {getSectionText} from "app/clients/wikipedia";
 
 export async function scrape() {
     const artist:DBArtist = await <DBArtist>artists.getWhereDiscographyNotFound();
 
     if (!artist) {
+        console.log("No more artists to process for discography. Exiting gracefully.");
         return;
     }
 
@@ -28,36 +29,20 @@ export async function scrape() {
 
     console.log(`${releases.length} releases found for ${artistLink} `);
 
-    releases.forEach(async (release: Release) => {
+    for (const release of releases) {
         await discography.insertRelease(release, artist);
-    });
+    }
 
     await artists.markAsDiscographyFound(artist.wikilink);
 
-    scrape();
-
-    return;
+    return await scrape();
 }
 
 export async function getDiscographyFromDiscographyPage(artistLink:string) {
     let content = '';
 
     try {
-        let $;
-        // let pattern = /(.+)_\(.+/
-        // let matches = pattern.exec(artistLink);
-        // if (matches && matches.length > 1) {
-        //     const discogLink = `${matches[1]}_discography`;
-        //     console.log(`discography page found: ${discogLink}`);
-        //     $ = await cheerio.fromURL(discogLink);
-        // } else {
-        //     $ = await cheerio.fromURL(artistLink);
-        // }
-
-        $ = await cheerio.fromURL(artistLink + "_discography");
-
-        let base: string = "h2:contains('Albums')";
-        content = $(base).parent().nextUntil("h2:contains('References')").text();
+        content = await getSectionText(artistLink + "_discography", "Albums", "References");
     } catch (e: any) {
         if (e.status == 404) {
             console.log(artistLink + ": no discography page detected");
@@ -71,20 +56,17 @@ export async function getDiscographyFromDiscographyPage(artistLink:string) {
 }
 
 export async function getDiscographyFromArtistPage(artistLink:string) {
-    let $;
+    let content = "";
 
     console.log(`${artistLink}: fetching discography from the artist page`);
 
     try {
-        $ = await cheerio.fromURL(artistLink);
+        content = await getSectionText(artistLink, "Discography", "References");
     } catch (e: any) {
         if (e.status == 404) {
         }
         return [];
     }
-
-    let base: string = "h2:contains('Discography')";
-    let content = $(base).parent().nextUntil("h2:contains('References')").text();
 
     console.log(content);
 

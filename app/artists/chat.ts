@@ -1,11 +1,5 @@
-import {OPEN_API_API_KEY} from "../../config";
-import OpenAI from "openai";
-import {CheerioAPI} from "cheerio";
-import * as cheerio from "cheerio";
-
-const openai = new OpenAI({
-    apiKey: OPEN_API_API_KEY
-});
+import openai from "app/clients/openai";
+import {getHtml} from "app/clients/wikipedia";
 
 export async function getArtistLinksFromContent(content: string): Promise<string> {
     const response = await openai.chat.completions.create({
@@ -27,8 +21,7 @@ export async function getArtistLinksFromContent(content: string): Promise<string
 
 export async function getBandName(link: string): Promise<string> {
     try {
-        let $: CheerioAPI = await cheerio.fromURL(link);
-        let html = $.html();
+        let html = await getHtml(link);
 
         const isBandPage = /Template:Infobox_musical_artist|Template:Infobox_band/i.test(html);
         if (!isBandPage) return '';

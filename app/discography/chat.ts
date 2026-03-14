@@ -1,9 +1,4 @@
-import {OPEN_API_API_KEY} from "../../config";
-import OpenAI from "openai";
-
-const openai = new OpenAI({
-    apiKey: OPEN_API_API_KEY
-});
+import openai from "app/clients/openai";
 
 export async function getDiscographyFromArtists(content: string): Promise<string> {
     const response = await openai.chat.completions.create({

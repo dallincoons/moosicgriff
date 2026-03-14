@@ -35,6 +35,12 @@ class Artists {
         `
     }
 
+    async resetAllFoundPeers(): Promise<void> {
+        await db`
+            UPDATE artists SET found_peers = false
+        `
+    }
+
     async insertNew(name: string, url: string, parentUrl: string) {
         await db`
                 insert into artists
@@ -73,4 +79,3 @@ class Artists {
 }
 
 export default new Artists();
-
