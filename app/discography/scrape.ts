@@ -1,5 +1,6 @@
 import artists from "app/repositories/artists/artists";
 import discography from "app/repositories/discography/discography";
+import discographyDeadlinks from "app/repositories/discographydeadlinks/discographydeadlinks";
 import {Release} from "./release";
 import {getHtml, getSectionWikiLinks, isMissingArticlePage} from "app/clients/wikipedia";
 import {createHash} from "crypto";
@@ -29,7 +30,7 @@ export async function scrape() {
     const hydration = await hydrateReleasesFromLinks(artist.wikilink, releaseLinks);
     const releases = hydration.releases;
 
-    console.log(`[discography] ${artist.artistname}: ${releases.length} releases to upsert (${hydration.skippedUnchanged} unchanged, ${hydration.skippedNonAlbum} not albums, ${hydration.errors} errors)`);
+    console.log(`[discography] ${artist.artistname}: ${releases.length} releases to upsert (${hydration.skippedKnownNonAlbum} known non-albums, ${hydration.skippedUnchanged} unchanged, ${hydration.skippedNonAlbum} not albums, ${hydration.errors} errors)`);
 
     let upserted = 0;
     for (const release of releases) {
@@ -82,12 +83,14 @@ export async function getDiscographyFromArtistPage(artistLink:string) {
 
 async function hydrateReleasesFromLinks(artistWikilink: string, links: string[]): Promise<{
     releases: Array<{release: Release; contentHash: string}>;
+    skippedKnownNonAlbum: number;
     skippedUnchanged: number;
     skippedNonAlbum: number;
     errors: number;
 }> {
     const releases: Array<{release: Release; contentHash: string}> = [];
     const uniqueLinks = [...new Set(links)];
+    let skippedKnownNonAlbum = 0;
     let skippedUnchanged = 0;
     let skippedNonAlbum = 0;
     let errors = 0;
@@ -99,6 +102,11 @@ async function hydrateReleasesFromLinks(artistWikilink: string, links: string[])
             console.log(`[discography] processed ${processed}/${uniqueLinks.length} candidate links`);
         }
         try {
+            if (await discographyDeadlinks.doesDeadLinkExist(link)) {
+                skippedKnownNonAlbum += 1;
+                continue;
+            }
+
             const release = await buildReleaseIfAlbum(artistWikilink, link);
             if (release?.reason === "ok") {
                 releases.push(release);
@@ -106,6 +114,7 @@ async function hydrateReleasesFromLinks(artistWikilink: string, links: string[])
                 skippedUnchanged += 1;
             } else if (release?.reason === "not_album") {
                 skippedNonAlbum += 1;
+                await discographyDeadlinks.insertNew(link);
             }
         } catch (e) {
             errors += 1;
@@ -114,7 +123,7 @@ async function hydrateReleasesFromLinks(artistWikilink: string, links: string[])
         }
     }
 
-    return { releases, skippedUnchanged, skippedNonAlbum, errors };
+    return { releases, skippedKnownNonAlbum, skippedUnchanged, skippedNonAlbum, errors };
 }
 
 async function buildReleaseIfAlbum(
