@@ -3,6 +3,16 @@ import {db} from 'app/repositories/db';
 import {Release} from "../../discography/release";
 
 class Artists {
+    async getAll(): Promise<DBArtist[]> {
+        const rows: DBArtist[] = await db`
+            SELECT *
+            FROM artists
+            ORDER BY id ASC
+        `;
+
+        return rows;
+    }
+
     async nextInQueue(): Promise<DBArtist|undefined> {
         const [nextArtist]: [DBArtist?] = await db`
             SELECT *
@@ -21,6 +31,16 @@ class Artists {
         `
 
         return artist
+    }
+
+    async getArtistByWikipediaPageId(wikipediaPageId: number): Promise<DBArtist|undefined> {
+        const [artist]: [DBArtist?] = await db`
+            SELECT * FROM artists
+            WHERE wikipedia_page_id = ${wikipediaPageId}
+            LIMIT 1
+        `;
+
+        return artist;
     }
 
     async markAsPeersFound(url: string) {
@@ -47,12 +67,42 @@ class Artists {
         `
     }
 
-    async insertNew(name: string, url: string, parentUrl: string) {
+    async resetAllFoundDiscography(): Promise<void> {
+        await db`
+            UPDATE artists SET found_discography = false
+        `
+    }
+
+    async insertNew(name: string, url: string, parentUrl: string, wikipediaPageId: number | null = null) {
         await db`
                 insert into artists
-                    (artistname, wikilink, parent_wikilink)
-                VALUES (${name}::text, ${url}::text, ${parentUrl}::text)
+                    (artistname, wikilink, parent_wikilink, wikipedia_page_id)
+                VALUES (${name}::text, ${url}::text, ${parentUrl}::text, ${wikipediaPageId}::bigint)
             `
+    }
+
+    async updateWikipediaIdentityById(id: number, wikilink: string, wikipediaPageId: number | null): Promise<void> {
+        await db`
+            UPDATE artists
+            SET wikilink = ${wikilink}::text,
+                wikipedia_page_id = ${wikipediaPageId}::bigint
+            WHERE id = ${id}
+        `;
+    }
+
+    async updateWikipediaPageIdById(id: number, wikipediaPageId: number | null): Promise<void> {
+        await db`
+            UPDATE artists
+            SET wikipedia_page_id = ${wikipediaPageId}::bigint
+            WHERE id = ${id}
+        `;
+    }
+
+    async deleteById(id: number): Promise<void> {
+        await db`
+            DELETE FROM artists
+            WHERE id = ${id}
+        `;
     }
 
     async delete(url: string) {

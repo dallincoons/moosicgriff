@@ -1,6 +1,11 @@
+import {applyRuntimePolyfills} from "./app/runtime/polyfills";
+
+applyRuntimePolyfills();
+
 const args = process.argv.slice(2);
 let isShuttingDown = false;
 let sigintCount = 0;
+const commandsUsingArtistScrape = new Set(["artists", "artist.query", "link.scrape"]);
 
 if (args.length > 2) {
     console.log("you can't give more than two arguments, dumb shit");
@@ -20,10 +25,12 @@ async function shutdown(): Promise<void> {
         }
     }
 
-    try {
-        const { closeArtistScrapeResources } = await import("./app/artists/scrape");
-        closeArtistScrapeResources();
-    } catch (e) {
+    if (commandsUsingArtistScrape.has(args[0])) {
+        try {
+            const { closeArtistScrapeResources } = await import("./app/artists/scrape");
+            closeArtistScrapeResources();
+        } catch (e) {
+        }
     }
 
     try {
@@ -50,6 +57,26 @@ async function main(): Promise<void> {
             await artistsRerunAll();
             return;
         }
+        case 'artists.redirect.remove': {
+            const { artistsRedirectRemove } = await import("./app/artists/query/redirectremove");
+            await artistsRedirectRemove();
+            return;
+        }
+        case 'artists.discover.from.page': {
+            const { artistsDiscoverFromPage } = await import("./app/artists/query/discoverfrompage");
+            await artistsDiscoverFromPage(args[1]);
+            return;
+        }
+        case 'artists.discover.common': {
+            const { artistsDiscoverCommon } = await import("./app/artists/query/discovercommon");
+            await artistsDiscoverCommon();
+            return;
+        }
+        case 'artists.dedupe.pageid': {
+            const { artistsDedupePageId } = await import("./app/artists/query/dedupepageid");
+            await artistsDedupePageId();
+            return;
+        }
         case 'link.scrape': {
             const { bandCheck } = await import("./app/artists/query/bandcheck");
             await bandCheck(args[1]);
@@ -63,6 +90,11 @@ async function main(): Promise<void> {
         case 'discography.query': {
             const { discographyQuery } = await import("./app/discography/query/fromartistpage");
             await discographyQuery(args[1]);
+            return;
+        }
+        case 'discography.reset.all': {
+            const { discographyResetAll } = await import("./app/discography/query/resetall");
+            await discographyResetAll();
             return;
         }
         case 'labels': {

@@ -14,14 +14,22 @@ export function parseReleases(rawContents: string): Release[] {
     return matches.map(function(match) {
         return{
                 artist_wikilink: "",
+                artist_name: "",
+                artist_display_name: "",
                 name: <string>match[1],
                 producer: <string>match[2],
+                studio: "",
                 type: <string>match[3],
                 label: <string>match[4],
+                genre: "",
+                original_genre: "",
+                recorded: "",
                 year: isNaN(parseInt(match[5])) ? null : parseInt(match[5]),
                 month: !!match[6] ? match[6].trim() : "",
                 day: isNaN(parseInt(match[7])) ? null : parseInt(match[7]),
                 wikilink: <string>match[8] ?? "",
+                number_of_reviews: 0,
+                review_links: "",
             }
     });
 }

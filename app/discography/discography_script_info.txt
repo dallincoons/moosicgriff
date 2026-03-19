@@ -1,0 +1,4 @@
+is redirect
+date released
+genre
+number of reviews

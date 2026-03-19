@@ -13,4 +13,5 @@ export interface DBArtist {
     found_peers: boolean,
     parent_wikilink: string,
     page_content_hash?: string | null,
+    wikipedia_page_id?: number | null,
 }

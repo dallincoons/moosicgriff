@@ -1,4 +1,4 @@
-import {getHtmlAndWikiLinks} from "app/clients/wikipedia";
+import {getHtmlAndWikiLinks, resolveWikipediaPageInfo} from "app/clients/wikipedia";
 import {parseArtists} from "./parse";
 import winston from "winston";
 import DailyRotateFile from "winston-daily-rotate-file";
@@ -39,14 +39,43 @@ export async function handleLink(link: string, parentLink: string = ""): Promise
         return;
     }
 
-    let bandName = await getBandName(link);
+    const pageInfo = await resolveWikipediaPageInfo(link);
+    const resolvedLink = pageInfo.resolvedUrl;
+    const pageId = pageInfo.pageId;
+
+    if (pageInfo.isRedirect && pageInfo.originalUrl !== resolvedLink) {
+        console.log(`redirect detected: ${pageInfo.originalUrl} -> ${resolvedLink}`);
+    }
+
+    if (pageInfo.isDisambiguation) {
+        console.log(`skipping disambiguation page: ${resolvedLink}`);
+        return;
+    }
+
+    if (resolvedLink !== link) {
+        if (await deadlinks.doesDeadLinkExist(resolvedLink)) {
+            return;
+        }
+        if (await artists.getArtistByUrl(resolvedLink)) {
+            return;
+        }
+    }
+
+    if (pageId) {
+        const existingByPageId = await artists.getArtistByWikipediaPageId(pageId);
+        if (existingByPageId) {
+            return;
+        }
+    }
+
+    let bandName = await getBandName(resolvedLink);
 
     if (!bandName || bandName == `""`) {
-        console.log("inserting dead link: " + link);
+        console.log("inserting dead link: " + resolvedLink);
         if (isStopRequested()) {
             return;
         }
-        await deadlinks.insertNew(link);
+        await deadlinks.insertNew(resolvedLink);
         recordDeadlinkAdded();
         return;
     }
@@ -56,9 +85,9 @@ export async function handleLink(link: string, parentLink: string = ""): Promise
         if (isStopRequested()) {
             return;
         }
-        await artists.insertNew(bandName, link, parentLink);
-        recordNewArtist(bandName, link);
-        console.log("saved new artist: " + link);
+        await artists.insertNew(bandName, resolvedLink, parentLink, pageId);
+        recordNewArtist(bandName, resolvedLink);
+        console.log("saved new artist: " + resolvedLink);
     } catch (e) {
         // console.log("error persisting child: " + e);
     }
@@ -171,6 +200,7 @@ async function getArtistPageDataFromUrl(artistUrl: string): Promise<{html: strin
             !href.includes('surname)') &&  // exclude names
             !href.includes('game_designer)') &&  // exclude game designers
             !href.includes('comics)')  && // exclude game designers
+            !href.includes('comic_artist)')  &&
             !href.includes('_episodes') && // exclude episodes
             !href.includes('(disambiguation)') && // exclude disambiguation pages
             !href.includes('single)') && // exclude singles
@@ -282,6 +312,29 @@ async function getArtistPageDataFromUrl(artistUrl: string): Promise<{html: strin
             && !href.includes('(sound_designer)')
             && !href.includes('(radio_personality)')
             && !href.includes('(Harry_Potter)')
+            && !href.includes('(racing_driver)')
+            && !href.includes('(motorsport_commentator)')
+            && !href.includes('(motorsport_executive)')
+            && !href.includes('(NHL)')
+            && !href.includes('(photographer)')
+            && !href.includes('(mythology)')
+            && !href.includes('(chef)')
+            && !href.includes('(sportscaster)')
+            && !href.includes('(American_football)')
+            && !href.includes('(American_football_coach)')
+            && !href.includes('(defensive_tackle)')
+            && !href.includes('(wide_receiver)')
+            && !href.includes('(defensive_lineman)')
+            && !href.includes('(journalist)')
+            && !href.includes('(golfer)')
+            && !href.includes('(footballer)')
+            && !href.includes('(ice_hockey)')
+            && !href.includes('(Royal_Navy_officer)')
+            && !href.includes('(British_Army_officer)')
+            && !href.includes('(sea_captain)')
+            && !href.includes('(general)')
+            && !href.includes('(minister)')
+            && !href.includes('(dancer)')
         ) {
             links.push('https://en.wikipedia.org' + href);
         }

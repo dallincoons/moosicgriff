@@ -22,18 +22,40 @@ export async function getArtistLinksFromContent(content: string): Promise<string
 export async function getBandName(link: string): Promise<string> {
     try {
         let html = await getHtml(link);
+        const urlIndicatesBand = /\(band\)/i.test(decodeURIComponent(link));
 
         const isBandPage = /Template:Infobox_musical_artist|Template:Infobox_band/i.test(html);
-        if (!isBandPage) return '';
+        if (!isBandPage && !urlIndicatesBand) return '';
 
         const match = html.match(/<title>(.*?) - Wikipedia<\/title>/);
-        if (!match) return '';
+        if (match && match[1]) {
+            let bandName = match[1];
+            return bandName.replace(/\s*\(.*?\)\s*$/, '');
+        }
 
-        let bandName = match[1];
+        if (urlIndicatesBand) {
+            return getNameFromUrl(link);
+        }
 
-        return bandName.replace(/\s*\(.*?\)\s*$/, '');
+        return '';
     } catch (e) {
         console.log("failed to get band name. " + e);
+        if (/\(band\)/i.test(decodeURIComponent(link))) {
+            return getNameFromUrl(link);
+        }
         return '';
+    }
+}
+
+function getNameFromUrl(link: string): string {
+    try {
+        const pathname = new URL(link).pathname;
+        const page = decodeURIComponent(pathname.replace(/^\/wiki\//, ""));
+        return page
+            .replace(/_/g, " ")
+            .replace(/\s*\(.*?\)\s*$/, "")
+            .trim();
+    } catch (e) {
+        return "";
     }
 }

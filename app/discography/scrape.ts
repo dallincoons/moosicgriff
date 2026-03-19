@@ -1,13 +1,12 @@
 import artists from "app/repositories/artists/artists";
 import discography from "app/repositories/discography/discography";
-import {getDiscographyFromArtists} from "./chat";
-import {DBArtist} from "../artists/artist";
-import {parseReleases} from "app/discography/parse"
 import {Release} from "./release";
-import {getSectionText} from "app/clients/wikipedia";
+import {getHtml, getSectionWikiLinks, isMissingArticlePage} from "app/clients/wikipedia";
+import {createHash} from "crypto";
+import {getAlbumReleaseFromApi} from "app/clients/wikipediaapi";
 
 export async function scrape() {
-    const artist:DBArtist = await <DBArtist>artists.getWhereDiscographyNotFound();
+    const artist = await artists.getWhereDiscographyNotFound();
 
     if (!artist) {
         console.log("No more artists to process for discography. Exiting gracefully.");
@@ -15,60 +14,136 @@ export async function scrape() {
     }
 
     let artistLink = artist.wikilink;
-    let response;
+    let releaseLinks: string[] = [];
 
+    console.log("");
     console.log("fetching discography for: " + artist.artistname + ", " + artistLink);
 
-    response = await getDiscographyFromDiscographyPage(artistLink);
+    releaseLinks = await getDiscographyFromDiscographyPage(artistLink);
 
-    if (!response || response.length === 0) {
-        response = await getDiscographyFromArtistPage(artistLink);
+    if (releaseLinks.length === 0) {
+        releaseLinks = await getDiscographyFromArtistPage(artistLink);
     }
 
-    const releases = parseReleases(<string>response);
+    console.log(`[discography] ${artist.artistname}: ${releaseLinks.length} candidate links found`);
+    const hydration = await hydrateReleasesFromLinks(artist.wikilink, releaseLinks);
+    const releases = hydration.releases;
 
-    console.log(`${releases.length} releases found for ${artistLink} `);
+    console.log(`[discography] ${artist.artistname}: ${releases.length} releases to upsert (${hydration.skippedUnchanged} unchanged, ${hydration.skippedNonAlbum} not albums, ${hydration.errors} errors)`);
 
+    let upserted = 0;
     for (const release of releases) {
-        await discography.insertRelease(release, artist);
+        if (!release.contentHash) {
+            continue;
+        }
+        await discography.upsertRelease(release.release, artist, release.contentHash);
+        upserted += 1;
     }
+    console.log(`[discography] ${artist.artistname}: upserted ${upserted} releases`);
 
     await artists.markAsDiscographyFound(artist.wikilink);
+    console.log(`[discography] ${artist.artistname}: marked discography complete`);
+    console.log("");
 
     return await scrape();
 }
 
 export async function getDiscographyFromDiscographyPage(artistLink:string) {
-    let content = '';
-
     try {
-        content = await getSectionText(artistLink + "_discography", "Albums", "References");
+        const discographyUrl = artistLink + "_discography";
+        if (await isMissingArticlePage(discographyUrl)) {
+            console.log(`${discographyUrl}: no exact discography article; falling back to artist page`);
+            return [];
+        }
+
+        const links = await getSectionWikiLinks(discographyUrl, "Albums", "References");
+        console.log(`discography page found: ${discographyUrl}`);
+        return links;
     } catch (e: any) {
         if (e.status == 404) {
             console.log(artistLink + ": no discography page detected");
         }
         return [];
     }
-
-    console.log(`discography page found: ${artistLink + "_discography"}`);
-
-    return await getDiscographyFromArtists(content);
 }
 
 export async function getDiscographyFromArtistPage(artistLink:string) {
-    let content = "";
-
     console.log(`${artistLink}: fetching discography from the artist page`);
 
     try {
-        content = await getSectionText(artistLink, "Discography", "References");
+        const links = await getSectionWikiLinks(artistLink, "Discography", "References");
+        return links;
     } catch (e: any) {
         if (e.status == 404) {
         }
         return [];
     }
+}
 
-    console.log(content);
+async function hydrateReleasesFromLinks(artistWikilink: string, links: string[]): Promise<{
+    releases: Array<{release: Release; contentHash: string}>;
+    skippedUnchanged: number;
+    skippedNonAlbum: number;
+    errors: number;
+}> {
+    const releases: Array<{release: Release; contentHash: string}> = [];
+    const uniqueLinks = [...new Set(links)];
+    let skippedUnchanged = 0;
+    let skippedNonAlbum = 0;
+    let errors = 0;
+    let processed = 0;
 
-    return await getDiscographyFromArtists(content);
+    for (const link of uniqueLinks) {
+        processed += 1;
+        if (processed % 10 === 0 || processed === uniqueLinks.length) {
+            console.log(`[discography] processed ${processed}/${uniqueLinks.length} candidate links`);
+        }
+        try {
+            const release = await buildReleaseIfAlbum(artistWikilink, link);
+            if (release?.reason === "ok") {
+                releases.push(release);
+            } else if (release?.reason === "unchanged") {
+                skippedUnchanged += 1;
+            } else if (release?.reason === "not_album") {
+                skippedNonAlbum += 1;
+            }
+        } catch (e) {
+            errors += 1;
+            const errorMessage = e instanceof Error ? e.message : String(e);
+            console.error(`[discography] error processing ${link}: ${errorMessage}`);
+        }
+    }
+
+    return { releases, skippedUnchanged, skippedNonAlbum, errors };
+}
+
+async function buildReleaseIfAlbum(
+    artistWikilink: string,
+    link: string,
+): Promise<({release: Release; contentHash: string; reason: "ok"}) | {reason: "unchanged"} | {reason: "not_album"}> {
+    const html = await getHtml(link);
+    if (!looksLikeAlbumHtml(html)) {
+        return { reason: "not_album" };
+    }
+
+    const contentHash = hashContent(html);
+    const existing = await discography.getReleaseByArtistAndLink(artistWikilink, link);
+    if (existing?.content_hash === contentHash) {
+        return { reason: "unchanged" };
+    }
+
+    const release = await getAlbumReleaseFromApi(link);
+    if (!release) {
+        return { reason: "not_album" };
+    }
+
+    return { release, contentHash, reason: "ok" };
+}
+
+function hashContent(content: string): string {
+    return createHash("sha256").update(content).digest("hex");
+}
+
+function looksLikeAlbumHtml(html: string): boolean {
+    return /infobox[^>]*album/i.test(html) || /Template:Infobox_album/i.test(html);
 }
