@@ -24,18 +24,30 @@ const logger = winston.createLogger({
     new winston.transports.Console()]
 })
 
+const green = "\x1b[32m";
+const reset = "\x1b[0m";
+
 export function closeArtistScrapeResources(): void {
     logger.close();
 }
 
 export async function handleLink(link: string, parentLink: string = ""): Promise<void> {
-    if (await deadlinks.doesDeadLinkExist(link)) {
-        // console.log("dead link exists " + link);
+    if (await artists.getArtistByUrl(link)) {
         return;
     }
 
-    if (await artists.getArtistByUrl(link)) {
-        // console.log("already found: " + link);
+    if (await deadlinks.doesDeadLinkExist(link)) {
+        return;
+    }
+
+    let bandName = await getBandName(link);
+    if (!bandName || bandName == `""`) {
+        console.log("inserting dead link: " + link);
+        if (isStopRequested()) {
+            return;
+        }
+        await deadlinks.insertNew(link);
+        recordDeadlinkAdded();
         return;
     }
 
@@ -59,6 +71,11 @@ export async function handleLink(link: string, parentLink: string = ""): Promise
         if (await artists.getArtistByUrl(resolvedLink)) {
             return;
         }
+
+        const resolvedBandName = await getBandName(resolvedLink);
+        if (resolvedBandName && resolvedBandName !== `""`) {
+            bandName = resolvedBandName;
+        }
     }
 
     if (pageId) {
@@ -68,26 +85,14 @@ export async function handleLink(link: string, parentLink: string = ""): Promise
         }
     }
 
-    let bandName = await getBandName(resolvedLink);
-
-    if (!bandName || bandName == `""`) {
-        console.log("inserting dead link: " + resolvedLink);
-        if (isStopRequested()) {
-            return;
-        }
-        await deadlinks.insertNew(resolvedLink);
-        recordDeadlinkAdded();
-        return;
-    }
-
     try {
-        console.log("inserting new artist: " + bandName);
+        console.log(`${green}inserting new artist: ${bandName}${reset}`);
         if (isStopRequested()) {
             return;
         }
         await artists.insertNew(bandName, resolvedLink, parentLink, pageId);
         recordNewArtist(bandName, resolvedLink);
-        console.log("saved new artist: " + resolvedLink);
+        console.log(`${green}saved new artist: ${resolvedLink}${reset}`);
     } catch (e) {
         // console.log("error persisting child: " + e);
     }

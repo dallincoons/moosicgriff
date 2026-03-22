@@ -4,6 +4,7 @@ type WikiQueryResponse = {
     query?: {
         pages?: Array<{
             missing?: boolean;
+            pageid?: number;
             title?: string;
             categories?: Array<{ title?: string }>;
             revisions?: Array<{ content?: string; slots?: { main?: { content?: string } } }>;
@@ -46,6 +47,9 @@ async function getAlbumReleaseFromApiByTitle(pageTitle: string, depth: number): 
     if (!page || page.missing) {
         return null;
     }
+    if ((page.title || pageTitle).startsWith("List of ")) {
+        return null;
+    }
 
     const wikitext = page.revisions?.[0]?.slots?.main?.content || page.revisions?.[0]?.content || "";
     if (!wikitext) {
@@ -69,12 +73,17 @@ async function getAlbumReleaseFromApiByTitle(pageTitle: string, depth: number): 
     const reviewLinks = collectUniqueReviewLinks(wikitext);
     const reviewLinksCsv = reviewLinks.join(", ");
     const numberOfReviews = reviewLinks.length;
+    const infoboxTitle = normalizeValue(getInfoboxValue(wikitext, "name"));
+    const pageResolvedTitle = normalizeWikiTitle(page.title || pageTitle);
+    const originalTitle = pageResolvedTitle || infoboxTitle;
+    const normalizedTitle = stripReleaseDisambiguator(infoboxTitle || pageResolvedTitle);
 
     return {
-        artist_wikilink: "",
+        artist_wikilink: artistNames.artistWikilink,
         artist_name: artistNames.articleName,
         artist_display_name: artistNames.displayName,
-        name: normalizeValue(getInfoboxValue(wikitext, "name")) || page.title || pageTitle,
+        name: normalizedTitle,
+        original_title: originalTitle,
         producer: normalizeListValue(getInfoboxValue(wikitext, "producer")),
         studio: normalizeListValue(getInfoboxValue(wikitext, "studio")),
         type: normalizeValue(getInfoboxValue(wikitext, "type")),
@@ -86,6 +95,7 @@ async function getAlbumReleaseFromApiByTitle(pageTitle: string, depth: number): 
         month,
         day,
         wikilink: buildWikiUrlFromTitle(page.title || pageTitle),
+        wikipedia_page_id: page.pageid ?? null,
         number_of_reviews: numberOfReviews,
         review_links: reviewLinksCsv,
     };
@@ -146,7 +156,7 @@ function sleep(ms: number): Promise<void> {
     return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-function parseArtistNames(rawArtistField: string): { articleName: string; displayName: string } {
+function parseArtistNames(rawArtistField: string): { articleName: string; displayName: string; artistWikilink: string } {
     const raw = rawArtistField || "";
     const linkMatch = raw.match(/\[\[([^[\]|#]+)(?:#[^\]|]+)?(?:\|([^\]]+))?]]/);
 
@@ -156,6 +166,7 @@ function parseArtistNames(rawArtistField: string): { articleName: string; displa
         return {
             articleName,
             displayName: displayName || articleName,
+            artistWikilink: buildWikiUrlFromTitle(linkMatch[1].split("#")[0].trim()),
         };
     }
 
@@ -163,6 +174,7 @@ function parseArtistNames(rawArtistField: string): { articleName: string; displa
     return {
         articleName: normalized,
         displayName: normalized,
+        artistWikilink: "",
     };
 }
 
@@ -178,7 +190,7 @@ function isAlbumPage(wikitext: string, categories: Array<{ title?: string }>): b
     const hasAlbumInfobox = /\{\{\s*infobox\s+album/i.test(wikitext);
     const hasAlbumCategory = categories.some((category) => {
         const title = (category.title || "").toLowerCase();
-        return title.includes("albums");
+        return title.includes("albums") && !title.includes("lists");
     });
 
     return hasAlbumInfobox || hasAlbumCategory;
@@ -248,7 +260,8 @@ function parseReleaseDate(raw: string): { year: number | null; month: string; da
         return { year: null, month: "", day: null };
     }
 
-    const startDateMatch = raw.match(/\{\{\s*start date[^|}]*\|(\d{4})(?:\|(\d{1,2}))?(?:\|(\d{1,2}))?/i);
+    const firstCandidate = selectFirstReleaseDateCandidate(raw);
+    const startDateMatch = firstCandidate.match(/\{\{\s*start date[^|}]*\|(\d{4})(?:\|(\d{1,2}))?(?:\|(\d{1,2}))?/i);
     if (startDateMatch) {
         const year = parseInt(startDateMatch[1], 10);
         const monthNumber = startDateMatch[2] ? parseInt(startDateMatch[2], 10) : null;
@@ -261,7 +274,7 @@ function parseReleaseDate(raw: string): { year: number | null; month: string; da
         };
     }
 
-    const normalized = normalizeValue(raw);
+    const normalized = normalizeValue(firstCandidate);
     const yearMatch = normalized.match(/\b(19|20)\d{2}\b/);
     const monthMatch = normalized.match(/\b(January|February|March|April|May|June|July|August|September|October|November|December)\b/i);
     const dayMatch = normalized.match(/\b([1-2]?\d|3[0-1])\b/);
@@ -272,6 +285,36 @@ function parseReleaseDate(raw: string): { year: number | null; month: string; da
         day: dayMatch ? parseInt(dayMatch[1], 10) : null,
     };
 }
+
+function selectFirstReleaseDateCandidate(raw: string): string {
+    const normalizedBreaks = raw
+        .replace(/<br\s*\/?>/gi, "\n")
+        .replace(/\r/g, "")
+        .replace(/\{\{\s*(?:plainlist|flatlist|hlist)\s*\|/gi, "")
+        .replace(/^\s*[\*\-]\s*/gm, "")
+        .trim();
+
+    if (!normalizedBreaks) {
+        return raw;
+    }
+
+    const lines = normalizedBreaks
+        .split("\n")
+        .map((line) => line.trim())
+        .filter((line) => line.length > 0);
+
+    if (lines.length === 0) {
+        return normalizedBreaks;
+    }
+
+    const firstDateLikeLine = lines.find((line) => /start date|\b(19|20)\d{2}\b|January|February|March|April|May|June|July|August|September|October|November|December/i.test(line));
+    return firstDateLikeLine || lines[0];
+}
+
+export const __private = {
+    parseReleaseDate,
+    selectFirstReleaseDateCandidate,
+};
 
 function normalizeValue(value: string): string {
     return value
@@ -291,6 +334,13 @@ function normalizeValue(value: string): string {
         .replace(/\s*,\s*/g, ", ")
         .replace(/(?:,\s*){2,}/g, ", ")
         .replace(/^,\s*|\s*,$/g, "")
+        .trim();
+}
+
+function stripReleaseDisambiguator(value: string): string {
+    return (value || "")
+        .replace(/\s+\((?:[^()]*\s)?album\)$/i, "")
+        .replace(/\s+\((?:[^()]*\s)?ep\)$/i, "")
         .trim();
 }
 

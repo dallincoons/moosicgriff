@@ -3,6 +3,16 @@ import {db} from 'app/repositories/db';
 import {Release} from "../../discography/release";
 
 class Artists {
+    async getAllWikilinks(): Promise<string[]> {
+        const rows: Array<{ wikilink: string }> = await db`
+            SELECT wikilink
+            FROM artists
+            WHERE wikilink IS NOT NULL
+        `;
+
+        return rows.map((row) => row.wikilink);
+    }
+
     async getAll(): Promise<DBArtist[]> {
         const rows: DBArtist[] = await db`
             SELECT *

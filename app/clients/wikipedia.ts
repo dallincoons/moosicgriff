@@ -62,6 +62,29 @@ export async function getWikiLinks(url: string): Promise<string[]> {
     return links;
 }
 
+export async function getArticleWikiLinks(url: string): Promise<string[]> {
+    const $ = await loadWikipediaPage(url);
+    const links: string[] = [];
+    const articleRoot = $("#mw-content-text .mw-parser-output").first();
+    const candidates = articleRoot.length
+        ? articleRoot.find('a[href^="/wiki/"]')
+        : $('#mw-content-text a[href^="/wiki/"]');
+
+    candidates.each((_, element) => {
+        const href = $(element).attr("href");
+        if (!href) {
+            return;
+        }
+        if (href.includes(":") || href.includes("#")) {
+            return;
+        }
+
+        links.push(`https://en.wikipedia.org${href}`);
+    });
+
+    return [...new Set(links)];
+}
+
 export async function getListItemWikiLinks(url: string): Promise<string[]> {
     const $ = await loadWikipediaPage(url);
     const links: string[] = [];

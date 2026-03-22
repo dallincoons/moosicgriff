@@ -7,8 +7,8 @@ let isShuttingDown = false;
 let sigintCount = 0;
 const commandsUsingArtistScrape = new Set(["artists", "artist.query", "link.scrape"]);
 
-if (args.length > 2) {
-    console.log("you can't give more than two arguments, dumb shit");
+if (args.length > 3) {
+    console.log("too many arguments");
 }
 
 async function shutdown(): Promise<void> {
@@ -72,6 +72,11 @@ async function main(): Promise<void> {
             await artistsDiscoverCommon();
             return;
         }
+        case 'artists.discover.labels': {
+            const { artistsDiscoverLabels } = await import("./app/artists/query/discoverlabels");
+            await artistsDiscoverLabels();
+            return;
+        }
         case 'artists.dedupe.pageid': {
             const { artistsDedupePageId } = await import("./app/artists/query/dedupepageid");
             await artistsDedupePageId();
@@ -100,6 +105,16 @@ async function main(): Promise<void> {
         case 'labels': {
             const { scrape } = await import("./app/labels/scrape");
             await scrape();
+            return;
+        }
+        case 'yearly.albums.sync': {
+            const { syncYearlyAlbumReferences } = await import("./app/yearlyalbums/sync");
+            await syncYearlyAlbumReferences(args[1]);
+            return;
+        }
+        case 'yearly.albums.missing': {
+            const { yearlyAlbumsMissingFromReference } = await import("./app/yearlyalbums/query/missingfromreference");
+            await yearlyAlbumsMissingFromReference(args[1], args[2]);
             return;
         }
         default:

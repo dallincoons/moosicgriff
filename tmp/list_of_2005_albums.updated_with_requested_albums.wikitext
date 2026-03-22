@@ -1,0 +1,5501 @@
+{{short description|None}}
+{{Dynamic list}}
+{{YYYY music|2005}}
+{{Albums by year}}
+{{bots|deny=Citation bot}}
+The following is a '''list of [[album]]s, [[Extended play|EPs]], and [[mixtape]]s released in 2005'''. These albums are (1) original, i.e. excluding [[reissue]]s, [[remaster]]s, and [[Compilation album|compilations]] of previously released recordings, and (2) [[WP:MUS|notable]], defined as having received significant coverage from reliable sources independent of the subject.
+
+For additional information about bands formed, reformed, disbanded, or on hiatus, for deaths of musicians, and for links to musical awards, see [[2005 in music]].
+
+==First quarter==
+===January===
+{{clear}}
+{|class="wikitable plainrowheaders"
+|+ List of albums released in January 2005
+| colspan="6" style="text-align:center;"|{{Monthbar}}
+|-
+! scope="col"| Release date
+! scope="col"| Artist
+! scope="col"| Album
+! scope="col"| Genre
+! scope="col"| Label
+! scope="col"| {{abbr|Ref.|Reference}}
+|-
+! scope="row" style="text-align:center;"| January<br/>4
+| [[Ol' Dirty Bastard]]
+| ''[[Osirus (album)|Osirus]]''
+| [[Hip-hop]]
+| Sure Shot Recordings
+| 
+|-
+! scope="row" style="text-align:center;"| January<br/>5
+| [[Firewind]]
+| ''[[Forged by Fire]]''
+| [[Power metal]]
+| [[Century Media Records|Century Media]]
+| <ref>{{cite web |url=https://www.blabbermouth.net/cdreviews/forged-by-fire/ |title=Firewind, ''Forged by Fire'' |work=Blabbermouth.net |date=February 21, 2005 |access-date=October 26, 2018 |author=Alisoglu, Scott}}</ref>
+|-
+! scope="row" rowspan="3" style="text-align:center;"| January<br/>10
+| [[Adam Green (musician)|Adam Green]]
+| ''[[Gemstones (album)|Gemstones]]''
+| [[Anti-folk]], [[alternative country]]
+| [[Rough Trade Records|Rough Trade]]
+| 
+|-
+| [[Kreator]]
+| ''[[Enemy of God (album)|Enemy of God]]''
+| [[Thrash metal]]
+| [[SPV GmbH|SPV/Steamhammer]]
+| 
+|-
+| [[Tunng]]
+| ''[[Mother's Daughter and Other Songs]]''
+| [[Folktronica]]
+| [[Static Caravan Recordings|Static Caravan]]
+| 
+|-
+! scope="row" rowspan="5" style="text-align:center;"| January<br/>11
+| [[Cass McCombs]]
+| ''[[PREfection]]''
+| 
+| [[4AD]]
+| <ref>{{cite web |url=https://pitchfork.com/reviews/albums/5179-prefection/ |title=Cass McCombs: ''PREfection'' |work=Pitchfork |date=January 31, 2005 |access-date=January 30, 2018 |author=Moerder, Adam}}</ref>
+|-
+| [[The Fiery Furnaces]]
+| ''[[EP (The Fiery Furnaces album)|EP]]''
+| [[Indie rock]]
+| [[Rough Trade Records|Rough Trade]]
+| 
+|-
+| [[Living Colour]]
+| ''[[Live from CBGB's]]''
+| [[Hard rock]], [[funk]], [[thrash metal]]
+| [[Epic Records|Epic]]
+| <ref>{{cite web |url=https://www.popmatters.com/livingcolour-liveatcbgbs-2495979623.html |title=Living Colour: ''Live at CBGB's'' |work=PopMatters |date=February 20, 2005 |access-date=January 30, 2018 |author=Limmer, Seth}}</ref>
+|-
+| [[Trembling Blue Stars]]
+| ''The Seven Autumn Flowers''
+| 
+| [[Bar/None Records|Bar/None]]
+| <ref>{{cite web |url=https://www.popmatters.com/tremblingbluestars-seven-2496087760.html |title=Trembling Blue Stars: ''The Seven Autumn Flowers'' |work=PopMatters |date=December 15, 2004 |access-date=January 30, 2018 |author=Goff, Jon}}</ref>
+|-
+| Various artists
+| ''[[Coach Carter (soundtrack)|Coach Carter: Music from the Motion Picture]]''
+| [[Hip-hop]], [[Contemporary R&B|R&B]]
+| [[Capitol Records|Capitol]]
+| 
+|-
+! scope="row" style="text-align:center;"| January<br/>13
+| [[The Chemical Brothers]]
+| ''[[Push the Button (The Chemical Brothers album)|Push the Button]]''
+| [[Electronica]]
+| [[Virgin Records|Virgin]], Freestyle Dust, [[EMI Records|EMI]]
+| 
+|-
+! scope="row" rowspan="2" style="text-align:center;" | January<br/>17
+| [[Arena (band)|Arena]]
+| ''[[Pepper's Ghost (Arena album)|Pepper's Ghost]]''
+| [[Progressive rock]]
+| [[Inside Out Music]]
+| <ref>{{cite web |url=http://www.seaoftranquility.org/reviews.php?op=showcontent&id=2034 |title=Arena: Pepper's Ghost |work=Sea of Tranquility |date=March 8, 2005 |access-date=January 27, 2018 |author=Glenday, Duncan}}</ref>
+|-
+| [[Grave Digger (band)|Grave Digger]]
+| ''[[The Last Supper (Grave Digger album)|The Last Supper]]''
+| [[Heavy metal music|Heavy metal]]
+| [[Nuclear Blast Records|Nuclear Blast]]
+| <ref>{{cite web |url=https://www.metal.de/reviews/grave-digger-the-last-supper-4816/ |title=Grave Digger - ''The Last Supper'' |work=Metal.de |language=German |date=December 31, 2004 |access-date=September 30, 2018}}</ref>
+|-
+! scope="row" rowspan="3" style="text-align:center;"| January<br/>18
+| [[Black Mountain (band)|Black Mountain]]
+| ''[[Black Mountain (album)|Black Mountain]]''
+| [[Psychedelic rock]], [[alternative rock]], [[stoner rock]]
+| [[Jagjaguwar]]
+| 
+|-
+| [[Fozzy]]
+| ''[[All That Remains (album)|All That Remains]]''
+| [[Heavy metal music|Heavy metal]], [[hard rock]], [[alternative metal]]
+| Ash Records
+| <ref>{{cite web |url=https://www.blabbermouth.net/cdreviews/all-that-remains/ |title=Fozzy - ''All That Remains'' |work=Blabbermouth.net |date=February 27, 2005 |access-date=May 29, 2018 |author=Alisoglu, Scott}}</ref>
+|-
+| [[The Game (rapper)|The Game]]
+| ''[[The Documentary]]''
+| [[West Coast hip-hop]], [[gangsta rap]]
+| [[Aftermath Entertainment|Aftermath]], [[G-Unit Records|G-Unit]], [[Interscope Records|Interscope]]
+| 
+|-
+! scope="row" rowspan="8" style="text-align:center;" | January<br/>24
+| [[Apocalyptica]]
+| ''[[Apocalyptica (album)|Apocalyptica]]''
+| [[Symphonic metal]], [[neoclassical metal]], [[progressive metal]]
+| [[Universal Music Group|Universal Music Germany]], [[Vertigo Records|Vertigo]]
+| <ref>{{cite web |url=http://www.laut.de/Apocalyptica/Alben/Apocalyptica-7622 |title=''Apocalytpica'' von Apocalyptica |work=Laut.de |language=German |date=January 24, 2005 |access-date=January 27, 2018}}</ref>
+|-
+| [[Dark Tranquillity]]
+| ''[[Character (Dark Tranquillity album)|Character]]''
+| [[Melodic death metal]]
+| [[Century Media Records|Century Media]]
+| 
+|-
+| [[Erasure (duo)|Erasure]]
+| ''[[Nightbird (Erasure album)|Nightbird]]''
+| [[Synth-pop]]
+| [[Mute Records|Mute]]
+| 
+|-
+| [[Glenn Hughes (musician)|Glenn Hughes]]
+| ''[[Soul Mover]]''
+| [[Hard rock]], [[blue-eyed soul]], [[funk rock]]
+| [[Frontiers Records|Frontiers]], [[Yamaha Corporation|Yamaha]], [[Sanctuary Records|Sanctuary]]
+| <ref>{{cite web |url=https://www.popmatters.com/hughesglen-soulmover-2495934482.html |title=Glenn Hughes: ''Soul Mover'' |work=PopMatters |date=July 6, 2005 |access-date=January 27, 2018 |author=MacNeil, Jason}}</ref>
+|-
+| [[LCD Soundsystem]]
+| ''[[LCD Soundsystem (album)|LCD Soundsystem]]''
+| [[Dance-punk]], [[electronica]], [[indie rock]]
+| [[DFA Records|DFA]], [[Capitol Records|Capitol]], [[EMI Records|EMI]]
+| 
+|-
+| [[Lou Barlow]]
+| ''[[Emoh]]''
+| [[Folk rock]], [[Lo-fi music|lo-fi]]
+| [[Merge Records|Merge]], [[Domino Recording Company|Domino]]
+| 
+|-
+| [[M83 (band)|M83]]
+| ''[[Before the Dawn Heals Us]]''
+| [[Electronic music|Electronic]], [[shoegaze]], [[dream pop]]
+| [[Mute Records|Mute]], [[Virgin Records|Virgin]], [[Gooom Disques|Gooom]]
+| 
+|-
+| [[Mercury Rev]]
+| ''[[The Secret Migration]]''
+| [[Alternative rock]]
+| [[V2 Records|V2]]
+| 
+|-
+! scope="row" rowspan="18" style="text-align:center;" | January<br/>25
+| [[Adrian Belew]]
+| ''[[Side One]]''
+| [[Rock music|Rock]]
+| [[Sanctuary Records|Sanctuary]]
+| 
+|-
+| [[...And You Will Know Us by the Trail of Dead]]
+| ''[[Worlds Apart (...And You Will Know Us by the Trail of Dead album)|Worlds Apart]]''
+| [[Alternative rock]], [[art rock]], [[indie rock]]
+| [[Interscope Records|Interscope]]
+| 
+|-
+| [[Ani DiFranco]]
+| ''[[Knuckle Down]]''
+| [[Indie rock]], [[folk rock]]
+| [[Righteous Babe Records|Righteous Babe]]
+| 
+|-
+| [[Will Oldham|Bonnie 'Prince' Billy]] and [[Matt Sweeney]]
+| ''[[Superwolf]]''
+| 
+| [[Drag City (record label)|Drag City]]
+| 
+|-
+| [[Bright Eyes (band)|Bright Eyes]]
+| ''[[Digital Ash in a Digital Urn]]''
+| [[Electronica]], [[pop music|pop]], [[synth-pop]]
+| [[Saddle Creek Records|Saddle Creek]]
+| 
+|-
+| Bright Eyes
+| ''[[I'm Wide Awake, It's Morning]]''
+| [[Folk music|Folk]], [[indie folk]], [[folk rock]]
+| [[Saddle Creek Records|Saddle Creek]]
+| 
+|-
+| [[Chamillionaire]] and [[Paul Wall]]
+| ''[[Controversy Sells]]''
+| [[Southern hip-hop]]
+| [[Paid in Full Entertainment|Paid in Full]]
+| <ref>{{cite web |url=http://www.rapreviews.com/archive/2005_10_consells.html |title=Paul Wall & Chamillionaire :: ''Controversy Sells'' |work=RapReviews.com |date=October 25, 2005 |access-date=January 27, 2018 |author=Juon, Steve}}</ref>
+|-
+| [[Geto Boys]]
+| ''[[The Foundation (Geto Boys album)|The Foundation]]''
+| [[Gangsta rap]], [[Southern hip-hop]]
+| [[Rap-A-Lot Records|Rap-A-Lot]], [[Asylum Records|Asylum]], [[Elektra Records|Elektra]]
+| 
+|-
+| [[Jimmy Chamberlin|Jimmy Chamberlin Complex]]
+| ''[[Life Begins Again]]''
+| [[Jazz fusion]]
+| [[Sanctuary Records|Sanctuary]]
+| 
+|-
+| [[Kenny Chesney]]
+| ''[[Be as You Are (Songs from an Old Blue Chair)]]''
+| [[Country music|Country]], [[Gulf and Western (music genre)|Gulf and Western]]
+| [[BNA Records|BNA]]
+| 
+|-
+| [[LeAnn Rimes]]
+| ''[[This Woman (LeAnn Rimes album)|This Woman]]''
+| [[Country pop]]
+| [[Asylum Records|Asylum]], [[Curb Records|Curb]]
+| 
+|-
+| [[Low (band)|Low]]
+| ''[[The Great Destroyer]]''
+| [[Slowcore]]
+| [[Sub Pop]]
+| 
+|-
+| [[Magnapop]]
+| ''[[Mouthfeel (album)|Mouthfeel]]''
+| [[Pop-punk]], [[pop rock]], [[power pop]]
+| [[Daemon Records|Daemon]]
+| 
+|-
+| [[The Octopus Project]]
+| ''[[One Ten Hundred Thousand Million]]''
+| [[Indie rock]], [[electronica]]
+| [[Peek-A-Boo Records|Peek-A-Boo]]
+| 
+|-
+| [[Plain White T's]]
+| ''[[All That We Needed]]''
+| [[Pop-punk]], [[pop rock]], [[power pop]]
+| [[Fearless Records|Fearless]]
+| 
+|-
+| [[Sharon Jones & the Dap-Kings]]
+| ''[[Naturally (Sharon Jones & the Dap-Kings album)|Naturally]]''
+| [[Soul music|Soul]], [[funk]]
+| [[Daptone Records|Daptone]]
+| 
+|-
+| [[Six Organs of Admittance]]
+| ''[[School of the Flower]]''
+| [[Experimental rock]]
+| [[Drag City (record label)|Drag City]]
+| 
+|-
+| [[Spock's Beard]]
+| ''[[Octane (Spock's Beard album)|Octane]]''
+| [[Progressive rock]]
+| [[Inside Out Music]]
+| <ref>{{cite web |url=http://www.seaoftranquility.org/reviews.php?op=showcontent&id=1992 |title=Spock's Beard: ''Octane'' |work=Sea of Tranquility |date=February 8, 2005 |access-date=February 1, 2018 |author=Pardo, Pete}}</ref>
+|-
+! scope="row" rowspan="3" style="text-align:center;" | January<br/>31
+| [[Athlete (band)|Athlete]]
+| ''[[Tourist (Athlete album)|Tourist]]''
+| [[Soft rock]]
+| [[Parlophone]]
+| 
+|-
+| [[Feeder (band)|Feeder]]
+| ''[[Pushing the Senses]]''
+| [[Alternative rock]], [[power pop]], [[post-Britpop]]
+| [[The Echo Label|Echo]]
+| 
+|-
+| [[Masterplan (band)|Masterplan]]
+| ''[[Aeronautics (album)|Aeronautics]]''
+| [[Power metal]]
+| [[AFM Records|AFM]]
+| <ref>{{cite web |url=https://www.blabbermouth.net/cdreviews/aeronautics/ |title=Masterplan - ''Aeronautics'' |work=Blabbermouth.net |date=December 26, 2004 |access-date=January 27, 2018 |author=White, Martin}}</ref>
+|}
+
+===February===
+{|class="wikitable plainrowheaders"
+|+ List of albums released in February 2005
+| colspan="6" style="text-align:center;"|{{Monthbar}}
+|-
+! scope="col"| Release date
+! scope="col"| Artist
+! scope="col"| Album
+! scope="col"| Genre
+! scope="col"| Label
+! scope="col"| {{abbr|Ref.|Reference}}
+|-
+! scope="row" rowspan="9" style="text-align:center;" | February<br/>1
+| [[Anberlin]]
+| ''[[Never Take Friendship Personal]]''
+| [[Alternative rock]], [[emo]]
+| [[Tooth & Nail Records|Tooth & Nail]]
+| 
+|-
+| [[Antony and the Johnsons]]
+| ''[[I Am a Bird Now]]''
+| [[Chamber pop]]
+| [[Secretly Canadian]]
+| 
+|-
+| [[Brazilian Girls]]
+| ''[[Brazilian Girls (album)|Brazilian Girls]]''
+| [[Alternative dance]], [[downtempo]], [[Electronic music|electronic]]
+| [[Verve Records|Verve]]
+| 
+|-
+| [[High on Fire]]
+| ''[[Blessed Black Wings]]''
+| [[Stoner rock|Stoner metal]], [[sludge metal]]
+| [[Relapse Records|Relapse]]
+| 
+|-
+| [[John Frusciante]]
+| ''[[Curtains (John Frusciante album)|Curtains]]''
+| [[Acoustic music|Acoustic]], [[Rock music|rock]], [[indie folk]]
+| [[Record Collection (record label)|Record Collection]]
+| <ref>{{cite web |url=http://www.laut.de/John-Frusciante/Alben/Curtains-7626 |title=''Curtains'' von John Frusciante |work=laut.de |language=German |access-date=February 1, 2018 |author=Kraus, Dominik}}</ref>
+|-
+| [[Mötley Crüe]]
+| ''[[Red, White & Crüe]]''
+| [[Heavy metal music|Heavy metal]], [[glam metal]]
+| [[Mötley Records|Mötley]]
+| 
+|-
+| [[Seventh Day Slumber]]
+| ''[[Once upon a Shattered Life]]''
+| [[Christian rock]]
+| BEC Recordings
+| 
+|-
+| [[Unwritten Law]]
+| ''[[Here's to the Mourning]]''
+| 
+| [[Lava Records|Lava]]
+| <ref>{{cite web |url=http://www.antimusic.com/features/05/unwl.shtml |title=Unwritten Law - ''Here's to the Mourning'' |work=Anti Music |access-date=February 1, 2018 |author=Stum, Chris}}</ref>
+|-
+| [[WarCry (band)|WarCry]]
+| ''[[¿Dónde Está La Luz?]]''
+| [[Heavy metal music|Heavy metal]], [[power metal]]
+| [[Jaus Records|Jaus]], [[Avispa]]
+| 
+|-
+! scope="row" style="text-align:center;" | February<br/>2
+| [[Bloc Party]]
+| ''[[Silent Alarm]]''
+| [[Indie rock]], [[post-punk revival]], [[dance-punk]]
+| [[Wichita Recordings|Wichita]]
+| 
+|-
+! scope="row" style="text-align:center;" | February<br/>5
+| [[Immolation (band)|Immolation]]
+| ''[[Harnessing Ruin]]''
+| [[Death metal]]
+| [[Listenable Records|Listenable]]
+| <ref>{{cite web |url=https://lambgoat.com/albums/1729/immolation-harnessing-ruin/ |title=Immolation ''Harnessing Ruin'' |work=Lambgoat |date=June 11, 2005 |access-date=September 25, 2025 |author=McFeters, Rob}}</ref>
+|-
+! scope="row" rowspan="2" style="text-align:center;" | February<br/>7
+| [[Karnivool]]
+| ''[[Themata (album)|Themata]]''
+| [[Nu metal]], [[progressive metal]], [[alternative metal]]
+| [[Bieler Bros. Records|Bieler Bros.]]
+| 
+|-
+| [[Little Barrie]]
+| ''[[We Are Little Barrie]]''
+| [[Alternative rock]], [[British rhythm and blues|UK R&B revival]]
+| [[PIAS Group|PIAS]], [[Artemis Records|Artemis]]
+| 
+|-
+! scope="row" rowspan="12" style="text-align:center;" | February<br/>8
+| [[3 Doors Down]]
+| ''[[Seventeen Days]]''
+| [[Alternative rock]], [[post-grunge]]
+| [[Universal Music Group|Universal]]
+| 
+|-
+| [[The Academy Is...]]
+| ''[[Almost Here (The Academy Is... album)|Almost Here]]''
+| [[Pop music|Pop]], [[pop-punk]], [[pop rock]]
+| [[Fueled by Ramen]]
+| 
+|-
+| [[Andrew Bird]]
+| ''[[Andrew Bird & the Mysterious Production of Eggs]]''
+| [[Baroque pop]], [[indie folk]]
+| [[Righteous Babe Records|Righteous Babe]]
+| 
+|-
+| [[Brian McKnight]]
+| ''[[Gemini (Brian McKnight album)|Gemini]]''
+| 
+| [[Motown]]
+| 
+|-
+| [[Crowbar (American band)|Crowbar]]
+| ''[[Lifesblood for the Downtrodden]]''
+| [[Sludge metal]]
+| [[Candlelight Records|Candlelight]]
+| 
+|-
+| [[Dälek]]
+| ''[[Absence (Dälek album)|Absence]]''
+| 
+| [[Ipecac Recordings|Ipecac]]
+| 
+|-
+| [[Eisley]]
+| ''[[Room Noises]]''
+| [[Indie rock]]
+| [[Reprise Records|Reprise]]
+| 
+|-
+| [[The Golden Republic]]
+| ''[[The Golden Republic (album)|The Golden Republic]]''
+| [[Rock music|Rock]]
+| [[Astralwerks]]
+| <ref>{{cite web |url=https://www.popmatters.com/goldenrepublic-st2005-2495923809.html |title=The Golden Republic: ''The Golden Republic'' |work=PopMatters |date=March 17, 2005 |access-date=May 23, 2025}}</ref>
+|-
+| [[Lee Ann Womack]]
+| ''[[There's More Where That Came From]]''
+| [[Country music|Country]]
+| [[MCA Nashville]]
+| 
+|-
+| [[Michael Bublé]]
+| ''[[It's Time (Michael Bublé album)|It's Time]]''
+| [[Vocal jazz]], [[traditional pop]]
+| [[143 Records|143]], [[Reprise Records|Reprise]]
+| 
+|-
+| [[Big Pooh|Rapper Big Pooh]]
+| ''[[Sleepers (album)|Sleepers]]''
+| [[Hip-hop]]
+| 6 Hole Records, [[Caroline Records|Caroline]]
+| 
+|-
+| [[Sage Francis]]
+| ''[[A Healthy Distrust]]''
+| [[Hip-hop]]
+| [[Epitaph Records|Epitaph]]
+| 
+|-
+! scope="row" style="text-align:center;" | February<br/>11
+| [[The Mars Volta]]
+| ''[[Frances the Mute]]''
+| [[Progressive rock]]
+| [[Gold Standard Laboratories]]
+| 
+|-
+! scope="row" rowspan="2" style="text-align:center;" | February<br/>14
+| [[The Boy Least Likely To]]
+| ''[[The Best Party Ever]]''
+| [[Twee pop]]
+| Too Young to Die
+| 
+|-
+| [[Electric Six]]
+| ''[[Señor Smoke]]''
+| [[Alternative rock]], [[funk rock]]
+| [[Warner Records|Warner Bros.]], [[Metropolis Records|Metropolis]]
+| 
+|-
+! scope="row" rowspan="6" style="text-align:center;" | February<br/>15
+| [[American Head Charge]]
+| ''[[The Feeding (album)|The Feeding]]''
+| [[Industrial metal]], [[nu metal]], [[alternative metal]]
+| [[DRT Entertainment]], Nitrus
+| <ref>{{cite web |url=http://www.seaoftranquility.org/reviews.php?op=showcontent&id=2090 |title=American Head Charge: ''The Feeding'' |work=Sea of Tranquility |date=September 23, 2005 |access-date=February 14, 2018 |author=Glenday, Duncan}}</ref>
+|-
+| [[Goldfinger (band)|Goldfinger]]
+| ''[[Disconnection Notice]]''
+| [[Pop-punk]], [[punk rock]], [[alternative rock]]
+| [[Maverick (company)|Maverick]]
+| 
+|-
+| [[Mary Gauthier]]
+| ''[[Mercy Now]]''
+| [[Country music|Country]], [[Folk music|folk]]
+| [[Lost Highway Records|Lost Highway]]
+| <ref>{{cite web |url=https://www.bbc.co.uk/music/reviews/zf25/ |title=Mary Gauthier ''Mercy Now'' Review |work=BBC Music |access-date=February 14, 2018 |author=Lusk, Jon}}</ref>
+|-
+| [[The Sound of Animals Fighting]]
+| ''[[Tiger and the Duke]]''
+| [[Experimental rock]]
+| Stars and Satellites Records
+| <ref>{{cite web |url=https://www.punknews.org/review/3736/the-sound-of-animals-fighting-tiger-and-the-duke |title=The Sound of Animals Fighting - ''Tiger and the Duke'' (2005) |work=PunkNews.org |date=February 15, 2005 |access-date=January 4, 2019 |author=Shultz, Brian}}</ref>
+|-
+| [[Stellar Kart]]
+| ''[[All Gas. No Brake.]]''
+| [[Pop-punk]], [[punk rock]], [[Christian rock]]
+| [[Word Records|Word]]
+| 
+|-
+| [[They Might Be Giants]]
+| ''[[Here Come the ABCs]]''
+| [[Children's music]]
+| [[Walt Disney Records|Disney Sound]], Idlewild Records
+| <ref>{{cite web |url=https://www.reuters.com/article/industryNews/idUSN0851447820080209 |title=They Might Be Giants expands its kids' music empire |work=Reuters |date=February 8, 2008 |access-date=April 21, 2023 |author=Nagy, Evie}}</ref>
+|-
+! scope="row" style="text-align:center;" | February<br/>20
+| [[Tori Amos]]
+| ''[[The Beekeeper (album)|The Beekeeper]]''
+| [[Alternative rock]]
+| [[Epic Records|Epic]]
+| 
+|-
+! scope="row" rowspan="3" style="text-align:center;" | February<br/>21
+| [[Doves (band)|Doves]]
+| ''[[Some Cities]]''
+| [[Indie rock]]
+| [[Heavenly Recordings|Heavenly]]
+| 
+|-
+| [[The Kills]]
+| ''[[No Wow]]''
+| 
+| [[Domino Recording Company|Domino]]
+| 
+|-
+| [[Nightrage]]
+| ''[[Descent into Chaos (Nightrage album)|Descent into Chaos]]''
+| [[Melodic death metal]]
+| [[Century Media Records|Century Media]]
+| 
+|-
+! scope="row" rowspan="19" style="text-align:center;" | February<br/>22
+| [[Aesop Rock]]
+| ''[[Fast Cars, Danger, Fire and Knives]]''
+| [[Hip-hop]]
+| [[Definitive Jux]]
+| 
+|-
+| [[The Afters]]
+| ''[[I Wish We All Could Win]]''
+| [[Christian rock]]
+| [[Fair Trade Services|INO]], [[Epic Records|Epic]]
+| 
+|-
+| [[Armor for Sleep]]
+| ''[[What to Do When You Are Dead]]''
+| [[Emo]], [[progressive rock]], [[punk rock]]
+| [[Equal Vision Records|Equal Vision]]
+| 
+|-
+| [[Ben Lee]]
+| ''[[Awake Is the New Sleep]]''
+| [[Indie pop]]
+| [[New West Records|New West]], Inertia Distribution
+| 
+|-
+| [[Bone Brothers]]
+| ''[[Bone Brothers (album)|Bone Brothers]]''
+| [[Hip-hop]], [[gangsta rap]]
+| [[MNRK Music Group|Koch]]
+| <ref>{{cite web |url=http://www.rapreviews.com/archive/2005_02_bonebrothers.html |title=Layzie Bone & Bizzy Bone :: ''Bone Brothers'' |work=RapReviews.com |date=February 22, 2005 |access-date=February 22, 2018 |author=Doggett, Tom}}</ref>
+|-
+| [[Chely Wright]]
+| ''[[The Metropolitan Hotel]]''
+| [[Country music|Country]]
+| Painted Red, [[Dualtone Records|Dualtone]]
+| <ref>{{cite web |url=http://nodepression.com/album-review/chely-wright-metropolitan-hotel |title=Chely Wright - ''The Metropolitan Hotel'' |work=No Depression |date=April 30, 2005 |access-date=February 22, 2018 |author=Doerschuk, Robert L.}}</ref>
+|-
+| [[Comeback Kid (band)|Comeback Kid]]
+| ''[[Wake the Dead]]''
+| [[Hardcore punk]]
+| [[Victory Records|Victory]]
+| <ref>{{cite web |url=https://exclaim.ca/music/article/comeback_kid-wake_dead |title=Comeback Kid - ''Wake the Dead'' |work=Exclaim! |date=January 1, 2006 |access-date=June 5, 2021 |author=Sutherland, Sam}}</ref>
+|-
+| [[Crooked Fingers]]
+| ''[[Dignity and Shame]]''
+| [[Indie rock]]
+| [[Merge Records|Merge]]
+| 
+|-
+| [[David S. Ware]] Quartets
+| ''[[Live in the World]]''
+| [[Free jazz]]
+| [[Thirsty Ear Recordings|Thirsty Ear]]
+| 
+|-
+| [[Enon (band)|Enon]]
+| ''[[Lost Marbles and Exploded Evidence]]''
+| [[Post-punk]], [[noise pop]], [[synth-pop]]
+| [[Touch and Go Records|Touch and Go]]
+| 
+|-
+| [[Heartless Bastards]]
+| ''Stairs and Elevators''
+| 
+| [[Fat Possum Records|Fat Possum]]
+| <ref>{{cite web |url=https://www.popmatters.com/heartlessbastards-stairs-2495936552.html |title=Heartless Bastards: ''Stairs and Elevators'' |work=PopMatters |date=March 8, 2005 |access-date=February 22, 2018 |author=Friedman, Lou}}</ref>
+|-
+| [[M. Ward]]
+| ''[[Transistor Radio (album)|Transistor Radio]]''
+| [[Folk music|Folk]]
+| [[Merge Records|Merge]], [[Matador Records|Matador]]
+| 
+|-
+| [[Omarion]]
+| ''[[O (Omarion album)|O]]''
+| [[Contemporary R&B|R&B]], [[hip-hop]]
+| [[Epic Records|Epic]], [[Sony Urban Music|Sony Urban]]
+| 
+|-
+| [[Roger Miret and the Disasters]]
+| ''[[1984 (Roger Miret and the Disasters album)|1984]]''
+| [[Punk rock|Punk]]
+| [[Hellcat Records|Hellcat]]
+| <ref>{{cite web |url=https://exclaim.ca/music/article/roger_miret_disasters-1984 |title=Roger Miret and the Disasters - ''1984'' |work=Exclaim! |date=April 1, 2005 |access-date=February 22, 2018 |author=Green, Stuart}}</ref>
+|-
+| [[Steve Vai]]
+| ''[[Real Illusions: Reflections]]''
+| [[Instrumental rock]], [[progressive metal]], [[Heavy metal music|heavy metal]]
+| [[Epic Records|Epic]]
+| <ref>{{cite web |url=https://www.rockhard.de/reviews/steve-vai-real-illusions-reflections_283899.html |title=Steve Vai - ''Real Illusions: Reflections'' |work=RockHard |language=German |access-date=March 28, 2020 |author=Borrink, Mike}}</ref>
+|-
+| [[Subtitle (rapper)|Subtitle]]
+| ''[[Young Dangerous Heart (Subtitle album)|Young Dangerous Heart]]''
+| [[Hip-hop]]
+| [[Gold Standard Laboratories]]
+| 
+|-
+| [[Thievery Corporation]]
+| ''[[The Cosmic Game]]''
+| [[Dub music|Dub]], [[trip hop]], [[downtempo]]
+| [[ESL Music|ESL]]
+| 
+|-
+| [[TRU (band)|TRU]]
+| ''[[The Truth (TRU album)|The Truth]]''
+| [[Southern hip-hop]], [[gangsta rap]]
+| [[No Limit Records|The New No Limit]], [[Entertainment One Music|Koch]]
+| <ref>{{cite web |url=http://www.rapreviews.com/archive/2005_02F_thetruth.html |title=TRU :: ''The Truth'' |work=RapReviews.com |date=February 22, 2005 |access-date=February 22, 2018 |author=Hernandez, Pedro}}</ref>
+|-
+| [[William Elliott Whitmore]]
+| ''[[Ashes to Dust]]''
+| [[Alternative country]]
+| [[Southern Records|Southern]]
+| <ref>{{cite web |url=https://www.popmatters.com/whitmorewilliamelliot-ashes-2496113814.html |title=William Elliott Whitmore: ''Ashes to Dust'' |work=PopMatters |date=February 21, 2005 |access-date=February 22, 2018 |author=Metivier, Michael}}</ref>
+|-
+! scope="row" rowspan="2" style="text-align:center;" | February<br/>23
+| [[Jennifer Lopez]]
+| ''[[Rebirth (Jennifer Lopez album)|Rebirth]]''
+| [[Dance music|Dance]], [[hip-hop]], [[Contemporary R&B|R&B]]
+| [[Epic Records|Epic]]
+| 
+|-
+| [[Judas Priest]]
+| ''[[Angel of Retribution]]''
+| [[Heavy metal music|Heavy metal]]
+| [[Epic Records|Epic]], [[Columbia Records|Columbia]]
+| 
+|}
+
+===March===
+{|class="wikitable plainrowheaders"
+|+ List of albums released in March 2005
+| colspan="6" style="text-align:center;"|{{Monthbar}}
+|-
+! scope="col"| Release date
+! scope="col"| Artist
+! scope="col"| Album
+! scope="col"| Genre
+! scope="col"| Label
+! scope="col"| {{abbr|Ref.|Reference}}
+|-
+! scope="row" rowspan="6" style="text-align:center;" | March<br/>1
+| [[Emanuel (band)|Emanuel]]
+| ''[[Soundtrack to a Headrush]]''
+| [[Post-hardcore]]
+| [[Vagrant Records|Vagrant]]
+| 
+|-
+| [[Ivy (band)|Ivy]]
+| ''[[In the Clear]]''
+| [[Indie pop]], [[indie rock]]
+| [[Nettwerk Music Group|Nettwerk]]
+| 
+|-
+| [[Jack Johnson (musician)|Jack Johnson]]
+| ''[[In Between Dreams]]''
+| [[Folk rock]], [[Acoustic music|acoustic]]
+| [[Brushfire Records|Brushfire]]
+| 
+|-
+| [[Jessi Alexander]]
+| ''Honeysuckle Sweet''
+| [[Country music|Country]]
+| [[Columbia Records|Columbia]]
+| <ref>{{cite web |url=https://www.bbc.co.uk/music/reviews/8954/ |title=Jessi Alexander ''Honeysuckle Sweet'' Review |work=BBC Music |date=2005 |access-date=September 30, 2018 |author=Pearson, Darren Overs}}</ref>
+|-
+| [[Kathleen Edwards]]
+| ''[[Back to Me (Kathleen Edwards album)|Back to Me]]''
+| [[Country music|Country]]
+| [[MapleMusic Recordings|MapleMusic]], [[Zoë Records|Zoë]]
+| 
+|-
+| [[Kutless]]
+| ''[[Strong Tower]]''
+| [[Christian rock]], [[alternative rock]], [[contemporary worship music]]
+| [[BEC Recordings|BEC]]
+| 
+|-
+! scope="row" style="text-align:center;" | March<br/>3
+| [[50 Cent]]
+| ''[[The Massacre]]''
+| [[Hardcore hip-hop]], [[gangsta rap]]
+| [[Shady Records|Shady]], [[Aftermath Entertainment|Aftermath]], [[Interscope Records|Interscope]]
+| 
+|-
+! scope="row" style="text-align:center;" | March<br/>4
+| [[HammerFall]]
+| ''[[Chapter V: Unbent, Unbowed, Unbroken]]''
+| [[Heavy metal music|Heavy metal]], [[power metal]]
+| [[Nuclear Blast Records|Nuclear Blast]]
+| <ref>{{cite web |url=https://www.blabbermouth.net/cdreviews/chapter-v-unbent-unbowed-unbroken/ |title=HammerFall, ''Chapter V: Unbent, Unbowed, Unbroken'' |work=Blabbermouth.net |date=March 29, 2005 |access-date=September 30, 2018 |author=Bergman, Keith}}</ref>
+|-
+! scope="row" rowspan="2" style="text-align:center;" | March<br/>7
+| [[Idlewild (band)|Idlewild]]
+| ''[[Warnings/Promises]]''
+| [[College rock]], [[folk rock]]
+| [[Parlophone]]
+| 
+|-
+| [[Kaiser Chiefs]]
+| ''[[Employment (album)|Employment]]''
+| [[Alternative rock]], [[indie rock]], [[post-punk revival]]
+| [[B-Unique Records|B-Unique]]
+| 
+|-
+! scope="row" rowspan="10" style="text-align:center;" | March<br/>8
+| [[Black Label Society]]
+| ''[[Mafia (Black Label Society album)|Mafia]]''
+| [[Heavy metal music|Heavy metal]], [[Southern metal]], [[groove metal]]
+| [[Artemis Records|Artemis]]
+| <ref>{{cite web |url=https://www.laut.de/Black-Label-Society/Alben/Mafia-8235 |title=Black Label Society - ''Mafia'' |work=Laut.de |language=German |access-date=September 30, 2018 |author=Edele, Michael}}</ref>
+|-
+| [[Craig Morgan]]
+| ''[[My Kind of Livin']]''
+| [[Country music|Country]]
+| [[BBR Music Group|Broken Bow]]
+| <ref>{{cite web |url=http://www.countrystandardtime.com/d/cdreview.asp?xid=629&t=My_Kind_of_Livin_ |title=Craig Morgan - ''My Kind of Livin' '' |work=Country Standard Time |date=2005 |access-date=September 30, 2018 |author=Remz, Jeffrey B.}}</ref>
+|-
+| [[Deana Carter]]
+| ''[[The Story of My Life (Deana Carter album)|The Story of My Life]]''
+| [[Country music|Country]]
+| [[Vanguard Records|Vanguard]]
+| <ref>{{cite web |url=http://nodepression.com/album-review/deana-carter-story-my-life |title=Deana Carter - ''The Story Of My Life'' |work=No Depression |date=February 28, 2005 |access-date=September 30, 2018 |author=Baxter, David}}</ref>
+|-
+| [[Gratitude (band)|Gratitude]]
+| ''[[Gratitude (Gratitude album)|Gratitude]]''
+| [[Emo]]
+| [[Atlantic Records|Atlantic]]
+| 
+|-
+| [[Impaled (band)|Impaled]]
+| ''Death After Life''
+| 
+| [[Century Media Records|Century Media]]
+| <ref>{{cite web |url=https://exclaim.ca/music/article/impaled-death_after_life |title=Impaled - ''Death after Life'' |work=Exclaim! |date=March 1, 2005 |access-date=November 12, 2018 |author=Pratt, Greg}}</ref>
+|-
+| [[Into the Moat]]
+| ''[[The Design (album)|The Design]]''
+| [[Mathcore]], [[metalcore]]
+| [[Metal Blade Records|Metal Blade]]
+| 
+|-
+| [[Marcus Miller]]
+| ''[[Silver Rain]]''
+| [[Jazz fusion]]
+| [[MNRK Music Group|Koch]]
+| <ref>{{cite web |url=https://jazztimes.com/reviews/currents/marcus-miller-silver-rain/ |title=Marcus Miller: ''Silver Rain'' |work=JazzTimes |date=May 1, 2005 |access-date=October 14, 2018 |author=Tauss, Lucy}}</ref>
+|-
+| [[Novembers Doom]]
+| ''[[The Pale Haunt Departure]]''
+| [[Death-doom]], [[gothic metal]]
+| [[The End Records|The End]]
+| 
+|-
+| [[Pigeon John]]
+| ''[[Sings the Blues]]''
+| [[Hip-hop]]
+| [[Basement Records|Basement]]
+| 
+|-
+| [[Sam Prekop]]
+| ''[[Who's Your New Professor]]''
+| [[Post-rock]]
+| [[Thrill Jockey]]
+| <ref>{{cite web |url=https://www.npr.org/templates/story/story.php?storyId=4677277 |title=Sam Prekop: ''Who's Your New Professor'' |work=NPR |date=June 2, 2005 |access-date=September 30, 2018 |author=Brady, John}}</ref>
+|-
+! scope="row" style="text-align:center;" | March<br/>9
+| [[Dir En Grey]]
+| ''[[Withering to Death]]''
+| [[Gothic metal]], [[alternative metal]], [[industrial metal]]
+| [[Free-Will]], [[Sony Music Entertainment Japan]], [[Gan-Shin]]
+| <ref>{{cite web |url=http://www.ign.com/articles/2006/05/16/dir-en-grey-withering-to-death |title=Dir en grey - ''Withering to Death'' |work=IGN |date=May 16, 2006 |access-date=September 30, 2018 |author=Nielson-Buckholdt, Christian}}</ref>
+|-
+! scope="row" rowspan="6" style="text-align:center;" | March<br/>14
+| [[Al Green]]
+| ''[[Everything's OK (album)|Everything's OK]]''
+| [[Soul music|Soul]], [[Rhythm and blues]]
+| [[Blue Note Records|Blue Note]]
+| 
+|-
+| [[The Bravery]]
+| ''[[The Bravery (album)|The Bravery]]''
+| [[Indie rock]], [[post-punk revival]], [[dance-punk]]
+| [[Island Records|Island]]
+| 
+|-
+| [[Brendan Benson]]
+| ''[[The Alternative to Love]]''
+| [[Rock music|Rock]]
+| [[V2 Records|V2]]
+| 
+|-
+| [[Daft Punk]]
+| ''[[Human After All]]''
+| [[Dance-rock]]
+| [[Virgin Records|Virgin]]
+| 
+|-
+| [[Moby]]
+| ''[[Hotel (album)|Hotel]]''
+| [[Alternative rock]], [[electronica]], [[downtempo]]
+| [[V2 Records|V2]], [[Mute Records|Mute]]
+| 
+|-
+| [[Stereophonics]]
+| ''[[Language. Sex. Violence. Other?]]''
+| [[Rock music|Rock]], [[Britpop]]
+| [[V2 Records|V2]]
+| 
+|-
+! scope="row" rowspan="9" style="text-align:center;" | March<br/>15
+| [[Brooke Valentine]]
+| ''[[Chain Letter (album)|Chain Letter]]''
+| [[Contemporary R&B|R&B]]
+| [[Virgin Records|Virgin]], Subliminal Entertainment
+| 
+|-
+| [[Cephalic Carnage]]
+| ''[[Anomalies (album)|Anomalies]]''
+| [[Deathgrind]], [[technical death metal]]
+| [[Relapse Records|Relapse]]
+| 
+|-
+| [[Dr. Dog]]
+| ''[[Easy Beat (album)|Easy Beat]]''
+| [[Psychedelic rock]]
+| [[Park the Van]]
+| <ref>{{cite web |url=https://pitchfork.com/reviews/albums/2608-easy-beat/ |title=Dr. Dog: ''Easy Beat'' |work=Pitchfork |date=May 19, 2005 |access-date=March 16, 2018 |author=Raposa, David}}</ref>
+|-
+| [[Great Lake Swimmers]]
+| ''[[Bodies and Minds]]''
+| 
+| [[Weewerk]]
+|<ref>{{cite web |url=https://www.popmatters.com/greatlakeswimmers-bodies-2495920343.html |title=Great Lake Swimmers: ''Bodies and Minds'' |work=PopMatters |date=October 12, 2005 |access-date=November 21, 2018 |author=Brecheisen, Dave}}</ref>
+|-
+| [[Kamelot]]
+| ''[[The Black Halo]]''
+| 
+| [[SPV GmbH|SPV/Steamhammer]]
+| 
+|-
+| [[Miranda Lambert]]
+| ''[[Kerosene (album)|Kerosene]]''
+| [[Country music|Country]]
+| [[Epic Records|Epic Nashville]]
+| 
+|-
+| [[Origin (band)|Origin]]
+| ''[[Echoes of Decimation]]''
+| [[Technical death metal]]
+| [[Relapse Records|Relapse]]
+| <ref>{{cite web |url=https://www.blabbermouth.net/cdreviews/echoes-of-decimation/ |title=Origin, ''Echoes of Decimation'' |work=Blabbermouth.net |date=June 5, 2005 |access-date=November 12, 2018 |author=Bergman, Keith}}</ref>
+|-
+| [[Trivium (band)|Trivium]]
+| ''[[Ascendancy (album)|Ascendancy]]''
+| [[Metalcore]], [[thrash metal]]
+| [[Roadrunner Records|Roadrunner]]
+| 
+|-
+| [[ZOEgirl]]
+| ''[[Room to Breathe (ZOEgirl album)|Room to Breathe]]''
+| [[Pop rock]], [[Contemporary Christian music|CCM]]
+| [[Sparrow Records|Sparrow]]
+| 
+|-
+! scope="row" style="text-align:center;" | March<br/>17
+| [[Paradise Lost (band)|Paradise Lost]]
+| ''[[Paradise Lost (Paradise Lost album)|Paradise Lost]]''
+| [[Gothic metal]], [[gothic rock]]
+| [[Bertelsmann Music Group|BMG]], [[GUN Records|GUN]]
+| <ref>{{cite web |url=https://www.musicomh.com/reviews/albums/paradise-lost-paradise-lost |title=Paradise Lost – ''Paradise Lost'' |work=musicOMH |date=October 17, 2005 |access-date=July 13, 2020 |author=Bansal, Vik}}</ref>
+|-
+! scope="row" rowspan="6" style="text-align:center;" | March<br/>21
+| [[Angels of Light]]
+| ''[[The Angels of Light Sing 'Other People']]''
+| [[Indie folk]]
+| [[Young God Records|Young God]]
+| 
+|-
+| [[Louis XIV (band)|Louis XIV]]
+| ''[[The Best Little Secrets Are Kept]]''
+| [[Alternative rock]], [[garage rock]], [[glam rock]]
+| [[Atlantic Records|Atlantic]]
+| <ref>{{cite web |url=https://pitchfork.com/reviews/albums/4981-the-best-little-secrets-are-kept/ |title=Louis XIV: ''The Best Little Secrets Are Kept'' |work=Pitchfork |date=March 29, 2005 |access-date=March 16, 2018 |author=Sylvester, Nick}}</ref>
+|-
+| [[Ocean Colour Scene]]
+| ''[[A Hyperactive Workout for the Flying Squad]]''
+| [[Alternative rock]]
+| [[Sanctuary Records|Sanctuary]]
+| 
+|-
+| [[Starbreaker (band)|Starbreaker]]
+| ''[[Starbreaker (album)|Starbreaker]]''
+| [[Hard rock]], [[Heavy metal music|heavy metal]]
+| [[Frontiers Music]]
+| <ref>{{cite web |url=https://blabbermouth.net/news/starbreaker-lies-video-posted-online |title=Starbreaker: "Lies" Video Posted Online |work=Blabbermouth.net |date=March 20, 2005 |access-date=April 28, 2024}}</ref>
+|-
+| [[Trust Company (band)|Trust Company]]
+| ''[[True Parallels]]''
+| [[Nu metal]], [[alternative metal]], [[post-grunge]]
+| [[Geffen Records|Geffen]]
+| <ref>{{cite web |url=http://www.rocknworld.com/soph/05/trustco.shtml |title=Trust Company - ''True Parallels'' |work=Anti Music |access-date=October 12, 2018 |author=Kirby, Keelan}}</ref>
+|-
+| [[Tweet (singer)|Tweet]]
+| ''[[It's Me Again]]''
+| [[Contemporary R&B|R&B]], [[Soul music|soul]], [[neo soul]]
+| [[The Goldmind Inc.|The Goldmind]], [[Atlantic Records|Atlantic]]
+| 
+|-
+! scope="row" rowspan="12" style="text-align:center;" | March<br/>22
+| [[Billy Idol]]
+| ''[[Devil's Playground (album)|Devil's Playground]]''
+| [[Punk rock]], [[hard rock]], [[pop-punk]]
+| [[Sanctuary Records|Sanctuary]]
+| 
+|-
+| [[C-Murder]]
+| ''[[The Truest Shit I Ever Said]]''
+| [[Gangsta rap]], [[hardcore hip-hop]]
+| TRU Records, [[MNRK Music Group|Koch]]
+| <ref>{{cite web |url=http://www.rapreviews.com/archive/2005_04F_truest.html |title=C-Murder :: ''The TRUest Shit I Ever Said'' |work=RapReviews.com |date=April 26, 2005 |access-date=October 12, 2018 |author=Jost, Matt}}</ref>
+|-
+| [[The Decemberists]]
+| ''[[Picaresque (album)|Picaresque]]''
+| [[Indie rock]], [[folk rock]], [[baroque pop]]
+| [[Kill Rock Stars]]
+| 
+|-
+| [[Frankie J]]
+| ''[[The One (Frankie J album)|The One]]''
+| 
+| [[Columbia Records|Columbia]]
+| <ref>{{cite web |url=https://www.popmatters.com/frankiej-one-2495907123.html |title=Frankie J: ''The One'' |work=PopMatters |date=March 20, 2005 |access-date=October 12, 2018 |author=Cibula, Matt}}</ref>
+|-
+| [[Jars of Clay]]
+| ''[[Redemption Songs]]''
+| [[Christian rock]], [[folk rock]]
+| [[Essential Records (Christian)|Essential]]
+| 
+|-
+| [[Lifehouse (band)|Lifehouse]]
+| ''[[Lifehouse (album)|Lifehouse]]''
+| [[Pop rock]], [[alternative rock]], [[post-grunge]]
+| [[Geffen Records|Geffen]]
+| 
+|-
+| [[M.I.A. (rapper)|M.I.A.]]
+| ''[[Arular]]''
+| [[World music|World]], [[hip-hop]], [[dancehall]]
+| [[XL Recordings|XL]], [[Interscope Records|Interscope]]
+| 
+|-
+| [[Maia Sharp]]
+| ''[[Fine Upstanding Citizen]]''
+| [[Pop music|Pop]], [[Rock music|rock]]
+| [[MNRK Music Group|Koch]]
+| <ref>{{cite web |url=http://nodepression.com/album-review/maia-sharp-fine-upstanding-citizen |title=Maia Sharp - ''Fine Upstanding Citizen'' |work=No Depression |date=February 28, 2005 |access-date=October 12, 2018}}</ref>
+|-
+| [[Queens of the Stone Age]]
+| ''[[Lullabies to Paralyze]]''
+| [[Stoner rock]], [[alternative rock]]
+| [[Interscope Records|Interscope]]
+| 
+|-
+| [[Strapping Young Lad]]
+| ''[[Alien (Strapping Young Lad album)|Alien]]''
+| [[Extreme metal]], [[industrial metal]], [[thrash metal]]
+| Hevy Devy, [[Century Media Records|Century Media]]
+| 
+|-
+| [[Trace Adkins]]
+| ''[[Songs About Me]]''
+| [[Country music|Country]], [[Southern rock]]
+| [[Capitol Records Nashville|Capitol Nashville]]
+| <ref>{{cite web |url=http://www.countrystandardtime.com/d/cdreview.asp?xid=2775 |title=Trace Adkins - ''Songs About Me'' |work=Country Standard Time |access-date=October 12, 2018 |author=Remz, Jeffrey B.}}</ref>
+|-
+| [[William Parker (musician)|William Parker]]
+| ''[[Luc's Lantern]]''
+| [[Jazz]]
+| [[Thirsty Ear Recordings|Thirsty Ear]]
+| 
+|-
+! scope="row" style="text-align:center;" | March<br/>24
+| [[Porcupine Tree]]
+| ''[[Deadwing]]''
+| [[Progressive rock]], [[progressive metal]], [[alternative metal]]
+| [[Lava Records|Lava]]
+| 
+|-
+! scope="row" style="text-align:center;" | March<br/>28
+| [[New Order (band)|New Order]]
+| ''[[Waiting for the Sirens' Call]]''
+| [[Alternative rock]], [[synth-pop]]
+| [[London Recordings|London]], [[Warner Records|Warner Bros.]]
+| 
+|-
+! scope="row" rowspan="12" style="text-align:center;" | March<br/>29
+| [[Beanie Sigel]]
+| ''[[The B. Coming]]''
+| [[Hip-hop]]
+| Dame Dash, [[Def Jam Recordings|Def Jam]]
+| 
+|-
+| [[Beck]]
+| ''[[Guero]]''
+| [[Alternative rock]], [[alternative hip-hop]], [[sampledelia]]
+| [[Interscope Records|Interscope]]
+| 
+|-
+| [[Edan (musician)|Edan]]
+| ''[[Beauty and the Beat (Edan album)|Beauty and the Beat]]''
+| [[Hip-hop]], [[psychedelic rap]]
+| [[Lewis Recordings|Lewis]]
+| 
+|-
+| [[Hammock (band)|Hammock]]
+| ''[[Kenotic (album)|Kenotic]]''
+| [[Post-rock]], [[Ambient music|ambient]], [[shoegaze]]
+| [[Hammock Music]]
+| <ref>{{cite web |url=https://somewherecold.net/2005/01/18/hammock-kenotic-hammock-2005/ |title=Hammock: ''Kenotic'' |work=Somewherecold |date=January 18, 2005 |access-date=October 7, 2021}}</ref>
+|-
+| [[James LaBrie]]
+| ''[[Elements of Persuasion]]''
+| [[Alternative metal]], [[progressive metal]]
+| [[Inside Out Music|Inside Out]]
+| <ref>{{cite web |url=https://www.metal.de/reviews/james-labrie-elements-of-persuasion-5098/ |title=James LaBrie - ''Elements of Persuasion'' |work=Metal.de |language=German |date=April 16, 2005 |access-date=October 13, 2018}}</ref>
+|-
+| [[Mae]]
+| ''[[The Everglow]]''
+| [[Indie rock]], [[emo]]
+| [[Tooth & Nail Records|Tooth & Nail]]
+| <ref>{{cite web |url=http://www.jesusfreakhideout.com/cdreviews/TheEverglow.asp |title=Mae - ''The Everglow'' |work=JesusFreakHideout.com |date=March 27, 2005 |access-date=October 13, 2018 |author=Priest, Spencer}}</ref>
+|-
+| [[Morrissey]]
+| ''[[Live at Earls Court]]''
+| [[Alternative rock]]
+| [[Sanctuary Records|Sanctuary]]
+| 
+|-
+| [[Reggie and the Full Effect]]
+| ''[[Songs Not to Get Married To]]''
+| [[Post-hardcore]], [[metalcore]], [[pop-punk]]
+| [[Vagrant Records|Vagrant]]
+| <ref>{{cite web |url=https://exclaim.ca/music/article/reggie_full_effect-songs_not_to_get_married |title=Reggie and the Full Effect - ''Songs Not to Get Married To'' |work=Exclaim! |date=April 1, 2005 |access-date=April 8, 2018 |author=Sutherland, Sam}}</ref>
+|-
+| [[Superchick]]
+| ''[[Beauty from Pain]]''
+| [[Christian rock]], [[garage rock]], [[pop punk]]
+| [[Inpop Records|Inpop]]
+| 
+|-
+| [[Theory of a Deadman]]
+| ''[[Gasoline (Theory of a Deadman album)|Gasoline]]''
+| [[Hard rock]], [[post-grunge]], [[alternative metal]]
+| [[604 Records|604]], [[Roadrunner Records|Roadrunner]]
+| <ref>{{cite web |url=https://puregrainaudio.com/reviews/theory-of-a-deadman |title=Theory Of A Deadman - ''Gasoline'' [Album Review] |work=Pure Grain Audio |date=March 30, 2005 |access-date=October 13, 2018 |author=Gonda, Christopher |archive-date=October 14, 2018 |archive-url=https://web.archive.org/web/20181014091531/https://puregrainaudio.com/reviews/theory-of-a-deadman |url-status=dead }}</ref>
+|-
+| [[Three 6 Mafia]]
+| ''[[Choices II: The Setup]]''
+| [[Crunk]], [[gangsta rap]], [[hardcore hip-hop]]
+| [[Sony Music]]
+| <ref>{{cite web |url=http://www.rapreviews.com/archive/2005_05_choices2setup.html |title=Three 6 Mafia :: C''hoices II - The Setup'' |work=RapReviews.com |date=May 3, 2005 |access-date=October 13, 2018 |author=Juon, Steve}}</ref>
+|-
+| [[Will Smith]]
+| ''[[Lost and Found (Will Smith album)|Lost and Found]]''
+| [[Pop-rap]]
+| [[Overbrook Entertainment|Overbrook]], [[Interscope Records|Interscope]]
+| 
+|-
+! scope="row" style="text-align:center;" | March<br/>30
+| [[Millencolin]]
+| ''[[Kingwood (album)|Kingwood]]''
+| [[Punk rock]], [[skate punk]], [[pop-punk]]
+| [[Burning Heart Records|Burning Heart]], [[Epitaph Records|Epitaph]]
+| 
+|}
+
+==Second quarter==
+===April===
+{|class="wikitable plainrowheaders"
+|+ List of albums released in April 2005
+| colspan="6" style="text-align:center;"|{{Monthbar}}
+|-
+! scope="col"| Release date
+! scope="col"| Artist
+! scope="col"| Album
+! scope="col"| Genre
+! scope="col"| Label
+! scope="col"| {{abbr|Ref.|Reference}}
+|-
+! scope="row" rowspan="8" style="text-align:center;" |April<br/>4
+| [[Better Than Ezra]]
+| ''[[Before the Robots]]''
+| [[Alternative rock|Alternative]], [[country rock]], [[Southern rock]]
+| [[Artemis Records|Artemis]]
+| <ref>{{cite web |url=http://www.rocknworld.com/features/05/betterthanezra.shtml |title=Better Than Ezra - ''Before the Robots'' Review |work=Anti Music |access-date=January 27, 2018 |author=Demarest, David}}</ref>
+|-
+| [[British Sea Power]]
+| ''[[Open Season (Sea Power album)|Open Season]]''
+| [[Post-punk revival]], [[indie rock]]
+| [[Rough Trade Records|Rough Trade]]
+| 
+|-
+| [[Hot Hot Heat]]
+| ''[[Elevator (Hot Hot Heat album)|Elevator]]''
+| [[Indie rock]]
+| [[Sire Records|Sire]]
+| 
+|-
+| [[Natalie Imbruglia]]
+| ''[[Counting Down the Days]]''
+| [[Pop rock]]
+| Brightside Recordings
+| 
+|-
+| [[Nerina Pallot]]
+| ''[[Fires (Nerina Pallot album)|Fires]]''
+| [[Pop rock]], [[alternative rock]]
+| Idaho Records, [[14th Floor Records|14th Floor]]
+| 
+|-
+| [[Tom Vek]]
+| ''[[We Have Sound]]''
+| [[Indietronica]], [[indie rock]], [[dance-punk]]
+| [[Tummy Touch Records|Tummy Touch]], [[Go! Discs|Go! Beat]], [[Startime International]]
+| 
+|-
+| [[Vitalic]]
+| ''[[OK Cowboy]]''
+| [[Electro house]]
+| Citizen Records, [[PIAS Recordings|PIAS]]
+| 
+|-
+| [[VNV Nation]]
+| ''[[Matter + Form]]''
+| [[Futurepop]], [[electro-industrial]], [[electropop]]
+| [[Metropolis Records|Metropolis]]
+| <ref>{{cite web |url=https://exclaim.ca/music/article/vnv_nation-matter_form |title=VNV Nation - ''Matter + Form'' |work=Exclaim! |date=June 1, 2005 |access-date=October 14, 2018 |author=Adair, Mike}}</ref>
+|-
+! scope="row" rowspan="15" style="text-align:center;" |April<br/>5
+| [[Adema]]
+| ''[[Planets (Adema album)|Planets]]''
+| [[Alternative metal]], [[post-grunge]], [[nu metal]]
+| [[Earache Records|Earache]]
+| 
+|-
+| [[Architecture in Helsinki]]
+| ''[[In Case We Die]]''
+| [[Indie pop]]
+| [[Bar/None Records|Bar/None]], [[Moshi Moshi Records|Moshi Moshi]]
+| 
+|-
+| [[Corrosion of Conformity]]
+| ''[[In the Arms of God]]''
+| [[Stoner rock]], [[sludge metal]], [[Southern metal]]
+| [[Sanctuary Records|Sanctuary]]
+| 
+|-
+| [[Despised Icon]]
+| ''[[The Healing Process]]''
+| [[Deathcore]]
+| [[Century Media Records|Century Media]]
+| <ref>{{cite web |url=https://www.blabbermouth.net/cdreviews/the-healing-process/ |title=Despised Icon, ''The Healing Process'' |work=Blabbermouth.net |date=April 11, 2005 |access-date=December 2, 2018 |author=Bergman, Keith}}</ref>
+|-
+| [[Faith Evans]]
+| ''[[The First Lady (Faith Evans album)|The First Lady]]''
+| [[Contemporary R&B|R&B]]
+| [[Capitol Records|Capitol]]
+| 
+|-
+| [[Fantômas (band)|Fantômas]]
+| ''[[Suspended Animation (Fantômas album)|Suspended Animation]]''
+| [[Avant-garde metal]], [[plunderphonics]], [[grindcore]]
+| [[Ipecac Recordings|Ipecac]]
+| 
+|-
+| [[Fischerspooner]]
+| ''[[Odyssey (Fischerspooner album)|Odyssey]]''
+| [[Electroclash]], [[synth-pop]], [[electropop]]
+| [[EMI Records|EMI]], [[Capitol Records|Capitol]]
+| 
+|-
+| [[Lisa Marie Presley]]
+| ''[[Now What (Lisa Marie Presley album)|Now What]]''
+| [[Rock music|Rock]], [[pop rock]]
+| [[Capitol Records|Capitol]]
+| 
+|-
+| [[Okkervil River]]
+| ''[[Black Sheep Boy]]''
+| [[Indie rock]], [[folk rock]]
+| [[Jagjaguwar]]
+| 
+|-
+| [[Reel Big Fish]]
+| ''[[We're Not Happy 'til You're Not Happy]]''
+| [[Ska punk]]
+| [[Mojo Records|Mojo]], [[Jive Records|Jive]], [[Zomba Group|Zomba]]
+| 
+|-
+| [[The Residents]]
+| ''[[Animal Lover]]''
+| 
+| [[Mute Records|Mute]], [[EMI Records|EMI]]
+| <ref>{{cite web |url=https://www.musicomh.com/reviews/albums/the-residents-animal-lover |title=The Residents – ''Animal Lover'' |work=musicOMH |date=March 21, 2005 |access-date=October 10, 2018 |author=Shepherd, Sam}}</ref>
+|-
+| [[Rob Thomas (musician)|Rob Thomas]]
+| ''[[...Something to Be]]''
+| [[Pop rock]], [[alternative rock]]
+| [[Atlantic Records|Atlantic]]
+| 
+|-
+| [[Serena Ryder]]
+| ''[[Unlikely Emergency]]''
+| [[Alternative pop]]
+| Redbird Records
+| <ref>{{cite web |url=https://exclaim.ca/music/article/serena_ryder-unlikely_emergency |title=Serena Ryder - ''Unlikely Emergency'' |work=Exclaim! |date=January 1, 2006 |access-date=October 10, 2018 |author=McPherson, David}}</ref>
+|-
+| [[A Static Lullaby]]
+| ''[[Faso Latido]]''
+| [[Post-hardcore]], [[alternative rock]]
+| [[Columbia Records|Columbia]]
+| 
+|-
+| [[Vast Aire]] and Mighty Mi
+| ''[[The Best Damn Rap Show]]''
+| [[Hip-hop]]
+| [[Eastern Conference Records|Eastern Conference]]
+| 
+|-
+! scope="row" rowspan="5" style="text-align:center;" |April<br/>11
+| [[Garbage (band)|Garbage]]
+| ''[[Bleed Like Me]]''
+| [[Alternative rock]], [[post-grunge]], [[electronic rock]]
+| [[A&E Records|A&E]], [[Warner Records|Warner Bros.]]
+| 
+|-
+| [[I Am Kloot]]
+| ''[[Gods and Monsters (I Am Kloot album)|Gods and Monsters]]''
+| [[Indie rock]]
+| [[The Echo Label]]
+| 
+|-
+| [[The Locust]]
+| ''[[Safety Second, Body Last]]''
+| [[Mathcore]], [[noise rock]], [[avant-garde metal]]
+| [[Ipecac Recordings|Ipecac]], [[Southern Records|Southern]]
+| <ref>{{cite web |url=https://www.punknews.org/review/3884/the-locust-safety-second-body-last |title=The Locust - ''Safety Second, Body Last'' (2005) |work=PunkNews.org |date=April 8, 2005 |access-date=October 14, 2018}}</ref>
+|-
+| [[Akufen|Marc Leclair]]
+| ''[[Musique pour 3 Femmes Enceintes]]''
+| 
+| Mutek Records
+| 
+|-
+| [[Melanie C]]
+| ''[[Beautiful Intentions]]''
+| [[Pop rock]], [[Rock music|rock]]
+| Red Girl Records
+| <ref>{{cite web |url=http://entertainment.ie/album-review/Melanie-C-Beautiful-Intentions/111104.htm |title=Melanie C - ''Beautiful Intentions'' |work=Entertainment.ie |date=April 18, 2005 |access-date=October 10, 2018}}</ref>
+|-
+! scope="row" rowspan="10" style="text-align:center;" |April<br/>12
+| [[Against All Authority]] and [[Common Rider]]
+| ''[[Against All Authority / Common Rider]]''
+| [[Punk rock]], [[ska punk]]
+| [[Hopeless Records|Hopeless]]
+| <ref>{{cite web |url=https://exclaim.ca/music/article/against_all_authority_common_rider-against_all_authority |title=''Against All Authority / Common Rider'' - Against All Authority / Common Rider |work=Exclaim! |date=May 1, 2005 |access-date=October 14, 2018 |author=Sutherland, Sam}}</ref>
+|-
+| [[American Hi-Fi]]
+| ''[[Hearts on Parade]]''
+| [[Alternative rock]], [[power pop]], [[pop-punk]]
+| [[Maverick (company)|Maverick]]
+| 
+|-
+| [[Cog (band)|Cog]]
+| ''[[The New Normal (album)|The New Normal]]''
+| [[Progressive rock]]
+| Difrnt Music
+| <ref>{{cite web |url=http://powermetal.de/review/review-Cog/The_New_Normal,16328.html |title=Cog - ''The New Normal'' |work=Power Metal.de |language=German |date=June 27, 2010 |access-date=October 14, 2018 |author=Kubaschk, Peter}}</ref>
+|-
+| [[Gatsbys American Dream]]
+| ''[[Volcano (Gatsbys American Dream album)|Volcano]]''
+| [[Progressive rock]], [[indie rock]], [[pop-punk]]
+| [[Fearless Records|Fearless]]
+| <ref>{{cite web |url=https://www.altpress.com/review_archive_gad/ |title=Gatsbys American Dream - ''Volcano'' |work=Alternative Press |date=October 12, 2005 |access-date=July 1, 2025 |author=Heisel, Scott}}</ref>
+|-
+| [[Mariah Carey]]
+| ''[[The Emancipation of Mimi]]''
+| [[Contemporary R&B|R&B]], [[Pop music|pop]], [[hip-hop]]
+| [[The Island Def Jam Music Group|Island Def Jam]]
+| 
+|-
+| [[Martha Wainwright]]
+| ''[[Martha Wainwright (album)|Martha Wainwright]]''
+| [[Folk music|Folk]], [[Pop music|pop]]
+| [[MapleMusic Recordings|MapleMusic]], [[Zoë Records|Zoë]]
+| 
+|-
+| [[Mindless Self Indulgence]]
+| ''[[You'll Rebel to Anything]]''
+| [[Industrial rock]], [[electronic rock]], [[synth-punk]]
+| [[Metropolis Records|Metropolis]]
+| 
+|-
+| [[Mudvayne]]
+| ''[[Lost and Found (Mudvayne album)|Lost and Found]]''
+| [[Nu metal]], [[alternative metal]], [[hard rock]]
+| [[Epic Records|Epic]]
+| 
+|-
+| [[The National (band)|The National]]
+| ''[[Alligator (The National album)|Alligator]]''
+| [[Indie rock]], [[post-punk revival]]
+| [[Beggars Banquet Records|Beggars Banquet]]
+| 
+|-
+| [[of Montreal]]
+| ''[[The Sunlandic Twins]]''
+| [[Indie pop]], [[funk]], [[synth-pop]]
+| [[Polyvinyl Record Co.|Polyvinyl]]
+| 
+|-
+! scope="row" style="text-align:center;" |April<br/>15
+| [[Amy Ray]]
+| ''[[Prom (album)|Prom]]''
+| [[Folk rock]]
+| Daemon Records
+| <ref>{{cite web |url=https://www.rollingstone.com/music/music-news/indigo-girl-goes-to-prom-80028/ |title=Indigo Girl Goes to ''Prom'' |work=Rolling Stone |date=October 13, 2005 |access-date=October 14, 2018 |author=Roberston, Jessica}}</ref>
+|-
+! scope="row" rowspan="3" style="text-align:center;" |April<br/>18
+| [[Autechre]]
+| ''[[Untilted]]''
+| [[Electronic music|Electronic]], [[Intelligent dance music|IDM]], [[Glitch (music)|glitch]]
+| [[Warp (record label)|Warp]]
+| 
+|-
+| [[Dan Snaith|Caribou]]
+| ''[[The Milk of Human Kindness]]''
+| [[Folktronica]]
+| [[The Leaf Label]], [[Domino Recording Company|Domino]]
+| 
+|-
+| [[yourcodenameis:milo]]
+| ''[[Ignoto]]''
+| [[Post-hardcore]]
+| [[Fiction Records|Fiction]], [[Polydor Records|Polydor]]
+| 
+|-
+! scope="row" rowspan="10" style="text-align:center;" |April<br/>19
+| [[Anna Nalick]]
+| ''[[Wreck of the Day]]''
+| [[Pop rock]]
+| [[Columbia Records|Columbia]]
+| <ref>{{cite web |url=https://www.rollingstone.com/reviews/album/_/id/7252432 |archive-url=https://web.archive.org/web/20060409181002/http://www.rollingstone.com/reviews/album/_/id/7252432 |work=Rolling Stone |title=''Wreck of the Day'': Review |date=May 5, 2005 |archive-date=April 9, 2006 |author=Werde, Bill |url-status=dead}}</ref>
+|-
+| [[The Cat Empire]]
+| ''[[Two Shoes]]''
+| [[Latin music|Latin]], [[ska]], [[jazz]]
+| [[Virgin Records|Virgin]]
+| 
+|-
+| [[Circa Survive]]
+| ''[[Juturna (album)|Juturna]]''
+| [[Post-hardcore]], [[emo]], [[alternative rock]]
+| [[Equal Vision Records|Equal Vision]]
+| <ref>{{cite web |url=https://everythingisnoise.net/features/a-scene-in-retrospect-circa-survive-juturna/ |title=A Scene In Retrospect: Circa Survive - ''Juturna'' |work=Everything Is Noise |date=March 3, 2019 |access-date=November 21, 2021 |author=Böhmer, Dominik}}</ref>
+|-
+| [[Ex Hex]]
+| ''[[Mary Timony]]''
+| [[Math rock]]
+| [[Lookout Records|Lookout]]
+| 
+|-
+| [[Loudon Wainwright III]]
+| ''[[Here Come the Choppers]]''
+| [[Folk rock]]
+| Sovereign Records
+| 
+|-
+| [[Mike Jones (rapper)|Mike Jones]]
+| ''[[Who Is Mike Jones?]]''
+| [[Hip-hop]]
+| [[Swishahouse]], [[Asylum Records|Asylum]], [[Warner Records|Warner Bros.]]
+| 
+|-
+| [[Outlawz]]
+| ''[[Outlaw 4 Life: 2005 A.P.]]''
+| [[Gangsta rap]]
+| [[33rd Street Records|33rd Street]], 1Nation
+| <ref>{{cite web |url=https://hiphopdx.com/reviews/id.519/title.outlawz-outlawz-4-life-2005-a-p# |title=Outlawz - ''Outlawz 4 Life: 2005 A.P.'' |work=HipHopDX |date=April 21, 2005 |access-date=May 12, 2018}}</ref>
+|-
+| [[Stace England]]
+| ''[[Greetings from Cairo, Illinois]]''
+| [[Folk music|Folk]], [[Rock music|rock]], [[Country music|country]]
+| Gnashville Sounds Records
+| <ref>{{cite web |url=https://www.npr.org/2006/01/21/5032061/lessons-from-cairo-illinois |title=Lessons from Cairo, Illinois |work=NPR |date=January 21, 2006 |access-date=May 12, 2018 |author=Jones, Rachel}}</ref>
+|-
+| [[Steel Train]]
+| ''Twilight Tales from the Prairies of the Sun''
+| 
+| [[Drive-Thru Records|Drive-Thru]]
+| <ref>{{cite web |url=https://www.popmatters.com/steeltrain-twilight-2496067753.html |title=Steel Train: ''Twilight Tales From the Prairies of the Sun'' |work=PopMatters |date=August 14, 2005 |access-date=May 12, 2018 |author=MacNeil, Jason}}</ref>
+|-
+| [[Z-Trip]]
+| ''[[Shifting Gears (Z-Trip album)|Shifting Gears]]''
+| [[Hip-hop]]
+| [[Hollywood Records|Hollywood]]
+| 
+|-
+! scope="row" rowspan="4" style="text-align:center;" |April<br/>25
+| [[Ben Folds]]
+| ''[[Songs for Silverman]]''
+| [[Alternative rock]]
+| [[Sony Music]], [[Epic Records|Epic]]
+| 
+|-
+| [[Napalm Death]]
+| ''[[The Code Is Red...Long Live the Code]]''
+| [[Grindcore]], [[death metal]]
+| [[Century Media Records|Century Media]]
+| 
+|-
+| [[Robert Plant|Robert Plant & The Strange Sensation]]
+| ''[[Mighty ReArranger]]''
+| [[Progressive rock]], [[hard rock]], [[worldbeat]]
+| [[Sanctuary Records|Sanctuary]], Es Paranza
+| <ref>{{cite web |url=https://www.rollingstone.com/music/music-album-reviews/mighty-rearranger-86923/ |title=Robert Plant: ''Mighty ReArranger'' |work=Rolling Stone |date=May 19, 2005 |access-date=May 12, 2018 |author=Ringen, Jonathan}}</ref>
+|-
+| [[Van der Graaf Generator]]
+| ''[[Present (Van der Graaf Generator album)|Present]]''
+| [[Progressive rock]], [[art rock]]
+| [[Charisma Records|Charisma]]
+| 
+|-
+! scope="row" rowspan="13" style="text-align:center;" |April<br/>26
+| [[Acceptance (band)|Acceptance]]
+| ''[[Phantoms (Acceptance album)|Phantoms]]''
+| [[Pop-punk]], [[emo]], [[alternative rock]]
+| [[Columbia Records|Columbia]]
+| 
+|-
+| [[Amerie]]
+| ''[[Touch (Amerie album)|Touch]]''
+| [[Contemporary R&B|R&B]]
+| [[Columbia Records|Columbia]], [[Sony Urban Music|Sony Urban]], Richcraft
+| 
+|-
+| [[Bruce Springsteen]]
+| ''[[Devils & Dust]]''
+| [[Rock music|Rock]], [[folk rock]]
+| [[Columbia Records|Columbia]]
+| 
+|-
+| [[Caesars (band)|Caesars]]
+| ''[[Paper Tigers]]''
+| [[Indie rock]]
+| [[EMI Music Japan|Toshiba-EMI]], [[Virgin Records|Virgin]], [[Astralwerks]]
+| 
+|-
+| [[Eels (band)|Eels]]
+| ''[[Blinking Lights and Other Revelations]]''
+| [[Indie rock]]
+| [[Vagrant Records|Vagrant]]
+| 
+|-
+| [[Family Guy]]
+| ''[[Family Guy: Live in Vegas]]''
+| [[Comedy music|Comedy jazz]]
+| [[Geffen Records|Geffen]]
+| <ref>{{cite web |url=https://www.ign.com/articles/2005/04/28/family-guy-live-in-vegas |title=''Family Guy Live in Vegas'' |work=IGN |date=April 28, 2005 |access-date=April 3, 2020}}</ref>
+|-
+| [[Jo Dee Messina]]
+| ''[[Delicious Surprise]]''
+| [[Country music|Country]]
+| [[Curb Records|Curb]]
+| 
+|-
+| [[Johnathan Rice]]
+| ''Trouble Is Real''
+| 
+| [[One Little Independent Records|One Little Indian]]
+| <ref>{{cite web |url=http://drownedinsound.com/releases/4123/reviews/12499- |title=Johnathan Rice - ''Trouble Is Real'' |work=Drowned in Sound |date=June 22, 2005 |access-date=May 12, 2018 |author=Winters, John |archive-date=May 13, 2018 |archive-url=https://web.archive.org/web/20180513081511/http://drownedinsound.com/releases/4123/reviews/12499- |url-status=dead }}</ref>
+|-
+| [[Lyrics Born]]
+| ''[[Same !@$ Different Day]]''
+| [[Hip-hop]]
+| [[Quannum Projects]]
+| 
+|-
+| [[The Mountain Goats]]
+| ''[[The Sunset Tree]]''
+| [[Folk rock]]
+| [[4AD]]
+| 
+|-
+| [[Opiate for the Masses]]
+| ''[[The Spore]]''
+| 
+| [[Warcon Enterprises|Warcon]]
+| <ref>{{cite web |url=https://exclaim.ca/music/article/opiate_for_masses-spore |title=Opiate for the Masses - ''The Spore'' |work=Exclaim! |date=June 30, 2005 |access-date=August 30, 2025 |author=Shield, Kendall}}</ref>
+|-
+| [[Russell Allen]]
+| ''[[Atomic Soul]]''
+| [[Hard rock]], [[heavy metal music|heavy metal]]
+| [[Inside Out Music]]
+| <ref>{{cite web |url=https://www.blabbermouth.net/cdreviews/russell-allen-s/ |title=Russell Allen's Atomic Soul - ''Russell Allen's...'' |work=Blabbermouth.net |date=April 30, 2005 |access-date=May 12, 2018 |author=Alisgolu, Scott}}</ref>
+|-
+| [[Unsane (band)|Unsane]]
+| ''[[Blood Run (album)|Blood Run]]''
+| [[Noise rock]], [[post-hardcore]], [[alternative metal]]
+| [[Relapse Records|Relapse]]
+| 
+|-
+! scope="row" style="text-align:center;" |April<br/>27
+| [[Robyn]]
+| ''[[Robyn (album)|Robyn]]''
+| [[Synth-pop]], [[dance-pop]], [[Europop]]
+| [[Konichiwa Records|Konichiwa]]
+| 
+|}
+
+===May===
+{|class="wikitable plainrowheaders"
+|+ List of albums released in May 2005
+| colspan="6" style="text-align:center;"|{{Monthbar}}
+|-
+! scope="col"| Release date
+! scope="col"| Artist
+! scope="col"| Album
+! scope="col"| Genre
+! scope="col"| Label
+! scope="col"| {{abbr|Ref.|Reference}}
+|-
+! scope="row" rowspan="3" style="text-align:center;" |May<br/>2
+| [[Fat Freddy's Drop]]
+| ''[[Based on a True Story (Fat Freddy's Drop album)|Based on a True Story]]''
+| [[Dub music|Dub]]
+| The Drop
+| 
+|-
+| [[Lacrimosa (band)|Lacrimosa]]
+| ''[[Lichtgestalt]]''
+| [[Gothic metal]]
+| Hall of Sermon
+| <ref>{{cite web |url=http://powermetal.de/review/review-Lacrimosa/Lichtgestalt,5586.html |title=Lacrimosa - ''Lichtgestalt'' |work=Power Metal.de |language=German |date=April 26, 2005 |access-date=October 18, 2018 |author=Stark, Martin}}</ref>
+|-
+| [[Limp Bizkit]]
+| ''[[The Unquestionable Truth (Part 1)]]''
+| [[Nu metal]], [[alternative metal]], [[rap metal]]
+| [[Flip Records (1994)|Flip]], [[Geffen Records|Geffen]]
+| 
+|-
+! scope="row" rowspan="15" style="text-align:center;" |May<br/>3
+| [[Aimee Mann]]
+| ''[[The Forgotten Arm]]''
+| [[Pop music|Pop]], [[Rock music|rock]]
+| SuperEgo Records
+| 
+|-
+| [[Fall Out Boy]]
+| ''[[From Under the Cork Tree]]''
+| [[Pop-punk]], [[emo]]
+| [[Island Records|Island]]
+| 
+|-
+| [[The Go-Betweens]]
+| ''[[Oceans Apart]]''
+| [[Rock music|Rock]]
+| LO-MAX Records, [[EMI Records|EMI]]
+| 
+|-
+| [[The Hold Steady]]
+| ''[[Separation Sunday]]''
+| [[Indie rock]], [[post-punk revival]], [[heartland rock]]
+| [[Frenchkiss Records|Frenchkiss]]
+| 
+|-
+| [[Joe Perry (musician)|Joe Perry]]
+| ''[[Joe Perry (album)|Joe Perry]]''
+| [[Hard rock]], [[instrumental rock]]
+| [[Sony BMG]]
+| 
+|-
+| [[John Williams]]
+| ''[[Star Wars: Episode III – Revenge of the Sith (soundtrack)|Star Wars Episode III: Revenge of the Sith – Original Motion Picture Soundtrack]]''
+| [[Classical music|Classical]]
+| [[Sony Classical Records|Sony Classical]]
+| 
+|-
+| [[Keith Anderson]]
+| ''[[Three Chord Country and American Rock & Roll]]''
+| [[Country music|Country]]
+| [[Arista Nashville]]
+| <ref>{{cite web |url=https://www.countrystandardtime.com/d/cdreview.asp?xid=1623 |title=Keith Anderson - ''Three Chord Country and American Rock & Roll'' |work=Country Standard Time |access-date=June 8, 2025 |author=Remz, Jeffrey B.}}</ref>
+|-
+| [[Mike Doughty]]
+| ''[[Haughty Melodic]]''
+| [[Rock music|Rock]]
+| [[ATO Records|ATO]]
+| 
+|-
+| [[Nine Inch Nails]]
+| ''[[With Teeth]]''
+| [[Industrial rock]], [[alternative rock]], [[electronic rock]]
+| [[Nothing Records|Nothing]], [[Interscope Records|Interscope]]
+| 
+|-
+| [[Nivea (singer)|Nivea]]
+| ''[[Complicated (Nivea album)|Complicated]]''
+| [[Contemporary R&B|R&B]]
+| [[Jive Records|Jive]]
+| 
+|-
+| [[Oneida (band)|Oneida]]
+| ''[[The Wedding (Oneida album)|The Wedding]]''
+| [[Krautrock]], [[Electronic music|electronic]], [[noise rock]]
+| [[Jagjaguwar]], [[Three Gut Records|Three Gut]], [[Rough Trade Records|Rough Trade]]
+| 
+|-
+| [[The Ponys]]
+| ''[[Celebration Castle]]''
+| [[Indie rock]], [[garage rock]]
+| [[In the Red Records|In the Red]]
+| 
+|-
+| [[Quasimoto]]
+| ''[[The Further Adventures of Lord Quas]]''
+| [[Hip-hop]]
+| [[Stones Throw Records|Stones Throw]]
+| 
+|-
+| [[The Raveonettes]]
+| ''[[Pretty in Black]]''
+| [[Indie rock]]
+| [[Columbia Records|Columbia]]
+| 
+|-
+| [[Ryan Adams|Ryan Adams and the Cardinals]]
+| ''[[Cold Roses]]''
+| [[Alternative country]], [[country rock]]
+| [[Lost Highway Records|Lost Highway]]
+| 
+|-
+! scope="row" rowspan="3" style="text-align:center;" |May<br/>9
+| [[Mount Eerie]]
+| ''[["No Flashlight": Songs of the Fulfilled Night]]''
+| [[Indie rock]], [[lo-fi music|lo-fi]]
+| P.W. Elverum & Sun, Ltd., Play/Rec
+| 
+|-
+| [[Teenage Fanclub]]
+| ''[[Man-Made]]''
+| [[Alternative rock]]
+| [[Merge Records|Merge]]
+| 
+|-
+| [[The Unseen (band)|The Unseen]]
+| ''[[State of Discontent]]''
+| [[Punk rock]]
+| [[Hellcat Records|Hellcat]]
+| <ref>{{cite web |url=https://www.punknews.org/review/4090/the-unseen-state-of-discontent |title=The Unseen - ''State of Discontent'' (2005) |work=PunkNews.org |date=June 17, 2005 |access-date=October 19, 2018}}</ref>
+|-
+! scope="row" rowspan="17" style="text-align:center;" |May<br/>10
+| [[Billy Bang]]
+| ''[[Vietnam: Reflections]]''
+| [[Jazz]]
+| [[Justin Time Records|Justin Time]]
+| 
+|-
+| [[Dave Matthews Band]]
+| ''[[Stand Up (Dave Matthews Band album)|Stand Up]]''
+| [[Alternative rock]], [[folk rock]]
+| [[RCA Records|RCA]]
+| 
+|-
+| [[Dierks Bentley]]
+| ''[[Modern Day Drifter]]''
+| [[Country music|Country]]
+| [[Capitol Records Nashville|Capitol Nashville]]
+| <ref>{{cite web |url=https://www.popmatters.com/bentleydierks-modern-2495841052.html |title=Dierks Bentley: ''Modern Day Drifter'' |work=PopMatters |date=June 26, 2005 |access-date=July 3, 2024 |author=Cibula, Matt}}</ref>
+|-
+| [[FannyPack]]
+| ''[[See You Next Tuesday (album)|See You Next Tuesday]]''
+| [[Hip-hop]]
+| [[Tommy Boy Records|Tommy Boy]]
+| 
+|-
+| [[GZR]]
+| ''[[Ohmwork]]''
+| [[Nu metal]], [[groove metal]]
+| [[Sanctuary Records|Sanctuary]]
+| <ref>{{cite web |url=https://www.blabbermouth.net/cdreviews/ohmwork/ |title=GZR ''Ohmwork'' |work=Blabbermouth.net |date=March 27, 2005 |access-date=May 12, 2018 |author=Bergman, Keith}}</ref>
+|-
+| [[John Cena]] & [[Tha Trademarc]]
+| ''[[You Can't See Me]]''
+| [[Hip-hop]]
+| [[WWE Music Group|WWE]], [[Columbia Records|Columbia]]
+| <ref>{{cite web |url=http://www.rapreviews.com/archive/2005_05F_youcant.html |title=John Cena : ''You Can't See Me'' |work=RapReviews.com |date=May 10, 2005 |access-date=January 27, 2018 |author=Juon, Steve}}</ref>
+|-
+| [[Kate Earl]]
+| ''Fate Is the Hunter''
+| 
+| [[Record Collection (record label)|Record Collection]], [[Warner Records|Warner Bros.]]
+| <ref>{{cite web |url=https://www.popmatters.com/earlkate-fate-2495892432.html |title=Kate Earl: ''Fate is the Hunter'' |work=PopMatters |date=August 17, 2005 |access-date=October 18, 2018 |author=Bernard, David}}</ref>
+|-
+| [[Kevin Devine]]
+| ''[[Split the Country, Split the Street]]''
+| [[Indie rock]], [[alternative rock]]
+| [[Triple Crown Records|Triple Crown]], [[Defiance Records|Defiance]]
+| <ref>{{cite web |url=https://www.punknews.org/review/4176/kevin-devine-split-the-country-split-the-street |title=Kevin Devine: ''Split the Country, Split the Street'' (2005) |work=PunkNews.org |date=July 19, 2005 |access-date=June 8, 2021 |author=Shultz, Brian}}</ref>
+|-
+| [[Lucinda Williams]]
+| ''[[Live at the Fillmore (Lucinda Williams album)|Live @ The Fillmore]]''
+| [[Americana music|Americana]], [[alternative country]], [[country rock]]
+| [[Lost Highway Records|Lost Highway]]
+| 
+|-
+| [[Pray for the Soul of Betty]]
+| ''[[Pray for the Soul of Betty (album)|Pray for the Soul of Betty]]''
+| [[Hard rock]]
+| [[MNRK Music Group|Koch]]
+| <ref>{{cite web |url=https://www.billboard.com/articles/news/62794/be-pray-for-the-soul-of-betty |title=B&E: ''Pray for the Soul of Betty'' |work=Billboard |date=May 25, 2005 |access-date=October 19, 2018}}</ref>
+|-
+| [[Prince Paul (producer)|Prince Paul]]
+| ''[[Itstrumental]]''
+| [[Hip-hop]]
+| Female Fun Records
+| 
+|-
+| [[Robert Earl Keen]]
+| ''[[What I Really Mean]]''
+| [[Folk music|Folk]]
+| [[MNRK Music Group|Koch]]
+| 
+|-
+| [[Spoon (band)|Spoon]]
+| ''[[Gimme Fiction]]''
+| [[Indie rock]], [[art rock]], [[indie pop]]
+| [[Merge Records|Merge]], [[Matador Records|Matador]]
+| 
+|-
+| [[The Starting Line]]
+| ''[[Based on a True Story (The Starting Line album)|Based on a True Story]]''
+| [[Emo]], [[pop-punk]]
+| [[Drive-Thru Records|Drive-Thru]], [[Geffen Records|Geffen]]
+| 
+|-
+| [[Styx (band)|Styx]]
+| ''[[Big Bang Theory (Styx album)|Big Bang Theory]]''
+| [[Rock music|Rock]]
+| [[New Door Records|New Door]]
+| <ref>{{cite web |url=http://bravewords.com/news/styx-european-release-date-confirmed-for-big-bang-theory |title=Styx - European Release Date Confirmed for ''Big Bang Theory'' |work=Brave Words |date=April 4, 2005 |access-date=October 19, 2018}}</ref>
+|-
+| [[Van Zant (duo)|Van Zant]]
+| ''[[Get Right with the Man]]''
+| [[Country music|Country]]
+| [[Columbia Records|Columbia]]
+| <ref>{{cite web |url=http://nodepression.com/album-review/van-zant-get-right-man |title=Van Zant - ''Get Right with the Man'' |work=No Depression |date=June 30, 2005 |access-date=April 8, 2018}}</ref>
+|-
+| [[Weezer]]
+| ''[[Make Believe (Weezer album)|Make Believe]]''
+| [[Alternative rock]], [[power pop]], [[pop-punk]]
+| [[Geffen Records|Geffen]]
+| 
+|-
+! scope="row" style="text-align:center;" |May<br/>11
+| [[Gorillaz]]
+| ''[[Demon Days]]''
+| [[Alternative rock]], [[hip-hop]], [[trip hop]]
+| [[Parlophone]], [[Virgin Records|Virgin]]
+| 
+|-
+! scope="row" rowspan="4" style="text-align:center;" |May<br/>16
+| [[Ellen Allien]]
+| ''[[Thrills (Ellen Allien album)|Thrills]]''
+| [[Techno]]
+| [[BPitch Control]]
+| 
+|-
+| [[Maxïmo Park]]
+| ''[[A Certain Trigger]]''
+| [[Indie rock]], [[post-punk revival]], [[New wave music|new wave]]
+| [[Warp (record label)|Warp]]
+| 
+|-
+| [[Meshuggah]]
+| ''[[Catch Thirtythree]]''
+| [[Avant-garde metal]], [[progressive metal]], [[groove metal]]
+| [[Nuclear Blast Records|Nuclear Blast]]
+| 
+|-
+| [[Tracy Bonham]]
+| ''[[Blink the Brightest]]''
+| [[Rock music|Rock]], [[post-grunge]]
+| [[Zoë Records|Zoë]], [[Rounder Records|Rounder]]
+| 
+|-
+! scope="row" rowspan="9" style="text-align:center;" |May<br/>17
+| [[Cowboy Troy]]
+| ''[[Loco Motive (album)|Loco Motive]]''
+| [[Country rap]]
+| [[Warner Records|Warner Bros.]]
+| <ref>{{cite web |url=http://www.countrystandardtime.com/d/cdreview.asp?xid=626 |title=Cowboy Troy - ''Loco Motive'' |work=Country Standard Time |access-date=October 19, 2018 |author=Loy, Robert}}</ref>
+|-
+| [[C-Rayz Walz]]
+| ''[[Year of the Beast]]''
+| [[Hip-hop]]
+| [[Definitive Jux]]
+| 
+|-
+| [[Kem (singer)|Kem]]
+| ''[[Album II (Kem album)|Album II]]''
+| 
+| [[Motown]]
+| <ref>{{cite web |url=https://www.popmatters.com/kem-album2-2495959868.html |title=Kem: ''Album II'' |work=PopMatters |date=May 16, 2005 |access-date=October 19, 2018 |author=Layman, Will}}</ref>
+|-
+| [[Memphis Bleek]]
+| ''[[534 (album)|534]]''
+| [[Hip-hop]]
+| [[Roc-A-Fella Records|Roc-A-Fella]], [[Def Jam Recordings|Def Jam]]
+| 
+|-
+| [[The Red Chord]]
+| ''[[Clients (album)|Clients]]''
+| [[Deathcore]], [[technical death metal]], [[grindcore]]
+| [[Metal Blade Records|Metal Blade]]
+| 
+|-
+| [[The Rocket Summer]]
+| ''[[Hello, Good Friend]]''
+| [[Rock music|Rock]], [[power pop]]
+| [[The Militia Group|Militia]]
+| <ref>{{cite web |url=http://www.jesusfreakhideout.com/cdreviews/HelloGoodFriend.asp |title=The Rocket Summer - ''Hello, Good Friend'' |work=JesusFreakHideout.com |date=July 22, 2005 |access-date=October 20, 2018 |author=Wier, Brett}}</ref>
+|-
+| [[System of a Down]]
+| ''[[Mezmerize]]''
+| [[Nu metal]], [[alternative metal]]
+| [[Columbia Records|Columbia]], [[American Recordings (record label)|American]]
+| 
+|-
+| [[Toby Keith]]
+| ''[[Honkytonk University]]''
+| [[Country music|Country]]
+| [[DreamWorks Records|DreamWorks]]
+| 
+|-
+| [[Van Morrison]]
+| ''[[Magic Time (Van Morrison album)|Magic Time]]''
+| [[Celtic rock]], [[blues]], [[Contemporary R&B|R&B]]
+| [[Geffen Records|Geffen]]
+| 
+|-
+! scope="row" style="text-align:center;" |May<br/>22
+| [[Pelican (band)|Pelican]]
+| ''[[The Fire in Our Throats Will Beckon the Thaw]]''
+| [[Post-metal]]
+| [[Hydra Head Records|Hydra Head]]
+| 
+|-
+! scope="row" rowspan="5" style="text-align:center;" |May<br/>23
+| [[Audioslave]]
+| ''[[Out of Exile]]''
+| [[Hard rock]], [[alternative metal]], [[alternative rock]]
+| [[Epic Records|Epic]], [[Interscope Records|Interscope]]
+| 
+|-
+| [[Bruce Dickinson]]
+| ''[[Tyranny of Souls]]''
+| [[Heavy metal music|Heavy metal]], [[progressive metal]]
+| [[Sanctuary Records|Sanctuary]], [[Victor Entertainment|Victor]]
+| 
+|-
+| [[Four Tet]]
+| ''[[Everything Ecstatic]]''
+| [[Electronic music|Electronic]], [[folktronica]], [[krautrock]]
+| [[Domino Recording Company|Domino]]
+| 
+|-
+| [[Nile (band)|Nile]]
+| ''[[Annihilation of the Wicked]]''
+| [[Technical death metal]]
+| [[Relapse Records|Relapse]]
+| 
+|-
+| [[Stephen Malkmus]]
+| ''[[Face the Truth (Stephen Malkmus album)|Face the Truth]]''
+| [[Rock music|Rock]]
+| [[Matador Records|Matador]], [[Domino Recording Company|Domino]]
+| 
+|-
+! scope="row" rowspan="17" style="text-align:center;" |May<br/>24
+| [[Alkaline Trio]]
+| ''[[Crimson (Alkaline Trio album)|Crimson]]''
+| [[Punk rock]], [[pop-punk]]
+| [[Vagrant Records|Vagrant]]
+| 
+|-
+| [[Amber Pacific]]
+| ''[[The Possibility and the Promise]]''
+| [[Emo]], [[pop-punk]]
+| [[Hopeless Records|Hopeless]]
+| 
+|-
+| [[Animal Collective]] featuring [[Vashti Bunyan]]
+| ''[[Prospect Hummer]]''
+| [[Experimental music|Experimental]], [[freak folk]], [[psychedelic rock]]
+| [[FatCat Records|FatCat]]
+| 
+|-
+| [[Common (rapper)|Common]]
+| ''[[Be (Common album)|Be]]''
+| [[Hip-hop]], [[conscious hip-hop]], [[hip-hop soul]]
+| [[GOOD Music]], [[Geffen Records|Geffen]]
+| 
+|-
+| [[Gucci Mane]]
+| ''[[Trap House]]''
+| 
+| [[Big Cat Records (U.S. record label)|Big Cat]]
+| <ref>{{cite web |url=https://www.rapreviews.com/2005/05/gucci-mane-trap-house/ |title=Gucci Mane :: ''Trap House'' |work=Rap Reviews.com |date=May 31, 2005 |access-date=June 12, 2025 |author=Juon, Steve}}</ref>
+|-
+| [[Joshua Redman]]
+| ''[[Momentum (Joshua Redman album)|Momentum]]''
+| [[Jazz]]
+| [[Nonesuch Records|Nonesuch]]
+| 
+|-
+| [[Maria Taylor (musician)|Maria Taylor]]
+| ''[[11:11 (Maria Taylor album)|11:11]]''
+| [[Folktronica]]
+| [[Saddle Creek Records|Saddle Creek]]
+| 
+|-
+| [[Marques Houston]]
+| ''[[Naked (Marques Houston album)|Naked]]''
+| 
+| [[The Ultimate Group|Ultimate]], [[Universal Music Group|Universal]]
+| <ref>{{cite web |url=http://www.popentertainment.com/marques.htm |title=Marques Houston-''Naked'' (Universal) |work=Pop Entertainment.com |date=August 9, 2005 |access-date=May 28, 2018 |author=Juranga, Abraham}}</ref>
+|-
+| [[Molly Hatchet]]
+| ''[[Warriors of the Rainbow Bridge]]''
+| [[Southern rock]]
+| [[SPV GmbH|SPV]]
+| <ref>{{cite web |url=https://www.blabbermouth.net/cdreviews/warriors-of-the-rainbow-bridge/ |title=Molly Hatchet, ''Warriors of the Rainbow Bridge'' |work=Blabbermouth.net |date=April 30, 2005 |access-date=May 28, 2018 |author=Alisoglu, Scott}}</ref>
+|-
+| [[Nikka Costa]]
+| ''[[Can'tneverdidnothin']]''
+| 
+| [[Virgin Records|Virgin]]
+| 
+|-
+| [[Pretty Ricky]]
+| ''[[Bluestars (album)|Bluestars]]''
+| [[Contemporary R&B|R&B]], [[hip-hop]]
+| [[Atlantic Records|Atlantic]], Bluestar Entertainment
+| <ref>{{cite web |url=https://www.musicomh.com/reviews/albums/pretty-ricky-bluestars |title=Pretty Ricky – ''Bluestars'' |work=musicOMH |date=September 26, 2005 |access-date=October 20, 2018 |author=Ahmad, Azeem}}</ref>
+|-
+| [[Robert Cray]]
+| ''[[Twenty (Robert Cray album)|Twenty]]''
+| [[Blues]]
+| [[Sanctuary Records|Sanctuary]]
+| 
+|-
+| [[Seether]]
+| ''[[Karma and Effect]]''
+| [[Post-grunge]], [[alternative metal]], [[nu metal]]
+| [[Wind-up Records|Wind-up]]
+| 
+|-
+| [[Shelby Lynne]]
+| ''[[Suit Yourself]]''
+| [[Country music|Country]]
+| [[Capitol Records|Capitol]]
+| 
+|-
+| [[Sleater-Kinney]]
+| ''[[The Woods (album)|The Woods]]''
+| [[Alternative rock]], [[hard rock]], [[noise pop]]
+| [[Sub Pop]]
+| 
+|-
+| Various artists
+| ''[[Motown Remixed]]''
+| [[Funk]], [[Soul music|soul]]
+| [[Motown]], [[Universal Music Group|Universal]]
+| <ref>{{cite web |url=https://www.popmatters.com/various-motownremixed-2496131202.html |title=Various Artists: ''Motown Remixed'' |work=PopMatters |date=August 7, 2005 |access-date=May 28, 2018 |author=O'Neil, Tim}}</ref>
+|-
+| [[The Wallflowers]]
+| ''[[Rebel, Sweetheart]]''
+| [[Alternative rock]], [[roots rock]]
+| [[Interscope Records|Interscope]]
+| 
+|-
+! scope="row" style="text-align:center;" |May<br/>25
+| [[Black Eyed Peas]]
+| ''[[Monkey Business (Black Eyed Peas album)|Monkey Business]]''
+| [[Hip-hop]], [[Pop music|pop]]
+| [[A&M Records|A&M]], [[Interscope Records|Interscope]], [[will.i.am Music Group|will.i.am]]
+| 
+|-
+! scope="row" rowspan="2" style="text-align:center;" |May<br/>30
+| [[Art Brut]]
+| ''[[Bang Bang Rock & Roll]]''
+| [[Indie rock]], [[art punk]], [[Garage punk (fusion genre)|garage punk]]
+| [[Fierce Panda Records|Fierce Panda]]
+| 
+|-
+| [[Oasis (band)|Oasis]]
+| ''[[Don't Believe the Truth]]''
+| [[Alternative rock]], [[indie rock]]
+| [[Big Brother Recordings|Big Brother]]
+| 
+|-
+! scope="row" rowspan="7" style="text-align:center;" |May<br/>31
+| [[The Dead 60s]]
+| ''[[The Dead 60s (album)|The Dead 60s]]''
+| [[Ska punk]]
+| [[Deltasonic Records|Deltasonic]], [[Epic Records|Epic]]
+| 
+|-
+| [[M.E.D. (rapper)|M.E.D.]]
+| ''[[Push Comes to Shove (MED album)|Push Comes to Shove]]''
+| [[Hip-hop]]
+| [[Stones Throw Records|Stones Throw]]
+| 
+|-
+| [[Paul Anka]]
+| ''[[Rock Swings]]''
+| [[Swing music|Swing]]
+| [[Verve Records|Verve]]
+| 
+|-
+| [[Sean Price]]
+| ''[[Monkey Barz]]''
+| [[Hip-hop]]
+| [[Duck Down Music]]
+| 
+|-
+| [[Bill Callahan (musician)|Smog]]
+| ''[[A River Ain't Too Much to Love]]''
+| [[Indie folk]], [[alternative country]], [[lo-fi music|lo-fi]]
+| [[Drag City (record label)|Drag City]], [[Domino Recording Company|Domino]]
+| 
+|-
+| [[Tosca (band)|Tosca]]
+| ''[[J.A.C.]]''
+| 
+| [[Studio !K7]]
+| 
+|-
+| [[Vivian Green]]
+| ''[[Vivian (album)|Vivian]]''
+| [[Contemporary R&B|R&B]]
+| [[Columbia Records|Columbia]]
+| 
+|}
+
+===June===
+{|class="wikitable plainrowheaders"
+|+ List of albums released in June 2005
+| colspan="6" style="text-align:center;"|{{Monthbar}}
+|-
+! scope="col"| Release date
+! scope="col"| Artist
+! scope="col"| Album
+! scope="col"| Genre
+! scope="col"| Label
+! scope="col"| {{abbr|Ref.|Reference}}
+|-
+! scope="row" style="text-align:center;" | June<br/>3
+| [[Shakira]]
+| ''[[Fijación Oral, Vol. 1]]''
+| [[Latin pop]]
+| [[Epic Records|Epic]]
+| 
+|-
+! scope="row" rowspan="10" style="text-align:center;" | June<br/>6
+| [[Avenged Sevenfold]]
+| ''[[City of Evil]]''
+| [[Heavy metal music|Heavy metal]], [[progressive metal]], [[hard rock]]
+| [[Warner Records|Warner Bros.]], [[Hopeless Records|Hopeless]]
+| 
+|-
+| [[Coldplay]]
+| ''[[X&Y]]''
+| [[Alternative rock]], [[space rock]]
+| [[Parlophone]], [[Capitol Records|Capitol]]
+| 
+|-
+| [[Geri Halliwell]]
+| ''[[Passion (Geri Halliwell album)|Passion]]''
+| [[Pop music|Pop]], [[jazz]], [[dance-pop]]
+| [[Innocent Records|Innocent]], [[EMI Records|EMI]]
+| 
+|-
+| [[Gotthard (band)|Gotthard]]
+| ''[[Lipservice]]''
+| [[Hard rock]], [[Rock music|rock]]
+| [[Nuclear Blast Records|Nuclear Blast]]
+| <ref>{{cite web |url=https://www.metal.de/reviews/gotthard-lipservice-5324/ |title=Gotthard - ''Lipservice'' |work=Metal.de |language=German |date=June 28, 2005 |access-date=October 22, 2018}}</ref>
+|-
+| [[The Hellacopters]]
+| ''[[Rock & Roll Is Dead]]''
+| [[Garage rock]], [[punk rock]], [[Garage punk (fusion genre)|garage punk]]
+| Liquor and Poker Music, Sacred Heart Recordings
+| 
+|-
+| [[Isolée]]
+| ''[[We Are Monster]]''
+| [[Microhouse]]
+| [[Playhouse Records|Playhouse]]
+| 
+|-
+| [[Marion Raven]]
+| ''[[Here I Am (Marion Raven album)|Here I Am]]''
+| [[Pop rock]], [[hard rock]]
+| [[Atlantic Records]]
+| 
+|-
+| [[MxPx]]
+| ''[[Panic (MxPx album)|Panic]]''
+| [[Pop-punk]], [[punk rock]]
+| [[SideOneDummy Records|SideOneDummy]]
+| 
+|-
+| [[The Tears]]
+| ''[[Here Come the Tears]]''
+| [[Pop music|Pop]]
+| [[Independiente (record label)|Independiente]]
+| 
+|-
+| [[Ulver]]
+| ''[[Blood Inside]]''
+| [[Post-industrial music|Post-industrial]], [[experimental rock]], [[electronic rock]]
+| [[Jester Records|Jester]]
+| 
+|-
+! scope="row" rowspan="13" style="text-align:center;" | June<br/>7
+| [[The Aquabats]]
+| ''[[Charge!!]]''
+| [[Rock music|Rock]], [[New wave music|new wave]], [[synth-pop]]
+| [[Nitro Records|Nitro]]
+| 
+|-
+| [[Death by Stereo]]
+| ''[[Death for Life]]''
+| [[Heavy metal music|Heavy metal]], [[hardcore punk]]
+| [[Epitaph Records|Epitaph]]
+| <ref>{{cite web |url=http://drownedinsound.com/releases/4189/reviews/12876- |title=Death by Stereo - ''Death for Life'' |work=Drowned in Sound |date=August 15, 2005 |access-date=June 7, 2018 |author=Hocking, Mat |archive-date=June 12, 2018 |archive-url=https://web.archive.org/web/20180612140614/http://drownedinsound.com/releases/4189/reviews/12876- |url-status=dead }}</ref>
+|-
+| [[Dream Theater]]
+| ''[[Octavarium]]''
+| [[Progressive rock]], [[progressive metal]]
+| [[Atlantic Records|Atlantic]]
+| 
+|-
+| [[Finch (American band)|Finch]]
+| ''[[Say Hello to Sunshine]]''
+| [[Post-hardcore]]
+| [[Drive-Thru Records|Drive-Thru]], [[Geffen Records|Geffen]]
+| 
+|-
+| [[John Scofield]]
+| ''[[That's What I Say: John Scofield Plays the Music of Ray Charles]]''
+| [[Jazz]]
+| [[Verve Records|Verve]]
+| 
+|-
+| [[Kelly Osbourne]]
+| ''[[Sleeping in the Nothing]]''
+| [[New wave music|New wave]], [[synth-pop]], [[dance-rock]]
+| [[Sanctuary Records|Sanctuary]]
+| 
+|-
+| [[Motion City Soundtrack]]
+| ''[[Commit This to Memory]]''
+| [[Emo]], [[pop-punk]]
+| [[Epitaph Records|Epitaph]]
+| 
+|-
+| [[Novillero]]
+| ''[[Aim Right for the Holes in Their Lives]]''
+| [[Indie rock]], [[Pop music|pop]]
+| [[Mint Records|Mint]]
+| <ref>{{cite web |url=https://www.popmatters.com/novillero-aim-2496011743.html |title=Novillero: ''Aim Right for the Holes in Their Lives'' |work=PopMatters |date=September 8, 2005 |access-date=June 7, 2018 |author=Bernard, David}}</ref>
+|-
+| [[The Number Twelve Looks Like You]]
+| ''[[Nuclear. Sad. Nuclear.]]''
+| [[Mathcore]], [[post-hardcore]], [[metalcore]]
+| [[Eyeball Records|Eyeball]]
+| <ref>{{cite web |url=https://lambgoat.com/albums/1711/the-number-twelve-looks-like-you-nuclear-sad-nuclear/ |title= The Number Twelve Looks Like You - ''Nuclear. Sad. Nuclear.'' |work=Lambgoat |date=August 24, 2005 |access-date=August 21, 2025 |author=Levitt, Ash}}</ref>
+|-
+| [[Ringo Starr]]
+| ''[[Choose Love (album)|Choose Love]]''
+| [[Rock music|Rock]]
+| [[MNRK Music Group|Koch]], [[CNR Music|CNR]]
+| 
+|-
+| [[Ry Cooder]]
+| ''[[Chávez Ravine (album)|Chávez Ravine]]''
+| [[Chicano rock]], [[Tejano music|Tex-Mex]], [[Latin jazz]]
+| [[Nonesuch Records|Nonesuch]]
+| 
+|-
+| [[Terence Blanchard]]
+| ''[[Flow (Terence Blanchard album)|Flow]]''
+| [[Jazz]], [[post-bop]]
+| [[Blue Note Records|Blue Note]]
+| 
+|-
+| [[The White Stripes]]
+| ''[[Get Behind Me Satan]]''
+| [[Garage rock]], [[alternative rock]], [[blues rock]]
+| [[V2 Records|V2]], [[XL Recordings|XL]]
+| 
+|-
+! scope="row" rowspan="8" style="text-align:center;" | June<br/>13
+| [[Alanis Morissette]]
+| ''[[Jagged Little Pill Acoustic]]''
+| [[Acoustic rock]]
+| [[Maverick (company)|Maverick]], [[Warner Records|Warner Bros.]]
+| 
+|-
+| [[Brian Eno]]
+| ''[[Another Day on Earth]]''
+| [[Ambient music|Ambient]]
+| [[Hannibal Records|Hannibal]]
+| 
+|-
+| [[The Departure]]
+| ''[[Dirty Words]]''
+| [[Indie rock]]
+| [[Parlophone]]
+| 
+|-
+| [[Funeral for a Friend]]
+| ''[[Hours (Funeral for a Friend album)|Hours]]''
+| [[Post-hardcore]], [[emo]]
+| [[Atlantic Records|Atlantic]]
+| 
+|-
+| [[Jamie Lidell]]
+| ''[[Multiply (Jamie Lidell album)|Multiply]]''
+| [[Electronic music|Electronic]], [[Soul music|soul]], [[funk]]
+| [[Warp (record label)|Warp]]
+| 
+|-
+| [[Nine Black Alps]]
+| ''[[Everything Is (album)|Everything Is]]''
+| [[Alternative rock]], [[post-grunge]], [[grunge]]
+| [[Island Records|Island]]
+| 
+|-
+| [[Saint Etienne (band)|Saint Etienne]]
+| ''[[Tales from Turnpike House]]''
+| [[Alternative dance]], [[dream pop]], [[synth-pop]]
+| [[Sanctuary Records|Sanctuary]]
+| 
+|-
+| [[UB40]]
+| ''[[Who You Fighting For?]]''
+| [[Reggae]]
+| [[DEP International|DEP]]
+| 
+|-
+! scope="row" rowspan="10" style="text-align:center;" | June<br/>14
+| [[54-40 (band)|54-40]]
+| ''[[Yes to Everything]]''
+| [[Alternative rock]]
+| [[True North Records|True North]]
+| <ref>{{cite web |url=https://exclaim.ca/music/article/54-40-yes_to_everything |title=54-40 - ''Yes to Everything'' |work=Exclaim! |date=June 1, 2005 |access-date=October 22, 2018 |author=English, Steve}}</ref>
+|-
+| [[As I Lay Dying (band)|As I Lay Dying]]
+| ''[[Shadows Are Security]]''
+| [[Melodic metalcore]]
+| [[Metal Blade Records|Metal Blade]]
+| 
+|-
+| [[Backstreet Boys]]
+| ''[[Never Gone]]''
+| [[Pop music|Pop]]
+| [[Jive Records|Jive]]
+| 
+|-
+| [[Bear vs. Shark]]
+| ''[[Terrorhawk]]''
+| [[Post-hardcore]], [[Emo]]
+| [[Equal Vision Records]]
+| 
+|-
+| [[Dwight Yoakam]]
+| ''[[Blame the Vain]]''
+| [[Country music|Country]]
+| [[New West Records|New West]]
+| <ref>{{cite web |url=http://nodepression.com/album-review/dwight-yoakam-blame-vain |title=Dwight Yoakam - ''Blame the Vain'' |work=No Depression |date=June 30, 2005 |access-date=October 22, 2018 |author=House, Silas}}</ref>
+|-
+| [[Eric Johnson (guitarist)|Eric Johnson]]
+| ''[[Bloom (Eric Johnson album)|Bloom]]''
+| [[Rock music|Rock]], [[instrumental rock]]
+| [[Favored Nations]]
+| <ref>{{cite web |url=https://www.rocknworld.com/features/05/ericjohnson.shtml |title=Eric Johnson - ''Bloom'' Review |work=Anti-music |access-date=January 12, 2026 |author=Schwind, Gary}}</ref>
+|-
+| [[Fat Joe]]
+| ''[[All or Nothing (Fat Joe album)|All or Nothing]]''
+| [[Hip-hop]]
+| [[Terror Squad Entertainment|Terror Squad]], [[Atlantic Records|Atlantic]]
+| 
+|-
+| [[Foo Fighters]]
+| ''[[In Your Honor]]''
+| [[Alternative rock]], [[post-grunge]], [[hard rock]]
+| [[RCA Records|RCA]]
+| 
+|-
+| [[Life of Agony]]
+| ''[[Broken Valley]]''
+| [[Alternative metal]], [[grunge]], [[hard rock]]
+| [[Epic Records|Epic]]
+| 
+|-
+| [[Static-X]]
+| ''[[Start a War]]''
+| [[Industrial metal]], [[nu metal]], [[alternative metal]]
+| [[Warner Records|Warner Bros.]]
+| 
+|-
+! scope="row" style="text-align:center;" | June<br/>15
+| [[Jamiroquai]]
+| ''[[Dynamite (Jamiroquai album)|Dynamite]]''
+| [[Nu-funk]], [[acid jazz]], [[post-disco]]
+| [[Epic Records|Epic]]
+| 
+|-
+! scope="row" style="text-align:center;" | June<br/>20
+| [[The Cribs]]
+| ''[[The New Fellas]]''
+| [[Indie rock]], [[post-punk revival]], [[garage rock]]
+| [[Wichita Recordings|Wichita]]
+| 
+|-
+! scope="row" rowspan="16" style="text-align:center;" | June<br/>21
+| [[Billy Corgan]]
+| ''[[TheFutureEmbrace]]''
+| [[Alternative rock]], [[shoegaze]], [[electronic rock]]
+| [[Reprise Records|Reprise]]
+| 
+|-
+| [[Boyz n da Hood]]
+| ''[[Boyz n da Hood (album)|Boyz n da Hood]]''
+| [[Southern hip-hop]], [[gangsta rap]]
+| [[Bad Boy South]], [[Block Entertainment|Block]], [[Atlantic Records|Atlantic]]
+| 
+|-
+| [[Buckshot (rapper)|Buckshot]] & [[9th Wonder]]
+| ''[[Chemistry (Buckshot and 9th Wonder album)|Chemistry]]''
+| [[Hip-hop]]
+| [[Duck Down Music]]
+| 
+|-
+| [[Canibus]]
+| ''[[Mind Control (Canibus album)|Mind Control]]''
+| [[Hip-hop]]
+| Gladiator Music, [[Tommy Boy Records|Tommy Boy]]
+| <ref>{{cite web |url=http://www.rapreviews.com/archive/2005_07_mindcontrol.html |title=Canibus :: ''Mind Control'' |work=RapReviews.com |date=July 5, 2005 |access-date=October 24, 2018 |author=Juon, Steve}}</ref>
+|-
+| [[Clutch (band)|Clutch]]
+| ''[[Robot Hive/Exodus]]''
+| [[Stoner rock]], [[hard rock]], [[blues rock]]
+| [[DRT Entertainment|DRT]]
+| <ref>{{cite web |url=https://www.musicomh.com/reviews/albums/clutch-robot-hiveexodus |title=Clutch – ''Robot Hive/Exodus'' |work=musicOMH |date=June 20, 2005 |access-date=October 24, 2018 |author=Day, Tom}}</ref>
+|-
+| [[Dredg]]
+| ''[[Catch Without Arms]]''
+| [[Alternative rock]], [[post-rock]], [[progressive rock]]
+| [[Interscope Records|Interscope]]
+| 
+|-
+| [[Dropkick Murphys]]
+| ''[[The Warrior's Code]]''
+| [[Celtic punk]]
+| [[Hellcat Records|Hellcat]]
+| 
+|-
+| [[Eric Benét]]
+| ''[[Hurricane (Eric Benét album)|Hurricane]]''
+| 
+| Friday Records, [[Reprise Records|Reprise]]
+| 
+|-
+| [[John Hiatt]]
+| ''[[Master of Disaster]]''
+| [[Heartland rock]], [[roots rock]], [[Americana music|Americana]]
+| [[New West Records|New West]]
+| 
+|-
+| [[Keyshia Cole]]
+| ''[[The Way It Is (Keyshia Cole album)|The Way It Is]]''
+| [[Contemporary R&B|R&B]]
+| [[A&M Records|A&M]], [[Interscope Records|Interscope]]
+| 
+|-
+| [[Laura Cantrell]]
+| ''[[Humming by the Flowered Vine]]''
+| [[Country music|Country]]
+| [[Matador Records|Matador]]
+| 
+|-
+| [[Master P]]
+| ''[[Ghetto Bill]]''
+| [[Southern hip-hop]], [[gangsta rap]]
+| [[No Limit Records|The New No Limit]], [[MNRK Music Group|Koch]]
+| <ref>{{cite web |url=http://www.rapreviews.com/archive/2005_06_ghettobill.html |title=Master P :: ''Ghetto Bill'' |work=RapReviews.com |date=June 21, 2005 |access-date=April 27, 2018 |author=Juon, Steve}}</ref>
+|-
+| [[The Redwalls]]
+| ''[[De Nova]]''
+| [[Rock music|Rock]]
+| [[Capitol Records|Capitol]]
+| 
+|-
+| [[Télépopmusik]]
+| ''[[Angel Milk]]''
+| [[Electronic music|Electronic]], [[trip hop]], [[downtempo]]
+| [[Capitol Records|Capitol]]
+| 
+|-
+| [[Transplants (band)|Transplants]]
+| ''[[Haunted Cities]]''
+| [[Rap rock]], [[punk rock]], [[alternative hip-hop]]
+| [[LaSalle Records|LaSalle]], [[Atlantic Records|Atlantic]]
+| <ref>{{cite web |url=https://www.spin.com/2005/08/transplants-haunted-cities-la-salleatlantic/ |title=Transplants, ''Haunted Cities'' (La Salle/Atlantic) |work=Spin |date=August 16, 2005 |access-date=October 24, 2018 |author=Aaron, Charles}}</ref>
+|-
+| Various artists
+| ''[[Look at All the Love We Found]]''
+| [[Punk rock]], [[ska]], [[reggae]]
+| [[Skunk Records|Cornerstone RAS]]
+| <ref>{{cite web |url=https://www.rollingstone.com/music/music-news/sublime-tribute-album-due-245387/ |title=Sublime Tribute Album Due |work=Rolling Stone |date=December 17, 2004 |access-date=October 24, 2018 |author=Prato, Greg}}</ref>
+|-
+! scope="row" style="text-align:center;" | June<br/>22
+| [[Röyksopp]]
+| ''[[The Understanding (Röyksopp album)|The Understanding]]''
+| [[Electronica]], [[Europop]], [[electropop]]
+| [[Wall of Sound (record label)|Wall of Sound]]
+| 
+|-
+! scope="row" style="text-align:center;" | June<br/>25
+| [[A (band)|A]]
+| ''[[Teen Dance Ordinance (album)|Teen Dance Ordinance]]''
+| [[Alternative rock]], [[pop punk]], [[hard rock]]
+| [[London Recordings|London]], [[Hollywood Records|Hollywood]]
+| <ref>{{cite web |url=http://drownedinsound.com/releases/4154/reviews/12713- |title=''A'' - Teen Dance Ordinance |work=Drowned in Sound |date=July 21, 2005 |access-date=October 24, 2018 |author=Diver, Mike |archive-date=October 25, 2018 |archive-url=https://web.archive.org/web/20181025145940/http://drownedinsound.com/releases/4154/reviews/12713- |url-status=dead }}</ref>
+|-
+! scope="row" rowspan="2" style="text-align:center;" | June<br/>27
+| [[Darkane]]
+| ''[[Layers of Lies]]''
+| [[Melodic death metal]], [[thrash metal]]
+| [[Nuclear Blast Records|Nuclear Blast]]
+| <ref>{{cite web |url=https://www.blabbermouth.net/cdreviews/layers-of-lies/ |title=Darkane, ''Layers of Lies'' |work=Blabbermouth.net |date=May 26, 2005 |access-date=October 25, 2018 |author=Bergman, Keith}}</ref>
+|-
+| [[Mel B|Melanie Brown]]
+| ''[[L.A. State of Mind]]''
+| [[Pop music|Pop]]
+| Amber Café
+| 
+|-
+! scope="row" rowspan="20" style="text-align:center;" | June<br/>28
+| [[Bif Naked]]
+| ''[[Superbeautifulmonster]]''
+| [[Indie rock]]
+| Her Royal Majesty's, [[Warner Music Canada|Warner]]
+| <ref>{{cite web |url=https://www.metal.de/reviews/bif-naked-superbeautifulmonster-6475/ |title=Bif Naked - ''Superbeautifulmonster'' |work=Metal.de |language=German |date=July 10, 2006 |access-date=October 25, 2018}}</ref>
+|-
+| [[Bizarre (rapper)|Bizarre]]
+| ''[[Hannicap Circus]]''
+| [[Hip-hop]]
+| [[Sanctuary Records|Sanctuary Urban]]
+| 
+|-
+| [[Cassidy (rapper)|Cassidy]]
+| ''[[I'm a Hustla]]''
+| [[East Coast hip-hop]]
+| [[J Records|J]], [[Full Surface Records|Full Surface]]
+| 
+|-
+| [[CKY (band)|CKY]]
+| ''[[An Answer Can Be Found]]''
+| [[Alternative metal]], [[alternative rock]], [[stoner rock]]
+| [[Island Records|Island]]
+| 
+|-
+| [[Clap Your Hands Say Yeah]]
+| ''[[Clap Your Hands Say Yeah (album)|Clap Your Hands Say Yeah]]''
+| [[Indie rock]]
+| [[Wichita Recordings|Wichita]]
+| 
+|-
+| [[Darkest Hour (band)|Darkest Hour]]
+| ''[[Undoing Ruin]]''
+| [[Melodic death metal]], [[metalcore]]
+| [[Victory Records|Victory]]
+| 
+|-
+| [[Deerhoof]]
+| ''[[Green Cosmos]]''
+| [[Indie rock]]
+| [[ATP Recordings|ATP]]
+| 
+|-
+| [[DevilDriver]]
+| ''[[The Fury of Our Maker's Hand]]''
+| [[Groove metal]], [[melodic death metal]]
+| [[Roadrunner Records|Roadrunner]]
+| 
+|-
+| [[Esthero]]
+| ''[[Wikked Lil' Grrrls]]''
+| [[Electronica]], [[hip-hop]], [[Contemporary R&B|R&B]]
+| [[Reprise Records|Reprise]]
+| 
+|-
+| [[George Strait]]
+| ''[[Somewhere Down in Texas]]''
+| [[Neotraditional country]]
+| [[MCA Nashville]]
+| 
+|-
+| [[Haste the Day]]
+| ''[[When Everything Falls]]''
+| [[Metalcore]], [[Christian death metal]]
+| [[Solid State Records|Solid State]]
+| 
+|-
+| [[Hate Eternal]]
+| ''[[I, Monarch]]''
+| [[Death metal]]
+| [[Earache Records|Earache]]
+| 
+|-
+| [[Lesley Gore]]
+| ''[[Ever Since (Lesley Gore album)|Ever Since]]''
+| [[Pop music|Pop]]
+| [[ECR Music Group|Engine Company]]
+| <ref>{{cite web |url=http://nodepression.com/album-review/lesley-gore-ever |title=Lesley Gore - ''Ever Since'' |work=No Depression |date=December 31, 2005 |access-date=October 25, 2018 |author=Mayshark, Jesse Fox}}</ref>
+|-
+| [[Longwave (band)|Longwave]]
+| ''[[There's a Fire]]''
+| [[Indie rock]], [[shoegaze]]
+| [[RCA Records|RCA]]
+| <ref>{{cite web |url=https://pitchfork.com/reviews/albums/4847-theres-a-fire/ |title=Longwave: ''There's a Fire'' |work=Pitchfork |date=July 24, 2005 |access-date=July 19, 2018 |author=Crock, Jason}}</ref>
+|-
+| [[The Posies]]
+| ''[[Every Kind of Light]]''
+| [[Rock music|Rock]]
+| [[Rykodisc]]
+| 
+|-
+| [[PSC (musical group)|PSC]]
+| ''[[25 to Life (album)|25 to Life]]''
+| [[Southern hip-hop]], [[gangsta rap]], [[Trap music|trap]]
+| [[Grand Hustle Records|Grand Hustle]], [[Atlantic Records|Atlantic]]
+| 
+|-
+| [[Scary Kids Scaring Kids]]
+| ''[[The City Sleeps in Flames]]''
+| [[Post-hardcore]], [[screamo]]
+| [[Immortal Records|Immortal]]
+| 
+|-
+| [[The String Cheese Incident]]
+| ''[[One Step Closer (The String Cheese Incident album)|One Step Closer]]''
+| 
+| [[SCI Fidelity Records|SCI Fidelity]]
+| <ref>{{cite web |url=https://glidemagazine.com/2087/the-string-cheese-incident/ |title=The String Cheese Incident: ''One Step Closer'' |work=Glide Magazine |date=May 31, 2005 |access-date=October 25, 2018 |author=Handler, Shane}}</ref>
+|-
+| [[Twiztid]]
+| ''[[Man's Myth (Vol. 1)]]''
+| [[Horrorcore]]
+| [[Psychopathic Records|Psychopathic]]
+|
+|-
+| [[Ying Yang Twins]]
+| ''[[U.S.A. (United State of Atlanta)]]''
+| [[Hip-hop]], [[Southern hip-hop]], [[crunk]]
+| [[TVT Records|TVT]]
+| 
+|}
+
+==Third quarter==
+===July===
+{|class="wikitable plainrowheaders"
+|+ List of albums released in July 2005
+| colspan="6" style="text-align:center;"|{{Monthbar}}
+|-
+! scope="col"| Release date
+! scope="col"| Artist
+! scope="col"| Album
+! scope="col"| Genre
+! scope="col"| Label
+! scope="col"| {{abbr|Ref.|Reference}}
+|-
+! scope="row" rowspan="6" style="text-align:center;" | July<br/>4
+| [[Alice Cooper]]
+| ''[[Dirty Diamonds]]''
+| [[Rock music|Rock]], [[hard rock]], [[Heavy metal music|heavy metal]]
+| [[New West Records|New West]], [[Spitfire Records|Spitfire]]
+| 
+|-
+| [[Armand van Helden]]
+| ''[[Nympho (album)|Nympho]]''
+| [[House music|House]], [[electronica]], [[nu-disco]]
+| [[Southern Fried Records|Southern Fried]]
+| <ref>{{cite web |url=https://pitchfork.com/reviews/albums/8411-nympho/ |title=Armand Van Helden: ''Nympho'' |work=Pitchfork |date=October 5, 2005 |access-date=January 27, 2018 |author=Breihan, Tom}}</ref>
+|-
+| [[Brakes (band)|Brakes]]
+| ''[[Give Blood (Brakes album)|Give Blood]]''
+| [[Indie rock]]
+| [[Rough Trade Records|Rough Trade]]
+| 
+|-
+| [[Hard-Fi]]
+| ''[[Stars of CCTV]]''
+| [[Indie rock]], [[post-punk revival]]
+| [[Necessary Records|Necessary]], [[Atlantic Records|Atlantic]]
+| 
+|-
+| [[Missy Elliott]]
+| ''[[The Cookbook]]''
+| [[Hip-hop]], [[Contemporary R&B|R&B]]
+| [[The Goldmind Inc.|Goldmind]], [[Atlantic Records|Atlantic]]
+| 
+|-
+| [[The Subways]]
+| ''[[Young for Eternity]]''
+| [[Garage rock]]
+| [[Infectious Music]]
+| 
+|-
+! scope="row" rowspan="2" style="text-align:center;" | July<br/>5
+| [[R. Kelly]]
+| ''[[TP.3 Reloaded]]''
+| 
+| [[Jive Records|Jive]]
+| 
+|-
+| [[Sufjan Stevens]]
+| ''[[Illinois (Sufjan Stevens album)|Illinois]]''
+| [[Indie folk]], [[chamber folk]], [[indie rock]]
+| [[Asthmatic Kitty]], [[Secretly Canadian]], [[Rough Trade Records|Rough Trade]]
+| 
+|-
+! scope="row" rowspan="2" style="text-align:center;" | July<br/>11
+| [[Charlotte Church]]
+| ''[[Tissues and Issues]]''
+| [[Dance-pop]], [[pop rock]], [[Contemporary R&B|R&B]]
+| [[Daylight Records|Daylight]], [[Epic Records|Epic]], [[Sony BMG]]
+| 
+|-
+| [[Tony Iommi]] with [[Glenn Hughes (musician)|Glenn Hughes]]
+| ''[[Fused (album)|Fused]]''
+| [[Heavy metal music|Heavy metal]]
+| [[Sanctuary Records|Sanctuary]]
+| <ref>{{cite web |url=https://www.blabbermouth.net/cdreviews/fused/ |title=Iommi - ''Fused'' |work=Blabbermouth.net |access-date=January 27, 2018 |date=July 19, 2005 |author=Alisoglu, Scott}}</ref>
+|-
+! scope="row" rowspan="14" style="text-align:center;" | July<br/>12
+| [[Adrian Belew]]
+| ''[[Side Two]]''
+| [[Rock music|Rock]], [[experimental rock]], [[Avant-garde music|avant-garde]]
+| [[Sanctuary Records|Sanctuary]]
+| <ref>{{cite web |url=https://www.bbc.co.uk/music/reviews/x6vr/ |title=Adrian Belew - ''Side Two'' review |work=BBC Music |access-date=January 27, 2018 |author=Jones, Chris}}</ref>
+|-
+| [[The All-American Rejects]]
+| ''[[Move Along]]''
+| [[Pop punk]], [[power pop]], [[alternative rock]]
+| [[Interscope Records|Interscope]], [[Doghouse Records|Doghouse]]
+| 
+|-
+| [[The Black Dahlia Murder (band)|The Black Dahlia Murder]]
+| ''[[Miasma (album)|Miasma]]''
+| [[Melodic death metal]]
+| [[Metal Blade Records|Metal Blade]]
+| 
+|-
+| [[Bow Wow (rapper)|Bow Wow]]
+| ''[[Wanted (Bow Wow album)|Wanted]]''
+| [[Hip-hop]]
+| [[Columbia Records|Columbia]], [[Sony Urban Music|Sony Urban]]
+| 
+|-
+| [[Brandi Carlile]]
+| ''[[Brandi Carlile (album)|Brandi Carlile]]''
+| [[Folk rock]]
+| [[Columbia Records|Columbia]]
+| <ref>{{cite web |url=https://www.seattletimes.com/entertainment/maple-valley-singer-brandi-carlile-getting-nationwide-buzz/ |title=Maple Valley singer Brandi Carlile getting nationwide buzz |work=The Seattle Times |date=July 12, 2005 |access-date=January 12, 2026 |author=Scanlon, Tom}}</ref>
+|-
+| [[Bronson Arroyo]]
+| ''[[Covering the Bases]]''
+| [[Grunge]], [[alternative rock]]
+| [[Asylum Records|Asylum]]
+| <ref>{{cite web |url=https://www.rollingstone.com/culture/culture-news/red-soxs-arroyo-pitches-for-grunge-84525/ |title=Red Sox's Arroyo Pitches for Grunge |work=Rolling Stone |date=August 8, 2005 |access-date=October 26, 2018 |author=Sullivan, James}}</ref>
+|-
+| [[Carole King]]
+| ''[[The Living Room Tour]]''
+| [[Contemporary R&B|R&B]], [[Pop music|pop]]
+| Rockingale, Hear Music
+| <ref>{{cite web |url=https://exclaim.ca/music/article/carole_king-living_room_tour |title=Carole King - ''The Living Room Tour'' |work=Exclaim! |date=September 1, 2005 |access-date=October 26, 2018 |author=Thom, Eric}}</ref>
+|-
+| [[Cool Calm Pete]]
+| ''[[Lost (Cool Calm Pete album)|Lost]]''
+| [[Hip-hop]]
+| Embedded Records, [[Definitive Jux]]
+| 
+|-
+| [[Felt (hip hop group)|Felt]]
+| ''[[Felt 2: A Tribute to Lisa Bonet]]''
+| [[Hip-hop]]
+| [[Rhymesayers Entertainment|Rhymesayers]]
+| 
+|-
+| [[Just Surrender]]
+| ''[[If These Streets Could Talk]]''
+| [[Pop-punk]], [[emo]], [[post-hardcore]]
+| [[Broken English (label)|Broken English]]
+| <ref>{{cite web |url=https://www.punknews.org/review/4891/just-surrender-if-these-streets-could-talk |title=Just Surrender - ''If These Streets Could Talk'' (2005) |work=PunkNews.org |date=January 13, 2006 |access-date=October 26, 2018 |author=Rogowski, Jordan}}</ref>
+|-
+| [[Slim Thug]]
+| ''[[Already Platinum]]''
+| [[Hip-hop]], [[Southern hip-hop]]
+| Boss Hogg Outlawz, [[Star Trak Entertainment|Star Trak]], [[Geffen Records|Geffen]]
+| 
+|-
+| [[Truckfighters]]
+| ''[[Gravity X]]''
+| [[Stoner rock]], [[Palm Desert Scene|desert rock]]
+| Fuzzorama Records, [[MeteorCity]]
+| <ref>{{cite web |url=https://www.blabbermouth.net/cdreviews/gravity-x/ |title=CD Reviews - ''Gravity X'' Truckfighters |work=Blabbermouth.net |date=February 26, 2006 |access-date=February 16, 2022 |author=Bergman, Keith}}</ref>
+|-
+| Various artists
+| ''[[Hustle & Flow (soundtrack)|Hustle & Flow: Music From and Inspired by the Motion Picture]]''
+| [[Crunk]], [[gangsta rap]], [[hardcore hip-hop]]
+| [[Grand Hustle Records|Grand Hustle]], [[Atlantic Records|Atlantic]]
+| <ref>{{cite web |url=http://www.rapreviews.com/archive/2005_07_hustleflow.html |title=Various artists :: ''Hustle & Flow Soundtrack'' |work=RapReviews.com |date=July 19, 2005 |access-date=October 26, 2018 |author=Juon, Steve}}</ref>
+|-
+| [[Xiu Xiu]]
+| ''[[La Forêt (album)|La Forêt]]''
+| [[Art rock]], [[experimental music|experimental]], [[post-punk]]
+| [[5 Rue Christine]]
+| 
+|-
+! scope="row" style="text-align:center;" | July<br/>14
+| [[Foetus (band)|Foetus]]
+| ''[[Love (Foetus album)|Love]]''
+| [[Industrial music|Industrial]]
+| [[Ectopic Ents]], [[Birdman Records|Birdman]]
+| 
+|-
+! scope="row" style="text-align:center;" | July<br/>15
+| [[Rehab (band)|Rehab]]
+| ''[[Graffiti the World]]''
+| [[Southern hip-hop]], [[alternative rock]]
+| Attica Sound
+| 
+|-
+! scope="row" style="text-align:center;" | July<br/>18
+| [[Imogen Heap]]
+| ''[[Speak for Yourself]]''
+| [[Electronic music|Electronic]], [[alternative rock]]
+| Megaphonic, [[RCA Victor]], White Rabbit
+| 
+|-
+! scope="row" rowspan="5" style="text-align:center;" | July<br/>19
+| [[Carly Simon]]
+| ''[[Moonlight Serenade (Carly Simon album)|Moonlight Serenade]]''
+| [[Traditional pop|Pop standards]]
+| [[Columbia Records|Columbia]]
+| 
+|-
+| [[Black Francis|Frank Black]]
+| ''[[Honeycomb (album)|Honeycomb]]''
+| [[Americana music|Americana]], [[alternative country]], [[Southern soul]]
+| [[Back Porch Records|Back Porch]], [[Cooking Vinyl]]
+| 
+|-
+| [[J-Live]]
+| ''[[The Hear After]]''
+| [[Hip-hop]]
+| [[Penalty Recordings|Penalty]]
+| 
+|-
+| [[Number One Gun]]
+| ''[[Promises for the Imperfect]]''
+| [[Christian rock]], [[alternative rock]]
+| [[Tooth & Nail Records|Tooth & Nail]]
+| <ref>{{cite web |url=https://www.jesusfreakhideout.com/cdreviews/PromisesForTheImperfect.asp |title=Number One Gun - ''Promises for the Imperfect'' |work=JesusFreakHideout.com |date=July 17, 2005 |access-date=July 12, 2019 |author=Taylor, Josh}}</ref>
+|-
+| [[Thalía]]
+| ''[[El Sexto Sentido]]''
+| [[Latin pop]], [[dance-pop]]
+| [[Capitol Latin|EMI Latin]]
+| <ref>{{cite web |url=https://www.billboard.com/articles/news/62210/thalias-sixth-sense |title=Thalía's ''Sixth Sense'' |work=Billboard |date=July 1, 2005 |access-date=July 19, 2018}}</ref>
+|-
+! scope="row" rowspan="3" style="text-align:center;" | July<br/>25
+| [[Björk]]
+| ''[[Drawing Restraint 9 (album)|Drawing Restraint 9]]''
+| 
+| [[One Little Independent Records|One Little Indian]]
+| 
+|-
+| [[Crazy Frog]]
+| ''[[Crazy Hits]]''
+| [[Electronica]], [[Eurodance]]
+| [[Universal Music Group|Universal]]
+| <ref>{{cite web |url=https://www.musicomh.com/reviews/albums/crazy-frog-presents-crazy-hits |title=Crazy Frog – Presents ''Crazy Hits'' |work=musicOMH |date=July 25, 2005 |access-date=October 26, 2018 |author=Ahmad, Azeem}}</ref>
+|-
+| [[Editors (band)|Editors]]
+| ''[[The Back Room (album)|The Back Room]]''
+| [[Post-punk revival]], [[gothic rock]], [[indie pop]]
+| [[Kitchenware Records|Kitchenware]]
+| 
+|-
+! scope="row" rowspan="17" style="text-align:center;" | July<br/>26
+| [[Ana Popović]]
+| ''[[Ana! Live in Amsterdam (album)|Ana! Live in Amsterdam]]''
+| [[Electric blues]], [[blues rock]]
+| [[Ruf Records|Ruf]]
+| <ref>{{cite web |url=http://www.bluesbox.de/html/reviews/reviews_p/reviews_popovic.htm |title=Ana Popovic - ''Ana! Live in Amsterdam'' |work=Blues Box |language=German |date=July 6, 2005 |access-date=July 26, 2018}}</ref>
+|-
+| [[Arch Enemy]]
+| ''[[Doomsday Machine (album)|Doomsday Machine]]''
+| [[Melodic death metal]]
+| [[Century Media Records|Century Media]]
+| 
+|-
+| [[Babyface (musician)|Babyface]]
+| ''[[Grown & Sexy]]''
+| [[Crunk]], [[hip-hop]]
+| [[Arista Records|Arista]]
+| 
+|-
+| [[Bob Mould]]
+| ''[[Body of Song]]''
+| [[Alternative rock]]
+| [[Granary Music]], [[Yep Roc Records|Yep Roc]]
+| 
+|-
+| [[Boys Night Out (band)|Boys Night Out]]
+| ''[[Trainwreck (album)|Trainwreck]]''
+| [[Emo]], [[pop rock]]
+| [[Ferret Music|Ferret]]
+| 
+|-
+| [[Chiodos]]
+| ''[[All's Well That Ends Well (Chiodos album)|All's Well That Ends Well]]''
+| [[Post-hardcore]], [[screamo]]
+| [[Equal Vision Records|Equal Vision]]
+| 
+|-
+| [[The Concretes]]
+| ''[[Layourbattleaxedown]]''
+| [[Indie pop]]
+| [[Astralwerks]]
+| <ref>{{cite web |url=https://pitchfork.com/reviews/albums/1572-layourbattleaxedown/ |title=The Concretes: ''Layourbattleaxedown'' |work=Pitchfork |date=July 18, 2005 |access-date=July 26, 2018 |author=Hogan, Marc}}</ref>
+|-
+| [[Daniel Powter]]
+| ''[[Daniel Powter (album)|Daniel Powter]]''
+| [[Indie pop]], [[pop rock]]
+| [[Warner Records|Warner Bros.]]
+| 
+|-
+| [[Dope (band)|Dope]]
+| ''[[American Apathy]]''
+| [[Nu metal]], [[industrial metal]]
+| [[Artemis Records|Artemis]]
+| 
+|-
+| [[Jason Aldean]]
+| ''[[Jason Aldean (album)|Jason Aldean]]''
+| [[Country music|Country]]
+| [[BBR Music Group|Broken Bow]]
+| 
+|-
+| [[Jason Mraz]]
+| ''[[Mr. A–Z]]''
+| [[Pop rock]]
+| [[Atlantic Records|Atlantic]]
+| 
+|-
+| [[Nevermore]]
+| ''[[This Godless Endeavor]]''
+| [[Progressive metal]], [[thrash metal]]
+| [[Century Media Records|Century Media]]
+| 
+|-
+| [[Paramore]]
+| ''[[All We Know Is Falling]]''
+| [[Pop-punk]], [[emo]], [[pop rock]]
+| [[Fueled by Ramen]]
+| 
+|-
+| [[Trey Songz]]
+| ''[[I Gotta Make It]]''
+| [[Contemporary R&B|R&B]], [[hip-hop soul]]
+| [[Atlantic Records|Atlantic]]
+| 
+|-
+| [[Twiztid]]
+| ''[[Mutant (Vol. 2)]]''
+| [[Horrorcore]], [[hip-hop]], [[rap rock]]
+| [[Psychopathic Records|Psychopathic]]
+| 
+|-
+| [[Yngwie Malmsteen]]
+| ''[[Unleash the Fury]]''
+| [[Neoclassical metal]], [[Heavy metal music|heavy metal]]
+| [[Spitfire Records|Spitfire]]
+| <ref>{{cite web |url=https://www.blabbermouth.net/news/yngwie-malmsteen-discusses-the-infamous-unleash-the-fucking-fury-tape/ |title=Yngwie Malmsteen Discusses the Infamous ''Unleash the Fucking Fury'' Tape |work=Blabbermouth.net |date=June 29, 2005 |access-date=July 26, 2018}}</ref>
+|-
+| [[Jeezy|Young Jeezy]]
+| ''[[Let's Get It: Thug Motivation 101]]''
+| [[Hip-hop]], [[Southern hip-hop]], [[gangsta rap]]
+| [[The Island Def Jam Music Group|Island Def Jam]], [[Def Jam Recordings|Def Jam]], [[CTE World|Corporate Thugz]]
+| 
+|}
+
+===August===
+{|class="wikitable plainrowheaders"
+|+ List of albums released in August 2005
+| colspan="6" style="text-align:center;"|{{Monthbar}}
+|-
+! scope="col"| Release date
+! scope="col"| Artist
+! scope="col"| Album
+! scope="col"| Genre
+! scope="col"| Label
+! scope="col"| {{abbr|Ref.|Reference}}
+|-
+! scope="row" rowspan="2" style="text-align:center;" | August<br/>1
+| [[Hermitude]]
+| ''[[Tales of the Drift]]''
+| [[Australian hip-hop]]
+| [[Elefant Traks]]
+| 
+|-
+| [[Madball]]
+| ''Legacy''
+| 
+| 
+| <ref>{{cite web |url=https://exclaim.ca/music/article/madball-legacy |title=Madball - ''Legacy'' |work=Exclaim! |date=September 22, 2010 |access-date=November 4, 2018 |author=Green, Teri}}</ref>
+|-
+! scope="row" rowspan="7" style="text-align:center;" | August<br/>2
+| [[Blindside (band)|Blindside]]
+| ''[[The Great Depression (Blindside album)|The Great Depression]]''
+| [[Hardcore punk]], [[alternative rock]], [[hard rock]]
+| Wasa Recordings, [[DRT Entertainment|DRT]]
+| <ref>{{cite web |url=http://www.tollbooth.org/2005/reviews/bside.html |title=''The Great Depression'' - Blindside |work=The Phantom Tollbooth |date=August 22, 2005 |access-date=March 1, 2022 |author=Roddin, Joel}}</ref>
+|-
+| [[Emery (band)|Emery]]
+| ''[[The Question (Emery album)|The Question]]''
+| [[Post-hardcore]], [[progressive rock]]
+| [[Tooth & Nail Records|Tooth & Nail]]
+| <ref>{{cite web |url=https://www.jesusfreakhideout.com/cdreviews/TheQuestion.asp |title=Emery -''The Question'' |work=JesusFreakHideout.com |date=August 5, 2005 |access-date=August 31, 2025 |author=Taylor, Josh}}</ref>
+|-
+| [[Faith Hill]]
+| ''[[Fireflies (Faith Hill album)|Fireflies]]''
+| [[Country music|Country]]
+| [[Warner Records|Warner Bros. Nashville]]
+| 
+|-
+| [[Houston Calls]]
+| ''A Collection of Short Stories''
+| 
+| [[Rushmore Records|Rushmore]]
+| <ref>{{cite web |url=https://exclaim.ca/music/article/houston_calls-collection_of_short |title=Houston Calls - ''A Collection of Short Stories'' |work=Exclaim! |date=November 1, 2005 |access-date=November 4, 2018 |author=Rock, Ariana}}</ref>
+|-
+| [[Michael Penn]]
+| ''[[Mr. Hollywood Jr., 1947]]''
+| [[Rock music|Rock]]
+| Mimeograph Records
+| <ref>{{cite web |url=https://www.slantmagazine.com/music/review/michael-penn-mr-hollywood-jr-1947 |title=Michael Penn - ''Mr. Hollywood, Jr. 1947'' |work=Slant |date=September 1, 2005 |access-date=November 4, 2018 |author=Jones, Preston}}</ref>
+|-
+| [[Teairra Marí]]
+| ''[[Roc-A-Fella Records Presents Teairra Marí]]''
+| 
+| [[Roc-A-Fella Records|Roc-A-Fella]]
+| 
+|-
+| [[Willie Nelson]]
+| ''[[Countryman (album)|Countryman]]''
+| [[Reggae]], [[Country music|country]]
+| [[Lost Highway Records|Lost Highway]]
+| 
+|-
+! scope="row" rowspan="2" style="text-align:center;" | August<br/>8
+| [[Hayley Westenra]]
+| ''[[Odyssey (Hayley Westenra album)|Odyssey]]''
+| [[Pop music|Pop]]
+| [[Decca Records|Decca]]
+| <ref>{{cite web |url=https://www.musicomh.com/reviews/albums/hayley-westenra-odyssey |title=Hayley Westenra – ''Odyssey'' |work=musicOMH |date=September 26, 2005 |access-date=November 4, 2018 |author=Murphy, John}}</ref>
+|-
+| [[Nickel Creek]]
+| ''[[Why Should the Fire Die?]]''
+| [[Progressive bluegrass]]
+| [[Sugar Hill Records (bluegrass label)|Sugar Hill]]
+| 
+|-
+! scope="row" rowspan="14" style="text-align:center;" | August<br/>9
+| [[Chimaira]]
+| ''[[Chimaira (album)|Chimaira]]''
+| [[Groove metal]]
+| [[Roadrunner Records|Roadrunner]]
+| 
+|-
+| [[Doomriders]]
+| ''[[Black Thunder (album)|Black Thunder]]''
+| [[Stoner metal]]
+| [[Deathwish Inc.|Deathwish]]
+| 
+|-
+| [[Earl Klugh]]
+| ''[[Naked Guitar]]''
+| 
+| [[Koch Records|Koch]]
+| 
+|-
+| [[Gogol Bordello]]
+| ''[[Gypsy Punks: Underdog World Strike]]''
+| [[Folk punk]], [[worldbeat]], [[gypsy punk]]
+| [[SideOneDummy Records|SideOneDummy]]
+| 
+|-
+| [[Hootie & the Blowfish]]
+| ''[[Looking for Lucky]]''
+| [[Soft rock]]
+| [[Vanguard Records|Vanguard]]
+| 
+|-
+| [[Juliana Hatfield]]
+| ''[[Made in China (album)|Made in China]]''
+| [[Alternative rock]]
+| Ye Olde Records
+| 
+|-
+| [[Pennywise (band)|Pennywise]]
+| ''[[The Fuse (album)|The Fuse]]''
+| [[Punk rock]], [[skate punk]], [[melodic hardcore]]
+| [[Epitaph Records|Epitaph]]
+| 
+|-
+| [[Proof (rapper)|Proof]]
+| ''[[Searching for Jerry Garcia]]''
+| [[Hip-hop]], [[hardcore hip-hop]]
+| Iron Fist Records
+| 
+|-
+| [[Richard Thompson (musician)|Richard Thompson]]
+| ''[[Front Parlour Ballads]]''
+| [[Contemporary folk music|Contemporary folk]]
+| [[Cooking Vinyl]]
+| 
+|-
+| [[Staind]]
+| ''[[Chapter V (Staind album)|Chapter V]]''
+| [[Post-grunge]], [[alternative metal]], [[nu metal]]
+| [[Flip Records (1994)|Flip]], [[Atlantic Records|Atlantic]]
+| 
+|-
+| [[Stephen Stills]]
+| ''[[Man Alive! (Stephen Stills album)|Man Alive!]]''
+| [[Rock music|Rock]]
+| Titan/Pyramid Records
+| <ref>{{cite web |url=https://www.bbc.co.uk/music/reviews/md8c/ |title=Stephen Stills ''Man Alive!'' Review |work=BBC Music |date=2005 |access-date=March 26, 2020 |author=Jones, Chris}}</ref>
+|-
+| [[The Suicide Machines]]
+| ''[[War Profiteering Is Killing Us All]]''
+| [[Punk rock]], [[ska punk]], [[hardcore punk]]
+| [[SideOneDummy Records|SideOneDummy]]
+| <ref>{{cite web |url=https://www.punknews.org/review/4241/the-suicide-machines-war-profiteering-is-killing-us-all |title=The Suicide Machines - ''War Profiteering Is Killing Us All'' (2005) |work=PunkNews.org |date=August 9, 2005 |access-date=August 9, 2018}}</ref>
+|-
+| [[Tommy Lee]]
+| ''[[Tommyland: The Ride]]''
+| [[Hard rock]], [[alternative rock]], [[post-grunge]]
+| TL Education Services Inc.
+| 
+|-
+| Various artists
+| ''[[Killer Queen: A Tribute to Queen]]''
+| [[Rock music|Rock]], [[hard rock]]
+| [[Hollywood Records|Hollywood]]
+| 
+|-
+! scope="row" rowspan="2" style="text-align:center;" | August<br/>15
+| [[The Rakes]]
+| ''[[Capture/Release]]''
+| [[Post-punk revival]]
+| [[V2 Records|V2]]
+| 
+|-
+| [[Supergrass]]
+| ''[[Road to Rouen]]''
+| [[Alternative rock]], [[art rock]], [[Psychedelic music|psychedelic]]
+| [[Parlophone]]
+| 
+|-
+! scope="row" rowspan="15" style="text-align:center;" | August<br/>16
+| [[311 (band)|311]]
+| ''[[Don't Tread on Me (album)|Don't Tread on Me]]''
+| 
+| [[Volcano Entertainment]]
+| 
+|-
+| [[Aly & AJ]]
+| ''[[Into the Rush]]''
+| [[Pop rock]], [[alternative rock]]
+| [[Hollywood Records|Hollywood]]
+| 
+|-
+| [[Brad Paisley]]
+| ''[[Time Well Wasted]]''
+| [[Country music|Country]]
+| [[Arista Nashville]]
+| 
+|-
+| [[The Click Five]]
+| ''[[Greetings from Imrie House]]''
+| [[Power pop]], [[pop rock]], [[New wave music|new wave]]
+| [[Atlantic Records|Atlantic]], [[Lava Records|Lava]]
+| 
+|-
+| [[Cowboy Junkies]]
+| ''[[Early 21st Century Blues]]''
+| [[Alternative country]]
+| [[Latent Recordings|Latent]], [[Zoë Records|Zoë]], [[Cooking Vinyl]]
+| 
+|-
+| [[The Fall of Troy (band)|The Fall of Troy]]
+| ''[[Doppelgänger (The Fall of Troy album)|Doppelgänger]]''
+| [[Emo]], [[post-hardcore]], [[progressive metal]]
+| [[Equal Vision Records|Equal Vision]]
+| <ref>{{cite web |url=http://www.prefixmag.com/reviews/doppelganger/14553/ |title= The Fall of Troy - ''Doppelganger'' |work=Prefix |date=August 31, 2005 |access-date=January 3, 2019}}</ref>
+|-
+| [[Fun Lovin' Criminals]]
+| ''[[Livin' in the City]]''
+| 
+| [[Sanctuary Records|Sanctuary]]
+| <ref>{{cite web |url=https://www.musicomh.com/reviews/albums/fun-lovin-criminals-living-in-the-city |title=Fun Lovin' Criminals – ''Living in the City'' |work=musicOMH |date=August 22, 2005 |access-date=August 16, 2018 |author=Dyson, Matt}}</ref>
+|-
+| [[Madness (band)|Madness]]
+| ''[[The Dangermen Sessions Vol. 1]]''
+| [[Ska]], [[reggae]], [[Two-tone (music genre)|2 tone]]
+| Live and Intensified
+| 
+|-
+| [[Pras Michel]]
+| ''[[Win Lose or Draw (album)|Win Lose or Draw]]''
+| [[Hip-hop]], [[pop-rap]], [[reggae fusion]]
+| [[Universal Music Group|Universal]]
+| 
+|-
+| [[Silverstein (band)|Silverstein]]
+| ''[[Discovering the Waterfront]]''
+| [[Emo]], [[post-hardcore]]
+| [[Victory Records|Victory]]
+| 
+|-
+| [[Stryper]]
+| ''[[Reborn (Stryper album)|Reborn]]''
+| [[Christian metal]], [[nu metal]]
+| Big 3 Records
+| 
+|-
+| [[Taproot (band)|Taproot]]
+| ''[[Blue-Sky Research]]''
+| [[Post-grunge]], [[alternative metal]], [[nu metal]]
+| [[Atlantic Records|Atlantic]], Velvet Hammer
+| 
+|-
+| [[Todd Agnew]]
+| ''[[Reflection of Something]]''
+| [[Christian rock]], [[contemporary Christian music]]
+| [[Ardent Records|Ardent]], SRE, [[Epic Records|Epic]]
+| 
+|-
+| [[The Trews]]
+| ''[[Den of Thieves (album)|Den of Thieves]]''
+| [[Hard rock]], [[alternative rock]]
+| [[Epic Records|Epic]], [[RED Distribution]]
+| <ref>{{cite web |url=https://exclaim.ca/music/article/trews-den_of_thieves |title=Trews - ''Den of Thieves'' |work=Exclaim! |date=August 1, 2005 |access-date=August 16, 2018 |author=English, Steve}}</ref>
+|-
+| [[A Wilhelm Scream]]
+| ''[[Ruiner (A Wilhelm Scream album)|Ruiner]]''
+| [[Melodic hardcore]], [[punk rock]], [[math rock]]
+| [[Nitro Records|Nitro]]
+| <ref>{{cite web |url=https://www.punknews.org/review/4262/a-wilhelm-scream-ruiner |title=A Wilhelm Scream - ''Ruiner'' (2005) |work=PunkNews.org |date=August 16, 2005 |access-date=August 16, 2018 |author=Perrone, Dan}}</ref>
+|-
+! scope="row" style="text-align:center;" | August<br/>17
+| [[Goldfrapp]]
+| ''[[Supernature (Goldfrapp album)|Supernature]]''
+| [[Electroclash]], [[synth-pop]], [[glam rock]]
+| [[Mute Records|Mute]]
+| 
+|-
+! scope="row" rowspan="4" style="text-align:center;" | August<br/>22
+| [[Baxter Dury]]
+| ''[[Floor Show (album)|Floor Show]]''
+| [[Psychedelic music|Psychedelic]]
+| [[Rough Trade Records|Rough Trade]]
+| 
+|-
+| [[Black Rebel Motorcycle Club]]
+| ''[[Howl (Black Rebel Motorcycle Club album)|Howl]]''
+| [[Folk rock]], [[blues rock]], [[Americana music|Americana]]
+| [[RCA Records|RCA]], [[The Echo Label|Echo]]
+| 
+|-
+| [[Fear Factory]]
+| ''[[Transgression (album)|Transgression]]''
+| [[Industrial metal]], [[groove metal]], [[alternative metal]]
+| Calvin Records
+| <ref>{{cite web |url=https://www.blabbermouth.net/cdreviews/transgression/ |title=Fear Factory, ''Transgression'' |work=Blabbermouth.net |date=August 22, 2005 |access-date=November 4, 2018 |author=Alisoglu, Scott}}</ref>
+|-
+| [[Super Furry Animals]]
+| ''[[Love Kraft]]''
+| [[Indie rock]]
+| [[Epic Records|Epic]]
+| 
+|-
+! scope="row" rowspan="17" style="text-align:center;" | August<br/>23
+| [[Bayside (band)|Bayside]]
+| ''[[Bayside (album)|Bayside]]''
+| [[Emo]], [[pop-punk]], [[post-hardcore]]
+| [[Victory Records|Victory]]
+| 
+|-
+| [[Beautiful Creatures (band)|Beautiful Creatures]]
+| ''[[Deuce (Beautiful Creatures album)|Deuce]]''
+| [[Hard rock]]
+| [[Spitfire Records|Spitfire]]
+| <ref>{{cite web |url=http://www.rocknworld.com/features/05/BeautifulCreatures.shtml |title=Beautiful Creatures - ''Deuce'' Review |work=Anti Music |access-date=November 4, 2018 |author=Becker, Travis}}</ref>
+|-
+| [[The Bled]]
+| ''[[Found in the Flood]]''
+| [[Hardcore punk]], [[mathcore]], [[metalcore]]
+| [[Vagrant Records|Vagrant]]
+| <ref>{{cite web |url=https://www.punknews.org/review/4292/the-bled-found-in-the-flood |title=The Bled - ''Found in the Flood'' (2005) |work=PunkNews.org |date=August 23, 2005 |access-date=November 4, 2018 |author=Paul, Aubin}}</ref>
+|-
+| [[The Brian Jonestown Massacre]]
+| ''[[We Are the Radio]]''
+| [[Rock music|Rock]]
+| [[Tee Pee Records|Tee Pee]]
+| <ref>{{cite web |url=https://music.mxdwn.com/2006/01/07/reviews/brian-jonestown-massacre-we-are-the-radio-mini-album/ |title=Brian Jonestown Massacre – ''We Are the Radio'' Mini Album |work=mxdwn.com |date=January 7, 2006 |access-date=November 4, 2018 |author=Honig, Jeanette}}</ref>
+|-
+| [[Every Time I Die]]
+| ''[[Gutter Phenomenon]]''
+| [[Metalcore]], [[Southern rock]], [[hardcore punk]]
+| [[Ferret Music|Ferret]]
+| 
+|-
+| [[Hush (rapper)|Hush]]
+| ''[[Bulletproof (Hush album)|Bulletproof]]''
+| [[Hip-hop]], [[rap rock]]
+| [[Geffen Records|Geffen]]
+| 
+|-
+| [[I Wayne]]
+| ''[[Lava Ground]]''
+| [[Reggae]]
+| [[VP Records|VP]]
+| <ref>{{cite web |url=https://www.xlr8r.com/reviews/lava-ground |title=I Wayne ''Lava Ground'' |work=XLR8R |date=October 31, 2005 |access-date=November 4, 2018 |author=Mayo, James}}</ref>
+|-
+| [[Jack's Mannequin]]
+| ''[[Everything in Transit]]''
+| [[Pop rock]], [[power pop]]
+| [[Maverick (company)|Maverick]]
+| 
+|-
+| [[Jim Jones (rapper)|Jim Jones]]
+| ''[[Harlem: Diary of a Summer]]''
+| [[East Coast hip-hop]]
+| [[Diplomat Records|Diplomat]], [[MNRK Music Group|Koch]]
+| 
+|-
+| [[June (Illinois band)|June]]
+| ''[[If You Speak Any Faster]]''
+| [[Pop-punk]], [[emo]]
+| [[Victory Records|Victory]]
+| 
+|-
+| [[Khanate (band)|Khanate]]
+| ''[[Capture & Release]]''
+| [[Drone metal|Drone doom]]
+| [[Hydra Head Records|Hydra Head]]
+| 
+|-
+| [[Laura Veirs]]
+| ''[[Year of Meteors]]''
+| [[Folk music|Folk]]
+| [[Nonesuch Records|Nonesuch]]
+| 
+|-
+| [[Leo Kottke]] and [[Mike Gordon]]
+| ''[[Sixty Six Steps]]''
+| [[Folk music|Folk]], [[Americana music|Americana]], [[New acoustic music|new acoustic]]
+| [[RCA Records|RCA Victor]]
+| 
+|-
+| [[The New Pornographers]]
+| ''[[Twin Cinema]]''
+| [[Indie rock]], [[power pop]], [[pop rock]]
+| [[Mint Records|Mint]], [[Matador Records|Matador]], [[P-Vine Records|P-Vine]]
+| 
+|-
+| [[Orenda Fink]]
+| ''[[Invisible Ones]]''
+| [[Indie rock]], [[indie pop]]
+| [[Saddle Creek Records|Saddle Creek]]
+| 
+|-
+| [[Scarling]].
+| ''[[So Long, Scarecrow]]''
+| [[Noise pop]], [[gothic rock]], [[shoegaze]]
+| [[Sympathy for the Record Industry]]
+| 
+|-
+| [[Trick Pony]]
+| ''[[R.I.D.E.]]''
+| [[Country music|Country]]
+| [[Curb Records|Asylum-Curb]]
+| <ref>{{cite web |url=http://www.countrystandardtime.com/d/cdreview.asp?xid=3181 |title=Trick Pony - ''R.I.D.E.'' |work=Country Standard Time |access-date=August 7, 2018 |author=Bell, Rick}}</ref>
+|-
+! scope="row" style="text-align:center;" | August<br/>24
+| [[Swallow the Sun]]
+| ''[[Ghosts of Loss]]''
+| [[Death-doom]], [[melodic death metal]], [[gothic metal]]
+| [[Firebox Records|Firebox]]
+| <ref>{{cite web |url=https://www.metal1.info/metal-reviews/swallow-the-sun-ghosts-of-loss/ |title=CD-Review: Swallow the Sun - ''Ghosts of Loss'' |work=Metal1.info |language=German |date=April 6, 2013 |access-date=October 3, 2020}}</ref>
+|-
+! scope="row" rowspan="6" style="text-align:center;" | August<br/>29
+| [[Bloc Party]]
+| ''[[Silent Alarm Remixed]]''
+| [[Dance-punk]], [[indie rock]]
+| [[Wichita Recordings|Wichita]]
+| 
+|-
+| [[Eric Clapton]]
+| ''[[Back Home (Eric Clapton album)|Back Home]]''
+| [[Blues rock]], [[reggae]], [[folk rock]]
+| [[Reprise Records|Reprise]]
+| 
+|-
+| [[Journey (band)|Journey]]
+| ''[[Generations (Journey album)|Generations]]''
+| [[Rock music|Rock]], [[hard rock]]
+| [[Sanctuary Records Group|Sanctuary]], [[Frontiers Music]], [[King Records (Japan)|King]]
+| <ref>{{cite web |url=https://www.metalexpressradio.com/journey-generations/ |title=Journey – ''Generations'' |work=Metal Express Radio |date=September 6, 2015 |access-date=November 7, 2018}}</ref>
+|-
+| [[McFly]]
+| ''[[Wonderland (McFly album)|Wonderland]]''
+| [[Pop rock]], [[baroque pop]]
+| [[Island Records|Island]]
+| <ref>{{cite web |url=https://www.musicomh.com/reviews/albums/mcfly-wonderland |title=McFly – ''Wonderland'' |work=musicOMH |date=August 29, 2005 |access-date=November 7, 2018 |author=McKee, Laura}}</ref>
+|-
+| [[Opeth]]
+| ''[[Ghost Reveries]]''
+| [[Progressive metal]], [[progressive death metal]]
+| [[Roadrunner Records|Roadrunner]]
+| 
+|-
+| [[Rihanna]]
+| ''[[Music of the Sun]]''
+| [[Dance-pop]], [[dancehall]], [[Contemporary R&B|R&B]]
+| [[Def Jam Recordings|Def Jam]]
+| 
+|-
+! scope="row" rowspan="15" style="text-align:center;" | August<br/>30
+| [[Becoming the Archetype]]
+| ''[[Terminate Damnation]]''
+| [[Progressive death metal]], [[metalcore]]
+| [[Solid State Records|Solid State]]
+| 
+|-
+| [[Biohazard (band)|Biohazard]]
+| ''[[Means to an End]]''
+| [[Hardcore punk]], [[rapcore]]
+| [[SPV GmbH|SPV/Steamhammer]]
+| <ref>{{cite web |url=https://www.blabbermouth.net/cdreviews/means-to-an-end/ |title=Biohazard, ''Means to an End'' |work=Blabbermouth.net |date=July 25, 2005 |access-date=November 7, 2018 |author=Alisoglu, Scott}}</ref>
+|-
+| [[Brooks & Dunn]]
+| ''[[Hillbilly Deluxe (Brooks & Dunn album)|Hillbilly Deluxe]]''
+| [[Neotraditional country]]
+| [[Arista Nashville]]
+| <ref>{{cite web |url=http://www.countrystandardtime.com/d/cdreview.asp?xid=3069 |title=Brooks & Dunn - ''Hillbilly Deluxe'' |work=Country Standard Time |access-date=November 7, 2018 |author=Teverbaugh, Rick}}</ref>
+|-
+| [[Casting Crowns]]
+| ''[[Lifesong]]''
+| [[Christian rock]], [[pop rock]]
+| [[Beach Street Records|Beach Street]], [[Reunion Records|Reunion]]
+| 
+|-
+| [[The Clientele]]
+| ''[[Strange Geometry]]''
+| [[Indie rock]]
+| [[Merge Records|Merge]], [[Pointy Records|Pointy]]
+| 
+|-
+| [[Cold (band)|Cold]]
+| ''[[A Different Kind of Pain]]''
+| [[Post-grunge]], [[alternative rock]], [[alternative metal]]
+| [[Flip Records (1994)|Flip]], [[Atlantic Records|Atlantic]], [[Lava Records|Lava]]
+| 
+|-
+| [[Death Cab for Cutie]]
+| ''[[Plans (album)|Plans]]''
+| [[Indie pop]], [[indie rock]], [[alternative rock]]
+| [[Atlantic Records|Atlantic]], [[Barsuk Records|Barsuk]]
+| 
+|-
+| [[From Autumn to Ashes]]
+| ''[[Abandon Your Friends]]''
+| [[Screamo]], [[metalcore]], [[emo]]
+| [[Vagrant Records|Vagrant]]
+| <ref>{{cite web |url=https://www.punknews.org/review/4454/from-autumn-to-ashes-abandon-your-friends |title=From Autumn to Ashes - ''Abandon Your Friends'' (2005) |work=PunkNews.org |date=September 30, 2005 |access-date=August 27, 2018}}</ref>
+|-
+| [[Heather Nova]]
+| ''[[Redbird (Heather Nova album)|Redbird]]''
+| [[Indie rock]]
+| 
+| <ref>{{cite web |url=https://www.laut.de/Heather-Nova/Alben/Redbird-9319 |title=Heather Nova - ''Redbird'' |work=Laut.de |language=German |access-date=November 7, 2018 |author=Stei, Karin}}</ref>
+|-
+| [[Kanye West]]
+| ''[[Late Registration]]''
+| [[Hip-hop]], [[pop rap]], [[progressive rap]]
+| [[Def Jam Recordings|Def Jam]], [[Roc-A-Fella Records|Roc-A-Fella]]
+| 
+|-
+| [[OK Go]]
+| ''[[Oh No (OK Go album)|Oh No]]''
+| [[Alternative rock]], [[power pop]]
+| [[Capitol Records|Capitol]]
+| 
+|-
+| [[Our Lady Peace]]
+| ''[[Healthy in Paranoid Times]]''
+| [[Alternative rock]], [[post-grunge]]
+| [[Columbia Records|Columbia]]
+| 
+|-
+| [[Protest the Hero]]
+| ''[[Kezia (album)|Kezia]]''
+| [[Progressive metal]], [[mathcore]], [[skate punk]]
+| [[Underground Operations]], [[Vagrant Records|Vagrant]]
+| 
+|-
+| [[Thirty Seconds to Mars]]
+| ''[[A Beautiful Lie]]''
+| [[Alternative rock]], [[hard rock]], [[post-hardcore]]
+| [[Immortal Records|Immortal]], [[Virgin Records|Virgin]]
+| 
+|-
+| [[Vendetta Red]]
+| ''[[Sisters of the Red Death]]''
+| [[Emo]], [[post-hardcore]], [[screamo]]
+| [[Epic Records|Epic]]
+| <ref>{{cite web |url=https://www.altpress.com/reviews/review_archive_vendettared/ |title=Vendetta Red - ''Sisters of the Red Death'' |work=AltPress |date=October 12, 2005 |access-date=November 7, 2018 |author=Heisel, Scott}}</ref>
+|}
+
+===September===
+{|class="wikitable plainrowheaders"
+|+ List of albums released in September 2005
+| colspan="6" style="text-align:center;"|{{Monthbar}}
+|-
+! scope="col"| Release date
+! scope="col"| Artist
+! scope="col"| Album
+! scope="col"| Genre
+! scope="col"| Label
+! scope="col"| {{abbr|Ref.|Reference}}
+|-
+! scope="row" style="text-align:center;" | September<br/>1
+| [[Jonathan Coulton]]
+| ''Our Bodies, Ourselves, Our Cybernetic Arms''
+| 
+| 
+| <ref>{{cite web |url=https://www.popsci.com/scitech/article/2005-08/future-body-soundtrack |title=The Future of the Body: The Soundtrack |work=Popular Science |date=July 31, 2005 |access-date=November 9, 2018 |author=Hodgman, John}}</ref>
+|-
+! scope="row" rowspan="2" style="text-align:center;" | September<br/>2
+| [[Alain Souchon]]
+| ''[[La Vie Théodore]]''
+| [[Pop music|Pop]]
+| 
+| <ref>{{cite web |url=https://www.lemonde.fr/culture/article/2005/09/01/chanson-francaise-les-freles-melancolies-d-alain-souchon_684655_3246.html |title=The frail melancholies of Alain Souchon |work=Le Monde |language=French |date=September 1, 2005 |access-date=November 9, 2018 |author=Mortaigne, Véronique}}</ref>
+|-
+| [[Shaggy (musician)|Shaggy]]
+| ''[[Clothes Drop]]''
+| 
+| [[Geffen Records|Geffen]]
+| 
+|-
+! scope="row" style="text-align:center;" | September<br/>5
+| [[Stratovarius]]
+| ''[[Stratovarius (album)|Stratovarius]]''
+| [[Heavy metal music|Heavy metal]], [[progressive metal]], [[hard rock]]
+| [[Sanctuary Records|Sanctuary]]
+| <ref>{{cite web |url=https://www.blabbermouth.net/cdreviews/stratovarius/ |title=Stratovarius, ''Startovarius'' |work=Blabbermouth.net |date=September 25, 2005 |access-date=November 9, 2018 |author=Bergman, Keith}}</ref>
+|-
+! scope="row" rowspan="12" style="text-align:center;" | September<br/>6
+| [[Against Me!]]
+| ''[[Searching for a Former Clarity]]''
+| [[Punk rock]], [[folk punk]]
+| [[Fat Wreck Chords]]
+| 
+|-
+| [[AZ (rapper)|AZ]]
+| ''[[A.W.O.L. (album)|A.W.O.L.]]''
+| [[East Coast hip-hop]]
+| Fast Life, Quiet Money, [[MNRK Music Group|Koch]]
+| 
+|-
+| [[Between the Buried and Me]]
+| ''[[Alaska (Between the Buried and Me album)|Alaska]]''
+| [[Progressive metal]], [[technical death metal]], [[progressive metalcore]]
+| [[Victory Records|Victory]]
+| 
+|-
+| [[Blood on the Wall]]
+| ''[[Awesomer]]''
+| [[Indie rock]]
+| [[The Social Registry|Social Registry]]
+| <ref>{{cite web |url=https://pitchfork.com/reviews/albums/1175-awesomer/ |title=Blood on the Wall: ''Awesomer'' |work=Pitchfork |date=September 19, 2005 |access-date=November 9, 2018 |author=Sylvester, Nick}}</ref>
+|-
+| [[George Clinton (funk musician)|George Clinton]] & the [[Parliament-Funkadelic|P-Funk All-Stars]]
+| ''[[How Late Do U Have 2BB4UR Absent?]]''
+| [[Funk]], [[Electronic dance music|dance]], [[hip-hop]]
+| The C Kunspyruhzy
+| 
+|-
+| [[Heaven 17]]
+| ''[[Before After]]''
+| [[Synth-pop]]
+| Ninthwave
+| <ref>{{cite web |url=https://www.musicomh.com/reviews/albums/heaven-17-before-after |title=Heaven 17 – ''Before After'' |work=musicOMH |date=October 3, 2005 |access-date=November 10, 2018 |author=McKinlay, Fiona}}</ref>
+|-
+| [[Ion Dissonance]]
+| ''[[Solace (Ion Dissonance album)|Solace]]''
+| [[Mathcore]], [[deathcore]], [[grindcore]]
+| [[Abacus Recordings|Abacus]]
+| <ref>{{cite web |url=https://www.blabbermouth.net/cdreviews/solace/ |title=Ion Dissonance, ''Solace'' |work=Blabbermouth.net |date=September 25, 2005 |access-date=September 23, 2019 |author=Alisoglu, Scott}}</ref>
+|-
+| [[James McMurtry]]
+| ''[[Childish Things]]''
+| [[Country music|Country]], [[Americana music|Americana]]
+| [[Compadre Records|Compadre]]
+| <ref>{{cite web |url=http://nodepression.com/article/james-mcmurtry-childish-things |title=James McMurtry- ''Childish Things'' |work=No Depression |date=August 31, 2005 |access-date=November 10, 2018 |author=Patoski, Joe Nick}}</ref>
+|-
+| [[The Proclaimers]]
+| ''[[Restless Soul (album)|Restless Soul]]''
+| [[Alternative rock]], [[folk rock]], [[rhythm and blues]]
+| Persevere Records
+| 
+|-
+| [[The Rolling Stones]]
+| ''[[A Bigger Bang]]''
+| [[Rock music|Rock]]
+| [[Virgin Records|Virgin]]
+| 
+|-
+| [[Ron Sexsmith]] & [[Don Kerr]]
+| ''[[Destination Unknown (Ron Sexsmith album)|Destination Unknown]]''
+| 
+| [[V2 Records|V2]]
+| <ref>{{cite web |url=https://www.avclub.com/sexsmith-kerr-destination-unknown-1798201006 |title=Sexsmith & Kerr: ''Destination Unknown'' |work=The A.V. Club |date=September 7, 2005 |access-date=November 10, 2018 |author=Phipps, Keith}}</ref>
+|-
+| [[Socratic (band)|Socratic]]
+| ''Lunch for the Sky''
+| 
+| [[Drive-Thru Records|Drive-Thru]]
+| <ref>{{cite web |url=https://exclaim.ca/music/article/socratic-lunch_for_sky |title=Socratic ''Lunch for the Sky'' |work=Exclaim! |date=February 1, 2006 |access-date=November 29, 2023 |author=Edwards, Michael}}</ref>
+|-
+! scope="row" style="text-align:center;" | September<br/>9
+| [[The Guggenheim Grotto]]
+| ''[[...Waltzing Alone]]''
+| [[Folk music|Folk]], [[alternative rock]]
+| [[Rykodisc]]
+| <ref>{{cite web |url=https://exclaim.ca/music/article/guggenheim_grotto-waltzing_alone |title=Guggenheim Grotto - ''Waltzing Alone'' |work=Exclaim! |date=September 1, 2006 |access-date=November 10, 2018 |author=Papamarko, Sofi}}</ref>
+|-
+! scope="row" rowspan="10" style="text-align:center;" | September<br/>12
+| [[Apoptygma Berzerk]]
+| ''[[You and Me Against the World]]''
+| [[Futurepop]], [[alternative rock]], [[electronic rock]]
+| [[Metropolis Records|Metropolis]]
+| <ref>{{cite web |url=https://www.laut.de/Apoptygma-Berzerk/Alben/You-And-Me-Against-The-World-9857 |title=''You And Me Against the World'' - Apoptygma Berzerk |work=Laut.de |language=German |access-date=October 7, 2018 |author=Edele, Michael}}</ref>
+|-
+| [[Damian Marley]]
+| ''[[Welcome to Jamrock]]''
+| [[Reggae]], [[dancehall]], [[ska]]
+| [[Universal Records (1995−2006)|Universal]]
+| 
+|-
+| [[David Gray (British musician)|David Gray]]
+| ''[[Life in Slow Motion]]''
+| [[Folk rock]]
+| [[Atlantic Records|Atlantic]], [[ATO Records|ATO]]
+| 
+|-
+| [[Deus (band)|dEUS]]
+| ''[[Pocket Revolution]]''
+| [[Indie rock]]
+| [[Universal Music Group|Universal]], [[V2 Records|V2]]
+| <ref>{{cite web |url=https://pitchfork.com/reviews/albums/2300-pocket-revolution/ |title=dEUS: ''Pocket Revolution'' |work=Pitchfork |date=October 10, 2005 |access-date=November 10, 2018 |author=Tangari, Joe}}</ref>
+|-
+| [[Parkway Drive]]
+| ''[[Killing with a Smile]]''
+| [[Metalcore]]
+| Resist Records, [[Epitaph Records|Epitaph]]
+| 
+|-
+| [[Paul McCartney]]
+| ''[[Chaos and Creation in the Backyard]]''
+| [[Rock music|Rock]]
+| [[Parlophone]], [[Capitol Records|Capitol]]
+| 
+|-
+| [[Rob Dickinson]]
+| ''[[Fresh Wine for the Horses]]''
+| [[Alternative rock]]
+| [[Sanctuary Records|Sanctuary]]
+| 
+|-
+| [[Sigur Rós]]
+| ''[[Takk...]]''
+| [[Post-rock]]
+| [[Geffen Records|Geffen]], [[EMI Records|EMI]]
+| 
+|-
+| [[Simple Minds]]
+| ''[[Black & White 050505]]''
+| [[Pop rock]]
+| [[Sanctuary Records|Sanctuary]]
+| 
+|-
+| [[TVXQ]]
+| ''[[Rising Sun (TVXQ album)|Rising Sun]]''
+| [[K-pop]]
+| [[SM Entertainment|SM]]
+| 
+|-
+! scope="row" rowspan="23" style="text-align:center;" | September<br/>13
+| [[Ali Farka Touré]] and [[Toumani Diabaté]]
+| ''[[In the Heart of the Moon]]''
+| [[African blues]]
+| [[World Circuit (record label)|World Circuit]]
+| 
+|-
+| [[Apollo Sunshine]]
+| ''[[Apollo Sunshine (album)|Apollo Sunshine]]''
+| [[Indie rock]]
+| [[SpinART Records|SpinART]]
+| 
+|-
+| [[Blues Traveler]]
+| ''[[¡Bastardos!]]''
+| [[Rock music|Rock]]
+| [[Vanguard Records|Vanugard]]
+| <ref>{{cite web |url=https://www.rollingstone.com/music/music-album-reviews/bastardos-248596/ |title=''Bastardos!'' |work=Rolling Stone |date=September 22, 2005 |access-date=November 10, 2018}}</ref>
+|-
+| [[Bonnie Raitt]]
+| ''[[Souls Alike]]''
+| [[Rock music|Rock]]
+| [[Capitol Records|Capitol]]
+| 
+|-
+| [[CocoRosie]]
+| ''[[Noah's Ark (album)|Noah's Ark]]''
+| [[Freak folk]]
+| [[Touch and Go Records|Touch and Go]]
+| 
+|-
+| [[The Dandy Warhols]]
+| ''[[Odditorium or Warlords of Mars]]''
+| [[Neo-psychedelia]]
+| [[Capitol Records|Capitol]]
+| 
+|-
+| [[Devendra Banhart]]
+| ''[[Cripple Crow]]''
+| [[Indie folk]], [[Music of Latin America|Latin]], [[psychedelic music|psychedelia]]
+| [[XL Recordings|XL]]
+| 
+|-
+| [[The Fray]]
+| ''[[How to Save a Life (album)|How to Save a Life]]''
+| [[Alternative rock]], [[pop rock]]
+| [[Epic Records|Epic]]
+| 
+|-
+| [[Harvey Danger]]
+| ''[[Little by Little...]]''
+| [[Indie rock]], [[alternative rock]], [[power pop]]
+| Phonographic Records
+| 
+|-
+| [[Institute (band)|Institute]]
+| ''[[Distort Yourself]]''
+| [[Hard rock]]
+| [[Interscope Records|Interscope]]
+| 
+|-
+| [[The Juliana Theory]]
+| ''[[Deadbeat Sweetheartbeat]]''
+| [[Emo]], [[alternative rock]], [[indie rock]]
+| [[Abacus Recordings|Abacus]], Paper Fist
+| 
+|-
+| [[KMFDM]]
+| ''[[Hau Ruck]]''
+| [[Industrial rock]], [[industrial metal]]
+| [[Metropolis Records|Metropolis]]
+| <ref>{{cite web |url=https://www.musicomh.com/reviews/albums/kmfdm-hau-ruck |title=KMFDM – ''Hau Ruck'' |work=musicOMH |date=October 31, 2005 |access-date=April 3, 2020 |author=Ingold, Chris}}</ref>
+|-
+| [[The Like]]
+| ''[[Are You Thinking What I'm Thinking?]]''
+| [[Indie rock]]
+| [[Geffen Records|Geffen]]
+| 
+|-
+| [[Little Brother (group)|Little Brother]]
+| ''[[The Minstrel Show]]''
+| [[Hip-hop]], [[jazz rap]]
+| [[Atlantic Records|Atlantic]]
+| 
+|-
+| [[Lonestar]]
+| ''[[Coming Home (Lonestar album)|Coming Home]]''
+| [[Country music|Country]]
+| [[BNA Records|BNA]]
+| 
+|-
+| [[Paul Wall]]
+| ''[[The Peoples Champ]]''
+| [[Hip-hop]], [[Southern hip-hop]]
+| [[Atlantic Records|Atlantic]], [[Asylum Records|Asylum]], [[Swishahouse]]
+| 
+|-
+| [[The Pussycat Dolls]]
+| ''[[PCD (album)|PCD]]''
+| [[Pop music|Pop]], [[dance-pop]], [[Contemporary R&B|R&B]]
+| [[A&M Records|A&M]]
+| 
+|-
+| [[Queen + Paul Rodgers]]
+| ''[[Return of the Champions]]''
+| [[Rock music|Rock]], [[hard rock]]
+| [[Parlophone]], [[Hollywood Records|Hollywood]]
+| 
+|-
+| [[Spin Doctors]]
+| ''[[Nice Talking to Me]]''
+| [[Pop rock]]
+| Ruff Nation Records
+| 
+|-
+| [[Switchfoot]]
+| ''[[Nothing Is Sound]]''
+| [[Alternative rock]], [[post-grunge]], [[hard rock]]
+| [[Columbia Records|Columbia]], [[Sony BMG]]
+| 
+|-
+| [[Tracy Chapman]]
+| ''[[Where You Live]]''
+| 
+| [[Elektra Records|Elektra]]
+| 
+|-
+| [[Trapt]]
+| ''[[Someone in Control]]''
+| [[Nu metal]], [[alternative metal]], [[alternative rock]]
+| [[Warner Records|Warner Bros.]]
+| <ref>{{cite web |url=http://www.rocknworld.com/features/05/Trapt.shtml |title=Trapt - ''Someone in Control'' Review |work=Anti Music |access-date=November 11, 2018 |author=Upton, Dan}}</ref>
+|-
+| [[Trisha Yearwood]]
+| ''[[Jasper County (album)|Jasper County]]''
+| [[Country music|Country]]
+| [[MCA Nashville]]
+| 
+|-
+! scope="row" style="text-align:center;" | September<br/>14
+| [[Children of Bodom]]
+| ''[[Are You Dead Yet?]]''
+| [[Melodic death metal]], [[power metal]]
+| [[Spinefarm Records|Spinefarm]], [[Century Media Records|Century Media]]
+| 
+|-
+! scope="row" rowspan="3" style="text-align:center;" | September<br/>19
+| [[Arcturus (band)|Arcturus]]
+| ''[[Sideshow Symphonies]]''
+| [[Avant-garde metal]], [[progressive metal]], [[symphonic black metal]]
+| [[Season of Mist]]
+| <ref>{{cite web |url=https://www.blabbermouth.net/cdreviews/sideshow-symphonies/ |title=Arcturus, ''Sideshow Symphonies'' |work=Blabbermouth.net |date=January 16, 2006 |access-date=November 11, 2018 |author=Bergman, Keith}}</ref>
+|-
+| [[Broadcast (band)|Broadcast]]
+| ''[[Tender Buttons (album)|Tender Buttons]]''
+| [[Electronic pop]], [[dream pop]]
+| [[Warp (record label)|Warp]]
+| 
+|-
+| [[Goldie Lookin Chain]]
+| ''[[Safe as Fuck]]''
+| 
+| [[Warner Music Group|Warner Music]]
+| 
+|-
+! scope="row" rowspan="18" style="text-align:center;" | September<br/>20
+| [[The 88]]
+| ''[[Over and Over (The 88 album)|Over and Over]]''
+| [[Indie rock]], [[power pop]]
+| EMK, Mootron
+| <ref>{{cite web |url=http://www.prefixmag.com/reviews/over-and-over/14855/ |title=The 99 - ''Over and Over'' |work=Prefix |date=February 3, 2006 |access-date=January 31, 2018}}</ref>
+|-
+| [[The American Analog Set]]
+| ''[[Set Free (album)|Set Free]]''
+| [[Indie rock]]
+| [[Arts & Crafts Productions|Arts & Crafts]], [[Morr Music]]
+| 
+|-
+| [[The Audition (band)|the Audition]]
+| ''[[Controversy Loves Company]]''
+| [[Pop-punk]]
+| [[Victory Records|Victory]]
+| 
+|-
+| [[The Bad Plus]]
+| ''[[Suspicious Activity?]]''
+| [[Jazz]]
+| [[Columbia Records|Columbia]]
+| 
+|-
+| [[Barbra Streisand]]
+| ''[[Guilty Pleasures (Barbra Streisand album)|Guilty Pleasures]]''
+| [[Pop music|Pop]], [[Soul music|soul]]
+| 
+| <ref>{{cite web |url=https://www.nytimes.com/2005/09/19/arts/critics-choices-new-cds-barbra-streisand.html |title=Critics' Choices: New CD'S; Barbra Streisand |work=The New York Times |date=September 19, 2005 |access-date=November 12, 2018 |author=Holden, Stephen}}</ref>
+|-
+| [[Bon Jovi]]
+| ''[[Have a Nice Day (Bon Jovi album)|Have a Nice Day]]''
+| [[Pop rock]], [[hard rock]]
+| [[Island Records|Island]], [[Mercury Records|Mercury]]
+| 
+|-
+| [[Burning Spear]]
+| ''[[Our Music (album)|Our Music]]''
+| [[Roots reggae]]
+| Burning Music
+| <ref>{{cite web |url=https://www.npr.org/templates/story/story.php?storyId=4964910 |title=''Our Music'': New Reggae from Burning Spear |work=NPR |date=October 19, 2005 |access-date=January 27, 2022 |author=Johnson, Christopher}}</ref>
+|-
+| [[Cage (rapper)|Cage]]
+| ''[[Hell's Winter]]''
+| [[Emo rap]], [[hip-hop]]
+| [[Definitive Jux]]
+| 
+|-
+| [[Coheed and Cambria]]
+| ''[[Good Apollo, I'm Burning Star IV, Volume One: From Fear Through the Eyes of Madness]]''
+| [[Progressive rock]], [[progressive metal]], [[emo]]
+| [[Columbia Records|Columbia]]
+| 
+|-
+| [[David Banner]]
+| ''[[Certified (David Banner album)|Certified]]''
+| [[Hip-hop]], [[hardcore hip-hop]], [[dirty rap]]
+| [[SRC Records|SRC]], [[Universal Music Group|Universal]]
+| 
+|-
+| [[Disturbed (band)|Disturbed]]
+| ''[[Ten Thousand Fists]]''
+| [[Alternative metal]], [[Heavy metal music|heavy metal]], [[nu metal]]
+| [[Reprise Records|Reprise]]
+| 
+|-
+| [[Earth, Wind & Fire]]
+| ''[[Illumination (Earth, Wind & Fire album)|Illumination]]''
+| [[Contemporary R&B|R&B]], [[funk]], [[neo soul]]
+| [[Sanctuary Records|Sanctuary]]
+| 
+|-
+| [[Echo & the Bunnymen]]
+| ''[[Siberia (Echo & the Bunnymen album)|Siberia]]''
+| [[Alternative rock]], [[post-punk]], [[neo-psychedelia]]
+| [[Cooking Vinyl]]
+| 
+|-
+| [[Maroon 5]]
+| ''[[Live – Friday the 13th]]''
+| 
+| [[A&M Octone Records|A&M Octone]]
+| <ref>{{cite web |url=https://www.rollingstone.com/music/music-album-reviews/live-friday-the-13th-205703/ |title=''Live – Friday the 13th'' |work=Rolling Stone |date=October 20, 2005 |access-date=November 12, 2018 |author=Hoard, Christian}}</ref>
+|-
+| [[Motörhead]]
+| ''[[BBC Live & In-Session]]''
+| [[Heavy metal music|Heavy metal]]
+| [[Sanctuary Records|Sanctuary]]
+| <ref>{{cite web |url=https://www.musicomh.com/reviews/albums/motorhead-bbc-live-and-in-session |title=Motörhead – ''BBC Live and in Session'' |work=musicOMH |date=August 29, 2005 |access-date=November 12, 2018 |author=Daniels, Neil}}</ref>
+|-
+| [[Municipal Waste (band)|Municipal Waste]]
+| ''[[Hazardous Mutation]]''
+| [[Crossover thrash]]
+| [[Earache Records|Earache]]
+| 
+|-
+| [[Nada Surf]]
+| ''[[The Weight Is a Gift]]''
+| [[Alternative rock]]
+| [[Barsuk Records|Barsuk]]
+| 
+|-
+| [[Ryan Cabrera]]
+| ''[[You Stand Watching]]''
+| [[Pop rock]]
+| [[Atlantic Records|Atlantic]]
+| 
+|-
+! scope="row" rowspan="8" style="text-align:center;" | September<br/>26
+| [[Forever Slave]]
+| ''Alice's Inferno''
+| 
+| Armageddon Music
+| <ref>{{cite web |url=https://www.metal.de/reviews/forever-slave-alices-inferno-5720/ |title=Forever Slave - ''Alices Inferno'' |work=Metal.de |language=German |date=October 26, 2005 |access-date=November 12, 2018 |author=Pytlarczyk, Karolina}}</ref>
+|-
+| [[HIM (Finnish band)|HIM]]
+| ''[[Dark Light (HIM album)|Dark Light]]''
+| [[Gothic rock]], [[pop rock]]
+| [[Sire Records|Sire]], Heartagram
+| 
+|-
+| [[Jamie Cullum]]
+| ''[[Catching Tales]]''
+| [[Vocal jazz]], [[blue-eyed soul]]
+| [[Universal Classics and Jazz|UCJ]], [[Candid Records|Candid]], [[Verve Forecast Records|Verve Forecast]]
+| 
+|-
+| [[Katie Melua]]
+| ''[[Piece by Piece (Katie Melua album)|Piece by Piece]]''
+| [[Jazz music|Jazz]], [[Pop music|pop]], [[blues]]
+| [[Dramatico]]
+| 
+|-
+| [[Roger Waters]]
+| ''[[Ça Ira (opera)|Ça Ira]]''
+| [[Classical music|Classical]], [[opera]]
+| [[Sony Classical Records|Sony Classical]]
+| 
+|-
+| [[Ryan Adams]]
+| ''[[Jacksonville City Nights]]''
+| [[Country rock]], [[alternative country]]
+| [[Lost Highway Records|Lost Highway]]
+| 
+|-
+| [[Tokyo Dragons]]
+| ''[[Give Me the Fear]]''
+| [[Hard rock]]
+| 
+| <ref>{{cite web |url=https://www.blabbermouth.net/cdreviews/give-me-the-fear/ |title=Tokyo Dragons, ''Give Me the Fear'' |work=Blabbermouth.net |date=November 28, 2005 |access-date=November 12, 2018 |author=Bergman, Keith}}</ref>
+|-
+| [[Why? (American band)|Why?]]
+| ''[[Elephant Eyelash]]''
+| [[Indie rock]]
+| [[Anticon]]
+| 
+|-
+! scope="row" rowspan="20" style="text-align:center;" | September<br/>27
+| [[BarlowGirl]]
+| ''[[Another Journal Entry]]''
+| [[Christian rock]]
+| [[Fervent Records|Fervent]]
+| 
+|-
+| [[Big Star]]
+| ''[[In Space]]''
+| [[Power pop]]
+| [[Rykodisc]]
+| 
+|-
+| [[Bloodhound Gang]]
+| ''[[Hefty Fine]]''
+| [[Rap rock]], [[comedy rock]], [[dance-rock]]
+| [[Geffen Records|Geffen]]
+| 
+|-
+| [[Buddy Guy]]
+| ''[[Bring 'Em In (Buddy Guy album)|Bring 'Em In]]''
+| [[Chicago blues]], [[electric blues]]
+| [[Jive Records|Jive]], [[Silvertone Records (1980)|Silvertone]]
+| 
+|-
+| [[David Crowder Band]]
+| ''[[A Collision|A Collision or (3+4=7)]]''
+| [[Christian rock]], [[Contemporary worship music|worship]]
+| [[sixstepsrecords|sixsteps]]
+| 
+|-
+| [[Gojira (band)|Gojira]]
+| ''[[From Mars to Sirius]]''
+| [[Technical death metal]], [[progressive metal]], [[groove metal]]
+| [[Listenable Records|Listenable]], [[Prosthetic Records|Prosthetic]]
+| 
+|-
+| [[Gretchen Wilson]]
+| ''[[All Jacked Up]]''
+| [[Country music|Country]], [[Rock music|rock]]
+| [[Epic Records|Epic Nashville]]
+| 
+|-
+| [[Hinder]]
+| ''[[Extreme Behavior]]''
+| [[Hard rock]], [[post-grunge]]
+| [[Universal Music Group|Universal]]
+| 
+|-
+| [[King's X]]
+| ''[[Ogre Tones]]''
+| [[Hard rock]], [[progressive metal]]
+| [[Inside Out Music]]
+| <ref>{{cite web |url=https://www.blabbermouth.net/cdreviews/ogre-tones/ |title=King's X, ''Ogre Tones'' |work=Blabbermouth.net |date=September 19, 2005 |access-date=November 13, 2018 |author=Bergman, Keith}}</ref>
+|-
+| [[Lil' Kim]]
+| ''[[The Naked Truth (Lil' Kim album)|The Naked Truth]]''
+| [[Hip-hop]]
+| [[Queen Bee Entertainment|Queen Bee]], [[Atlantic Records|Atlantic]]
+| 
+|-
+| [[Metric (band)|Metric]]
+| ''[[Live It Out]]''
+| [[Indie rock]], [[New wave music|new wave]], [[post-punk revival]]
+| [[Last Gang Records|Last Gang]]
+| 
+|-
+| [[Ministry (band)|Ministry]]
+| ''[[Rantology]]''
+| [[Industrial metal]]
+| [[Sanctuary Records|Sanctuary]]
+| 
+|-
+| [[Neil Young]]
+| ''[[Prairie Wind]]''
+| [[Country rock]], [[folk rock]], [[Americana music|Americana]]
+| [[Reprise Records|Reprise]]
+| 
+|-
+| [[Panic! at the Disco]]
+| ''[[A Fever You Can't Sweat Out]]''
+| [[Pop-punk]], [[emo pop]], [[emo]]
+| [[DCD2 Records|Decaydance]], [[Fueled by Ramen]]
+| 
+|-
+| [[Ric Ocasek]]
+| ''[[Nexterday]]''
+| [[New wave music|New wave]]
+| [[Sanctuary Records|Sanctuary]]
+| <ref>{{cite web |url=https://pitchfork.com/reviews/albums/5935-nexterday/ |title=Ric Ocasek: ''Nexterday'' |work=Pitchfork |date=November 20, 2005 |access-date=November 13, 2018 |author=Hogan, Marc}}</ref>
+|-
+| [[Sean Paul]]
+| ''[[The Trinity (album)|The Trinity]]''
+| [[Dancehall]], [[reggae]]
+| [[VP Records|VP]], [[Atlantic Records|Atlantic]]
+| 
+|-
+| [[Sheryl Crow]]
+| ''[[Wildflower (Sheryl Crow album)|Wildflower]]''
+| [[Pop rock]], [[country rock]]
+| [[A&M Records|A&M]]
+| 
+|-
+| [[Stevie Wonder]]
+| ''[[A Time to Love (album)|A Time to Love]]''
+| 
+| [[Motown]]
+| 
+|-
+| [[Toni Braxton]]
+| ''[[Libra (Toni Braxton album)|Libra]]''
+| [[Contemporary R&B|R&B]], [[Pop music|pop]], [[hip-hop]]
+| [[Blackground Records|Blackground]]
+| 
+|-
+| [[Wolf Parade]]
+| ''[[Apologies to the Queen Mary]]''
+| [[Indie rock]]
+| [[Sub Pop]]
+| 
+|-
+! scope="row" style="text-align:center;" | September<br/>28
+| [[Franz Ferdinand (band)|Franz Ferdinand]]
+| ''[[You Could Have It So Much Better]]''
+| [[Indie rock]], [[post-punk revival]], [[dance-punk]]
+| [[Domino Recording Company|Domino]]
+| 
+|-
+! scope="row" style="text-align:center;" | September<br/>30
+| [[U.D.O.]]
+| ''[[Mission No. X]]''
+| [[Heavy metal music|Heavy metal]]
+| [[AFM Records|AFM]]
+| <ref>{{cite web |url=http://powermetal.de/review/review-U_D_O_/Mission_No__X,6663.html |title=U.D.O. - ''Mission No. X'' |work=Power Metal.de |language=German |date=November 5, 2005 |access-date=November 13, 2018 |author=Heck, Christoph}}</ref>
+|}
+
+==Fourth quarter==
+===October===
+{|class="wikitable plainrowheaders"
+|+ List of albums released in October 2005
+| colspan="6" style="text-align:center;"|{{Monthbar}}
+|-
+! scope="col"| Release date
+! scope="col"| Artist
+! scope="col"| Album
+! scope="col"| Genre
+! scope="col"| Label
+! scope="col"| {{abbr|Ref.|Reference}}
+|-
+! scope="row" rowspan="8" style="text-align:center;" | October<br/>3
+| [[Andy Bell (singer)|Andy Bell]]
+| ''[[Electric Blue (album)|Electric Blue]]''
+| [[Pop music|Pop]]
+| [[Sanctuary Records|Sanctuary]]
+| 
+|-
+| [[Bullet for My Valentine]]
+| ''[[The Poison]]''
+| [[Metalcore]]
+| [[Visible Noise]], [[Trustkill Records|Trustkill]], [[Sony BMG]]
+| 
+|-
+| [[The Fall (band)|The Fall]]
+| ''[[Fall Heads Roll]]''
+| [[Alternative rock]]
+| Slogan, [[Narnack Records|Narnack]]
+| 
+|-
+| [[The Herd (Australian band)|The Herd]]
+| ''[[The Sun Never Sets (album)|The Sun Never Sets]]''
+| [[Australian hip-hop]]
+| [[Elefant Traks]]
+| <ref>{{cite web |url=https://www.rapreviews.com/archive/2007_06_sunneversets.html |title=The Herd :: ''The Sun Never Sets'' |work=RapReviews |date=June 5, 2007 |access-date=August 23, 2020 |author=Gailes, Arthur}}</ref>
+|-
+| [[Jo O'Meara]]
+| ''[[Relentless (Jo O'Meara album)|Relentless]]''
+| [[Pop music|Pop]]
+| [[Sanctuary Records|Sanctuary]]
+| <ref>{{cite web |url=https://www.bbc.co.uk/music/reviews/xqf9/ |title= Jo O'Meara ''Relentless'' Review  |work=BBC Music |date=2005 |access-date=November 20, 2018 |author=Blake, James}}</ref>
+|-
+| [[Ladytron]]
+| ''[[Witching Hour (Ladytron album)|Witching Hour]]''
+| [[Synth-pop]], [[electronic rock]], [[post-punk]]
+| [[Island Records|Island]]
+| 
+|-
+| [[Ms. Dynamite]]
+| ''[[Judgement Days]]''
+| [[Contemporary R&B|R&B]], [[hip-hop]]
+| [[Polydor Records|Polydor]]
+| 
+|-
+| [[Shakra]]
+| ''Fall''
+| 
+| 
+| <ref>{{cite web |url=https://www.blabbermouth.net/cdreviews/fall/ |title=Shakra, ''Fall'' |work=Blabbermouth.net |date=January 30, 2006 |access-date=November 13, 2018 |author=Bergman, Keith}}</ref><ref>{{cite web |url=https://www.stormbringer.at/reviews/1600/shakra-fall.html |title=Shakra - ''Fall'' |website=Stormbringer.at |language=German |date=December 16, 2005 |access-date=November 13, 2018}}</ref>
+|-
+! scope="row" rowspan="23" style="text-align:center;" | October<br/>4
+| [[Aiden]]
+| ''[[Nightmare Anatomy]]''
+| [[Horror punk]], [[post-hardcore]], [[screamo]]
+| [[Victory Records|Victory]]
+| 
+|-
+| [[Anita Baker]]
+| ''[[Christmas Fantasy]]''
+| [[Christmas music|Christmas]], [[jazz]], [[Contemporary R&B|R&B]]
+| [[Blue Note Records|Blue Note]]
+| 
+|-
+| [[Atmosphere (music group)|Atmosphere]]
+| ''[[You Can't Imagine How Much Fun We're Having]]''
+| [[Hip-hop]]
+| [[Rhymesayers Entertainment|Rhymesayers]]
+| 
+|-
+| [[Broken Social Scene]]
+| ''[[Broken Social Scene (album)|Broken Social Scene]]''
+| [[Indie rock]]
+| [[Arts & Crafts Productions|Arts & Crafts]]
+| 
+|-
+| [[Chris Cagle]]
+| ''[[Anywhere but Here (Chris Cagle album)|Anywhere but Here]]''
+| [[Country music|Country]]
+| [[Capitol Records Nashville|Capitol Nashville]]
+| <ref>{{cite web |url=http://www.countrystandardtime.com/d/cdreview.asp?xid=510 |title=Chris Cagle - ''Anywhere but Here'' |work=Country Standard Time |access-date=November 20, 2018 |author=Loy, Robert}}</ref>
+|-
+| [[Clint Black]]
+| ''[[Drinkin' Songs and Other Logic]]''
+| [[Country music|Country]]
+| [[Equity Music Group|Equity]]
+| 
+|-
+| [[Exodus (band)|Exodus]]
+| ''[[Shovel Headed Kill Machine]]''
+| [[Thrash metal]]
+| [[Nuclear Blast Records|Nuclear Blast]]
+| 
+|-
+| [[Fiona Apple]]
+| ''[[Extraordinary Machine]]''
+| [[Art pop]]
+| [[Epic Records|Epic]]
+| 
+|-
+| [[Flyleaf (band)|Flyleaf]]
+| ''[[Flyleaf (album)|Flyleaf]]''
+| [[Alternative metal]], [[nu metal]], [[Christian rock]]
+| [[A&M Octone Records|Octone]], [[Polydor Records|Polydor]]
+| 
+|-
+| [[Little Big Town]]
+| ''[[The Road to Here]]''
+| [[Country music|Country]]
+| [[Equity Music Group|Equity]]
+| <ref>{{cite web |url=http://www.countrystandardtime.com/d/article.asp?xid=572 |title=Little Big Town follows ''the road to here'' |work=Country Standard Time |date=December 2005 |access-date=November 30, 2018 |author=Remz, Jeffrey B.}}</ref>
+|-
+| [[Living Things (band)|Living Things]]
+| ''[[Ahead of the Lions]]''
+| [[Alternative rock]], [[glam rock]], [[garage rock]]
+| [[Jive Records|Jive]]
+| 
+|-
+| [[Liz Phair]]
+| ''[[Somebody's Miracle]]''
+| [[Pop rock]], [[alternative rock]]
+| [[Capitol Records|Capitol]]
+| 
+|-
+| [[Look What I Did]]
+| ''[[Minuteman for the Moment]]''
+| [[Progressive metal]], [[math rock]]
+| [[Combat Records|Combat]], [[MNRK Music Group|Koch]]
+| <ref>{{cite web |url=https://www.rocknworld.com/features/05/LookWhatIDid.shtml |title=Look What I Did - ''Minute Man for the Moment'' Review |work=Anti Music |access-date=October 25, 2019}}</ref>
+|-
+| [[My Morning Jacket]]
+| ''[[Z (My Morning Jacket album)|Z]]''
+| [[Alternative country]], [[indie pop]], [[indie rock]]
+| [[ATO Records|ATO]]
+| 
+|-
+| [[Nickelback]]
+| ''[[All the Right Reasons]]''
+| [[Post-grunge]], [[alternative rock]], [[hard rock]]
+| [[Roadrunner Records|Roadrunner]], [[EMI Records|EMI]]
+| 
+|-
+| [[The Reverend Horton Heat]]
+| ''[[We Three Kings (The Reverend Horton Heat album)|We Three Kings]]''
+| [[Christmas music|Christmas]], [[Rock music|rock]]
+| [[Yep Roc Records|Yep Roc]]
+| <ref>{{cite web |url=https://exclaim.ca/music/article/reverend_horton_heat-we_three_kings |title=Reverend Horton Heat - ''We Three Kings'' |work=Exclaim! |date=December 1, 2005 |access-date=November 21, 2018 |author=Nay, Rob}}</ref>
+|-
+| [[Robert Glasper]]
+| ''[[Canvas (album)|Canvas]]''
+| [[Jazz fusion]], [[post-bop]]
+| [[Blue Note Records|Blue Note]]
+| 
+|-
+| [[Sara Evans]]
+| ''[[Real Fine Place]]''
+| [[Country music|Country]]
+| [[RCA Records Nashville|RCA Nashville]]
+| <ref>{{cite web |url=https://www.bbc.co.uk/music/reviews/p5bd/ |title=Sara Evans ''Real Fine Place'' Review |work=BBC Music |date=2005 |access-date=November 21, 2018 |author=Keogh, Sue}}</ref>
+|-
+| [[Shinedown]]
+| ''[[Us and Them (Shinedown album)|Us and Them]]''
+| [[Hard rock]], [[alternative metal]], [[post-grunge]]
+| [[Atlantic Records|Atlantic]]
+| 
+|-
+| [[Sinéad O'Connor]]
+| ''[[Throw Down Your Arms]]''
+| [[Reggae]]
+| Chocolate and Vanilla
+| 
+|-
+| [[Soulfly]]
+| ''[[Dark Ages (album)|Dark Ages]]''
+| [[Thrash metal]], [[groove metal]], [[death metal]]
+| [[Roadrunner Records|Roadrunner]]
+| <ref>{{cite web |url=https://www.musicomh.com/reviews/albums/soulfly-dark-ages |title=Soulfly – ''Dark Ages'' |work=musicOMH |date=October 3, 2005 |access-date=April 3, 2020 |author=Day, TOm}}</ref>
+|-
+| [[Trina]]
+| ''[[Glamorest Life]]''
+| [[Southern hip-hop]], [[Contemporary R&B|R&B]]
+| [[Slip-n-Slide Records|Slip-n-Slide]], [[Atlantic Records|Atlantic]]
+| 
+|-
+| [[Twista]]
+| ''[[The Day After (album)|The Day After]]''
+| 
+| [[Atlantic Records|Atlantic]]
+| 
+|-
+! scope="row" rowspan="2" style="text-align:center;" | October<br/>5
+| [[Son Volt]]
+| ''[[Okemah and the Melody of Riot]]''
+| [[Alternative country]]
+| Transmit Sounds
+| 
+|-
+| [[t.A.T.u.]]
+| ''[[Dangerous and Moving]]''
+| [[Pop rock]], [[dance-pop]], [[alternative rock]]
+| [[Interscope Records|Interscope]]
+| 
+|-
+! scope="row" rowspan="2" style="text-align:center;" | October<br/>7
+| [[Alicia Keys]]
+| ''[[Unplugged (Alicia Keys album)|Unplugged]]''
+| [[Contemporary R&B|R&B]]
+| [[J Records|J]]
+| 
+|-
+| [[Sound Directions]]
+| ''[[The Funky Side of Life]]''
+| [[Jazz]], [[funk]]
+| [[Stones Throw Records|Stones Throw]]
+| <ref>{{cite web |url=https://jazztimes.com/reviews/albums/yesterdays-new-quintet-presents-sound-directions-the-funky-side-of-life/ |title=Yesterday's New Quintet Presents Sound Directions: ''The Funky Side of Life'' |work=JazzTimes |date=September 4, 2024 |access-date=June 30, 2025 |author=Segal, Dave}}</ref>
+|-
+! scope="row" style="text-align:center;" | October<br/>9
+| [[CSS (band)|CSS]]
+| ''[[Cansei de Ser Sexy]]''
+| [[Punk funk]]
+| Trama
+| 
+|-
+! scope="row" rowspan="5" style="text-align:center;" | October<br/>10
+| [[Akercocke]]
+| ''[[Words That Go Unspoken, Deeds That Go Undone]]''
+| [[Blackened death metal]], [[progressive metal]]
+| [[Earache Records|Earache]]
+| <ref>{{cite web |url=https://www.blabbermouth.net/cdreviews/words-that-go-unspoken-deeds-that-go-undone/ |title=Akercocke, ''Words That Go Unspoken, Deeds That Go Undone'' |work=Blabbermouth.net |date=October 31, 2005 |access-date=January 1, 2019 |author=Alisoglu, Scott}}</ref>
+|-
+| [[Danger Doom]]
+| ''[[The Mouse and the Mask]]''
+| [[Underground hip-hop]]
+| [[Epitaph Records|Epitaph]], [[Lex Records|Lex]]
+| 
+|-
+| [[Ricky Martin]]
+| ''[[Life (Ricky Martin album)|Life]]''
+| [[Crunk]], [[hip-hop]], [[Pop music|pop]]
+| [[Columbia Records|Columbia]]
+| 
+|-
+| [[Robert Wyatt]]
+| ''[[Theatre Royal Drury Lane 8th September 1974]]''
+| [[Progressive rock]], [[jazz fusion]]
+| [[Hannibal Records|Hannibal]]
+| 
+|-
+| [[Sugababes]]
+| ''[[Taller in More Ways]]''
+| [[Pop music|Pop]], [[electropop]], [[Contemporary R&B|R&B]]
+| [[Island Records|Island]]
+| 
+|-
+! scope="row" rowspan="16" style="text-align:center;" | October<br/>11
+| [[Adult (band)|Adult]]
+| ''[[Gimmie Trouble]]''
+| 
+| [[Thrill Jockey]]
+| 
+|-
+| [[Allister]]
+| ''[[Before the Blackout]]''
+| [[Pop-punk]], [[punk rock]], [[alternative rock]]
+| [[Drive-Thru Records|Drive-Thru]]
+| <ref>{{cite web |url=https://www.punknews.org/review/4513/allister-before-the-blackout |title=Allister - ''Before the Blackout'' (2005) |work=PunkNews.org |date=October 14, 2005 |access-date=July 26, 2018 |author=David, William}}</ref>
+|-
+| [[Deerhoof]]
+| ''[[The Runners Four]]''
+| [[Pop rock]], [[art pop]]
+| [[Kill Rock Stars]], [[ATP Recordings|ATP]], [[5 Rue Christine]]
+| 
+|-
+| [[Default (band)|Default]]
+| ''[[One Thing Remains]]''
+| [[Hard rock]], [[post-grunge]], [[alternative rock]]
+| [[TVT Records|TVT]]
+| <ref>{{cite web |url=http://www.rocknworld.com/features/05/default.shtml |title=Default - ''One Thing Remains'' Review |work=Anti Music |access-date=August 10, 2018 |author=Upton, Dan}}</ref>
+|-
+| [[Dolly Parton]]
+| ''[[Those Were the Days (Dolly Parton album)|Those Were the Days]]''
+| [[Country folk]], [[Bluegrass music|bluegrass]]
+| [[Sugar Hill Records (bluegrass label)|Sugar Hill]], Blue Eye Records
+| 
+|-
+| [[Gary Allan]]
+| ''[[Tough All Over (Gary Allan album)|Tough All Over]]''
+| [[Country music|Country]]
+| [[MCA Nashville]]
+| <ref>{{cite web |url=https://ew.com/article/2005/10/17/tough-all-over/ |title=''Tough All Over'' |work=Entertainment Weekly |date=October 17, 2005 |access-date=November 21, 2018 |author=Nash, Alanna}}</ref>
+|-
+| [[Jackson Browne]]
+| ''[[Solo Acoustic, Vol. 1]]''
+| [[Folk rock]], [[American folk music|American folk]]
+| [[Inside Recordings|Inside]]
+| <ref>{{cite web |url=https://www.rollingstone.com/music/music-album-reviews/solo-acoustic-vol-1-205256/ |title=''Solo Acoustic, Vol. 1'' |work=Rolling Stone |date=October 20, 2005 |access-date=November 21, 2018 |author=Greene, Andy}}</ref>
+|-
+| [[The Long Winters]]
+| ''[[Ultimatum (EP)|Ultimatum]]''
+| [[Indie rock]]
+| [[Barsuk Records|Barsuk]]
+| <ref>{{cite web |url=https://glidemagazine.com/2726/the-long-winters/ |title=The Long Winters: ''Ultimatum'' |work=Glide Magazine |date=December 6, 2005 |access-date=November 21, 2018 |author=Pirnia, Garin}}</ref>
+|-
+| [[Matt Pond PA]]
+| ''[[Several Arrows Later]]''
+| [[Indie rock]]
+| 
+| <ref>{{cite web |url=https://pitchfork.com/reviews/albums/5156-several-arrows-later/ |title=Matt Pond PA: ''Several Arrows Later'' |work=Pitchfork |date=November 3, 2005 |access-date=November 21, 2018 |author=Hogan, Marc}}</ref>
+|-
+| [[Modeselektor]]
+| ''[[Hello Mom!]]''
+| [[Intelligent dance music|IDM]]
+| [[BPitch Control]]
+| 
+|-
+| [[Paul Weller]]
+| ''[[As Is Now]]''
+| [[Rock music|Rock]]
+| [[Yep Roc Records|Yep Roc]]
+| 
+|-
+| [[Roadrunner United]]
+| ''[[The All-Star Sessions]]''
+| [[Heavy metal music|Heavy metal]]
+| [[Roadrunner Records|Roadrunner]]
+| <ref>{{cite web |url=https://www.musicomh.com/reviews/albums/roadrunner-united-the-all-star-sessions |title=Roadrunner United – ''The All-Star Sessions'' |work=musicOMH |date=October 10, 2005 |access-date=April 8, 2018 |author=Day, Tom}}</ref>
+|-
+| [[Sevendust]]
+| ''[[Next (Sevendust album)|Next]]''
+| [[Alternative metal]], [[nu metal]]
+| Winedark
+| <ref>{{cite web |url=https://www.popmatters.com/sevendust_next-2495675408.html |title=Sevendust: ''Next'' |work=PopMatters |date=February 26, 2006 |access-date=April 8, 2018 |author=Schiller, Mike}}</ref>
+|-
+| [[Story of the Year]]
+| ''[[In the Wake of Determination]]''
+| [[Post-hardcore]], [[alternative rock]], [[alternative metal]]
+| [[Maverick (company)|Maverick]]
+| 
+|-
+| [[Susan Tedeschi]]
+| ''[[Hope and Desire]]''
+| [[Blues]]
+| [[Verve Forecast Records|Verve Forecast]]
+| <ref>{{cite web |url=https://www.billboard.com/articles/news/61487/tedeschi-shares-her-hope-and-desire |title=Tedeschi Shares Her ''Hope and Desire'' |work=Billboard |date=September 12, 2005 |access-date=November 21, 2018}}</ref>
+|-
+| [[Warren G]]
+| ''[[In the Mid-Nite Hour]]''
+| [[Hip-hop]]
+| Hawino Records
+| <ref>{{cite web |url=http://www.rapreviews.com/archive/2005_10_midnitehour.html |title=Warren G :: ''In the Mid-Nite Hour'' |work=RapReviews.com |date=October 18, 2005 |access-date=April 8, 2018 |author=Juon, Steve}}</ref>
+|-
+! scope="row" style="text-align:center;" | October<br/>13
+| [[Anda Adam]]
+| ''[[Confidențial (album)|Confidențial]]''
+| [[Pop music|Pop]], [[hip-hop]], [[Contemporary R&B|R&B]]
+| [[Roton Music|Roton]]
+| 
+|-
+! scope="row" rowspan="2" style="text-align:center;" | October<br/>14
+| [[The Cardigans]]
+| ''[[Super Extra Gravity]]''
+| [[Rock music|Rock]], [[country rock]], [[pop rock]]
+| [[Stockholm Records|Stockholm]]
+| 
+|-
+| [[Old Man's Child]]
+| ''[[Vermin (album)|Vermin]]''
+| [[Symphonic black metal]]
+| [[Century Media Records|Century Media]]
+| <ref>{{cite web |url=https://exclaim.ca/music/article/old_mans_child-vermin |title=Old Man's Child - ''Vermin'' |work=Exclaim! |date=November 1, 2005 |access-date=November 25, 2018 |author=Taylor, Laura}}</ref>
+|-
+! scope="row" rowspan="2" style="text-align:center;" | October<br/>15
+| [[Bomb the Music Industry!]]
+| ''[[To Leave or Die in Long Island]]''
+| [[Ska punk]]
+| [[Quote Unquote Records|Quote Unquote]], [[Asbestos Records|Asbestos]]
+| <ref>{{cite web |url=https://www.punknews.org/review/4869/bomb-the-music-industry-to-leave-or-die-in-long-island |title=Bomb the Music Industry! - ''To Leave or Die in Long Island'' (2005) |work=PunkNews.org |date=January 8, 2006 |access-date=October 4, 2020}}</ref>
+|-
+| [[Primal Fear (band)|Primal Fear]]
+| ''[[Seven Seals (album)|Seven Seals]]''
+| [[Heavy metal music|Heavy metal]], [[power metal]]
+| [[Nuclear Blast Records|Nuclear Blast]]
+| 
+|-
+! scope="row" rowspan="8" style="text-align:center;" | October<br/>17
+| [[Boards of Canada]]
+| ''[[The Campfire Headphase]]''
+| [[Electronic music|Electronic]], [[downtempo]], [[folktronica]]
+| [[Warp (record label)|Warp]], music70
+| 
+|-
+| [[Depeche Mode]]
+| ''[[Playing the Angel]]''
+| [[Electronic rock]], [[synth-pop]]
+| [[Mute Records|Mute]]
+| 
+|-
+| [[Rachel Stevens]]
+| ''[[Come and Get It (Rachel Stevens album)|Come and Get It]]''
+| [[Pop music|Pop]]
+| [[19 Recordings|19]], [[Polydor Records|Polydor]]
+| 
+|-
+| [[Simply Red]]
+| ''[[Simplified (album)|Simplified]]''
+| [[Soul music|Soul]], [[Rock music|rock]]
+| Simplyred.com, [[Universal Music Group|Universal]]
+| <ref>{{cite web |url=https://www.musicomh.com/reviews/albums/simply-red-simplified |title=Simply Red – ''Simplified'' |work=musicOMH |date=October 17, 2005 |access-date=November 25, 2018 |author=Murphy, John}}</ref>
+|-
+| [[Starsailor (band)|Starsailor]]
+| ''[[On the Outside (Starsailor album)|On the Outside]]''
+| [[Alternative rock]], [[indie rock]]
+| [[EMI Records|EMI]]
+| 
+|-
+| [[Sunn O)))]]
+| ''[[Black One (album)|Black One]]''
+| [[Ambient music|Ambient]], [[avant-garde music|avant-garde]], [[black metal]]
+| [[Southern Lord Records|Southern Lord]]
+| 
+|-
+| [[Vashti Bunyan]]
+| ''[[Lookaftering]]''
+| [[Contemporary folk music|Folk]], [[psychedelic folk]]
+| [[FatCat Records|FatCat]]
+| 
+|-
+| [[The Veronicas]]
+| ''[[The Secret Life Of... (album)|The Secret Life of...]]''
+| [[Pop rock]], [[pop-punk]]
+| [[Sire Records|Sire]], [[London Records|London]]
+| 
+|-
+! scope="row" rowspan="18" style="text-align:center;" | October<br/>18
+| [[Animal Collective]]
+| ''[[Feels (Animal Collective album)|Feels]]''
+| [[Indie rock]]
+| [[FatCat Records|FatCat]]
+| 
+|-
+| [[Ashlee Simpson]]
+| ''[[I Am Me]]''
+| [[Pop rock]], [[pop punk]], [[alternative rock]]
+| [[Geffen Records|Geffen]]
+| 
+|-
+| [[Billy Currington]]
+| ''[[Doin' Somethin' Right]]''
+| [[Country music|Country]]
+| [[Universal Music Group Nashville|Mercury Nashville]]
+| <ref>{{cite web |url=https://www.countrystandardtime.com/news/newsitem.asp?xid=139 |title=Billy Currington ''Doin' Somethin' Right'' |work=Country Standard Time |date=January 6, 2006 |access-date=January 12, 2026}}</ref>
+|-
+| [[Black Rob]]
+| ''[[The Black Rob Report]]''
+| [[East Coast hip-hop]]
+| [[Bad Boy Records|Bad Boy]], [[Atlantic Records|Atlantic]]
+| 
+|-
+| [[Blockhead (music producer)|Blockhead]]
+| ''[[Downtown Science (Blockhead album)|Downtown Science]]''
+| [[Instrumental hip-hop]]
+| [[Ninja Tune]]
+| 
+|-
+| [[Brian Wilson]]
+| ''[[What I Really Want for Christmas]]''
+| [[Christmas music|Christmas]]
+| [[Arista Records|Arista]]
+| <ref>{{cite web |url=https://www.independent.co.uk/arts-entertainment/music/reviews/album-brian-wilson-515709.html |title=Album: Brian Wilson - ''What I Really Want for Christmas'' |work=Independent |date=November 18, 2005 |access-date=November 25, 2018 |author=Gill, Andy}}</ref>
+|-
+| [[Bun B]]
+| ''[[Trill (album)|Trill]]''
+| [[Southern hip-hop]]
+| [[Rap-A-Lot Records|Rap-A-Lot]], [[Asylum Records|Asylum]], [[Atlantic Records|Atlantic]]
+| 
+|-
+| [[Burnside Project]]
+| ''The Finest Example Is You''
+| 
+| [[Bar/None Records|Bar/None]]
+| <ref>{{cite web |url=https://www.tinymixtapes.com/music-review/burnside-project-finest-example-you |title=Burnside Project - ''The Finest Example Is You'' |work=Tiny Mix Tapes |access-date=February 10, 2020}}</ref>
+|-
+| [[Cryptopsy]]
+| ''[[Once Was Not]]''
+| [[Technical death metal]]
+| [[Century Media Records|Century Media]]
+| 
+|-
+| [[Fireball Ministry]]
+| ''[[Their Rock Is Not Our Rock]]''
+| [[Stoner rock|Stoner metal]], [[biker metal]]
+| [[Liquor and Poker Music|Liquor and Poker]]
+| <ref>{{cite web |url=https://www.blabbermouth.net/cdreviews/their-rock-is-not-our-rock/ |title=Fireball Ministry, ''Their Rock Is Not Our Rock'' |work=Blabbermouth.net |date=November 14, 2005 |access-date=February 26, 2019 |author=Alisoglu, Scott}}</ref>
+|-
+| [[Lightning Bolt (band)|Lightning Bolt]]
+| ''[[Hypermagic Mountain]]''
+| [[Noise rock]]
+| [[Load Records|Load]]
+| 
+|-
+| [[Martina McBride]]
+| ''[[Timeless (Martina McBride album)|Timeless]]''
+| [[Country music|Country]]
+| [[RCA Records|RCA]]
+| 
+|-
+| [[Mest]]
+| ''[[Photographs (Mest album)|Photographs]]''
+| [[Pop-punk]], [[alternative rock]]
+| [[Maverick (company)|Maverick]]
+| <ref>{{cite web |url=https://www.altpress.com/news/archive_39/ |title=Get your hands off me, you damn dirty ape! |work=AltPress |date=October 16, 2005 |access-date=August 10, 2018 |author=Rork, Nicole}}</ref>
+|-
+| [[Propagandhi]]
+| ''[[Potemkin City Limits]]''
+| 
+| [[G7 Welcoming Committee Records|G7 Welcoming Committee]], [[Fat Wreck Chords]]
+| <ref>{{cite web |url=https://www.punknews.org/review/4533/propagandhi-potemkin-city-limits |title=Propagandhi - ''Potemkin City Limits'' (2005) |work=Punknews.org |date=October 18, 2005 |access-date=October 23, 2020 |author=Paul, Aubin}}</ref>
+|-
+| [[Joseph Simmons|Rev. Run]]
+| ''[[Distortion (Joseph Simmons album)|Distortion]]''
+| [[Hip-hop]], [[rap rock]]
+| Russell Simmons Music Group, [[The Island Def Jam Music Group|Island Def Jam]]
+| 
+|-
+| [[Rod Stewart]]
+| ''[[Thanks for the Memory: The Great American Songbook, Volume IV]]''
+| [[Traditional pop]], [[jazz]]
+| [[J Records|J]]
+| 
+|-
+| [[Silver Jews]]
+| ''[[Tanglewood Numbers]]''
+| [[Indie rock]]
+| [[Drag City (record label)|Drag City]]
+| 
+|-
+| [[Thrice]]
+| ''[[Vheissu]]''
+| [[Post-hardcore]], [[Experimental music|experimental]]
+| [[Island Records|Island]]
+| 
+|-
+! scope="row" style="text-align:center;" | October<br/>21
+| [[Miho Hatori]]
+| ''[[Ecdysis (album)|Ecdysis]]''
+| [[Avant-garde music|Avant-garde]], [[indie rock]], [[world music]]
+| Speedstar International, [[Rykodisc]]
+| <ref>{{cite web |url=https://pitchfork.com/reviews/albums/9754-ecdysis/ |title=Mito Hatori: ''Ecdysis'' |work=Pitchfork |date=January 11, 2007 |access-date=November 27, 2018 |author=Berman, Stuart}}</ref>
+|-
+! scope="row" style="text-align:center;" | October<br/>23
+| [[Earth (American band)|Earth]]
+| ''[[Hex; Or Printing in the Infernal Method]]''
+| [[Post-metal]]
+| [[Southern Lord Records|Southern Lord]]
+| 
+|-
+! scope="row" rowspan="5" style="text-align:center;" | October<br/>24
+| [[Dark Funeral]]
+| ''[[Attera Totus Sanctus]]''
+| [[Black metal]]
+| [[Regain Records|Regain]], [[Candlelight Records|Candlelight]]
+| <ref>{{cite web |url=https://www.blabbermouth.net/cdreviews/attera-totus-sanctus/ |title=Dark Funeral, ''Attera Totus Sanctus'' |work=Blabbermouth.net |date=December 5, 2005 |access-date=November 27, 2018 |author=Alisoglu, Scott}}</ref>
+|-
+| [[Deep Purple]]
+| ''[[Rapture of the Deep]]''
+| [[Hard rock]], [[progressive rock]]
+| [[Edel SE & Co. KGaA|Edel Music]] 
+| 
+|-
+| [[The Fiery Furnaces]]
+| ''[[Rehearsing My Choir]]''
+| [[Indie rock]], [[spoken word]]
+| [[Rough Trade Records|Rough Trade]]
+| 
+|-
+| [[Robbie Williams]]
+| ''[[Intensive Care (album)|Intensive Care]]''
+| [[Pop rock]]
+| [[Chrysalis Records|Chrysalis]], [[EMI Records|EMI]]
+| 
+|-
+| [[Stream of Passion]]
+| ''[[Embrace the Storm]]''
+| [[Progressive metal]]
+| [[Inside Out Music]]
+| 
+|-
+! scope="row" rowspan="13" style="text-align:center;" | October<br/>25
+| [[Aberdeen City (band)|Aberdeen City]]
+| ''[[The Freezing Atlantic]]''
+| [[Indie rock]], [[alternative rock]]
+| [[Dovecote Records|Dovecote]]
+| <ref>{{cite web |url=https://www.popmatters.com/aberdeen-city-the-freezing-atlantic-2495705479.html |title=Aberdeen City: ''The Freezing Atlantic'' |work=PopMatters |date=September 28, 2006 |access-date=May 30, 2025 |author=MacNeil, Jason}}</ref>
+|-
+| [[Aerosmith]]
+| ''[[Rockin' the Joint]]''
+| [[Hard rock]], [[blues rock]]
+| [[Columbia Records|Columbia]]
+| <ref>{{cite web |url=https://www.popmatters.com/aerosmith-rockin-2495822973.html |title=Aerosmith: ''Rockin' the Joint'' |work=PopMatters |date=November 1, 2005 |access-date=November 27, 2018 |author=Friedman, Lou}}</ref>
+|-
+| [[Buckethead|Buckethead & Friends]]
+| ''[[Enter the Chicken]]''
+| [[Avant-garde metal]], [[experimental rock]], [[alternative metal]]
+| [[Serjical Strike Records|Serjical Strike]]
+| 
+|-
+| [[Chris Brokaw]]
+| ''[[Incredible Love]]''
+| [[Alternative rock]]
+| 12XU, [[Rock Action Records|Rock Action]], Acuarela Discos
+| 
+|-
+| [[Craig Wedren]]
+| ''[[Lapland (album)|Lapland]]''
+| [[Alternative rock]]
+| [[Team Love Records|Team Love]]
+| 
+|-
+| [[Demon Hunter (band)|Demon Hunter]]
+| ''[[The Triptych]]''
+| [[Metalcore]], [[groove metal]], [[Christian metal]]
+| [[Solid State Records|Solid State]]
+| 
+|-
+| [[DJ Muggs]] vs. [[GZA]]
+| ''[[Grandmasters (album)|Grandmasters]]''
+| [[Hip-hop]]
+| Angeles Records
+| 
+|-
+| [[Joe Nichols]]
+| ''[[III (Joe Nichols album)|III]]''
+| [[Country music|Country]]
+| [[Show Dog Nashville|Universal South]]
+| <ref>{{cite web |url=https://people.com/archive/picks-and-pans-review-joe-nichols-vol-65-no-2/ |title=Picks and Pans Review: Joe Nichols - ''III'' |work=People |date=January 16, 2006 |access-date=November 27, 2018 |author=Novak, Ralph}}</ref>
+|-
+| [[Sadat X]]
+| ''[[Experience & Education]]''
+| [[Hip-hop]]
+| Female Fun Music
+| 
+|-
+| [[Slum Village]]
+| ''[[Slum Village (album)|Slum Village]]''
+| [[Hip-hop]]
+| Barak Records
+| 
+|-
+| [[Through the Eyes of the Dead]]
+| ''[[Bloodlust (Through the Eyes of the Dead album)|Bloodlust]]''
+| [[Deathcore]], [[melodic death metal]]
+| [[Prosthetic Records|Prosthetic]]
+| 
+|-
+| [[Valencia (band)|Valencia]]
+| ''[[This Could Be a Possibility]]''
+| [[Pop-punk]]
+| I Surrender
+| <ref>{{cite web |url=https://www.punknews.org/review/4861/valencia-this-could-be-a-possibility |title=Valencia - ''This Could Be a Possibility'' (2005) |work=PunkNews.org |date=January 6, 2006 |access-date=November 27, 2018 |author=Rogowski, Jordan}}</ref>
+|-
+| Various artists
+| ''[[This Bird Has Flown – A 40th Anniversary Tribute to the Beatles' Rubber Soul]]''
+| 
+| [[Razor & Tie]]
+| 
+|-
+! scope="row" style="text-align:center;" | October<br/>26
+| [[Diana Krall]]
+| ''[[Christmas Songs (Diana Krall album)|Christmas Songs]]''
+| [[Jazz]], [[Christmas music|Christmas]]
+| [[Verve Records|Verve]]
+| 
+|-
+! scope="row" rowspan="3" style="text-align:center;" | October<br/>28
+| [[Maritime (band)|Maritime]]
+| ''[[We, the Vehicles]]''
+| [[Indie pop]]
+| [[Flameshovel Records|Flameshovel]]
+| 
+|-
+| [[Tapes 'n Tapes]]
+| ''[[The Loon]]''
+| [[Indie rock]]
+| Ibid Records, [[XL Recordings|XL]]
+| 
+|-
+| [[Xavier Rudd]]
+| ''[[Food in the Belly]]''
+| [[Folk music|Folk]], [[blues]], [[indie folk]]
+| Salt X, [[Universal Music Group|Universal Music Australia]]
+| <ref>{{cite web |url=https://www.slantmagazine.com/music/review/xavier-rudd-food-in-the-belly |title=Xavier Rudd - ''Food in the Belly'' |work=Slant |date=December 23, 2006 |access-date=January 8, 2019 |author=Cinquemani, Sal}}</ref>
+|-
+! scope="row" rowspan="4" style="text-align:center;" | October<br/>31
+| [[Helloween]]
+| ''[[Keeper of the Seven Keys: The Legacy]]''
+| [[Progressive metal]]
+| [[SPV GmbH|Steamhammer]]
+| <ref>{{cite web |url=https://www.blabbermouth.net/cdreviews/keeper-of-the-seven-keys-the-legacy/ |title=Helloween, ''Keeper of the Seven Keys - The Legacy'' |work=Blabbermouth.net |date=November 28, 2005 |access-date=October 31, 2018 |author=Bergman, Keith}}</ref>
+|-
+| [[Carlos Santana|Santana]]
+| ''[[All That I Am (Santana album)|All That I Am]]''
+| [[Latin rock]]
+| [[Arista Records|Arista]]
+| 
+|-
+| [[Westlife]]
+| ''[[Face to Face (Westlife album)|Face to Face]]''
+| [[Pop music|Pop]]
+| [[S Records|S]], [[RCA Records|RCA]], [[Sony BMG]]
+| 
+|-
+| [[Wolfmother]]
+| ''[[Wolfmother (album)|Wolfmother]]''
+| [[Hard rock]], [[stoner rock]], [[Heavy metal music|heavy metal]]
+| [[Modular Recordings|Modular]]
+| 
+|}
+
+===November===
+{|class="wikitable plainrowheaders"
+|+ List of albums released in November 2005
+| colspan="6" style="text-align:center;"|{{Monthbar}}
+|-
+! scope="col"| Release date
+! scope="col"| Artist
+! scope="col"| Album
+! scope="col"| Genre
+! scope="col"| Label
+! scope="col"| {{abbr|Ref.|Reference}}
+|-
+! scope="row" rowspan="10" style="text-align:center;" | November<br/>1
+| [[Burt Bacharach]]
+| ''[[At This Time]]''
+| [[Pop music|Pop]], [[Rock music|rock]]
+| [[Columbia Records|Columbia]]
+| 
+|-
+| [[Holy Fuck (album)|Holy Fuck]]
+| ''[[Holy Fuck]]''
+| [[Electronica]]
+| [[Dependent Music]]
+| 
+|-
+| [[Lagwagon]]
+| ''[[Resolve (Lagwagon album)|Resolve]]''
+| [[Pop-punk]], [[skate punk]]
+| [[Fat Wreck Chords]]
+| <ref>{{cite web |url=https://www.ign.com/articles/2005/12/14/lagwagon-resolve |title=Lagwagon - ''Resolve'' |work=IGN |date=December 14, 2005 |access-date=November 30, 2018}}</ref>
+|-
+| [[O.C. (rapper)|O.C.]]
+| ''[[Smoke and Mirrors (O.C. album)|Smoke and Mirrors]]''
+| [[Hip-hop]]
+| [[Hieroglyphics Imperium Recordings|Hieroglyphics Imperium]]
+| 
+|-
+| [[Ozzy Osbourne]]
+| ''[[Under Cover (Ozzy Osbourne album)|Under Cover]]''
+| [[Rock music|Rock]]
+| [[Epic Records|Epic]]
+| 
+|-
+| [[Slipknot (band)|Slipknot]]
+| ''[[9.0: Live]]''
+| [[Nu metal]]
+| [[Roadrunner Records|Roadrunner]]
+| 
+|-
+| [[Sun Kil Moon]]
+| ''[[Tiny Cities]]''
+| [[Folk rock]]
+| [[Caldo Verde Records|Caldo Verde]]
+| 
+|-
+| [[Terri Clark]]
+| ''[[Life Goes On (Terri Clark album)|Life Goes On]]''
+| [[Country music|Country]]
+| [[Mercury Nashville]]
+| <ref>{{cite web |url=http://www.countrystandardtime.com/d/cdreview.asp?xid=1566 |title=Terri Clark - ''Life Goes On'' |work=Country Standard Time |access-date=November 30, 2018 |author=Schlesier, Jacquilynne}}</ref>
+|-
+| [[Third Day]]
+| ''[[Wherever You Are (Third Day album)|Wherever You Are]]''
+| [[Southern rock]], [[Christian rock]]
+| [[Essential Records (Christian)|Essential]]
+| <ref>{{cite web |url=http://www.jesusfreakhideout.com/cdreviews/WhereverYouAre.asp |title=Third Day - ''Wherever You Are'' |work=JesusFreakHideout.com |date=October 29, 2005 |access-date=November 30, 2018 |author=DiBiase, John}}</ref>
+|-
+| [[Trey Anastasio]]
+| ''[[Shine (Trey Anastasio album)|Shine]]''
+| [[Alternative rock]], [[power pop]], [[neo-psychedelia]]
+| [[Columbia Records|Columbia]]
+| <ref>{{cite web |url=https://www.pastemagazine.com/articles/2005/11/trey-anastasio-shine.html |title=Trey Anastasio - ''Shine'' |work=Paste |date=November 29, 2005 |access-date=November 30, 2018 |author=Eisen, Benjy}}</ref>
+|-
+! scope="row" style="text-align:center;" | November<br/>4
+| [[A-ha]]
+| ''[[Analogue (album)|Analogue]]''
+| 
+| [[Polydor Records|Polydor]]
+| 
+|-
+! scope="row" style="text-align:center;" | November<br/>6
+| [[Johnny Hallyday]]
+| ''[[Ma vérité]]''
+| [[Rock music|Rock]]
+| [[Mercury Records|Mercury]], [[Universal Music Group|Universal Music]]
+| <ref>{{cite web |url=https://next.liberation.fr/culture/2005/11/18/ma-verite_539438 |title=''Ma Vérité'' |work=Libération |language=French |date=November 18, 2005 |access-date=November 30, 2018 |author=Perrin, Ludovic}}</ref>
+|-
+! scope="row" rowspan="2" style="text-align:center;" | November<br/>7
+| [[Delirious?]]
+| ''[[The Mission Bell]]''
+| [[Rock music|Rock]], [[Christian rock]]
+| [[Sparrow Records|Sparrow]], Furious? Records
+| 
+|-
+| [[Kate Bush]]
+| ''[[Aerial (album)|Aerial]]''
+| [[Art rock]], [[progressive pop]]
+| [[EMI Records|EMI]], [[Columbia Records|Columbia]]
+| 
+|-
+! scope="row" rowspan="12" style="text-align:center;" | November<br/>8
+| [[Annihilator (band)|Annihilator]]
+| ''[[Schizo Deluxe]]''
+| [[Thrash metal]]
+| [[AFM Records|AFM]]
+| 
+|-
+| [[August Burns Red]]
+| ''[[Thrill Seeker]]''
+| [[Metalcore]]
+| [[Solid State Records|Solid State]]
+| <ref>{{cite web |url=https://jesusfreakhideout.com/cdreviews/ThrillSeeker.asp |title=August Burns Red - ''Thrill Seeker'' |work=JesusFreakHideout.com |date=August 29, 2005 |access-date=February 3, 2020 |author=Lex, Sean}}</ref>
+|-
+| [[Cyndi Lauper]]
+| ''[[The Body Acoustic]]''
+| [[Pop rock]]
+| [[Epic Records|Epic]], [[Daylight Records|Daylight]]
+| <ref>{{cite web |url=https://www.rollingstone.com/music/music-album-reviews/the-body-acoustic-189309/ |title=''The Body Acoustic'' |work=Rolling Stone |date=November 3, 2005 |access-date=December 1, 2018 |author=Walters, Barry}}</ref>
+|-
+| [[Elfonía]]
+| ''This Sonic Landscape''
+| 
+| The Note Garden Records
+| <ref>{{cite web |url=https://powermetal.de/review/review-Elfon_a/This_Sonic_Landscapes,7426.html |title=Elfonía - ''This Sonic Landscape'' |work=Power Metal.de |language=German |date=April 19, 2006 |access-date=December 29, 2018 |author=Huber, Elke}}</ref>
+|-
+| [[Floetry]]
+| ''[[Flo'Ology]]''
+| 
+| [[Geffen Records|Geffen]]
+| 
+|-
+| [[Kenny Chesney]]
+| ''[[The Road and the Radio]]''
+| [[Country music|Country]]
+| [[BNA Records|BNA]]
+| 
+|-
+| [[Neil Diamond]]
+| ''[[12 Songs (Neil Diamond album)|12 Songs]]''
+| [[Rock music|Rock]], [[Country music|country]]
+| [[American Recordings (record label)|American]]/[[Columbia Records|Columbia]]
+| 
+|-
+| [[Relient K]]
+| ''[[Apathetic EP]]''
+| [[Christian rock]], [[pop punk]]
+| [[Gotee Records|Gotee]], [[Capitol Records|Capitol]]
+| <ref>{{cite web |url=http://jesusfreakhideout.com/cdreviews/ApatheticEP.asp |title=Relient K - ''Apathetic EP'' |work=JesusFreakHideout.com |date=November 9, 2005 |access-date=December 1, 2018 |author=Taylor, Josh}}</ref>
+|-
+| [[Sepultura]]
+| ''[[Live in São Paulo (Sepultura album)|Live in São Paulo]]''
+| [[Groove metal]], [[thrash metal]], [[death metal]]
+| [[Steamhammer Records|Steamhammer]]
+| <ref>{{cite web |url=https://www.blabbermouth.net/cdreviews/live-in-s-o-paulo/ |title=Sepultura, ''Live in São Paulo'' |work=Blabbermouth.net |date=November 7, 2005 |access-date=December 1, 2018 |author=Bergman, Keith}}</ref>
+|-
+| [[Sheek Louch]]
+| ''[[After Taxes]]''
+| [[Hip-hop]]
+| D-Block Records, [[MNRK Music Group|Koch]]
+| 
+|-
+| [[TNT (Norwegian band)|TNT]]
+| ''[[All the Way to the Sun]]''
+| [[Hard rock]]
+| MTM
+| <ref>{{cite web |url=https://www.blabbermouth.net/cdreviews/all-the-way-to-the-sun/ |title=TNT, ''All the Way to the Sun'' |work=Blabbermouth.net |date=November 28, 2005 |access-date=October 31, 2018 |author=Alisoglu, Scott}}</ref>
+|-
+| Various artists
+| ''[[Get Rich or Die Tryin' (soundtrack)|Get Rich or Die Tryin': Music from and Inspired by the Motion Picture]]''
+| [[Hip-hop]]
+| [[Interscope Records|Interscope]], [[G-Unit Records|G-Unit]]
+| 
+|-
+! scope="row" style="text-align:center;" | November<br/>9
+| [[Madonna]]
+| ''[[Confessions on a Dance Floor]]''
+| [[Dance-pop]], [[nu-disco]], [[Electronic dance music|EDM]]
+| [[Warner Records|Warner Bros.]]
+| 
+|-
+! scope="row" style="text-align:center;" | November<br/>10
+| [[Theatres des Vampires]]
+| ''[[Pleasure and Pain (Theatres des Vampires album)|Pleasure and Pain]]''
+| [[Gothic metal]]
+| Dreamcell11, Aural Music
+| 
+|-
+! scope="row" rowspan="2" style="text-align:center;" | November<br/>11
+| [[Bolt Thrower]]
+| ''[[Those Once Loyal]]''
+| [[Death metal]], [[Heavy metal music|heavy metal]]
+| [[Metal Blade Records|Metal Blade]]
+| 
+|-
+| [[Roine Stolt]]
+| ''[[Wallstreet Voodoo]]''
+| [[Progressive rock|Progressive blues]]
+| [[Inside Out Music]]
+| <ref>{{cite web |url=https://www.seaoftranquility.org/reviews.php?op=showcontent&id=2897 |title=Stolt, Roine: ''Wall Street Voodoo'' |work=Sea of Tranquility |date=November 26, 2005 |access-date=January 12, 2026 |author=Batmaz, Murat}}</ref>
+|-
+! scope="row" style="text-align:center;" | November<br/>12
+| [[Tally Hall]]
+| ''[[Marvin's Marvelous Mechanical Museum (album)|Marvin's Marvelous Mechanical Museum]]''
+| [[Alternative rock]], [[indie rock]], [[power pop]]
+| Quack! Media, [[Atlantic Records|Atlantic]], Needlejuice
+| <ref>{{cite web |url=https://top40-charts.com/news.php?nid=38599&cat= |title=Tally Hall Say "Good Day" to America; ''Marvin's Marvelous Mechanical Museum'' Set for April 1, 2008 Release |work=Top40-Charts.com |date=February 22, 2008 |access-date=April 20, 2022}}</ref>
+|-
+! scope="row" style="text-align:center;" | November<br/>14
+| [[Szymon Wydra|Szymon Wydra & Carpe Diem]]
+| ''Bezczas''
+| 
+| [[Universal Music Polska|Universal Music Poland]]
+| <ref>{{cite web |url=https://muzyka.interia.pl/plyta-bezczas,dId,3719 |title=''Bezczas'' - Szymon Wydra & Carpe Diem |trans-title=''Timeless'' - Szymon Wydra & Carpe Diem |work=Interia Muzyka |language=Polish |access-date=September 12, 2019}}</ref>
+|-
+! scope="row" rowspan="10" style="text-align:center;" | November<br/>15
+| [[Big & Rich]]
+| ''[[Comin' to Your City]]''
+| [[Country music|Country]]
+| [[Warner Records|Warner Bros. Nashville]]
+| 
+|-
+| [[Carrie Underwood]]
+| ''[[Some Hearts]]''
+| [[Country music|Country]], [[country pop]]
+| [[Arista Nashville]], [[19 Recordings|19]]
+| 
+|-
+| [[Ginuwine]]
+| ''[[Back II da Basics]]''
+| [[Contemporary R&B|R&B]]
+| [[Epic Records|Epic]]
+| 
+|-
+| [[Green Day]]
+| ''[[Bullet in a Bible]]''
+| [[Punk rock]]
+| [[Reprise Records|Reprise]], [[Warner Music Vision|Warner Reprise]]
+| 
+|-
+| [[Kardinal Offishall]]
+| ''[[Fire and Glory]]''
+| [[Canadian hip-hop]]
+| [[EMI Records|EMI]], [[Virgin Records|Virgin]], [[Black Jays]]
+| <ref>{{cite web |url=http://www.rapreviews.com/archive/2007_01_fireandglory.html |title=Kardinal Offishall :: ''Fire and Glory'' |work=RapReviews.com |date=January 8, 2007 |access-date=December 1, 2018 |author=Hernandez, Pedro}}</ref>
+|-
+| [[Lady Sovereign]]
+| ''[[Vertically Challenged (EP)|Vertically Challenged]]''
+| [[Hip-hop]], [[Grime music|grime]], [[UK garage]]
+| [[Chocolate Industries]]
+| 
+|-
+| [[P.O.D.]]
+| ''[[The Warriors EP, Volume 2]]''
+| [[Alternative metal]]
+| [[Atlantic Records|Atlantic]]
+| <ref>{{cite web |url=http://www.jesusfreakhideout.com/cdreviews/TheWarriorsEpVol2.asp |title=P.O.D. - ''The Warriors EP Vol. 2'' |work=JesusFreakHideout.com |date=November 16, 2005 |access-date=December 2, 2018 |author=DiBiase, John}}</ref>
+|-
+| [[Pitbull (rapper)|Pitbull]]
+| ''[[Money Is Still a Major Issue]]''
+| [[Hip-hop]], [[ragga hip hop]], [[reggaeton]]
+| [[TVT Records|TVT]]
+| <ref>{{cite web |url=https://exclaim.ca/music/article/pitbull-money_is_still_major_issue |title=Pitbull - ''Money Is Still a Major Issue'' |work=Exclaim! |date=April 1, 2006 |access-date=December 2, 2018 |author=Blaustein, Claire Marie}}</ref>
+|-
+| Various artists
+| ''[[Walk the Line (soundtrack)|Walk the Line: Original Motion Picture Soundtrack]]''
+| [[Rock and roll]], [[rockabilly]], [[Country music|country]]
+| [[Wind-up Records|Wind-up]], [[Fox Music]], [[Sony BMG]]
+| <ref>{{cite web |url=https://www.treblezine.com/reviews/various-artists-walk-the-line-soundtrack/ |title=Various Artists : ''Walk the Line'' Soundtrack |work=Treble |date=January 22, 2006 |access-date=December 2, 2018 |author=Simpson, Ernest}}</ref>
+|-
+| [[Wilco]]
+| ''[[Kicking Television: Live in Chicago]]''
+| [[Rock music|Rock]]
+| [[Nonesuch Records|Nonesuch]]
+| 
+|-
+! scope="row" style="text-align:center;" | November<br/>17
+| [[Sean Watkins]]
+| ''[[Blinders On]]''
+| [[Indie folk]], [[Acoustic music|acoustic]]
+| [[Sugar Hill Records (bluegrass label)|Sugar Hill]]
+| <ref>{{cite web |url=http://nodepression.com/album-review/sean-watkins-blinders |title=Sean Watkins - ''Blinders On'' |work=No Depression |date=April 30, 2006 |access-date=November 2, 2017}}</ref>
+|-
+! scope="row" style="text-align:center;" | November<br/>18
+| [[Boris (band)|Boris]]
+| ''[[Pink (Boris album)|Pink]]''
+| [[Heavy metal music|Metal]], [[noise rock]]
+| [[Diwphalanx Records|Diwphalanx]]
+| 
+|-
+! scope="row" style="text-align:center;" | November<br/>21
+| [[Enya]]
+| ''[[Amarantine (album)|Amarantine]]''
+| [[New-age music|New-age]]
+| [[Warner Records|Warner Bros.]], [[Reprise Records|Reprise]]
+| 
+|-
+! scope="row" rowspan="14" style="text-align:center;" | November<br/>22
+| [[Black Lips]]
+| ''[[Let It Bloom]]''
+| [[Garage rock]], [[Lo-fi music|lo-fi]]
+| [[In the Red Records|In the Red]]
+| 
+|-
+| [[The Bouncing Souls]]
+| ''Live''
+| 
+| [[Chunksaah Records|Chunksaah]]
+| <ref>{{cite web |url=https://www.punknews.org/review/4727/bouncing-souls-live |title=Bouncing Souls - ''Live'' (2005) |work=PunkNews.org |date=November 29, 2005 |access-date=December 2, 2018 |author=Conoley, Ben}}</ref>
+|-
+| [[Britney Spears]]
+| ''[[B in the Mix: The Remixes]]''
+| [[Electronic music|Electronic]], [[dance-pop]], [[House music|house]]
+| [[Jive Records|Jive]]
+| 
+|-
+| [[Chamillionaire]]
+| ''[[The Sound of Revenge]]''
+| [[Southern hip-hop]], [[gangsta rap]]
+| [[Chamillitary Entertainment|Chamilitary]], [[Universal Records (1995−2006)|Universal]]
+| 
+|-
+| [[Fort Minor]]
+| ''[[The Rising Tied]]''
+| [[Alternative hip-hop]], [[rap rock]]
+| [[Machine Shop Records|Machine Shop]], [[Warner Records|Warner Bros.]]
+| 
+|-
+| [[John Mayer Trio]]
+| ''[[Try!]]''
+| 
+| [[Columbia Records|Columbia]]
+| 
+|-
+| [[Juelz Santana]]
+| ''[[What the Game's Been Missing!]]''
+| [[Hip-hop]]
+| [[Diplomat Records|Diplomat]], [[Def Jam Recordings|Def Jam]]
+| 
+|-
+| [[Okkervil River]]
+| ''[[Black Sheep Boy Appendix]]''
+| [[Indie rock]]
+| [[Jagjaguwar]]
+| 
+|-
+| [[Purple Ribbon All-Stars]]
+| ''[[Got Purp? Vol. 2]]''
+| [[Southern hip-hop]]
+| [[Purple Ribbon Records|Purple Ribbon]], [[Virgin Records|Virgin]]
+| 
+|-
+| [[Queens of the Stone Age]]
+| ''[[Over the Years and Through the Woods]]''
+| [[Hard rock]]
+| [[Interscope Records|Interscope]]
+| <ref>{{cite web |url=https://pitchfork.com/reviews/albums/6608-over-the-years-and-through-the-woods/ |title=Queens of the Stone Age: ''Over the Years and Through the Woods'' |work=Pitchfork |date=November 21, 2005 |access-date=December 2, 2018 |author=Raposa, David}}</ref>
+|-
+| [[Scott Stapp]]
+| ''[[The Great Divide (Scott Stapp album)|The Great Divide]]''
+| [[Post-grunge]], [[hard rock]], [[alternative metal]]
+| [[Wind-up Records|Wind-up]]
+| <ref>{{cite web |url=https://www.huffingtonpost.com/entry/scott-stapps-great-divide_us_57d632ade4b0273330ac4596 |title=Scott Stapp's ''Great Divide'' |work=HuffPost |date=March 14, 2006 |access-date=August 9, 2018 |author=Joseph, Mark}}</ref>
+|-
+| [[Seu Jorge]]
+| ''[[The Life Aquatic Studio Sessions]]''
+| [[Música popular brasileira|MPB]], [[folk music|folk]]
+| [[Hollywood Records|Hollywood]]
+| <ref>{{cite web |url=https://pitchfork.com/reviews/albums/4362-the-life-aquatic-studio-sessions-featuring-seu-jorge/ |title=Seu Jorge - ''The Life Aquatic Studio Sessions featuring Seu Jorge'' |work=Pitchfork |date=January 12, 2006 |access-date=November 14, 2025 |author=Fennessey, Sean}}</ref>
+|-
+| [[System of a Down]]
+| ''[[Hypnotize (album)|Hypnotize]]''
+| [[Heavy metal music|Heavy metal]], [[nu metal]], [[alternative metal]]
+| [[Columbia Records|Columbia]], [[American Recordings (record label)|American]]
+| 
+|-
+| Various artists
+| ''[[Hurricane Relief: Come Together Now]]''
+| [[Rock music|Rock]], [[Pop music|pop]], [[Country music|country]]
+| [[Universal Music Group|Universal]]
+| <ref>{{cite web |url=https://www.rollingstone.com/music/music-news/joss-stone-john-legend-do-katrina-benefit-85117/ |title=Joss Stone, John Legend Do Katrina Benefit |work=Rolling Stone |date=October 18, 2005 |access-date=December 2, 2018 |author=Rogulewski, Charley}}</ref>
+|-
+! scope="row" style="text-align:center;" | November<br/>23
+| [[Per Gessle]]
+| ''[[Son of a Plumber]]''
+| [[Pop music|Pop]]
+| Elevator Entertainment, [[Capitol Records|Capitol]]
+| 
+|-
+! scope="row" rowspan="6" style="text-align:center;" | November<br/>28
+| [[Cadence Weapon]]
+| ''[[Breaking Kayfabe]]''
+| [[Hip-hop]]
+| [[Upper Class Recordings|Upper Class]]
+| 
+|-
+| [[The Darkness (band)|The Darkness]]
+| ''[[One Way Ticket to Hell... and Back]]''
+| [[Hard rock]], [[glam rock]]
+| [[Atlantic Records|Atlantic]]
+| 
+|-
+| [[Fields of the Nephilim]]
+| ''[[Mourning Sun]]''
+| [[Gothic rock]], [[gothic metal]]
+| [[SPV GmbH|SPV]]
+| 
+|-
+| [[The Ocean (band)|The Ocean]]
+| ''[[Aeolian (album)|Aeolian]]''
+| [[Sludge metal]], [[progressive metal]], [[extreme metal]]
+| [[Metal Blade Records|Metal Blade]]
+| 
+|-
+| [[Sacrificium]]
+| ''Escaping the Stupor''
+| 
+| [[Black Lotus Records|Black Lotus]]
+| <ref>{{cite web |url=http://www.musikreviews.de/reviews/2005/Sacrificium/Escaping-The-Stupor/ |title=Sacrificium: ''Escaping the Stupor'' (Review) |work=MusikReviews.de |language=German |date=February 1, 2008 |access-date=August 15, 2019 |author=Sciffmann, Andreas}}</ref>
+|-
+| [[Shakira]]
+| ''[[Oral Fixation, Vol. 2]]''
+| [[Pop rock]]
+| [[Epic Records|Epic]]
+| 
+|-
+! scope="row" rowspan="3" style="text-align:center;" | November<br/>29
+| [[Chris Brown]]
+| ''[[Chris Brown (album)|Chris Brown]]''
+| [[Contemporary R&B|R&B]]
+| [[Jive Records|Jive]], CBE
+| 
+|-
+| [[Dave Matthews Band]]
+| ''[[Weekend on the Rocks]]''
+| [[Rock music|Rock]]
+| [[RCA Records|RCA]]
+| <ref>{{cite web |url=https://glidemagazine.com/2742/dave-matthews-band/ |title=Dave Matthews Band: ''Weekend on the Rocks'' |work=Glide Magazine |date=December 12, 2005 |access-date=November 29, 2018 |author=Rookds, Jason}}</ref>
+|-
+| [[INXS]]
+| ''[[Switch (INXS album)|Switch]]''
+| [[Funk rock]]
+| [[Epic Records|Epic]]
+| 
+|-
+! scope="row" style="text-align:center;" | November<br/>30
+| [[Lindsay Lohan]]
+| ''[[A Little More Personal (Raw)]]''
+| [[Pop rock]]
+| [[Casablanca Records|Casablanca]]
+| 
+|}
+
+===December===
+{|class="wikitable plainrowheaders"
+|+ List of albums released in December 2005
+| colspan="6" style="text-align:center;"|{{Monthbar}}
+|-
+! scope="col"| Release date
+! scope="col"| Artist
+! scope="col"| Album
+! scope="col"| Genre
+! scope="col"| Label
+! scope="col"| {{abbr|Ref.|Reference}}
+|-
+! scope="row" style="text-align:center;" | December<br/>5
+| [[Super Junior]]
+| ''[[Twins (Super Junior album)|Twins]]''
+| [[K-pop]], [[bubblegum pop]], [[dance-pop|dance]]
+| [[SM Entertainment|SM]], [[Avex Taiwan]]
+| <ref>{{cite web |url=https://entertain.naver.com/read?oid=112&aid=0000022618 |title=슈퍼주니어 데뷔 앨범 28일 발매 |trans-title=Super Junior debut album released on 28th |work=Naver TV |language=Korean |date=November 28, 2005 |access-date=December 7, 2018}}</ref>
+|-
+! scope="row" rowspan="5" style="text-align:center;" | December<br/>6
+| [[Job for a Cowboy]]
+| ''[[Doom (EP)|Doom]]''
+| [[Deathcore]]
+| King of the Monsters, [[Metal Blade Records|Metal Blade]]
+| <ref>{{cite web |url=https://www.tinymixtapes.com/music-review/job-cowboy-doom |title=Job for a Cowboy - ''Doom'' |work=Tiny Mix Tapes |access-date=September 28, 2019}}</ref>
+|-
+| [[Korn]]
+| ''[[See You on the Other Side (Korn album)|See You on the Other Side]]''
+| [[Nu metal]], [[alternative metal]], [[industrial rock]]
+| [[EMI Records|EMI]], [[Virgin Records|Virgin]]
+| 
+|-
+| [[Lil Wayne]]
+| ''[[Tha Carter II]]''
+| [[Hip-hop]], [[hardcore hip-hop]], [[Contemporary R&B|R&B]]
+| [[Cash Money Records|Cash Money]], [[Young Money Entertainment|Young Money]], [[Universal Records (1995−2006)|Universal]]
+| 
+|-
+| [[T-Pain]]
+| ''[[Rappa Ternt Sanga]]''
+| [[Contemporary R&B|R&B]], [[hip-hop]]
+| [[Konvict Muzik|Konvict]], [[Jive Records|Jive]], [[Zomba Group|Zomba]]
+| 
+|-
+| [[The White Stripes]]
+| ''Walking with a Ghost''
+| 
+| [[V2 Records|V2]]
+| <ref>{{cite web |url=https://pitchfork.com/reviews/albums/8654-walking-with-a-ghost-ep/ |title=The White Stripes: ''Walking with a Ghost'' EP |work=Pitchfork |date=December 12, 2005 |access-date=December 7, 2018 |author=Murphy, Matthew}}</ref>
+|-
+! scope="row" rowspan="6" style="text-align:center;" | December<br/>13
+| [[Anthony Hamilton (musician)|Anthony Hamilton]]
+| ''[[Ain't Nobody Worryin']]''
+| [[Contemporary R&B|R&B]], [[Soul music|soul]], [[neo soul]]
+| [[So So Def Recordings|So So Def]], [[Zomba Group|Zomba]]
+| 
+|-
+| [[Beck]]
+| ''[[Guerolito]]''
+| [[Alternative rock]]
+| [[Geffen Records|Geffen]]
+| 
+|-
+| [[Bo Bice]]
+| ''[[The Real Thing (Bo Bice album)|The Real Thing]]''
+| [[Alternative rock]]
+| [[RCA Records|RCA]], [[19 Recordings|19]]
+| 
+|-
+| [[Daddy Yankee]]
+| ''[[Barrio Fino en Directo]]''
+| [[Reggaeton]], [[hip-hop]]
+| [[Interscope Records|Interscope]], [[El Cartel Records|El Cartel]]
+| 
+|-
+| [[Lamb of God (band)|Lamb of God]]
+| ''[[Killadelphia (album)|Killadelphia]]''
+| [[Groove metal]], [[metalcore]]
+| [[Epic Records|Epic]]
+| <ref>{{cite web |url=https://www.blabbermouth.net/cdreviews/killadelphia-audio/ |title=Lamb of God, ''Killadelphia'' (Audio) |work=Blabbermouth.net |date=December 19, 2005 |access-date=December 7, 2018 |author=Alisoglu, Scott}}</ref>
+|-
+| [[YoungBloodZ]]
+| ''[[Ev'rybody Know Me]]''
+| [[Southern hip-hop]], [[crunk]]
+| [[LaFace Records|LaFace]], [[Zomba Group|Zomba]]
+| <ref>{{cite web |url=http://www.rapreviews.com/archive/2006_01F_evrybody.html |title=YoungBloodz :: ''Ev'rybody Know Me'' |work=RapReviews.com |date=January 24, 2006 |access-date=December 7, 2018 |author=Hernandez, Pedro}}</ref>
+|-
+! scope="row" style="text-align:center;" | December<br/>15
+| [[Christian Bautista]]
+| ''[[Completely (Christian Bautista album)|Completely]]''
+| [[Pop music|Pop]]
+| [[Warner Music Group|Warner]]
+| <ref>{{cite web |url=http://www.titikpilipino.com/album/reviews.php?albumid=737 |archive-url=https://web.archive.org/web/20060910002335/http://www.titikpilipino.com/album/reviews.php?albumid=737 |title=''Completely'' - Christian Bautista |work=Titik Pilipino |archive-date=September 10, 2006 |access-date=July 8, 2020 |author=Odon, Resty |url-status=usurped}}</ref>
+|-
+! scope="row" rowspan="3" style="text-align:center;" | December<br/>19
+| [[Agnes (singer)|Agnes]]
+| ''[[Agnes (album)|Agnes]]''
+| 
+| [[Columbia Records|Columbia]]
+| 
+|-
+| [[The Notorious B.I.G.]]
+| ''[[Duets: The Final Chapter]]''
+| [[Hip-hop]]
+| [[Bad Boy Records|Bad Boy]], [[Atlantic Records|Atlantic]]
+| 
+|-
+| [[Ryan Adams]]
+| ''[[29 (album)|29]]''
+| [[Alternative country]], [[folk rock]]
+| [[Lost Highway Records|Lost Highway]]
+| 
+|-
+! scope="row" rowspan="2" style="text-align:center;" | December<br/>20
+| [[Jamie Foxx]]
+| ''[[Unpredictable (Jamie Foxx album)|Unpredictable]]''
+| [[Contemporary R&B|R&B]], [[hip-hop]], [[Pop music|pop]]
+| [[J Records|J]]
+| 
+|-
+| [[Mary J. Blige]]
+| ''[[The Breakthrough]]''
+| [[Contemporary R&B|R&B]]
+| [[Geffen Records|Geffen]]
+| 
+|-
+! scope="row" style="text-align:center;" | December<br/>27
+| [[Trick Trick]]
+| ''[[The People vs.]]''
+| [[Hip-hop]], [[gangsta rap]]
+| [[Motown]]
+| 
+|-
+! scope="row" style="text-align:center;" | December<br/>28
+| [[DragonForce]]
+| ''[[Inhuman Rampage]]''
+| [[Power metal]]
+| [[Noise Records|Noise]], [[Sanctuary Records|Sanctuary]], [[Roadrunner Records|Roadrunner]]
+| 
+|-
+! scope="row" style="text-align:center;" | December<br/>30
+| [[The Strokes]]
+| ''[[First Impressions of Earth]]''
+| [[Indie rock]], [[garage rock revival]], [[post-punk revival]]
+| [[RCA Records|RCA]], [[Rough Trade Records|Rough Trade]]
+| 
+|-
+! scope="row" style="text-align:center;" | December<br/>31
+| [[Clipse]]
+| ''[[We Got It 4 Cheap, Vol. 2]]''
+| [[Hip-hop]]
+| Re-Up Records
+| 
+|}
+
+==References==
+{{Reflist|30em}}
+
+{{Albums by release date}}
+
+{{DEFAULTSORT:2005 albums}}
+[[Category:2005 albums| ]]
+[[Category:2005-related lists|Albums]]
+[[Category:Lists of albums by release date|2005]]

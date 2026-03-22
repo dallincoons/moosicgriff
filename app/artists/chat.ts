@@ -1,7 +1,7 @@
-import openai from "app/clients/openai";
 import {getHtml} from "app/clients/wikipedia";
 
 export async function getArtistLinksFromContent(content: string): Promise<string> {
+    const { default: openai } = await import("app/clients/openai");
     const response = await openai.chat.completions.create({
         messages: [
             {
@@ -30,7 +30,8 @@ export async function getBandName(link: string): Promise<string> {
         const match = html.match(/<title>(.*?) - Wikipedia<\/title>/);
         if (match && match[1]) {
             let bandName = match[1];
-            return bandName.replace(/\s*\(.*?\)\s*$/, '');
+            const normalized = bandName.replace(/\s*\(.*?\)\s*$/, '');
+            return normalized;
         }
 
         if (urlIndicatesBand) {

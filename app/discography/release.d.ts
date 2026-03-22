@@ -3,6 +3,7 @@ export interface Release {
     artist_name: string
     artist_display_name: string
     name: string
+    original_title: string
     producer: string
     studio: string
     type: string
@@ -14,6 +15,7 @@ export interface Release {
     month: string,
     day: number|null,
     wikilink: string
+    wikipedia_page_id?: number | null
     number_of_reviews: number
     review_links: string
 }
@@ -24,7 +26,9 @@ export interface DBRelease {
     artist_name: string
     artist_display_name?: string | null
     wikilink: string
+    wikipedia_page_id?: number | null
     title: string
+    original_title?: string | null
     dateyear: number | null
     datemonth: string
     dateday: number | null

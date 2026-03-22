@@ -1,6 +1,7 @@
 import artists from "app/repositories/artists/artists";
 import discography from "app/repositories/discography/discography";
 import discographyDeadlinks from "app/repositories/discographydeadlinks/discographydeadlinks";
+import {handleLink as handleArtistLink} from "app/artists/scrape";
 import {Release} from "./release";
 import {getHtml, getSectionWikiLinks, isMissingArticlePage} from "app/clients/wikipedia";
 import {createHash} from "crypto";
@@ -145,6 +146,7 @@ async function buildReleaseIfAlbum(
     if (!release) {
         return { reason: "not_album" };
     }
+    await ensureArtistExistsForRelease(artistWikilink, link, release);
 
     return { release, contentHash, reason: "ok" };
 }
@@ -155,4 +157,18 @@ function hashContent(content: string): string {
 
 function looksLikeAlbumHtml(html: string): boolean {
     return /infobox[^>]*album/i.test(html) || /Template:Infobox_album/i.test(html);
+}
+
+async function ensureArtistExistsForRelease(parentArtistWikilink: string, albumWikilink: string, release: Release): Promise<void> {
+    const albumArtistWikilink = (release.artist_wikilink || "").trim();
+    if (!albumArtistWikilink) {
+        return;
+    }
+
+    if (await artists.getArtistByUrl(albumArtistWikilink)) {
+        return;
+    }
+
+    console.log(`[discography] discovered missing artist from album "${albumWikilink}": ${albumArtistWikilink}; scraping link`);
+    await handleArtistLink(albumArtistWikilink, parentArtistWikilink);
 }

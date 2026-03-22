@@ -1,4 +1,21 @@
 services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    environment:
+      - OPEN_API_API_KEY=${OPEN_API_API_KEY}
+      - MAX_DEPTH=${MAX_DEPTH:-500}
+      - GOOSE_DBSTRING=postgresql://postgres:password@postgres:5432/moosicgraff
+      - GOOSE_DRIVER=postgres
+      - GOOSE_MIGRATION_DIR=./migrations
+    volumes:
+      - ./logs:/app/logs
+    command: ["artists"]
+
   postgres:
     image: postgres:17.2
     restart: unless-stopped

@@ -17,6 +17,7 @@ export function parseReleases(rawContents: string): Release[] {
                 artist_name: "",
                 artist_display_name: "",
                 name: <string>match[1],
+                original_title: <string>match[1],
                 producer: <string>match[2],
                 studio: "",
                 type: <string>match[3],
@@ -28,6 +29,7 @@ export function parseReleases(rawContents: string): Release[] {
                 month: !!match[6] ? match[6].trim() : "",
                 day: isNaN(parseInt(match[7])) ? null : parseInt(match[7]),
                 wikilink: <string>match[8] ?? "",
+                wikipedia_page_id: null,
                 number_of_reviews: 0,
                 review_links: "",
             }

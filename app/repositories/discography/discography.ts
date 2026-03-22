@@ -2,6 +2,9 @@ import {db} from 'app/repositories/db';
 import {DBRelease, Release} from "../../discography/release";
 import {DBArtist} from "../../artists/artist";
 
+const green = "\x1b[32m";
+const reset = "\x1b[0m";
+
 class Discography {
     async getReleaseByArtistAndLink(artistWikilink: string, releaseWikilink: string): Promise<DBRelease | undefined> {
         const [release]: [DBRelease?] = await db`
@@ -9,6 +12,17 @@ class Discography {
             FROM releases
             WHERE artist_wikilink = ${artistWikilink}
             AND wikilink = ${releaseWikilink}
+            LIMIT 1
+        `;
+
+        return release;
+    }
+
+    async getReleaseByWikipediaPageId(wikipediaPageId: number): Promise<DBRelease | undefined> {
+        const [release]: [DBRelease?] = await db`
+            SELECT *
+            FROM releases
+            WHERE wikipedia_page_id = ${wikipediaPageId}
             LIMIT 1
         `;
 
@@ -23,17 +37,23 @@ class Discography {
 
         const originalReleaseType = release.type || "";
         const normalizedReleaseType = normalizeReleaseType(originalReleaseType);
-        const existing = await this.getReleaseByArtistAndLink(artist.wikilink, release.wikilink);
+        const existingByLink = await this.getReleaseByArtistAndLink(artist.wikilink, release.wikilink);
+        const existingByPageId = release.wikipedia_page_id
+            ? await this.getReleaseByWikipediaPageId(release.wikipedia_page_id)
+            : undefined;
+        const existing = existingByLink || existingByPageId;
 
         if (!existing) {
             await db`
                 insert into releases
                     (
                         wikilink,
+                        wikipedia_page_id,
                         artist_wikilink,
                         artist_name,
                         artist_display_name,
                         title,
+                        original_title,
                         releasetype,
                         original_releasetype,
                         label,
@@ -50,10 +70,12 @@ class Discography {
                         review_links
                     ) VALUES (
                         ${release.wikilink}::text,
+                        ${release.wikipedia_page_id ?? null}::bigint,
                         ${artist.wikilink}::text,
                         ${(release.artist_name || artist.artistname)}::text,
                         ${(release.artist_display_name || release.artist_name || artist.artistname)}::text,
                         ${release.name}::text,
+                        ${(release.original_title || release.name)}::text,
                         ${normalizedReleaseType}::text,
                         ${originalReleaseType}::text,
                         ${release.label}::text,
@@ -70,15 +92,19 @@ class Discography {
                         ${release.review_links}::text
                     )
             `;
+            console.log(`${green}[discography] inserted album: ${release.name} (${release.wikilink})${reset}`);
             return;
         }
 
         await db`
             update releases
             set
+                wikilink = ${release.wikilink}::text,
+                wikipedia_page_id = ${release.wikipedia_page_id ?? null}::bigint,
                 artist_name = ${(release.artist_name || artist.artistname)}::text,
                 artist_display_name = ${(release.artist_display_name || release.artist_name || artist.artistname)}::text,
                 title = ${release.name}::text,
+                original_title = ${(release.original_title || release.name)}::text,
                 releasetype = ${normalizedReleaseType}::text,
                 original_releasetype = ${originalReleaseType}::text,
                 label = ${release.label}::text,
@@ -94,8 +120,7 @@ class Discography {
                 number_of_reviews = ${release.number_of_reviews}::integer,
                 review_links = ${release.review_links}::text,
                 last_updated_at = CURRENT_TIMESTAMP
-            where artist_wikilink = ${artist.wikilink}
-              and wikilink = ${release.wikilink}
+            where id = ${existing.id}
         `;
     }
 }
