@@ -7,8 +7,8 @@ import {getHtml, getSectionWikiLinks, isMissingArticlePage} from "app/clients/wi
 import {createHash} from "crypto";
 import {getAlbumReleaseFromApi} from "app/clients/wikipediaapi";
 
-export async function scrape() {
-    const artist = await artists.getWhereDiscographyNotFound();
+export async function scrape(runStartedAt: Date = new Date()) {
+    const artist = await artists.getWhereDiscographyNotFound(runStartedAt);
 
     if (!artist) {
         console.log("No more artists to process for discography. Exiting gracefully.");
@@ -17,14 +17,26 @@ export async function scrape() {
 
     let artistLink = artist.wikilink;
     let releaseLinks: string[] = [];
+    let discographySource: DiscographySource | null = null;
 
     console.log("");
     console.log("fetching discography for: " + artist.artistname + ", " + artistLink);
 
-    releaseLinks = await getDiscographyFromDiscographyPage(artistLink);
+    discographySource = await getDiscographySource(artistLink);
+    releaseLinks = discographySource?.releaseLinks || [];
 
-    if (releaseLinks.length === 0) {
-        releaseLinks = await getDiscographyFromArtistPage(artistLink);
+    if (
+        discographySource &&
+        artist.discography_wikilink === discographySource.sourceWikilink &&
+        artist.discography_content_hash === discographySource.sourceContentHash
+    ) {
+        console.log(
+            `[discography] ${artist.artistname}: no discography source changes (${discographySource.sourceWikilink}); skipping release updates`,
+        );
+        await artists.markAsDiscographyFound(artist.wikilink);
+        console.log(`[discography] ${artist.artistname}: marked discography complete`);
+        console.log("");
+        return await scrape(runStartedAt);
     }
 
     console.log(`[discography] ${artist.artistname}: ${releaseLinks.length} candidate links found`);
@@ -43,42 +55,74 @@ export async function scrape() {
     }
     console.log(`[discography] ${artist.artistname}: upserted ${upserted} releases`);
 
+    await artists.updateDiscographySourceState(
+        artist.wikilink,
+        discographySource?.sourceWikilink || null,
+        discographySource?.sourceContentHash || null,
+    );
     await artists.markAsDiscographyFound(artist.wikilink);
     console.log(`[discography] ${artist.artistname}: marked discography complete`);
     console.log("");
 
-    return await scrape();
+    return await scrape(runStartedAt);
 }
 
 export async function getDiscographyFromDiscographyPage(artistLink:string) {
-    try {
-        const discographyUrl = artistLink + "_discography";
-        if (await isMissingArticlePage(discographyUrl)) {
-            console.log(`${discographyUrl}: no exact discography article; falling back to artist page`);
-            return [];
-        }
-
-        const links = await getSectionWikiLinks(discographyUrl, "Albums", "References");
-        console.log(`discography page found: ${discographyUrl}`);
-        return links;
-    } catch (e: any) {
-        if (e.status == 404) {
-            console.log(artistLink + ": no discography page detected");
-        }
-        return [];
-    }
+    const source = await fetchDiscographySource(artistLink + "_discography", "Albums", "References");
+    return source?.releaseLinks || [];
 }
 
 export async function getDiscographyFromArtistPage(artistLink:string) {
     console.log(`${artistLink}: fetching discography from the artist page`);
 
+    const source = await fetchDiscographySource(artistLink, "Discography", "References");
+    return source?.releaseLinks || [];
+}
+
+type DiscographySource = {
+    sourceWikilink: string;
+    sourceContentHash: string;
+    releaseLinks: string[];
+};
+
+async function getDiscographySource(artistLink: string): Promise<DiscographySource | null> {
+    const discographyUrl = `${artistLink}_discography`;
+    const discographySource = await fetchDiscographySource(discographyUrl, "Albums", "References");
+    if (discographySource && discographySource.releaseLinks.length > 0) {
+        console.log(`discography page found: ${discographyUrl}`);
+        return discographySource;
+    }
+
+    if (!discographySource) {
+        console.log(`${discographyUrl}: no exact discography article; falling back to artist page`);
+    }
+
+    console.log(`${artistLink}: fetching discography from the artist page`);
+    return await fetchDiscographySource(artistLink, "Discography", "References");
+}
+
+async function fetchDiscographySource(
+    sourceWikilink: string,
+    startHeader: string,
+    endHeader: string,
+): Promise<DiscographySource | null> {
     try {
-        const links = await getSectionWikiLinks(artistLink, "Discography", "References");
-        return links;
+        if (await isMissingArticlePage(sourceWikilink)) {
+            return null;
+        }
+
+        const html = await getHtml(sourceWikilink);
+        const links = await getSectionWikiLinks(sourceWikilink, startHeader, endHeader);
+        return {
+            sourceWikilink,
+            sourceContentHash: hashContent(html),
+            releaseLinks: links,
+        };
     } catch (e: any) {
         if (e.status == 404) {
+            return null;
         }
-        return [];
+        return null;
     }
 }
 

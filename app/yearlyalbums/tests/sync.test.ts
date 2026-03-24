@@ -41,4 +41,21 @@ describe("yearlyalbums sync shouldProcessEntry", () => {
 
         expect(ok).toBe(false);
     });
+
+    it("accepts when artist link is missing but album wikilink exists in releases year index", () => {
+        const ok = shouldProcessEntry(
+            "",
+            "https://en.wikipedia.org/wiki/I%27m_Wide_Awake,_It%27s_Morning",
+            new Set<string>(),
+            new Set<string>(),
+            new Map<string, string>([
+                [
+                    "https://en.wikipedia.org/wiki/i'm_wide_awake,_it's_morning",
+                    "https://en.wikipedia.org/wiki/bright_eyes_(band)",
+                ],
+            ]),
+        );
+
+        expect(ok).toBe(true);
+    });
 });

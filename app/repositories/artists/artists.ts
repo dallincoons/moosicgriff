@@ -23,11 +23,17 @@ class Artists {
         return rows;
     }
 
-    async nextInQueue(): Promise<DBArtist|undefined> {
+    async nextInQueue(runStartedAt: Date): Promise<DBArtist|undefined> {
         const [nextArtist]: [DBArtist?] = await db`
             SELECT *
             FROM artists
-            WHERE found_peers = false
+            WHERE peers_scraped_at IS NULL
+               OR peers_scraped_at < ${runStartedAt.toISOString()}::timestamp
+            ORDER BY
+                CASE WHEN peers_scraped_at IS NULL THEN 0 ELSE 1 END ASC,
+                CASE WHEN peers_scraped_at IS NULL THEN id END DESC,
+                peers_scraped_at ASC NULLS LAST,
+                id ASC
             LIMIT 1
         `
 
@@ -55,7 +61,10 @@ class Artists {
 
     async markAsPeersFound(url: string) {
         await db`
-            UPDATE artists SET found_peers = true WHERE wikilink = ${url}
+            UPDATE artists
+            SET found_peers = true,
+                peers_scraped_at = CURRENT_TIMESTAMP
+            WHERE wikilink = ${url}
         `
     }
 
@@ -67,19 +76,39 @@ class Artists {
 
     async markAsDiscographyFound(url: string) {
         await db`
-            UPDATE artists SET found_discography = true WHERE wikilink = ${url}
+            UPDATE artists
+            SET found_discography = true,
+                discography_scraped_at = CURRENT_TIMESTAMP
+            WHERE wikilink = ${url}
+        `
+    }
+
+    async updateDiscographySourceState(
+        url: string,
+        discographyWikilink: string | null,
+        discographyContentHash: string | null,
+    ): Promise<void> {
+        await db`
+            UPDATE artists
+            SET discography_wikilink = ${discographyWikilink}::text,
+                discography_content_hash = ${discographyContentHash}::text
+            WHERE wikilink = ${url}
         `
     }
 
     async resetAllFoundPeers(): Promise<void> {
         await db`
-            UPDATE artists SET found_peers = false
+            UPDATE artists
+            SET found_peers = false,
+                peers_scraped_at = NULL
         `
     }
 
     async resetAllFoundDiscography(): Promise<void> {
         await db`
-            UPDATE artists SET found_discography = false
+            UPDATE artists
+            SET found_discography = false,
+                discography_scraped_at = NULL
         `
     }
 
@@ -119,11 +148,13 @@ class Artists {
         await db`DELETE FROM artists where wikilink = ${url}`
     }
 
-    async getWhereDiscographyNotFound(): Promise<DBArtist|undefined> {
+    async getWhereDiscographyNotFound(runStartedAt: Date): Promise<DBArtist|undefined> {
         const [nextArtist]: [DBArtist?] = await db`
             SELECT *
             FROM artists
-            WHERE found_discography = false
+            WHERE discography_scraped_at IS NULL
+               OR discography_scraped_at < ${runStartedAt.toISOString()}::timestamp
+            ORDER BY discography_scraped_at ASC NULLS FIRST, id ASC
             LIMIT 1
         `
 

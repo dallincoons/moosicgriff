@@ -98,8 +98,8 @@ export async function handleLink(link: string, parentLink: string = ""): Promise
     }
 }
 
-export async function scrape(hasProcessedArtists: boolean = false) {
-    const nextArtist = await artists.nextInQueue();
+export async function scrape(runStartedAt: Date = new Date(), hasProcessedArtists: boolean = false) {
+    const nextArtist = await artists.nextInQueue(runStartedAt);
 
     if (!nextArtist) {
         console.log(hasProcessedArtists ? "No more artists to process." : "No artists to process.");
@@ -110,10 +110,6 @@ export async function scrape(hasProcessedArtists: boolean = false) {
 
     const persistedArtist = await artists.getArtistByUrl(artist.url);
 
-    if (persistedArtist && persistedArtist.found_peers) {
-        return;
-    }
-
     const pageData = await getChildren(artist);
     const pageContentHash = hashContent(pageData.html);
 
@@ -123,7 +119,7 @@ export async function scrape(hasProcessedArtists: boolean = false) {
         }
         console.log(`No page changes detected for ${artist.url}; skipping.`);
         await artists.markAsPeersFound(artist.url);
-        await scrape(true);
+        await scrape(runStartedAt, true);
         return;
     }
 
@@ -142,7 +138,7 @@ export async function scrape(hasProcessedArtists: boolean = false) {
     await artists.updatePageContentHash(artist.url, pageContentHash);
     await artists.markAsPeersFound(artist.url);
 
-    await scrape(true);
+    await scrape(runStartedAt, true);
 }
 
 async function getChildren(artist:Artist): Promise<{html: string; links: string[]}> {

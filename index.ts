@@ -117,6 +117,16 @@ async function main(): Promise<void> {
             await yearlyAlbumsMissingFromReference(args[1], args[2]);
             return;
         }
+        case 'yearly.albums.needs_review.mark': {
+            const { yearlyAlbumsNeedsReviewMark } = await import("./app/yearlyalbums/query/needsreview");
+            await yearlyAlbumsNeedsReviewMark(args[1], args[2]);
+            return;
+        }
+        case 'yearly.albums.needs_review.list': {
+            const { yearlyAlbumsNeedsReviewList } = await import("./app/yearlyalbums/query/needsreview");
+            await yearlyAlbumsNeedsReviewList(args[1]);
+            return;
+        }
         default:
             console.log("command not recognized");
     }

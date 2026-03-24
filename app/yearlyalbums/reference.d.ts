@@ -8,4 +8,5 @@ export interface YearlyAlbumReference {
     genre: string;
     record_label: string;
     source_list_wikilink: string;
+    needs_review?: boolean;
 }

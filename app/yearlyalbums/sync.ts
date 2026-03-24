@@ -182,12 +182,15 @@ function extractAlbumEntriesFromYearlyListHtml(sourcePageUrl: string, html: stri
             const genreCell = firstIsDateHeader ? cells.eq(3) : cells.eq(2);
             const labelCell = firstIsDateHeader ? cells.eq(4) : cells.eq(3);
 
-            const artistHref = artistCell.find('a[href^="/wiki/"]').first().attr("href");
             const albumHref = albumCell.find('a[href^="/wiki/"]').first().attr("href");
-            if (!artistHref || !albumHref) {
+            const artistHref = artistCell.find('a[href^="/wiki/"]').first().attr("href");
+            if (!albumHref) {
                 return;
             }
-            if (artistHref.includes(":") || artistHref.includes("#") || albumHref.includes(":") || albumHref.includes("#")) {
+            if (albumHref.includes(":") || albumHref.includes("#")) {
+                return;
+            }
+            if (artistHref && (artistHref.includes(":") || artistHref.includes("#"))) {
                 return;
             }
 
@@ -202,7 +205,7 @@ function extractAlbumEntriesFromYearlyListHtml(sourcePageUrl: string, html: stri
             }
 
             entries.push({
-                artistWikilink: `https://en.wikipedia.org${artistHref}`,
+                artistWikilink: artistHref ? `https://en.wikipedia.org${artistHref}` : "",
                 albumWikilink: `https://en.wikipedia.org${albumHref}`,
                 albumName: normalizeCellText(albumCell.text()),
                 genre: normalizeCellText(genreCell.text()),
