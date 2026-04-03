@@ -33,6 +33,8 @@ export async function scrape(runStartedAt: Date = new Date()) {
         console.log(
             `[discography] ${artist.artistname}: no discography source changes (${discographySource.sourceWikilink}); skipping release updates`,
         );
+        const hasMissingWikilinks = await artists.refreshHasMissingReleaseWikilinks(artist.wikilink);
+        console.log(`[discography] ${artist.artistname}: has_missing_release_wikilinks=${hasMissingWikilinks}`);
         await artists.markAsDiscographyFound(artist.wikilink);
         console.log(`[discography] ${artist.artistname}: marked discography complete`);
         console.log("");
@@ -60,6 +62,8 @@ export async function scrape(runStartedAt: Date = new Date()) {
         discographySource?.sourceWikilink || null,
         discographySource?.sourceContentHash || null,
     );
+    const hasMissingWikilinks = await artists.refreshHasMissingReleaseWikilinks(artist.wikilink);
+    console.log(`[discography] ${artist.artistname}: has_missing_release_wikilinks=${hasMissingWikilinks}`);
     await artists.markAsDiscographyFound(artist.wikilink);
     console.log(`[discography] ${artist.artistname}: marked discography complete`);
     console.log("");
@@ -68,7 +72,11 @@ export async function scrape(runStartedAt: Date = new Date()) {
 }
 
 export async function getDiscographyFromDiscographyPage(artistLink:string) {
-    const source = await fetchDiscographySource(artistLink + "_discography", "Albums", "References");
+    const source = await fetchDiscographySourceWithStartHeaders(
+        artistLink + "_discography",
+        ["Albums", "Studio albums", "Discography"],
+        "References",
+    );
     return source?.releaseLinks || [];
 }
 
@@ -87,7 +95,11 @@ type DiscographySource = {
 
 async function getDiscographySource(artistLink: string): Promise<DiscographySource | null> {
     const discographyUrl = `${artistLink}_discography`;
-    const discographySource = await fetchDiscographySource(discographyUrl, "Albums", "References");
+    const discographySource = await fetchDiscographySourceWithStartHeaders(
+        discographyUrl,
+        ["Albums", "Studio albums", "Discography"],
+        "References",
+    );
     if (discographySource && discographySource.releaseLinks.length > 0) {
         console.log(`discography page found: ${discographyUrl}`);
         return discographySource;
@@ -99,6 +111,20 @@ async function getDiscographySource(artistLink: string): Promise<DiscographySour
 
     console.log(`${artistLink}: fetching discography from the artist page`);
     return await fetchDiscographySource(artistLink, "Discography", "References");
+}
+
+async function fetchDiscographySourceWithStartHeaders(
+    sourceWikilink: string,
+    startHeaders: string[],
+    endHeader: string,
+): Promise<DiscographySource | null> {
+    for (const startHeader of startHeaders) {
+        const source = await fetchDiscographySource(sourceWikilink, startHeader, endHeader);
+        if (source && source.releaseLinks.length > 0) {
+            return source;
+        }
+    }
+    return null;
 }
 
 async function fetchDiscographySource(

@@ -1,4 +1,5 @@
 import {getHtml} from "app/clients/wikipedia";
+import * as cheerio from "cheerio";
 
 export async function getArtistLinksFromContent(content: string): Promise<string> {
     const { default: openai } = await import("app/clients/openai");
@@ -23,9 +24,8 @@ export async function getBandName(link: string): Promise<string> {
     try {
         let html = await getHtml(link);
         const urlIndicatesBand = /\(band\)/i.test(decodeURIComponent(link));
-
-        const isBandPage = /Template:Infobox_musical_artist|Template:Infobox_band/i.test(html);
-        if (!isBandPage && !urlIndicatesBand) return '';
+        const isMusicPage = isLikelyMusicArtistPage(link, html);
+        if (!isMusicPage && !urlIndicatesBand) return '';
 
         const match = html.match(/<title>(.*?) - Wikipedia<\/title>/);
         if (match && match[1]) {
@@ -46,6 +46,109 @@ export async function getBandName(link: string): Promise<string> {
         }
         return '';
     }
+}
+
+function isLikelyMusicArtistPage(link: string, html: string): boolean {
+    const $ = cheerio.load(html);
+    const decodedLink = decodeURIComponent(link).toLowerCase();
+    const titleText = normalizePageTitle(($("title").first().text() || "").toLowerCase());
+
+    const isClearlyNonArtistPage = [
+        "/wiki/list_of_",
+        "festival",
+        "awards",
+        "music_festival",
+    ].some((signal) => decodedLink.includes(signal))
+        || [
+            "list of ",
+            " festival",
+            " awards",
+        ].some((signal) => titleText.includes(signal));
+
+    if (isClearlyNonArtistPage) {
+        return false;
+    }
+
+    const categoryText = $("#mw-normal-catlinks, #catlinks")
+        .text()
+        .toLowerCase();
+
+    const hasMusicCategory = [
+        "musicians",
+        "singers",
+        "rappers",
+        "songwriters",
+        "record producers",
+        "djs",
+        "composers",
+        "musical groups",
+        "bands",
+        "music duos",
+        "music groups",
+        "vocalists",
+    ].some((signal) => categoryText.includes(signal));
+
+    const hasClearlyNonMusicCategory = [
+        "lists",
+        "festivals",
+        "music festivals",
+        "musical instruments",
+        "string instruments",
+        "percussion instruments",
+        "keyboard instruments",
+        "wind instruments",
+        "video games",
+        "board games",
+        "role-playing games",
+        "comics",
+        "software",
+        "companies",
+        "organizations",
+        "films",
+        "television",
+    ].some((signal) => categoryText.includes(signal));
+
+    if (hasMusicCategory) {
+        return true;
+    }
+
+    if (hasClearlyNonMusicCategory) {
+        return false;
+    }
+
+    const infobox = $("table.infobox").first();
+    if (infobox.length) {
+        const infoboxSignals = getMusicInfoboxSignals(infobox.text().toLowerCase());
+        // Keep this strict: require multiple artist-specific infobox signals when category data is inconclusive.
+        if (infoboxSignals >= 2) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function getMusicInfoboxSignals(infoboxText: string): number {
+    const signals = [
+        "associated acts",
+        "years active",
+        "instruments",
+        "members",
+        "past members",
+        "current members",
+    ];
+    let matched = 0;
+    for (const signal of signals) {
+        if (infoboxText.includes(signal)) {
+            matched += 1;
+        }
+    }
+    return matched;
+}
+
+function normalizePageTitle(value: string): string {
+    return value
+        .replace(/\s*-\s*wikipedia\s*$/i, "")
+        .trim();
 }
 
 function getNameFromUrl(link: string): string {

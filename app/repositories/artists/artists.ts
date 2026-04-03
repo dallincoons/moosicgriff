@@ -83,6 +83,25 @@ class Artists {
         `
     }
 
+    async refreshHasMissingReleaseWikilinks(url: string): Promise<boolean> {
+        const [row]: [{ has_missing_release_wikilinks: boolean }?] = await db`
+            UPDATE artists a
+            SET has_missing_release_wikilinks = EXISTS(
+                SELECT 1
+                FROM releases r
+                WHERE lower(r.artist_wikilink) = lower(a.wikilink)
+                  AND (
+                    r.wikilink IS NULL
+                    OR length(trim(r.wikilink)) = 0
+                  )
+            )
+            WHERE a.wikilink = ${url}
+            RETURNING has_missing_release_wikilinks
+        `;
+
+        return !!row?.has_missing_release_wikilinks;
+    }
+
     async updateDiscographySourceState(
         url: string,
         discographyWikilink: string | null,

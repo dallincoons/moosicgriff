@@ -70,9 +70,9 @@ async function getAlbumReleaseFromApiByTitle(pageTitle: string, depth: number): 
     const rawGenre = getInfoboxValue(wikitext, "genre");
     const artistNames = parseArtistNames(rawArtist);
     const {year, month, day} = parseReleaseDate(releasedRaw);
-    const reviewLinks = collectUniqueReviewLinks(wikitext);
-    const reviewLinksCsv = reviewLinks.join(", ");
-    const numberOfReviews = reviewLinks.length;
+    const reviewEvidence = collectReviewEvidence(wikitext);
+    const reviewLinksCsv = reviewEvidence.links.join(", ");
+    const numberOfReviews = reviewEvidence.count;
     const infoboxTitle = normalizeValue(getInfoboxValue(wikitext, "name"));
     const pageResolvedTitle = normalizeWikiTitle(page.title || pageTitle);
     const originalTitle = pageResolvedTitle || infoboxTitle;
@@ -129,11 +129,24 @@ async function fetchWithRetry(url: string, pageTitle: string): Promise<Response>
 
     while (true) {
         attempt += 1;
-        const response = await fetch(url, {
-            headers: {
-                "User-Agent": "MoosicGraffBot/2.0 (https://github.com/dallincoons/moosicgraff; contact: dallincoons@gmail.com)",
-            },
-        });
+        let response: Response;
+        try {
+            response = await fetch(url, {
+                headers: {
+                    "User-Agent": "MoosicGraffBot/2.0 (https://github.com/dallincoons/moosicgraff; contact: dallincoons@gmail.com)",
+                },
+            });
+        } catch (e) {
+            if (attempt >= maxAttempts) {
+                throw e;
+            }
+
+            const sleepMs = computeRetryDelayMs(attempt, NaN);
+            const message = e instanceof Error ? e.message : String(e);
+            console.warn(`[wiki-api] fetch error for "${pageTitle}" attempt ${attempt}/${maxAttempts}: ${message}; retrying in ${sleepMs}ms`);
+            await sleep(sleepMs);
+            continue;
+        }
 
         if (response.status !== 429 || attempt >= maxAttempts) {
             return response;
@@ -141,15 +154,19 @@ async function fetchWithRetry(url: string, pageTitle: string): Promise<Response>
 
         const retryAfterHeader = response.headers.get("retry-after");
         const retryAfterSeconds = retryAfterHeader ? parseInt(retryAfterHeader, 10) : NaN;
-        const backoffMs = Number.isNaN(retryAfterSeconds)
-            ? Math.min(1000 * Math.pow(2, attempt - 1), 15000)
-            : retryAfterSeconds * 1000;
-        const jitterMs = Math.floor(Math.random() * 500);
-        const sleepMs = backoffMs + jitterMs;
+        const sleepMs = computeRetryDelayMs(attempt, retryAfterSeconds);
 
         console.warn(`[wiki-api] 429 for "${pageTitle}" attempt ${attempt}/${maxAttempts}; retrying in ${sleepMs}ms`);
         await sleep(sleepMs);
     }
+}
+
+function computeRetryDelayMs(attempt: number, retryAfterSeconds: number): number {
+    const backoffMs = Number.isNaN(retryAfterSeconds)
+        ? Math.min(1000 * Math.pow(2, attempt - 1), 15000)
+        : retryAfterSeconds * 1000;
+    const jitterMs = Math.floor(Math.random() * 500);
+    return backoffMs + jitterMs;
 }
 
 function sleep(ms: number): Promise<void> {
@@ -179,7 +196,13 @@ function parseArtistNames(rawArtistField: string): { articleName: string; displa
 }
 
 function normalizeWikiTitle(title: string): string {
-    return decodeURIComponent(title.replace(/_/g, " ")).trim();
+    const normalized = (title || "").replace(/_/g, " ");
+    try {
+        return decodeURIComponent(normalized).trim();
+    } catch (e) {
+        // Some pages contain malformed percent encodings in titles/links; keep raw normalized text.
+        return normalized.trim();
+    }
 }
 
 function stripBandSuffix(value: string): string {
@@ -314,6 +337,7 @@ function selectFirstReleaseDateCandidate(raw: string): string {
 export const __private = {
     parseReleaseDate,
     selectFirstReleaseDateCandidate,
+    normalizeWikiTitle,
 };
 
 function normalizeValue(value: string): string {
@@ -428,20 +452,71 @@ function capitalize(value: string): string {
     return value[0].toUpperCase() + value.slice(1).toLowerCase();
 }
 
-function collectUniqueReviewLinks(wikitext: string): string[] {
+function collectReviewEvidence(wikitext: string): { links: string[]; count: number } {
     const links = new Set<string>();
+    const ratingOutlets = new Set<string>();
+    const criticalOutlets = new Set<string>();
+    const criticalUrls = new Set<string>();
     const ratingsBlocks = extractNamedTemplates(wikitext, new Set(["album ratings", "music ratings"]));
 
     for (const block of ratingsBlocks) {
-        addLinksToSet(block, links);
+        const filteredRatingsBlock = stripAggregateScoresFromRatingsBlock(block);
+        addLinksToSet(filteredRatingsBlock, links);
+        addRatingsRowOutletsToSet(filteredRatingsBlock, ratingOutlets);
     }
 
-    const criticalReceptionSection = extractSection(wikitext, "critical reception");
-    if (criticalReceptionSection) {
-        addLinksToSet(criticalReceptionSection, links);
+    const proseSections = [
+        extractSection(wikitext, "critical reception", false),
+        extractSection(wikitext, "reception", false),
+    ].filter((section) => section.trim().length > 0);
+    for (const section of proseSections) {
+        addReviewSignals(section, links, criticalOutlets, false, criticalUrls);
     }
 
-    return [...links];
+    let count = ratingOutlets.size;
+    for (const outlet of criticalOutlets) {
+        if (hasMatchingOutlet(ratingOutlets, outlet)) {
+            continue;
+        }
+        count += 1;
+    }
+
+    for (const url of criticalUrls) {
+        const outlet = extractOutletFromUrl(url);
+        if (outlet && (hasMatchingOutlet(ratingOutlets, outlet) || hasMatchingOutlet(criticalOutlets, outlet))) {
+            continue;
+        }
+        if (!outlet) {
+            count += 1;
+        }
+    }
+
+    return {
+        links: [...links],
+        count,
+    };
+}
+
+function addReviewSignals(
+    content: string,
+    linkTarget: Set<string>,
+    outletTarget: Set<string>,
+    includeRatingsRows: boolean,
+    scopedUrlTarget?: Set<string>,
+): void {
+    addLinksToSet(content, linkTarget, scopedUrlTarget);
+    addCiteOutletFieldsToSet(content, outletTarget);
+
+    if (includeRatingsRows) {
+        addRatingsRowOutletsToSet(content, outletTarget);
+    }
+
+    for (const link of linkTarget) {
+        const outlet = extractOutletFromUrl(link);
+        if (outlet) {
+            addOutletKey(outletTarget, outlet);
+        }
+    }
 }
 
 function extractNamedTemplates(wikitext: string, targetNames: Set<string>): string[] {
@@ -491,7 +566,7 @@ function extractNamedTemplates(wikitext: string, targetNames: Set<string>): stri
     return templates;
 }
 
-function extractSection(wikitext: string, sectionName: string): string {
+function extractSection(wikitext: string, sectionName: string, includeSubsections: boolean = true): string {
     const lines = wikitext.split("\n");
     let capture = false;
     let headingLevel = 0;
@@ -509,7 +584,7 @@ function extractSection(wikitext: string, sectionName: string): string {
                 continue;
             }
 
-            if (capture && level <= headingLevel) {
+            if (capture && (level <= headingLevel || (!includeSubsections && level > headingLevel))) {
                 break;
             }
         }
@@ -522,22 +597,202 @@ function extractSection(wikitext: string, sectionName: string): string {
     return captured.join("\n");
 }
 
-function addLinksToSet(content: string, target: Set<string>): void {
+function addLinksToSet(content: string, target: Set<string>, scopedTarget?: Set<string>): void {
     const externalBracketLinkRegex = /\[(https?:\/\/[^\s\]]+)/gi;
     let externalMatch: RegExpExecArray | null;
     while ((externalMatch = externalBracketLinkRegex.exec(content)) !== null) {
-        if (isAllowedReviewUrl(externalMatch[1])) {
-            target.add(externalMatch[1]);
+        const url = normalizeReviewUrl(externalMatch[1]);
+        if (isAllowedReviewUrl(url)) {
+            target.add(url);
+            if (scopedTarget) {
+                scopedTarget.add(url);
+            }
         }
     }
 
     const citeUrlRegex = /\|\s*url\s*=\s*(https?:\/\/[^\s|}]+)/gi;
     let citeMatch: RegExpExecArray | null;
     while ((citeMatch = citeUrlRegex.exec(content)) !== null) {
-        if (isAllowedReviewUrl(citeMatch[1])) {
-            target.add(citeMatch[1]);
+        const url = normalizeReviewUrl(citeMatch[1]);
+        if (isAllowedReviewUrl(url)) {
+            target.add(url);
+            if (scopedTarget) {
+                scopedTarget.add(url);
+            }
         }
     }
+}
+
+function addCiteOutletFieldsToSet(content: string, target: Set<string>): void {
+    const outletFieldRegex = /\|\s*(?:website|work|magazine|newspaper|publication|journal)\s*=\s*(\[\[[^\]]+]]|[^\n|}]+)/gi;
+    let match: RegExpExecArray | null;
+    while ((match = outletFieldRegex.exec(content)) !== null) {
+        const key = normalizeOutletKey(match[1] || "");
+        if (key && !isBlockedAggregatorOutlet(key)) {
+            addOutletKey(target, key);
+        }
+    }
+}
+
+function addRatingsRowOutletsToSet(content: string, target: Set<string>): void {
+    const ratingsOutletRegex = /\|\s*rev(\d+)\s*=\s*([^\n]+)/gi;
+    let match: RegExpExecArray | null;
+    while ((match = ratingsOutletRegex.exec(content)) !== null) {
+        const numeric = (match[1] || "").trim();
+        const key = normalizeOutletKey(match[2] || "");
+        if (key && !isBlockedAggregatorOutlet(key)) {
+            addOutletKey(target, key);
+            continue;
+        }
+        if (numeric) {
+            addOutletKey(target, `review ${numeric}`);
+        }
+    }
+}
+
+function normalizeReviewUrl(url: string): string {
+    return (url || "").trim().replace(/[.,;:!?]+$/, "");
+}
+
+function extractOutletFromUrl(url: string): string {
+    try {
+        const hostname = new URL(url).hostname.toLowerCase();
+        const withoutWww = hostname.replace(/^www\./, "");
+        const parts = withoutWww.split(".").filter(Boolean);
+        if (parts.length === 0) {
+            return "";
+        }
+        const core = extractCoreDomainLabel(parts);
+        return normalizeOutletKey(core);
+    } catch (e) {
+        return "";
+    }
+}
+
+function extractCoreDomainLabel(parts: string[]): string {
+    if (parts.length < 2) {
+        return parts[0] || "";
+    }
+
+    // Handle ccTLD patterns like abc.net.au, foo.co.uk, etc.
+    if (parts.length >= 3) {
+        const tld = parts[parts.length - 1];
+        const secondLevel = parts[parts.length - 2];
+        const commonSecondLevelDomains = new Set(["co", "com", "net", "org", "gov", "edu", "ac"]);
+        if (tld.length === 2 && commonSecondLevelDomains.has(secondLevel)) {
+            return parts[parts.length - 3];
+        }
+    }
+
+    return parts[parts.length - 2];
+}
+
+function addOutletKey(target: Set<string>, rawKey: string): void {
+    const key = normalizeOutletKey(rawKey);
+    if (!key) {
+        return;
+    }
+
+    const normalizedKey = canonicalOutletCompareKey(key);
+    for (const existing of target) {
+        const normalizedExisting = canonicalOutletCompareKey(existing);
+        if (!normalizedExisting || !normalizedKey) {
+            continue;
+        }
+        const shorterLength = Math.min(normalizedExisting.length, normalizedKey.length);
+        if (shorterLength < 4) {
+            continue;
+        }
+        if (
+            normalizedExisting === normalizedKey
+            || normalizedExisting.includes(normalizedKey)
+            || normalizedKey.includes(normalizedExisting)
+        ) {
+            return;
+        }
+    }
+
+    target.add(key);
+}
+
+function hasMatchingOutlet(target: Set<string>, rawKey: string): boolean {
+    const key = normalizeOutletKey(rawKey);
+    if (!key) {
+        return false;
+    }
+    const normalizedKey = canonicalOutletCompareKey(key);
+    for (const existing of target) {
+        const normalizedExisting = canonicalOutletCompareKey(existing);
+        if (!normalizedExisting || !normalizedKey) {
+            continue;
+        }
+        const shorterLength = Math.min(normalizedExisting.length, normalizedKey.length);
+        const existingAcronym = acronymFromOutlet(existing);
+        const keyAcronym = acronymFromOutlet(key);
+        if (
+            (existingAcronym && existingAcronym === normalizedKey)
+            || (keyAcronym && keyAcronym === normalizedExisting)
+            || (existingAcronym && keyAcronym && existingAcronym === keyAcronym)
+        ) {
+            return true;
+        }
+        if (shorterLength < 4) {
+            continue;
+        }
+        if (
+            normalizedExisting === normalizedKey
+            || normalizedExisting.includes(normalizedKey)
+            || normalizedKey.includes(normalizedExisting)
+        ) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function stripCommonOutletSuffixes(value: string): string {
+    return (value || "")
+        .replace(/\b(magazine|music|news|media|review|reviews|online)\b/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+}
+
+function canonicalOutletCompareKey(value: string): string {
+    return stripCommonOutletSuffixes(value)
+        .replace(/[^a-z0-9]+/g, "")
+        .trim();
+}
+
+function acronymFromOutlet(value: string): string {
+    const tokens = normalizeOutletKey(value)
+        .split(" ")
+        .filter((token) => token.length > 0);
+    if (tokens.length < 2) {
+        return "";
+    }
+    return tokens.map((token) => token[0]).join("");
+}
+
+function normalizeOutletKey(value: string): string {
+    const cleaned = stripWikiMarkup(value)
+        .toLowerCase()
+        .replace(/&amp;/g, " and ")
+        .replace(/[^a-z0-9]+/g, " ")
+        .trim();
+    return cleaned;
+}
+
+function stripWikiMarkup(value: string): string {
+    let out = value || "";
+    out = out.replace(/<ref[^>]*>[\s\S]*?<\/ref>/gi, " ");
+    out = out.replace(/<ref[^\/]*\/>/gi, " ");
+    out = out.replace(/\[\[([^|\]]+)\|([^\]]+)]]/g, "$2");
+    out = out.replace(/\[\[([^\]]+)]]/g, "$1");
+    out = out.replace(/\{\{[^{}]*}}/g, " ");
+    out = out.replace(/'''+/g, "");
+    out = out.replace(/<[^>]+>/g, " ");
+    out = out.replace(/\s+/g, " ");
+    return out.trim();
 }
 
 function isAllowedReviewUrl(url: string): boolean {
@@ -545,6 +800,9 @@ function isAllowedReviewUrl(url: string): boolean {
         return false;
     }
     if (isMetacriticUrl(url)) {
+        return false;
+    }
+    if (isAnyDecentMusicUrl(url)) {
         return false;
     }
     return true;
@@ -568,4 +826,54 @@ function isMetacriticUrl(url: string): boolean {
     } catch (e) {
         return false;
     }
+}
+
+function isAnyDecentMusicUrl(url: string): boolean {
+    try {
+        const host = new URL(url).hostname.toLowerCase();
+        return host === "anydecentmusic.com"
+            || host.endsWith(".anydecentmusic.com");
+    } catch (e) {
+        return false;
+    }
+}
+
+function isBlockedAggregatorOutlet(key: string): boolean {
+    const normalized = normalizeOutletKey(key);
+    const compact = normalized.replace(/[^a-z0-9]+/g, "");
+    return compact.includes("metacritic") || compact.includes("anydecentmusic");
+}
+
+function stripAggregateScoresFromRatingsBlock(block: string): string {
+    const lines = block.split("\n");
+    const kept: string[] = [];
+    let inAggregateSection = false;
+
+    for (const line of lines) {
+        const normalized = normalizeOutletKey(line);
+        const compact = normalized.replace(/[^a-z0-9]+/g, "");
+
+        if (compact.includes("aggregatescores")) {
+            inAggregateSection = true;
+            continue;
+        }
+        if (compact.includes("reviewscores") || compact.includes("professionalratings")) {
+            inAggregateSection = false;
+        }
+
+        if (inAggregateSection && /^\|\s*rev\d+\s*=/i.test(line)) {
+            continue;
+        }
+        if (inAggregateSection && /^\|\s*rev\d+score\s*=/i.test(line)) {
+            continue;
+        }
+
+        if (isBlockedAggregatorOutlet(line)) {
+            continue;
+        }
+
+        kept.push(line);
+    }
+
+    return kept.join("\n");
 }

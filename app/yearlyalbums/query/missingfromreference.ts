@@ -1,6 +1,7 @@
 import {db} from "app/repositories/db";
 import {syncYearlyAlbumReferences} from "app/yearlyalbums/sync";
 import {DateCompletenessMode, parseDateCompletenessMode} from "app/yearlyalbums/query/missingmode";
+import {getPrimaryYearlyAlbumSourceWikilink} from "app/yearlyalbums/sourcepages";
 
 type MissingAlbumRow = {
     artist_name: string;
@@ -11,7 +12,7 @@ type MissingAlbumRow = {
     number_of_reviews: number;
 };
 
-export async function yearlyAlbumsMissingFromReference(yearArg?: string, modeArg?: string): Promise<void> {
+export async function yearlyAlbumsMissingFromReference(yearArg?: string, modeArg?: string, freshArg?: string): Promise<void> {
     const year = parseInt(yearArg || "", 10);
     if (Number.isNaN(year) || year < 1900 || year > 2100) {
         console.log(`[yearly.albums.missing] invalid year "${yearArg}". example: yearly.albums.missing 2005 full`);
@@ -23,10 +24,18 @@ export async function yearlyAlbumsMissingFromReference(yearArg?: string, modeArg
         return;
     }
 
-    console.log(`[yearly.albums.missing] syncing ${year} before missing query...`);
-    await syncYearlyAlbumReferences(String(year));
+    const freshMode = parseFreshMode(freshArg);
+    if (freshArg && !freshMode) {
+        console.log(`[yearly.albums.missing] invalid fresh flag "${freshArg}". expected: fresh`);
+        return;
+    }
 
-    const sourceListWikilink = `https://en.wikipedia.org/wiki/List_of_${year}_albums`;
+    console.log(
+        `[yearly.albums.missing] syncing ${year} before missing query...${freshMode ? " (fresh)" : ""}`,
+    );
+    await syncYearlyAlbumReferences(String(year), freshMode ? "fresh" : undefined);
+
+    const sourceListWikilink = getPrimaryYearlyAlbumSourceWikilink(year);
     const rows: MissingAlbumRow[] = await db`
         select
             r.artist_name,
@@ -173,4 +182,12 @@ export async function yearlyAlbumsMissingFromReference(yearArg?: string, modeArg
     }
 
     console.log(`Total albums: ${rows.length}`);
+}
+
+function parseFreshMode(value?: string): boolean {
+    if (!value) {
+        return false;
+    }
+    const normalized = value.trim().toLowerCase();
+    return normalized === "fresh" || normalized === "--fresh";
 }

@@ -41,3 +41,14 @@ describe("wikipediaapi parseReleaseDate", () => {
         });
     });
 });
+
+describe("wikipediaapi normalizeWikiTitle", () => {
+    it("does not throw on malformed percent-encoded titles", () => {
+        expect(() => __private.normalizeWikiTitle("3%_(group)")).not.toThrow();
+        expect(__private.normalizeWikiTitle("3%_(group)")).toBe("3% (group)");
+    });
+
+    it("decodes valid percent-encoded titles", () => {
+        expect(__private.normalizeWikiTitle("Fran%C3%A7ois_Cheng")).toBe("François Cheng");
+    });
+});

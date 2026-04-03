@@ -1,4 +1,5 @@
 import yearlyAlbums from "app/repositories/yearlyalbums/yearlyalbums";
+import {getPrimaryYearlyAlbumSourceWikilink} from "app/yearlyalbums/sourcepages";
 
 export async function yearlyAlbumsNeedsReviewMark(yearArg?: string, albumWikilinkArg?: string): Promise<void> {
     const year = parseYear(yearArg);
@@ -12,7 +13,7 @@ export async function yearlyAlbumsNeedsReviewMark(yearArg?: string, albumWikilin
         return;
     }
 
-    const sourceListWikilink = `https://en.wikipedia.org/wiki/List_of_${year}_albums`;
+    const sourceListWikilink = getPrimaryYearlyAlbumSourceWikilink(year);
     const updated = await yearlyAlbums.markNeedsReview(sourceListWikilink, albumWikilink, true);
     console.log(
         `[yearly.albums.needs_review.mark] source=${sourceListWikilink} album=${albumWikilink} updated=${updated}`,

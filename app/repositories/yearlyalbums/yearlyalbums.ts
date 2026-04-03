@@ -1,5 +1,6 @@
 import {db} from "app/repositories/db";
 import {YearlyAlbumReference} from "app/yearlyalbums/reference";
+import {getPrimaryYearlyAlbumSourceWikilink} from "app/yearlyalbums/sourcepages";
 
 class YearlyAlbumsRepository {
     async upsert(reference: YearlyAlbumReference): Promise<void> {
@@ -64,7 +65,7 @@ class YearlyAlbumsRepository {
         artist_name: string | null;
     }>> {
         const sourceFilter = year
-            ? `https://en.wikipedia.org/wiki/List_of_${year}_albums`
+            ? getPrimaryYearlyAlbumSourceWikilink(year)
             : null;
 
         const rows = sourceFilter
@@ -117,6 +118,28 @@ class YearlyAlbumsRepository {
             release_day: number | null;
             artist_name: string | null;
         }>;
+    }
+
+    async getSourceContentHash(sourceListWikilink: string): Promise<string | null> {
+        const [row]: [{ content_hash: string }?] = await db`
+            select content_hash
+            from yearly_album_source_sync_state
+            where source_list_wikilink = ${sourceListWikilink}
+            limit 1
+        `;
+
+        return row?.content_hash || null;
+    }
+
+    async upsertSourceContentHash(sourceListWikilink: string, contentHash: string): Promise<void> {
+        await db`
+            insert into yearly_album_source_sync_state (source_list_wikilink, content_hash)
+            values (${sourceListWikilink}::text, ${contentHash}::text)
+            on conflict (source_list_wikilink)
+            do update set
+                content_hash = excluded.content_hash,
+                updated_at = CURRENT_TIMESTAMP
+        `;
     }
 
     async deleteMissingForSource(sourceListWikilink: string, albumWikilinks: string[]): Promise<number> {
