@@ -19,7 +19,7 @@ type ReleaseReviewRow = {
     original_title: string | null;
     artist_name: string;
     wikilink: string;
-    number_of_reviews: number;
+    effective_number_of_reviews: number;
     dateyear: number | null;
     datemonth: string;
     dateday: number | null;
@@ -126,8 +126,8 @@ export async function yearlyAlbumsCitedReviews(yearArg?: string, minReviewsArg?:
             if (monthDiff !== 0) {
                 return monthDiff;
             }
-            if (b.release.number_of_reviews !== a.release.number_of_reviews) {
-                return b.release.number_of_reviews - a.release.number_of_reviews;
+            if (b.release.effective_number_of_reviews !== a.release.effective_number_of_reviews) {
+                return b.release.effective_number_of_reviews - a.release.effective_number_of_reviews;
             }
             return a.release.artist_name.localeCompare(b.release.artist_name);
         });
@@ -154,7 +154,7 @@ export async function yearlyAlbumsCitedReviews(yearArg?: string, minReviewsArg?:
             console.log(`Album: ${item.release.original_title || item.release.title}`);
             console.log(`Artist: ${item.release.artist_name}`);
             console.log(`Date: ${formatDate(item.release.dateyear, item.release.datemonth, item.release.dateday)}`);
-            console.log(`Reviews: ${item.release.number_of_reviews}`);
+            console.log(`Reviews: ${item.release.effective_number_of_reviews}`);
             console.log(`Album Wikilink: ${item.row.albumWikilink}`);
             console.log("");
         }
@@ -376,10 +376,18 @@ function hasColumnIndex(cells: cheerio.Cheerio<any>, index: number): boolean {
 
 async function loadReleasesForYear(year: number, minReviews: number): Promise<ReleaseReviewRow[]> {
     const rows: ReleaseReviewRow[] = await db`
-        select title, original_title, artist_name, wikilink, number_of_reviews, dateyear, datemonth, dateday
+        select
+            title,
+            original_title,
+            artist_name,
+            wikilink,
+            coalesce(manual_number_of_reviews, number_of_reviews) as effective_number_of_reviews,
+            dateyear,
+            datemonth,
+            dateday
         from releases
         where dateyear = ${year}
-          and number_of_reviews >= ${minReviews}
+          and coalesce(manual_number_of_reviews, number_of_reviews) >= ${minReviews}
           and wikilink is not null
           and length(wikilink) > 0
     `;

@@ -59,3 +59,7 @@ Given an album and artist, produce the exact wikitext day block with the album i
 When asked for an update:
 - Provide only the updated day block unless the user asks for more context.
 - If uncertain about date placement, ask before editing.
+
+## CLI Command Maintenance
+
+- When adding a new CLI command, also add it to the `help` command output (`COMMAND_HELP` in `index.ts`) in the same change.

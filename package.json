@@ -15,6 +15,7 @@
   },
   "scripts": {
     "test": "jest",
+    "ui": "esrun app/ui/server.ts",
     "migrate-up": "GOOSE_MIGRATION_DIR=./migrations GOOSE_DBSTRING=\"postgresql://postgres:password@127.0.0.1:5432/moosicgraff\" GOOSE_DRIVER=postgres goose up",
     "migrate-status": "GOOSE_MIGRATION_DIR=./migrations GOOSE_DBSTRING=\"postgresql://postgres:password@127.0.0.1:5432/moosicgraff\" GOOSE_DRIVER=postgres goose status"
   }

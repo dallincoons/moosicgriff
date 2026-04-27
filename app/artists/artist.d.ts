@@ -19,4 +19,7 @@ export interface DBArtist {
     discography_scraped_at?: string | null,
     wikipedia_page_id?: number | null,
     has_missing_release_wikilinks?: boolean,
+    year_start?: number | null,
+    year_end?: number | null,
+    years_active_scraped?: boolean,
 }

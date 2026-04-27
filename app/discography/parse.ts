@@ -22,6 +22,8 @@ export function parseReleases(rawContents: string): Release[] {
                 studio: "",
                 type: <string>match[3],
                 label: <string>match[4],
+                original_labels_text: <string>match[4],
+                original_categories_text: "",
                 genre: "",
                 original_genre: "",
                 recorded: "",

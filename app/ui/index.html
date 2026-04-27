@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MoosicGraff Command UI</title>
+    <style>
+        :root {
+            color-scheme: light;
+            --bg: #f4f5f8;
+            --surface: #ffffff;
+            --text: #1b1f24;
+            --muted: #57606a;
+            --primary: #0f6cbd;
+            --primary-hover: #095aa0;
+            --border: #d0d7de;
+            --good: #1a7f37;
+            --bad: #cf222e;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 16px;
+        }
+
+        .panel {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .panel-header {
+            padding: 12px 14px;
+            font-weight: 600;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .commands {
+            max-height: calc(100vh - 90px);
+            overflow: auto;
+        }
+
+        .section {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section:last-child {
+            border-bottom: 0;
+        }
+
+        .section-title {
+            padding: 10px 14px;
+            font-size: 13px;
+            text-transform: uppercase;
+            color: var(--muted);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .command-row {
+            padding: 12px 14px;
+            border-bottom: 1px solid #eef1f4;
+            display: grid;
+            gap: 8px;
+        }
+
+        .command-row:last-child {
+            border-bottom: 0;
+        }
+
+        .command-name {
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .command-description {
+            color: var(--muted);
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        .command-controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .command-controls input {
+            min-width: 180px;
+            flex: 1 1 180px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 7px 9px;
+            font-size: 13px;
+        }
+
+        .command-controls button {
+            border: 1px solid var(--primary);
+            background: var(--primary);
+            color: #fff;
+            border-radius: 6px;
+            padding: 8px 10px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .command-controls button:hover {
+            background: var(--primary-hover);
+            border-color: var(--primary-hover);
+        }
+
+        .command-controls button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .meta {
+            padding: 12px 14px;
+            border-bottom: 1px solid var(--border);
+            font-size: 13px;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .meta-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .stop-btn {
+            border: 1px solid var(--bad);
+            background: var(--bad);
+            color: #fff;
+            border-radius: 6px;
+            padding: 6px 10px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .stop-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .status {
+            padding: 10px 14px;
+            border-bottom: 1px solid var(--border);
+            font-size: 13px;
+        }
+
+        .status.good {
+            color: var(--good);
+        }
+
+        .status.bad {
+            color: var(--bad);
+        }
+
+        pre {
+            margin: 0;
+            padding: 12px 14px;
+            white-space: pre-wrap;
+            word-break: break-word;
+            font-size: 12px;
+            line-height: 1.5;
+            max-height: calc(100vh - 220px);
+            overflow: auto;
+            font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        }
+
+        @media (max-width: 980px) {
+            main {
+                grid-template-columns: 1fr;
+            }
+
+            .commands,
+            pre {
+                max-height: none;
+            }
+        }
+    </style>
+</head>
+<body>
+<main>
+    <section class="panel">
+        <div class="panel-header">Commands</div>
+        <div class="commands" id="commands"></div>
+    </section>
+    <section class="panel">
+        <div class="panel-header">Output</div>
+        <div class="meta">
+            <span id="meta">Ready</span>
+            <div class="meta-actions">
+                <button type="button" class="stop-btn" id="stopBtn" disabled>Stop</button>
+            </div>
+        </div>
+        <div class="status" id="status">No command run yet.</div>
+        <pre id="output"></pre>
+    </section>
+</main>
+<script>
+    const commandsEl = document.getElementById("commands");
+    const outputEl = document.getElementById("output");
+    const statusEl = document.getElementById("status");
+    const metaEl = document.getElementById("meta");
+    const stopBtn = document.getElementById("stopBtn");
+    let isRunning = false;
+
+    function setStatus(text, type) {
+        statusEl.textContent = text;
+        statusEl.className = "status" + (type ? " " + type : "");
+    }
+
+    function setRunningState(running) {
+        isRunning = running;
+        stopBtn.disabled = !running;
+        const runButtons = commandsEl.querySelectorAll("button[data-role='run']");
+        runButtons.forEach((button) => {
+            button.disabled = running;
+        });
+    }
+
+    function groupBySection(commands) {
+        const map = new Map();
+        for (const command of commands) {
+            if (!map.has(command.section)) {
+                map.set(command.section, []);
+            }
+            map.get(command.section).push(command);
+        }
+        return map;
+    }
+
+    async function runCommand(command, inputEls, runButton) {
+        try {
+            runButton.disabled = true;
+            const args = inputEls.map((el) => el.value.trim()).filter(Boolean);
+            const startedAt = new Date();
+            metaEl.textContent = "Running " + command.command + " ...";
+            setStatus("Running", "");
+            setRunningState(true);
+
+            const response = await fetch("/api/run", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ command: command.command, args })
+            });
+
+            const result = await response.json();
+            const durationMs = Date.now() - startedAt.getTime();
+            metaEl.textContent = command.command + " " + args.join(" ");
+            const output = [result.stdout || "", result.stderr || ""].filter(Boolean).join("\n");
+            outputEl.textContent = output || "(no output)";
+
+            const ok = typeof result.exitCode === "number" ? result.exitCode === 0 : response.ok;
+            const statusText = "Exit " + String(result.exitCode) + " in " + durationMs + "ms";
+            setStatus(statusText, ok ? "good" : "bad");
+        } catch (error) {
+            outputEl.textContent = String(error);
+            setStatus("Failed", "bad");
+        } finally {
+            setRunningState(false);
+            runButton.disabled = false;
+        }
+    }
+
+    async function stopCurrentRun() {
+        if (!isRunning) {
+            return;
+        }
+
+        try {
+            stopBtn.disabled = true;
+            setStatus("Stopping...", "");
+            const response = await fetch("/api/stop", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" }
+            });
+            const result = await response.json();
+            if (!response.ok) {
+                setStatus(result.message || "Unable to stop run", "bad");
+                return;
+            }
+            setStatus("Stop requested", "");
+        } catch (error) {
+            setStatus("Stop failed", "bad");
+        } finally {
+            if (isRunning) {
+                stopBtn.disabled = false;
+            }
+        }
+    }
+
+    function renderCommands(commands) {
+        commandsEl.innerHTML = "";
+        const sectionMap = groupBySection(commands);
+
+        for (const [section, entries] of sectionMap.entries()) {
+            const sectionEl = document.createElement("div");
+            sectionEl.className = "section";
+
+            const titleEl = document.createElement("div");
+            titleEl.className = "section-title";
+            titleEl.textContent = section;
+            sectionEl.appendChild(titleEl);
+
+            entries.forEach((command) => {
+                const rowEl = document.createElement("div");
+                rowEl.className = "command-row";
+
+                const nameEl = document.createElement("div");
+                nameEl.className = "command-name";
+                nameEl.textContent = command.fullName;
+                rowEl.appendChild(nameEl);
+
+                const descEl = document.createElement("div");
+                descEl.className = "command-description";
+                descEl.textContent = command.description;
+                rowEl.appendChild(descEl);
+
+                const controlsEl = document.createElement("div");
+                controlsEl.className = "command-controls";
+                const inputEls = [];
+
+                command.placeholders.forEach((placeholder, index) => {
+                    const inputEl = document.createElement("input");
+                    inputEl.type = "text";
+                    inputEl.placeholder = placeholder;
+                    inputEl.setAttribute("aria-label", command.command + " arg " + (index + 1));
+                    controlsEl.appendChild(inputEl);
+                    inputEls.push(inputEl);
+                });
+
+                const runBtn = document.createElement("button");
+                runBtn.type = "button";
+                runBtn.textContent = "Run";
+                runBtn.setAttribute("data-role", "run");
+                runBtn.addEventListener("click", () => runCommand(command, inputEls, runBtn));
+                controlsEl.appendChild(runBtn);
+                rowEl.appendChild(controlsEl);
+                sectionEl.appendChild(rowEl);
+            });
+
+            commandsEl.appendChild(sectionEl);
+        }
+    }
+
+    async function load() {
+        setStatus("Loading commands...", "");
+        const response = await fetch("/api/commands");
+        const data = await response.json();
+        renderCommands(data.commands || []);
+        setStatus("Ready", "good");
+    }
+
+    load().catch((error) => {
+        outputEl.textContent = String(error);
+        setStatus("Failed to load commands", "bad");
+    });
+
+    stopBtn.addEventListener("click", stopCurrentRun);
+</script>
+</body>
+</html>

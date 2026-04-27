@@ -10,6 +10,7 @@ import {recordContentHashSkip, recordDeadlinkAdded, recordNewArtist} from "./run
 import {createHash} from "crypto";
 import {isStopRequested} from "app/runtime/stop";
 import * as cheerio from "cheerio";
+import {extractYearsActiveFromHtml} from "app/artists/yearsactive";
 
 const logger = winston.createLogger({
     format: winston.format.combine(
@@ -159,6 +160,9 @@ export async function scrape(runStartedAt: Date = new Date(), hasProcessedArtist
 
     const pageData = await getChildren(artist);
     const pageContentHash = hashContent(pageData.html);
+    const yearsActive = extractYearsActiveFromHtml(pageData.html);
+    await artists.updateYearsActive(artist.url, yearsActive.yearStart, yearsActive.yearEnd);
+    await artists.markYearsActiveScraped(artist.url);
 
     if (persistedArtist?.page_content_hash && persistedArtist.page_content_hash === pageContentHash) {
         if (isStopRequested()) {

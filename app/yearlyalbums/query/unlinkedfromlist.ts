@@ -1,4 +1,6 @@
-import {getHtml} from "app/clients/wikipedia";
+import {getHtml, isMissingArticlePage} from "app/clients/wikipedia";
+import discography from "app/repositories/discography/discography";
+import discographyDeadlinks from "app/repositories/discographydeadlinks/discographydeadlinks";
 import {db} from "app/repositories/db";
 import * as cheerio from "cheerio";
 
@@ -58,8 +60,10 @@ export async function yearlyAlbumsUnlinked(yearArg?: string): Promise<void> {
     const releases = await loadReleasesForYear(year);
     let withSuggestion = 0;
     let skippedArtistRedirects = 0;
+    let prunedDeletedReleaseLinks = 0;
     const suggestedRows: Array<{ row: UnlinkedRow; suggestedLink: string; source: string }> = [];
     const redirectCheckCache = new Map<string, boolean>();
+    const missingArticleCache = new Map<string, boolean>();
 
     for (const row of rows) {
         const fromReleases = findReleaseSuggestion(row, releases, year);
@@ -67,6 +71,14 @@ export async function yearlyAlbumsUnlinked(yearArg?: string): Promise<void> {
         let source = fromReleases ? "releases" : "";
 
         if (suggestedLink) {
+            const missing = await isMissingReleaseSuggestion(suggestedLink, missingArticleCache);
+            if (missing) {
+                await discography.clearReleaseLink(suggestedLink);
+                await discographyDeadlinks.insertNew(suggestedLink);
+                prunedDeletedReleaseLinks += 1;
+                continue;
+            }
+
             const artistWikilink = fromReleases?.artist_wikilink || "";
             const cacheKey = `${suggestedLink}|${artistWikilink}`;
             const redirectsToArtist = redirectCheckCache.has(cacheKey)
@@ -91,6 +103,9 @@ export async function yearlyAlbumsUnlinked(yearArg?: string): Promise<void> {
     }
 
     console.log(`[yearly.albums.unlinked] suggestions=${withSuggestion}/${rows.length}`);
+    if (prunedDeletedReleaseLinks > 0) {
+        console.log(`[yearly.albums.unlinked] pruned_deleted_release_links=${prunedDeletedReleaseLinks}`);
+    }
     if (skippedArtistRedirects > 0) {
         console.log(`[yearly.albums.unlinked] skipped_artist_redirects=${skippedArtistRedirects}`);
     }
@@ -150,6 +165,21 @@ async function loadReleasesForYear(year: number): Promise<ReleaseRow[]> {
           and length(wikilink) > 0
     `;
     return rows;
+}
+
+async function isMissingReleaseSuggestion(wikilink: string, cache: Map<string, boolean>): Promise<boolean> {
+    const normalized = (wikilink || "").trim();
+    if (!normalized) {
+        return true;
+    }
+
+    if (cache.has(normalized)) {
+        return !!cache.get(normalized);
+    }
+
+    const missing = await isMissingArticlePage(normalized);
+    cache.set(normalized, missing);
+    return missing;
 }
 
 function findReleaseSuggestion(row: UnlinkedRow, releases: ReleaseRow[], year: number): ReleaseRow | null {

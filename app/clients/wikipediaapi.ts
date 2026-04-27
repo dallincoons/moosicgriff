@@ -68,6 +68,7 @@ async function getAlbumReleaseFromApiByTitle(pageTitle: string, depth: number): 
     const releasedRaw = getInfoboxValue(wikitext, "released");
     const rawArtist = getInfoboxValue(wikitext, "artist");
     const rawGenre = getInfoboxValue(wikitext, "genre");
+    const rawProducer = getInfoboxValue(wikitext, "producer") || getInfoboxValue(wikitext, "producers");
     const artistNames = parseArtistNames(rawArtist);
     const {year, month, day} = parseReleaseDate(releasedRaw);
     const reviewEvidence = collectReviewEvidence(wikitext);
@@ -84,10 +85,12 @@ async function getAlbumReleaseFromApiByTitle(pageTitle: string, depth: number): 
         artist_display_name: artistNames.displayName,
         name: normalizedTitle,
         original_title: originalTitle,
-        producer: normalizeListValue(getInfoboxValue(wikitext, "producer")),
+        producer: normalizeListValue(rawProducer),
         studio: normalizeListValue(getInfoboxValue(wikitext, "studio")),
         type: normalizeValue(getInfoboxValue(wikitext, "type")),
         label: normalizeLabelValue(getInfoboxValue(wikitext, "label")),
+        original_labels_text: getInfoboxValue(wikitext, "label"),
+        original_categories_text: normalizeCategoryTitles(page.categories ?? []),
         genre: normalizeGenreValue(rawGenre),
         original_genre: rawGenre,
         recorded: normalizeListValue(getInfoboxValue(wikitext, "recorded")),
@@ -125,16 +128,20 @@ function getRedirectTarget(wikitext: string): string {
 
 async function fetchWithRetry(url: string, pageTitle: string): Promise<Response> {
     const maxAttempts = 5;
+    const requestTimeoutMs = 30000;
     let attempt = 0;
 
     while (true) {
         attempt += 1;
         let response: Response;
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), requestTimeoutMs);
         try {
             response = await fetch(url, {
                 headers: {
                     "User-Agent": "MoosicGraffBot/2.0 (https://github.com/dallincoons/moosicgraff; contact: dallincoons@gmail.com)",
                 },
+                signal: controller.signal,
             });
         } catch (e) {
             if (attempt >= maxAttempts) {
@@ -146,6 +153,8 @@ async function fetchWithRetry(url: string, pageTitle: string): Promise<Response>
             console.warn(`[wiki-api] fetch error for "${pageTitle}" attempt ${attempt}/${maxAttempts}: ${message}; retrying in ${sleepMs}ms`);
             await sleep(sleepMs);
             continue;
+        } finally {
+            clearTimeout(timeout);
         }
 
         if (response.status !== 429 || attempt >= maxAttempts) {
@@ -226,7 +235,7 @@ function getInfoboxValue(wikitext: string, field: string): string {
     }
 
     const lines = infobox.split("\n");
-    const fieldRegex = new RegExp(`^\\|[ \\t]*${field}[ \\t]*=[ \\t]*(.*)$`, "i");
+    const fieldRegex = new RegExp(`^[ \\t]*\\|[ \\t]*${field}[ \\t]*=[ \\t]*(.*)$`, "i");
     const startIndex = lines.findIndex((line) => fieldRegex.test(line));
     if (startIndex < 0) {
         return "";
@@ -240,7 +249,7 @@ function getInfoboxValue(wikitext: string, field: string): string {
 
     for (let i = startIndex + 1; i < lines.length; i++) {
         const line = lines[i];
-        if (/^\|/.test(line)) {
+        if (/^[ \t]*\|/.test(line)) {
             break;
         }
         if (line.trim() === "}}") {
@@ -338,6 +347,11 @@ export const __private = {
     parseReleaseDate,
     selectFirstReleaseDateCandidate,
     normalizeWikiTitle,
+    normalizeListValue,
+    normalizeLabelValue,
+    normalizeCategoryTitles,
+    getInfoboxValue,
+    collectReviewEvidence,
 };
 
 function normalizeValue(value: string): string {
@@ -378,13 +392,13 @@ function normalizeListValue(value: string): string {
         .replace(/\{\{\s*unbulleted list\s*\|/gi, "")
         .replace(/\}\}/g, "")
         .replace(/\{\{[^{}]*}}/g, " ")
-        .replace(/\|/g, "\n")
+        .replace(/\r/g, "");
+
+    const items = replaceTopLevelPipesWithNewlines(listLike)
         .replace(/\r/g, "")
         .split("\n")
         .map((line) => line.trim())
-        .filter((line) => line.length > 0);
-
-    const items = listLike
+        .filter((line) => line.length > 0)
         .map((line) => line.replace(/^\*+\s*/, ""))
         .flatMap((line) => normalizeTupleSeconds(line))
         .map((line) => normalizeValue(line))
@@ -414,15 +428,55 @@ function normalizeLabelValue(value: string): string {
     return normalizeValue([...new Set(parts)].join(", "));
 }
 
+function normalizeCategoryTitles(categories: Array<{ title?: string }>): string {
+    const items = categories
+        .map((category) => (category.title || "").trim())
+        .filter((title) => title.length > 0)
+        .map((title) => title.replace(/^Category:/i, "").trim())
+        .filter((title) => title.length > 0);
+
+    return [...new Set(items)].join(", ");
+}
+
 function normalizeTupleSeconds(line: string): string[] {
     const tupleRegex = /\[\[([^|\]]+?),\s*([^\]]+?)]]/g;
     const tupleNormalized = line.replace(tupleRegex, "$1");
 
     return tupleNormalized
         .split(/\s*,\s*|\s+\*\s+/)
-        .map((part) => part.replace(/\[\[([^|\]]+?)(?:\|[^\]]+)?]]/g, "$1"))
+        .map((part) => part.replace(/\[\[([^|\]]+?)(?:\|([^\]]+))?]]/g, (_, target: string, display?: string) => display || target))
         .map((part) => part.trim())
         .filter((part) => part.length > 0);
+}
+
+function replaceTopLevelPipesWithNewlines(value: string): string {
+    let linkDepth = 0;
+    let out = "";
+
+    for (let i = 0; i < value.length; i++) {
+        const pair = value.slice(i, i + 2);
+        if (pair === "[[") {
+            linkDepth += 1;
+            out += pair;
+            i += 1;
+            continue;
+        }
+        if (pair === "]]") {
+            linkDepth = Math.max(0, linkDepth - 1);
+            out += pair;
+            i += 1;
+            continue;
+        }
+
+        if (value[i] === "|" && linkDepth === 0) {
+            out += "\n";
+            continue;
+        }
+
+        out += value[i];
+    }
+
+    return out;
 }
 
 function monthName(month: number): string {
@@ -456,7 +510,6 @@ function collectReviewEvidence(wikitext: string): { links: string[]; count: numb
     const links = new Set<string>();
     const ratingOutlets = new Set<string>();
     const criticalOutlets = new Set<string>();
-    const criticalUrls = new Set<string>();
     const ratingsBlocks = extractNamedTemplates(wikitext, new Set(["album ratings", "music ratings"]));
 
     for (const block of ratingsBlocks) {
@@ -470,53 +523,39 @@ function collectReviewEvidence(wikitext: string): { links: string[]; count: numb
         extractSection(wikitext, "reception", false),
     ].filter((section) => section.trim().length > 0);
     for (const section of proseSections) {
-        addReviewSignals(section, links, criticalOutlets, false, criticalUrls);
+        addLinksToSet(section, links);
+        addCiteOutletFieldsToSet(section, criticalOutlets);
     }
 
-    let count = ratingOutlets.size;
-    for (const outlet of criticalOutlets) {
-        if (hasMatchingOutlet(ratingOutlets, outlet)) {
-            continue;
+    const countedOutlets = new Set<string>();
+    const combinedOutlets = new Set<string>([...ratingOutlets, ...criticalOutlets]);
+
+    for (const outlet of combinedOutlets) {
+        const reliability = classifyOutletKey(outlet);
+        if (reliability !== "unreliable") {
+            addOutletKey(countedOutlets, outlet);
         }
-        count += 1;
     }
 
-    for (const url of criticalUrls) {
-        const outlet = extractOutletFromUrl(url);
-        if (outlet && (hasMatchingOutlet(ratingOutlets, outlet) || hasMatchingOutlet(criticalOutlets, outlet))) {
-            continue;
-        }
-        if (!outlet) {
-            count += 1;
+    if (countedOutlets.size === 0) {
+        for (const url of links) {
+            const outlet = extractOutletFromUrl(url);
+            if (!outlet) {
+                continue;
+            }
+            const urlReliability = classifyReviewUrl(url);
+            if (urlReliability !== "unreliable" && classifyOutletKey(outlet) !== "unreliable") {
+                addOutletKey(countedOutlets, outlet);
+            }
         }
     }
+
+    const count = countedOutlets.size;
 
     return {
-        links: [...links],
+        links: prioritizeReviewLinks([...links]),
         count,
     };
-}
-
-function addReviewSignals(
-    content: string,
-    linkTarget: Set<string>,
-    outletTarget: Set<string>,
-    includeRatingsRows: boolean,
-    scopedUrlTarget?: Set<string>,
-): void {
-    addLinksToSet(content, linkTarget, scopedUrlTarget);
-    addCiteOutletFieldsToSet(content, outletTarget);
-
-    if (includeRatingsRows) {
-        addRatingsRowOutletsToSet(content, outletTarget);
-    }
-
-    for (const link of linkTarget) {
-        const outlet = extractOutletFromUrl(link);
-        if (outlet) {
-            addOutletKey(outletTarget, outlet);
-        }
-    }
 }
 
 function extractNamedTemplates(wikitext: string, targetNames: Set<string>): string[] {
@@ -597,16 +636,13 @@ function extractSection(wikitext: string, sectionName: string, includeSubsection
     return captured.join("\n");
 }
 
-function addLinksToSet(content: string, target: Set<string>, scopedTarget?: Set<string>): void {
+function addLinksToSet(content: string, target: Set<string>): void {
     const externalBracketLinkRegex = /\[(https?:\/\/[^\s\]]+)/gi;
     let externalMatch: RegExpExecArray | null;
     while ((externalMatch = externalBracketLinkRegex.exec(content)) !== null) {
         const url = normalizeReviewUrl(externalMatch[1]);
         if (isAllowedReviewUrl(url)) {
             target.add(url);
-            if (scopedTarget) {
-                scopedTarget.add(url);
-            }
         }
     }
 
@@ -616,9 +652,6 @@ function addLinksToSet(content: string, target: Set<string>, scopedTarget?: Set<
         const url = normalizeReviewUrl(citeMatch[1]);
         if (isAllowedReviewUrl(url)) {
             target.add(url);
-            if (scopedTarget) {
-                scopedTarget.add(url);
-            }
         }
     }
 }
@@ -793,6 +826,299 @@ function stripWikiMarkup(value: string): string {
     out = out.replace(/<[^>]+>/g, " ");
     out = out.replace(/\s+/g, " ");
     return out.trim();
+}
+
+type ReviewSourceReliability = "reliable" | "unreliable" | "unknown";
+
+const RELIABLE_OUTLET_KEYS = new Set<string>([
+    "allmusic",
+    "alternative press",
+    "american songwriter",
+    "attitude",
+    "audio culture",
+    "the a v club",
+    "au review",
+    "bandcamp daily",
+    "bbc music",
+    "beats per minute",
+    "billboard",
+    "blabbermouth",
+    "brooklynvegan",
+    "business insider",
+    "clash",
+    "classic rock",
+    "complex",
+    "consequence",
+    "country weekly",
+    "decibel",
+    "diy",
+    "drowned in sound",
+    "entertainment weekly",
+    "exclaim",
+    "fact",
+    "fader",
+    "flood",
+    "gigwise",
+    "goldmine",
+    "hot press",
+    "independent",
+    "kerrang",
+    "line of best fit",
+    "louder than war",
+    "loudwire",
+    "metal hammer",
+    "mixmag",
+    "mojo",
+    "musicomh",
+    "new noise magazine",
+    "nme",
+    "npr music",
+    "paste",
+    "pitchfork",
+    "popmatters",
+    "punknews",
+    "q",
+    "quietus",
+    "rapreviews",
+    "record collector",
+    "resident advisor",
+    "revolver",
+    "rock sound",
+    "rolling stone",
+    "slant magazine",
+    "source",
+    "spectrum culture",
+    "spin",
+    "sputnikmusic",
+    "stereogum",
+    "taste of country",
+    "tiny mix tapes",
+    "uncut",
+    "under the radar",
+    "ultimate guitar",
+    "vibe",
+    "wire",
+    "xxl",
+]);
+
+const UNRELIABLE_OUTLET_KEYS = new Set<string>([
+    "accesswire",
+    "acclaimed music",
+    "album of the year",
+    "amazon",
+    "business wire",
+    "businesswire",
+    "discogs",
+    "einnews",
+    "fandom",
+    "forbes contributor",
+    "huffpost contributor",
+    "imdb",
+    "globe newswire",
+    "globenewswire",
+    "issuewire",
+    "last fm",
+    "medium",
+    "newswire",
+    "official website",
+    "official site",
+    "press release",
+    "pr newswire",
+    "prnewswire",
+    "rate your music",
+    "setlist fm",
+    "songfacts",
+    "whosampled",
+    "youtube",
+    "facebook",
+    "instagram",
+    "twitter",
+    "x com",
+    "soundcloud",
+]);
+
+const RELIABLE_REVIEW_HOSTS = new Set<string>([
+    "allmusic.com",
+    "altpress.com",
+    "americansongwriter.com",
+    "avclub.com",
+    "bbc.co.uk",
+    "bbc.com",
+    "billboard.com",
+    "blabbermouth.net",
+    "brooklynvegan.com",
+    "businessinsider.com",
+    "clashmusic.com",
+    "consequence.net",
+    "decibelmagazine.com",
+    "diymag.com",
+    "exclaim.ca",
+    "floodmagazine.com",
+    "kerrang.com",
+    "lineofbestfit.com",
+    "loudandquiet.com",
+    "loudersound.com",
+    "loudwire.com",
+    "mixmag.net",
+    "nme.com",
+    "npr.org",
+    "pastemagazine.com",
+    "pitchfork.com",
+    "popmatters.com",
+    "punknews.org",
+    "quietus.com",
+    "rapreviews.com",
+    "rollingstone.com",
+    "slantmagazine.com",
+    "spin.com",
+    "spectrumculture.com",
+    "sputnikmusic.com",
+    "stereogum.com",
+    "thefader.com",
+    "theguardian.com",
+    "thelineofbestfit.com",
+    "thequietus.com",
+    "tinymixtapes.com",
+    "uncut.co.uk",
+    "undertheradarmag.com",
+    "ultimate-guitar.com",
+    "vibe.com",
+    "xxlmag.com",
+]);
+
+const UNRELIABLE_REVIEW_HOSTS = new Set<string>([
+    "45cat.com",
+    "acclaimedmusic.net",
+    "albumoftheyear.org",
+    "amazon.com",
+    "amzn.to",
+    "accesswire.com",
+    "businesswire.com",
+    "discogs.com",
+    "einnews.com",
+    "fandom.com",
+    "forbes.com",
+    "globenewswire.com",
+    "huffpost.com",
+    "imdb.com",
+    "itunes.apple.com",
+    "issuewire.com",
+    "last.fm",
+    "medium.com",
+    "prnewswire.com",
+    "rateyourmusic.com",
+    "setlist.fm",
+    "songfacts.com",
+    "whosampled.com",
+    "youtube.com",
+    "youtu.be",
+    "newswire.com",
+]);
+
+function classifyReviewUrl(url: string): ReviewSourceReliability {
+    if (!isAllowedReviewUrl(url)) {
+        return "unreliable";
+    }
+
+    try {
+        const parsed = new URL(url);
+        const host = parsed.hostname.toLowerCase().replace(/^www\./, "");
+        const path = parsed.pathname.toLowerCase();
+        if (matchesHostList(host, UNRELIABLE_REVIEW_HOSTS)) {
+            // Forbes and HuffPost can be reliable for staff pieces; block only known contributor patterns.
+            if (host === "forbes.com" || host.endsWith(".forbes.com")) {
+                const path = parsed.pathname.toLowerCase();
+                if (path.startsWith("/sites/") || path.includes("/contributors/")) {
+                    return "unreliable";
+                }
+                return "unknown";
+            }
+            if (host === "huffpost.com" || host.endsWith(".huffpost.com")) {
+                const path = parsed.pathname.toLowerCase();
+                if (path.includes("/entry/") || path.includes("/author/")) {
+                    return "unreliable";
+                }
+                return "unknown";
+            }
+            return "unreliable";
+        }
+        if (matchesHostList(host, RELIABLE_REVIEW_HOSTS)) {
+            return "reliable";
+        }
+
+        if (path.includes("press-release") || path.includes("pressrelease")) {
+            return "unreliable";
+        }
+        return "unknown";
+    } catch (e) {
+        return "unknown";
+    }
+}
+
+function classifyOutletKey(key: string): ReviewSourceReliability {
+    if (isBlockedAggregatorOutlet(key)) {
+        return "unreliable";
+    }
+    if (outletKeyMatchesList(key, UNRELIABLE_OUTLET_KEYS)) {
+        return "unreliable";
+    }
+    if (outletKeyMatchesList(key, RELIABLE_OUTLET_KEYS)) {
+        return "reliable";
+    }
+    return "unknown";
+}
+
+function outletKeyMatchesList(key: string, knownOutlets: Set<string>): boolean {
+    const normalizedKey = canonicalOutletCompareKey(key);
+    if (!normalizedKey) {
+        return false;
+    }
+    for (const candidate of knownOutlets) {
+        const normalizedCandidate = canonicalOutletCompareKey(candidate);
+        if (!normalizedCandidate) {
+            continue;
+        }
+        const shorterLength = Math.min(normalizedKey.length, normalizedCandidate.length);
+        if (shorterLength < 4) {
+            continue;
+        }
+        if (
+            normalizedKey === normalizedCandidate
+            || normalizedKey.includes(normalizedCandidate)
+            || normalizedCandidate.includes(normalizedKey)
+        ) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function matchesHostList(host: string, hosts: Set<string>): boolean {
+    for (const candidate of hosts) {
+        if (host === candidate || host.endsWith(`.${candidate}`)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+function prioritizeReviewLinks(urls: string[]): string[] {
+    const reliable: string[] = [];
+    const unknown: string[] = [];
+
+    for (const url of urls) {
+        const reliability = classifyReviewUrl(url);
+        if (reliability === "reliable") {
+            reliable.push(url);
+            continue;
+        }
+        if (reliability === "unknown") {
+            unknown.push(url);
+        }
+    }
+
+    const ordered = reliable.length > 0 ? [...reliable, ...unknown] : unknown;
+    return [...new Set(ordered)];
 }
 
 function isAllowedReviewUrl(url: string): boolean {

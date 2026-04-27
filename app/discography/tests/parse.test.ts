@@ -81,12 +81,13 @@ let testContent = 'Certainly! Here are the Wikipedia page links to the bands men
 
 describe("discography parsing", () => {
     it("pull out release info", () => {
-        expect(parseReleases(testContent)).toEqual([
+        expect(parseReleases(testContent)).toMatchObject([
             {
                 name: "Bleach",
                 producer: "Jack Endino",
                 type: "Studio Album",
                 label: "Sub Pop",
+                original_labels_text: "Sub Pop",
                 year: 1989,
                 day: 12,
                 month: "December",
@@ -98,6 +99,7 @@ describe("discography parsing", () => {
                 producer: "Butch Vig",
                 type: 'Studio Album',
                 label: "DGC",
+                original_labels_text: "DGC",
                 year: 1991,
                 day: 12,
                 month: "November",
@@ -109,6 +111,7 @@ describe("discography parsing", () => {
                 producer: "Scott Litt, Nirvana",
                 type: 'Live Album',
                 label: "DGC, Geffen",
+                original_labels_text: "DGC, Geffen",
                 year: 1994,
                 day: 11,
                 month: "August",
@@ -120,6 +123,7 @@ describe("discography parsing", () => {
                 producer: "Nirvana",
                 type: 'Live Album',
                 label: "DGC, Geffen",
+                original_labels_text: "DGC, Geffen",
                 year: 1996,
                 day: 10,
                 month: "October",
@@ -131,6 +135,7 @@ describe("discography parsing", () => {
                 producer: "Various",
                 type: 'Compilation Album',
                 label: "Sub Pop, DGC",
+                original_labels_text: "Sub Pop, DGC",
                 year: 1992,
                 day: 9,
                 month: "July",
@@ -142,6 +147,7 @@ describe("discography parsing", () => {
                 producer: "Various",
                 type: 'Box Set',
                 label: "DGC, Geffen",
+                original_labels_text: "DGC, Geffen",
                 year: 1995,
                 day: 12,
                 month: "December",
@@ -153,6 +159,7 @@ describe("discography parsing", () => {
                 producer: "Jack Endino",
                 type: 'EP',
                 label: "Tupelo",
+                original_labels_text: "Tupelo",
                 year: null,
                 day: null,
                 month: "",

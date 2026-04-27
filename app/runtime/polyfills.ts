@@ -18,4 +18,25 @@ export function applyRuntimePolyfills(): void {
             // Best-effort polyfill; if unavailable, existing runtime error remains explicit.
         }
     }
+
+    if (typeof globalAny.fetch === "undefined") {
+        try {
+            // Node 16 compatibility for runtime code using global fetch.
+            const undici = require("undici");
+            if (typeof undici?.fetch === "function") {
+                globalAny.fetch = undici.fetch;
+            }
+            if (undici?.Headers && typeof globalAny.Headers === "undefined") {
+                globalAny.Headers = undici.Headers;
+            }
+            if (undici?.Request && typeof globalAny.Request === "undefined") {
+                globalAny.Request = undici.Request;
+            }
+            if (undici?.Response && typeof globalAny.Response === "undefined") {
+                globalAny.Response = undici.Response;
+            }
+        } catch (e) {
+            // Best-effort polyfill; if unavailable, existing runtime error remains explicit.
+        }
+    }
 }

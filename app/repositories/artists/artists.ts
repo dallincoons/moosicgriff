@@ -31,9 +31,8 @@ class Artists {
                OR peers_scraped_at < ${runStartedAt.toISOString()}::timestamp
             ORDER BY
                 CASE WHEN peers_scraped_at IS NULL THEN 0 ELSE 1 END ASC,
-                CASE WHEN peers_scraped_at IS NULL THEN id END DESC,
-                peers_scraped_at ASC NULLS LAST,
-                id ASC
+                id DESC,
+                peers_scraped_at ASC NULLS LAST
             LIMIT 1
         `
 
@@ -66,6 +65,41 @@ class Artists {
                 peers_scraped_at = CURRENT_TIMESTAMP
             WHERE wikilink = ${url}
         `
+    }
+
+    async updateYearsActive(url: string, yearStart: number | null, yearEnd: number | null): Promise<void> {
+        await db`
+            UPDATE artists
+            SET year_start = ${yearStart}::integer,
+                year_end = ${yearEnd}::integer
+            WHERE wikilink = ${url}
+        `
+    }
+
+    async markYearsActiveScraped(url: string): Promise<void> {
+        await db`
+            UPDATE artists
+            SET years_active_scraped = true
+            WHERE wikilink = ${url}
+        `
+    }
+
+    async resetAllYearsActiveScraped(): Promise<void> {
+        await db`
+            UPDATE artists
+            SET years_active_scraped = false
+        `
+    }
+
+    async getNextWhereYearsActiveNotScraped(): Promise<DBArtist | undefined> {
+        const [artist]: [DBArtist?] = await db`
+            SELECT *
+            FROM artists
+            WHERE years_active_scraped = false
+            ORDER BY id ASC
+            LIMIT 1
+        `;
+        return artist;
     }
 
     async updatePageContentHash(url: string, pageContentHash: string): Promise<void> {

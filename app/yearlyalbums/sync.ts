@@ -9,10 +9,10 @@ import {getAlbumReleaseFromApi} from "app/clients/wikipediaapi";
 import discography from "app/repositories/discography/discography";
 import {handleLink as handleArtistLink} from "app/artists/scrape";
 import {createHash} from "crypto";
+import {RELEASE_REVIEWS_PARSE_VERSION} from "app/discography/reviewsparseversion";
 import {
     buildYearlyAlbumSourcePages,
     DEFAULT_YEARLY_ALBUM_SYNC_START_YEAR,
-    getPrimaryYearlyAlbumSourceWikilink,
     MIN_YEARLY_ALBUM_YEAR,
 } from "app/yearlyalbums/sourcepages";
 
@@ -61,22 +61,27 @@ export async function syncYearlyAlbumReferences(yearArg?: string, modeArg?: stri
 
     if (specificYear) {
         const sourcePageUrls = buildYearlyAlbumSourcePages(specificYear);
-        const primarySourceWikilink = getPrimaryYearlyAlbumSourceWikilink(specificYear);
-        const categorySource = await getCategorySourcePayload(specificYear);
         const sourcePages = await Promise.all(sourcePageUrls.map(async (pageUrl) => ({
             pageUrl,
             payload: await getSourcePagePayload(pageUrl),
         })));
+        for (const sourcePage of sourcePages) {
+            console.log(`[yearly.albums.sync] reconciling references from list page: ${sourcePage.pageUrl}`);
+            await syncFromSourcePage(
+                sourcePage.pageUrl,
+                artistWikilinks,
+                sourcePage.payload,
+                true,
+                true,
+            );
+        }
+        const categorySource = await getCategorySourcePayload(specificYear);
         if (!categorySource.changed) {
             console.log(
                 `[yearly.albums.sync] category source unchanged; running album hash refresh anyway for ${categorySource.sourceWikilink}`,
             );
         }
-        await syncFromCategoryPagesForYear(specificYear, categorySource, primarySourceWikilink);
-        for (const sourcePage of sourcePages) {
-            console.log(`[yearly.albums.sync] reconciling references from list page: ${sourcePage.pageUrl}`);
-            await syncFromSourcePage(sourcePage.pageUrl, artistWikilinks, sourcePage.payload, true);
-        }
+        await syncFromCategoryPagesForYear(specificYear, categorySource);
         console.log("[yearly.albums.sync] complete.");
         return;
     }
@@ -100,9 +105,10 @@ type CategorySourcePayload = {
 async function syncFromCategoryPagesForYear(
     year: number,
     categorySourcePayload?: CategorySourcePayload,
-    sourceListWikilink: string = getPrimaryYearlyAlbumSourceWikilink(year),
+    sourceListWikilink?: string,
 ): Promise<void> {
     const categorySource = categorySourcePayload || await getCategorySourcePayload(year);
+    const targetSourceWikilink = sourceListWikilink || categorySource.sourceWikilink;
     const albumLinks = categorySource.albumLinks;
     const releaseByAlbumUrl = await loadReleaseByAlbumUrlIndexForYear(year);
 
@@ -141,7 +147,7 @@ async function syncFromCategoryPagesForYear(
             release_day: release?.dateday ?? null,
             genre: release?.genre || "",
             record_label: release?.label || "",
-            source_list_wikilink: sourceListWikilink,
+            source_list_wikilink: targetSourceWikilink,
         };
 
         if (!release) {
@@ -161,12 +167,12 @@ async function syncFromCategoryPagesForYear(
         }
     }
 
-    const deleted = await yearlyAlbums.deleteMissingForSource(sourceListWikilink, [...foundAlbumLinks]);
+    const deleted = await yearlyAlbums.deleteMissingForSource(targetSourceWikilink, [...foundAlbumLinks]);
     if (errors === 0) {
         await yearlyAlbums.upsertSourceContentHash(categorySource.sourceWikilink, categorySource.contentHash);
     }
     console.log(
-        `[yearly.albums.sync] source=${sourceListWikilink} mode=category year=${year} category_albums=${albumLinks.length} upserted=${upserted} releases_backfilled=${releasesInsertedOrUpdated} skipped_no_release_match=${skippedNoReleaseMatch} deleted=${deleted} errors=${errors}`,
+        `[yearly.albums.sync] source=${targetSourceWikilink} mode=category year=${year} category_albums=${albumLinks.length} upserted=${upserted} releases_backfilled=${releasesInsertedOrUpdated} skipped_no_release_match=${skippedNoReleaseMatch} deleted=${deleted} errors=${errors}`,
     );
 }
 
@@ -211,6 +217,7 @@ async function syncFromSourcePage(
     artistWikilinks: Set<string>,
     sourcePagePayload?: SourcePagePayload,
     forceRun: boolean = false,
+    refreshReleases: boolean = false,
 ): Promise<void> {
     const sourcePage = sourcePagePayload || await getSourcePagePayload(sourcePageUrl);
     if (!sourcePage.changed && !forceRun) {
@@ -225,6 +232,7 @@ async function syncFromSourcePage(
     const releasePageIdByAlbumUrl = await loadReleasePageIdIndexForSourceYear(sourcePageUrl);
     const releaseArtistWikilinks = await loadReleaseArtistWikilinkIndexForSourceYear(sourcePageUrl);
     const releaseArtistByAlbumUrl = await loadReleaseArtistByAlbumUrlIndexForSourceYear(sourcePageUrl);
+    const releaseAlbumUrls = await loadReleaseAlbumUrlIndexForSourceYear(sourcePageUrl);
     const entries = extractAlbumEntriesFromYearlyListHtml(sourcePageUrl, html);
     const uniqueEntriesByAlbum = new Map<string, YearlyListEntry>();
     for (const entry of entries) {
@@ -236,11 +244,14 @@ async function syncFromSourcePage(
     const foundAlbumLinks = new Set<string>();
     let upserted = 0;
     let skippedMissingArtist = 0;
+    let releasesBackfilled = 0;
+    let releaseRefreshErrors = 0;
     let errors = 0;
     const skippedMissingArtistSamples: string[] = [];
 
     for (let i = 0; i < uniqueEntries.length; i++) {
         const entry = uniqueEntries[i];
+        const normalizedAlbumWikilink = normalizeWikipediaUrl(entry.albumWikilink);
         const artistExists = shouldProcessEntry(
             entry.artistWikilink,
             entry.albumWikilink,
@@ -248,7 +259,8 @@ async function syncFromSourcePage(
             releaseArtistWikilinks,
             releaseArtistByAlbumUrl,
         );
-        if (!artistExists) {
+        const hasExistingRelease = releaseAlbumUrls.has(normalizedAlbumWikilink);
+        if (!artistExists && !hasExistingRelease && !refreshReleases) {
             skippedMissingArtist += 1;
             if (skippedMissingArtistSamples.length < 10) {
                 skippedMissingArtistSamples.push(`${entry.artistWikilink} -> ${entry.albumWikilink}`);
@@ -259,11 +271,30 @@ async function syncFromSourcePage(
         try {
             const albumWikilink = entry.albumWikilink;
             foundAlbumLinks.add(albumWikilink);
+            let refreshedRelease: Awaited<ReturnType<typeof ensureReleaseExistsForAlbum>>["release"] | null = null;
+            if (refreshReleases) {
+                try {
+                    const refreshed = await ensureReleaseExistsForAlbum(albumWikilink);
+                    refreshedRelease = refreshed.release;
+                    if (refreshed.updated) {
+                        releasesBackfilled += 1;
+                    }
+                } catch (e) {
+                    releaseRefreshErrors += 1;
+                    const message = e instanceof Error ? e.message : String(e);
+                    console.log(
+                        `[yearly.albums.sync] release refresh warning album=${albumWikilink} message=${message}`,
+                    );
+                }
+            }
+            const releasePageId = refreshedRelease?.wikipedia_page_id
+                ?? releasePageIdByAlbumUrl.get(normalizedAlbumWikilink)
+                ?? null;
 
             const reference: YearlyAlbumReference = {
                 album_name: entry.albumName,
                 album_wikilink: albumWikilink,
-                wikipedia_page_id: releasePageIdByAlbumUrl.get(normalizeWikipediaUrl(albumWikilink)) ?? null,
+                wikipedia_page_id: releasePageId,
                 release_year: entry.releaseYear,
                 release_month: entry.releaseMonth,
                 release_day: entry.releaseDay,
@@ -289,7 +320,7 @@ async function syncFromSourcePage(
     }
 
     console.log(
-        `[yearly.albums.sync] source=${sourcePageUrl} candidates=${uniqueEntries.length} upserted=${upserted} skipped_missing_artist=${skippedMissingArtist} deleted=${deleted} errors=${errors}`,
+        `[yearly.albums.sync] source=${sourcePageUrl} candidates=${uniqueEntries.length} upserted=${upserted} skipped_missing_artist=${skippedMissingArtist} releases_backfilled=${releasesBackfilled} release_refresh_errors=${releaseRefreshErrors} deleted=${deleted} errors=${errors}`,
     );
     if (skippedMissingArtistSamples.length > 0) {
         console.log(`[yearly.albums.sync] skipped_missing_artist_samples=${skippedMissingArtistSamples.join("; ")}`);
@@ -459,9 +490,10 @@ function selectLegacyAlbumsReleasedTables($: cheerio.CheerioAPI): cheerio.Cheeri
     }
 
     const tables: any[] = [];
-    let cursor = heading.next();
+    const headingContainer = heading.parent().is("div.mw-heading") ? heading.parent() : heading;
+    let cursor = headingContainer.next();
     while (cursor.length) {
-        if (cursor.is("h2")) {
+        if (isLegacySectionBoundary(cursor)) {
             break;
         }
         if (cursor.is("table.wikitable")) {
@@ -477,6 +509,25 @@ function selectLegacyAlbumsReleasedTables($: cheerio.CheerioAPI): cheerio.Cheeri
     }
 
     return $(tables);
+}
+
+function isLegacySectionBoundary(node: cheerio.Cheerio<any>): boolean {
+    if (node.is("h2")) {
+        return true;
+    }
+
+    if (node.is("div.mw-heading")) {
+        const className = node.attr("class") || "";
+        if (/\bmw-heading2\b/.test(className)) {
+            return true;
+        }
+        const childHeading = node.children("h2");
+        if (childHeading.length > 0) {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 function detectYearlyAlbumTableColumns($: cheerio.CheerioAPI, rows: cheerio.Cheerio<any>): YearlyTableColumns {
@@ -561,11 +612,15 @@ function isMissingArticleHtml(html: string): boolean {
 async function collectAlbumLinksFromCategoryPages(year: number): Promise<{ albumLinks: string[]; contentHash: string }> {
     const links = new Set<string>();
     const visited = new Set<string>();
+    const queue: string[] = [`https://en.wikipedia.org/wiki/Category:${year}_albums`];
     const pageHashes: string[] = [];
-    let pageUrl = `https://en.wikipedia.org/wiki/Category:${year}_albums`;
     let pageCount = 0;
 
-    while (pageUrl && !visited.has(pageUrl)) {
+    while (queue.length > 0) {
+        const pageUrl = queue.shift() || "";
+        if (!pageUrl || visited.has(pageUrl)) {
+            continue;
+        }
         visited.add(pageUrl);
         pageCount += 1;
         console.log(`[yearly.albums.sync] category page ${pageCount}: ${pageUrl}`);
@@ -585,15 +640,46 @@ async function collectAlbumLinksFromCategoryPages(year: number): Promise<{ album
             links.add(`https://en.wikipedia.org${href}`);
         });
 
-        const nextHref = $("#mw-pages a").filter((_, el) => {
-            return $(el).text().trim().toLowerCase() === "next page";
-        }).first().attr("href");
+        $("#mw-subcategories a[href^='/wiki/Category:']").each((_, el) => {
+            const href = $(el).attr("href");
+            if (!href || href.includes("#")) {
+                return;
+            }
 
-        pageUrl = nextHref ? `https://en.wikipedia.org${nextHref}` : "";
+            const label = $(el).text().trim().toLowerCase();
+            if (label === "next page" || label === "previous page") {
+                return;
+            }
+
+            queue.push(`https://en.wikipedia.org${href}`);
+        });
+
+        for (const nextHref of getNextCategoryPageHrefs($)) {
+            queue.push(`https://en.wikipedia.org${nextHref}`);
+        }
     }
 
     const contentHash = createHash("sha256").update(pageHashes.join("|")).digest("hex");
     return { albumLinks: [...links], contentHash };
+}
+
+function getNextCategoryPageHrefs($: cheerio.CheerioAPI): string[] {
+    const nextHrefs = new Set<string>();
+
+    $("#mw-pages a, #mw-subcategories a").each((_, el) => {
+        const href = $(el).attr("href");
+        if (!href) {
+            return;
+        }
+
+        if ($(el).text().trim().toLowerCase() !== "next page") {
+            return;
+        }
+
+        nextHrefs.add(href);
+    });
+
+    return [...nextHrefs];
 }
 
 async function loadReleasePageIdIndexForSourceYear(sourcePageUrl: string): Promise<Map<string, number>> {
@@ -649,6 +735,28 @@ async function loadReleaseArtistWikilinkIndexForSourceYear(sourcePageUrl: string
 
     for (const row of rows) {
         index.add(normalizeWikipediaUrl(row.artist_wikilink));
+    }
+
+    return index;
+}
+
+async function loadReleaseAlbumUrlIndexForSourceYear(sourcePageUrl: string): Promise<Set<string>> {
+    const year = parseYearFromSourceListUrl(sourcePageUrl);
+    const index = new Set<string>();
+    if (!year) {
+        return index;
+    }
+
+    const rows: Array<{ wikilink: string }> = await db`
+        select wikilink
+        from releases
+        where dateyear = ${year}
+          and wikilink is not null
+          and length(wikilink) > 0
+    `;
+
+    for (const row of rows) {
+        index.add(normalizeWikipediaUrl(row.wikilink));
     }
 
     return index;
@@ -750,6 +858,9 @@ async function getReleaseByAlbumWikilink(albumWikilink: string): Promise<{
     genre: string | null;
     label: string;
     content_hash: string | null;
+    reviews_parse_version: number | null;
+    number_of_reviews: number;
+    review_links: string | null;
 } | null> {
     const rows: Array<{
         title: string;
@@ -761,6 +872,9 @@ async function getReleaseByAlbumWikilink(albumWikilink: string): Promise<{
         genre: string | null;
         label: string;
         content_hash: string | null;
+        reviews_parse_version: number | null;
+        number_of_reviews: number;
+        review_links: string | null;
     }> = await db`
         select
             title,
@@ -771,7 +885,10 @@ async function getReleaseByAlbumWikilink(albumWikilink: string): Promise<{
             dateday,
             genre,
             label,
-            content_hash
+            content_hash,
+            reviews_parse_version,
+            number_of_reviews,
+            review_links
         from releases
         where lower(wikilink) = lower(${albumWikilink})
         limit 1
@@ -791,13 +908,17 @@ async function ensureReleaseExistsForAlbum(albumWikilink: string): Promise<{
         genre: string | null;
         label: string;
         content_hash: string | null;
+        reviews_parse_version: number | null;
+        number_of_reviews: number;
+        review_links: string | null;
     } | null;
     updated: boolean;
 }> {
     const existing = await getReleaseByAlbumWikilink(albumWikilink);
     const albumHtml = await getHtml(albumWikilink);
     const contentHash = createHash("sha256").update(albumHtml).digest("hex");
-    if (existing?.content_hash === contentHash) {
+    const hasLatestReviewsParser = (existing?.reviews_parse_version || 0) >= RELEASE_REVIEWS_PARSE_VERSION;
+    if (existing?.content_hash === contentHash && hasLatestReviewsParser) {
         return { release: existing, updated: false };
     }
 
@@ -808,7 +929,11 @@ async function ensureReleaseExistsForAlbum(albumWikilink: string): Promise<{
 
     const artistWikilink = (apiRelease.artist_wikilink || "").trim();
     if (!artistWikilink) {
-        return { release: existing, updated: false };
+        await discography.upsertReleaseWithoutArtist(apiRelease, contentHash);
+        return {
+            release: await getReleaseByAlbumWikilink(albumWikilink),
+            updated: true,
+        };
     }
 
     let artist = await artists.getArtistByUrl(artistWikilink);

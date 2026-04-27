@@ -1,5 +1,4 @@
 import {db} from "app/repositories/db";
-import {syncYearlyAlbumReferences} from "app/yearlyalbums/sync";
 import {DateCompletenessMode, parseDateCompletenessMode} from "app/yearlyalbums/query/missingmode";
 import {getPrimaryYearlyAlbumSourceWikilink} from "app/yearlyalbums/sourcepages";
 
@@ -9,10 +8,15 @@ type MissingAlbumRow = {
     original_title: string | null;
     wikilink: string;
     wikipedia_page_id: number | null;
-    number_of_reviews: number;
+    effective_number_of_reviews: number;
 };
 
-export async function yearlyAlbumsMissingFromReference(yearArg?: string, modeArg?: string, freshArg?: string): Promise<void> {
+export async function yearlyAlbumsMissingFromReference(
+    yearArg?: string,
+    modeArg?: string,
+    optionArg1?: string,
+    optionArg2?: string,
+): Promise<void> {
     const year = parseInt(yearArg || "", 10);
     if (Number.isNaN(year) || year < 1900 || year > 2100) {
         console.log(`[yearly.albums.missing] invalid year "${yearArg}". example: yearly.albums.missing 2005 full`);
@@ -24,16 +28,21 @@ export async function yearlyAlbumsMissingFromReference(yearArg?: string, modeArg
         return;
     }
 
-    const freshMode = parseFreshMode(freshArg);
-    if (freshArg && !freshMode) {
-        console.log(`[yearly.albums.missing] invalid fresh flag "${freshArg}". expected: fresh`);
+    const options = parseModeOptions([optionArg1, optionArg2]);
+    if (options.error) {
+        console.log(options.error);
         return;
     }
 
-    console.log(
-        `[yearly.albums.missing] syncing ${year} before missing query...${freshMode ? " (fresh)" : ""}`,
-    );
-    await syncYearlyAlbumReferences(String(year), freshMode ? "fresh" : undefined);
+    if (!options.skipSync) {
+        const {syncYearlyAlbumReferences} = await import("app/yearlyalbums/sync");
+        console.log(
+            `[yearly.albums.missing] syncing ${year} before missing query...${options.freshMode ? " (fresh)" : ""}`,
+        );
+        await syncYearlyAlbumReferences(String(year), options.freshMode ? "fresh" : undefined);
+    } else {
+        console.log(`[yearly.albums.missing] skip sync enabled; querying database state only for ${year}`);
+    }
 
     const sourceListWikilink = getPrimaryYearlyAlbumSourceWikilink(year);
     const rows: MissingAlbumRow[] = await db`
@@ -43,19 +52,23 @@ export async function yearlyAlbumsMissingFromReference(yearArg?: string, modeArg
             r.original_title,
             r.wikilink,
             r.wikipedia_page_id,
-            r.number_of_reviews
+            coalesce(r.manual_number_of_reviews, r.number_of_reviews) as effective_number_of_reviews
         from releases r
         where r.dateyear = ${year}
           and (
             (${mode}::text = 'all')
             or (${mode}::text = 'full' and r.dateyear is not null and coalesce(trim(r.datemonth), '') <> '' and r.dateday is not null)
           )
-          and r.number_of_reviews >= 3
+          and coalesce(r.manual_number_of_reviews, r.number_of_reviews) >= 3
           and coalesce(r.releasetype, '') not in ('greatest', 'compilation', 'soundtrack', 'film', 'cast')
+          and lower(coalesce(r.releasetype, '')) not like '%box set%'
+          and lower(coalesce(r.releasetype, '')) not like '%boxset%'
           and lower(coalesce(r.title, '')) not like '%compilation%'
           and lower(coalesce(r.original_title, '')) not like '%compilation%'
           and lower(coalesce(r.original_releasetype, '')) not like '%soundtrack%'
           and lower(coalesce(r.original_releasetype, '')) not like '%film%'
+          and lower(coalesce(r.original_releasetype, '')) not like '%box set%'
+          and lower(coalesce(r.original_releasetype, '')) not like '%boxset%'
           and not exists (
             select 1
             from yearly_album_references yar
@@ -168,7 +181,7 @@ export async function yearlyAlbumsMissingFromReference(yearArg?: string, modeArg
                 or lower(coalesce(yar_review.album_name, '')) = lower(coalesce(r.title, ''))
               )
           )
-        order by r.number_of_reviews asc, r.artist_name asc, r.title asc
+        order by coalesce(r.manual_number_of_reviews, r.number_of_reviews) asc, r.artist_name asc, r.title asc
     `;
 
     console.log(`[yearly.albums.missing] year=${year} mode=${mode} source=${sourceListWikilink} missing_count=${rows.length}`);
@@ -177,7 +190,7 @@ export async function yearlyAlbumsMissingFromReference(yearArg?: string, modeArg
         const title = row.original_title || row.title;
         console.log(`Album: ${title}`);
         console.log(`Artist: ${row.artist_name}`);
-        console.log(`Reviews: ${row.number_of_reviews}`);
+        console.log(`Reviews: ${row.effective_number_of_reviews}`);
         console.log("");
     }
 
@@ -190,4 +203,46 @@ function parseFreshMode(value?: string): boolean {
     }
     const normalized = value.trim().toLowerCase();
     return normalized === "fresh" || normalized === "--fresh";
+}
+
+function parseNoSyncMode(value?: string): boolean {
+    if (!value) {
+        return false;
+    }
+    const normalized = value.trim().toLowerCase();
+    return normalized === "no-sync" || normalized === "--no-sync";
+}
+
+function parseModeOptions(values: Array<string | undefined>): { freshMode: boolean; skipSync: boolean; error: string | null } {
+    let freshMode = false;
+    let skipSync = false;
+
+    for (const value of values) {
+        if (!value) {
+            continue;
+        }
+        if (parseFreshMode(value)) {
+            freshMode = true;
+            continue;
+        }
+        if (parseNoSyncMode(value)) {
+            skipSync = true;
+            continue;
+        }
+        return {
+            freshMode: false,
+            skipSync: false,
+            error: `[yearly.albums.missing] invalid option "${value}". expected: fresh or no-sync`,
+        };
+    }
+
+    if (freshMode && skipSync) {
+        return {
+            freshMode: false,
+            skipSync: false,
+            error: `[yearly.albums.missing] invalid options. "fresh" and "no-sync" cannot be used together.`,
+        };
+    }
+
+    return {freshMode, skipSync, error: null};
 }

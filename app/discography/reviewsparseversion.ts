@@ -1,0 +1,1 @@
+export const RELEASE_REVIEWS_PARSE_VERSION = 2;
