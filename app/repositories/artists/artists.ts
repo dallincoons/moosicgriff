@@ -42,7 +42,7 @@ class Artists {
     async getArtistByUrl(url: string): Promise<DBArtist|undefined> {
         const [artist]: [DBArtist?] = await db`
             SELECT * FROM artists
-            WHERE wikilink = (${url})::text LIMIT 1
+            WHERE lower(wikilink) = lower((${url})::text) LIMIT 1
         `
 
         return artist

@@ -4,7 +4,7 @@ import {buildYearlyAlbumSourcePages} from "app/yearlyalbums/sourcepages";
 import {normalizeWikipediaUrl} from "app/yearlyalbums/syncmatch";
 import * as cheerio from "cheerio";
 
-type CitedAlbumRow = {
+export type CitedAlbumRow = {
     sourcePage: string;
     albumWikilink: string;
     albumName: string;
@@ -12,6 +12,7 @@ type CitedAlbumRow = {
     releaseYear: number | null;
     releaseMonth: string;
     releaseDay: number | null;
+    wikipediaPageId: number | null;
 };
 
 type ReleaseReviewRow = {
@@ -19,6 +20,7 @@ type ReleaseReviewRow = {
     original_title: string | null;
     artist_name: string;
     wikilink: string;
+    wikipedia_page_id: number | string | null;
     effective_number_of_reviews: number;
     dateyear: number | null;
     datemonth: string;
@@ -47,6 +49,38 @@ const MONTH_ORDER = [
     "November",
     "December",
 ] as const;
+
+const WIKIPEDIA_NAMESPACES = new Set([
+    "category",
+    "file",
+    "image",
+    "wikipedia",
+    "project",
+    "help",
+    "portal",
+    "special",
+    "template",
+    "template talk",
+    "talk",
+    "user",
+    "user talk",
+    "draft",
+    "draft talk",
+    "module",
+    "module talk",
+    "book",
+    "book talk",
+    "timedtext",
+    "timedtext talk",
+    "media",
+    "mediawiki",
+    "mediawiki talk",
+    "education program",
+    "education program talk",
+    "topic",
+    "wikt",
+    "wiktionary",
+]);
 
 export async function yearlyAlbumsCitedReviews(yearArg?: string, minReviewsArg?: string): Promise<void> {
     const year = parseInt(yearArg || "", 10);
@@ -77,7 +111,7 @@ export async function yearlyAlbumsCitedReviews(yearArg?: string, minReviewsArg?:
         const html = await getHtml(sourcePage);
         const rows = extractCitedAlbumRows(sourcePage, html, debug);
         for (const row of rows) {
-            const key = normalizeWikipediaUrl(row.albumWikilink);
+            const key = citedRowIdentityKey(row);
             if (seenAlbumLinks.has(key)) {
                 continue;
             }
@@ -91,18 +125,37 @@ export async function yearlyAlbumsCitedReviews(yearArg?: string, minReviewsArg?:
         return;
     }
 
-    const releases = await loadReleasesForYear(year, minReviews);
+    await hydrateCitedRowPageIds(citedRows);
+    const citedPageIds = citedRows
+        .map((row) => row.wikipediaPageId)
+        .filter((pageId): pageId is number => pageId !== null);
+    const citedArticleTitles = citedRows
+        .flatMap((row) => [wikipediaTitleFromUrl(row.albumWikilink), row.albumName])
+        .filter((title) => !!title);
+    const releases = await loadReleasesForYear(year, minReviews, citedPageIds, citedArticleTitles);
     if (debug) {
         console.log(`[yearly.albums.cited.reviews][debug] releases_with_min_reviews=${releases.length}`);
     }
     const releaseByAlbumWikilink = new Map<string, ReleaseReviewRow>();
+    const releaseByPageId = new Map<number, ReleaseReviewRow>();
+    const releaseByTitleAndArtist = new Map<string, ReleaseReviewRow>();
     for (const release of releases) {
         releaseByAlbumWikilink.set(normalizeWikipediaUrl(release.wikilink), release);
+        const releasePageId = normalizePageId(release.wikipedia_page_id);
+        if (releasePageId !== null && !releaseByPageId.has(releasePageId)) {
+            releaseByPageId.set(releasePageId, release);
+        }
+        for (const title of [release.title, release.original_title || ""]) {
+            const key = titleArtistKey(title, release.artist_name);
+            if (key && !releaseByTitleAndArtist.has(key)) {
+                releaseByTitleAndArtist.set(key, release);
+            }
+        }
     }
 
     if (debug) {
         const unmatched = citedRows.filter(
-            (row) => !releaseByAlbumWikilink.has(normalizeWikipediaUrl(row.albumWikilink)),
+            (row) => !findMatchingRelease(row, releaseByAlbumWikilink, releaseByPageId, releaseByTitleAndArtist),
         );
         console.log(`[yearly.albums.cited.reviews][debug] cited_rows_without_release_match=${unmatched.length}`);
         for (const row of unmatched.slice(0, 10)) {
@@ -114,7 +167,7 @@ export async function yearlyAlbumsCitedReviews(yearArg?: string, minReviewsArg?:
 
     const matched = citedRows
         .map((row) => {
-            const release = releaseByAlbumWikilink.get(normalizeWikipediaUrl(row.albumWikilink));
+            const release = findMatchingRelease(row, releaseByAlbumWikilink, releaseByPageId, releaseByTitleAndArtist);
             if (!release) {
                 return null;
             }
@@ -131,6 +184,14 @@ export async function yearlyAlbumsCitedReviews(yearArg?: string, minReviewsArg?:
             }
             return a.release.artist_name.localeCompare(b.release.artist_name);
         });
+
+    if (debug) {
+        for (const item of matched.slice(0, 10)) {
+            console.log(
+                `[yearly.albums.cited.reviews][debug] matched album="${item.row.albumName}" row_date=${formatDate(item.row.releaseYear, item.row.releaseMonth, item.row.releaseDay)} release_date=${formatDate(item.release.dateyear, item.release.datemonth, item.release.dateday)} prefer_row_date=${shouldPreferCitedRowDate(item)}`,
+            );
+        }
+    }
 
     console.log(`[yearly.albums.cited.reviews] intersection=${matched.length}`);
     const groupedByMonth = new Map<string, Array<{ row: CitedAlbumRow; release: ReleaseReviewRow }>>();
@@ -151,15 +212,66 @@ export async function yearlyAlbumsCitedReviews(yearArg?: string, minReviewsArg?:
         console.log(`=== ${month} ===`);
         for (const item of items) {
             console.log(`Source Page: ${item.row.sourcePage}`);
-            console.log(`Album: ${item.release.original_title || item.release.title}`);
+            console.log(`Album: ${getMatchedAlbumName(item)}`);
             console.log(`Artist: ${item.release.artist_name}`);
-            console.log(`Date: ${formatDate(item.release.dateyear, item.release.datemonth, item.release.dateday)}`);
+            console.log(`Date: ${formatMatchedDate(item)}`);
             console.log(`Reviews: ${item.release.effective_number_of_reviews}`);
-            console.log(`Album Wikilink: ${item.row.albumWikilink}`);
+            console.log(`Album Wikilink: ${getMatchedAlbumWikilink(item)}`);
             console.log("");
         }
     }
     console.log(`Total albums: ${matched.length}`);
+}
+
+function citedRowIdentityKey(row: CitedAlbumRow): string {
+    const linkedKey = normalizeWikipediaUrl(row.albumWikilink);
+    if (linkedKey) {
+        return `linked:${linkedKey}`;
+    }
+    return `unlinked:${titleArtistKey(row.albumName, row.artistName)}:${row.sourcePage}`;
+}
+
+function normalizePageId(value: number | string | null): number | null {
+    if (typeof value === "number") {
+        return Number.isFinite(value) ? value : null;
+    }
+    if (typeof value === "string") {
+        const parsed = parseInt(value, 10);
+        return Number.isNaN(parsed) ? null : parsed;
+    }
+    return null;
+}
+
+function findMatchingRelease(
+    row: CitedAlbumRow,
+    releaseByAlbumWikilink: Map<string, ReleaseReviewRow>,
+    releaseByPageId: Map<number, ReleaseReviewRow>,
+    releaseByTitleAndArtist: Map<string, ReleaseReviewRow>,
+): ReleaseReviewRow | undefined {
+    const byUrl = releaseByAlbumWikilink.get(normalizeWikipediaUrl(row.albumWikilink));
+    if (byUrl) {
+        return byUrl;
+    }
+    if (hasWikipediaFragment(row.albumWikilink)) {
+        return undefined;
+    }
+    if (row.wikipediaPageId !== null) {
+        const byPageId = releaseByPageId.get(row.wikipediaPageId);
+        if (byPageId) {
+            return byPageId;
+        }
+    }
+    const titleFromWikilink = wikipediaTitleFromUrl(row.albumWikilink);
+    return releaseByTitleAndArtist.get(titleArtistKey(titleFromWikilink, row.artistName))
+        ?? releaseByTitleAndArtist.get(titleArtistKey(row.albumName, row.artistName));
+}
+
+function hasWikipediaFragment(url: string): boolean {
+    try {
+        return !!new URL(url).hash;
+    } catch {
+        return url.includes("#");
+    }
 }
 
 function parseMinReviews(minReviewsArg?: string): number | null {
@@ -234,6 +346,15 @@ function extractCitedAlbumRows(sourcePage: string, html: string, debug: boolean)
 
             const firstCell = cells.eq(0);
             const firstIsDateHeader = firstCell.is("th") && firstCell.attr("scope") === "row";
+            if (firstIsDateHeader) {
+                const parsedDate = parseReleaseDateFromCellText(firstCell.text());
+                if (parsedDate.month) {
+                    activeMonth = parsedDate.month;
+                }
+                if (parsedDate.day !== null) {
+                    activeDay = parsedDate.day;
+                }
+            }
             const fallbackArtistCell = firstIsDateHeader ? cells.eq(1) : cells.eq(0);
             const fallbackAlbumCell = firstIsDateHeader ? cells.eq(2) : cells.eq(1);
             const fallbackRefCell = firstIsDateHeader ? cells.eq(5) : cells.eq(4);
@@ -261,11 +382,18 @@ function extractCitedAlbumRows(sourcePage: string, html: string, debug: boolean)
                 }
             }
 
-            const albumHref = albumCell.find('a[href^="/wiki/"]').first().attr("href");
-            if (!albumHref || albumHref.includes(":") || albumHref.includes("#")) {
+            const albumName = normalizeCellText(albumCell.text());
+            if (!albumName) {
                 return;
             }
-            tableAlbumLinkCount += 1;
+
+            const albumHref = albumCell.find('a[href^="/wiki/"]').first().attr("href") || "";
+            if (albumHref && isSkippableCitedAlbumHref(albumHref)) {
+                return;
+            }
+            if (albumHref) {
+                tableAlbumLinkCount += 1;
+            }
 
             if (!hasCitationInRefCell(refCell)) {
                 return;
@@ -274,12 +402,13 @@ function extractCitedAlbumRows(sourcePage: string, html: string, debug: boolean)
 
             out.push({
                 sourcePage,
-                albumWikilink: `https://en.wikipedia.org${albumHref}`,
-                albumName: normalizeCellText(albumCell.text()),
+                albumWikilink: albumHref ? `https://en.wikipedia.org${albumHref}` : "",
+                albumName,
                 artistName: normalizeCellText(artistCell.text()),
                 releaseYear,
                 releaseMonth: activeMonth,
                 releaseDay: activeDay,
+                wikipediaPageId: null,
             });
             tableEmittedCount += 1;
         });
@@ -292,6 +421,37 @@ function extractCitedAlbumRows(sourcePage: string, html: string, debug: boolean)
     });
 
     return out;
+}
+
+export function extractCitedAlbumRowsForTesting(sourcePage: string, html: string): CitedAlbumRow[] {
+    return extractCitedAlbumRows(sourcePage, html, false);
+}
+
+function isSkippableCitedAlbumHref(href: string): boolean {
+    const normalizedHref = (href || "").trim();
+    if (!normalizedHref || !normalizedHref.startsWith("/wiki/")) {
+        return true;
+    }
+
+    const titleWithoutFragment = normalizedHref.slice("/wiki/".length).replace(/#.*$/, "");
+    if (!titleWithoutFragment) {
+        return true;
+    }
+
+    let decodedTitle = titleWithoutFragment;
+    try {
+        decodedTitle = decodeURIComponent(titleWithoutFragment);
+    } catch {
+        decodedTitle = titleWithoutFragment;
+    }
+
+    const namespaceSeparator = decodedTitle.indexOf(":");
+    if (namespaceSeparator < 0) {
+        return false;
+    }
+
+    const namespace = decodedTitle.slice(0, namespaceSeparator).replace(/_/g, " ").trim().toLowerCase();
+    return WIKIPEDIA_NAMESPACES.has(namespace);
 }
 
 function hasCitationInRefCell(refCell: cheerio.Cheerio<any>): boolean {
@@ -374,24 +534,149 @@ function hasColumnIndex(cells: cheerio.Cheerio<any>, index: number): boolean {
     return index >= 0 && index < cells.length;
 }
 
-async function loadReleasesForYear(year: number, minReviews: number): Promise<ReleaseReviewRow[]> {
+async function loadReleasesForYear(
+    year: number,
+    minReviews: number,
+    citedPageIds: number[],
+    citedArticleTitles: string[],
+): Promise<ReleaseReviewRow[]> {
+    const uniqueCitedPageIds = [...new Set(citedPageIds)];
+    const uniqueCitedArticleTitles = [...new Set(citedArticleTitles.map(normalizeTitleKey).filter((title) => !!title))];
     const rows: ReleaseReviewRow[] = await db`
         select
             title,
             original_title,
             artist_name,
             wikilink,
+            wikipedia_page_id,
             coalesce(manual_number_of_reviews, number_of_reviews) as effective_number_of_reviews,
             dateyear,
             datemonth,
             dateday
         from releases
-        where dateyear = ${year}
+        where (
+            dateyear = ${year}
+            or (
+                ${uniqueCitedPageIds.length} > 0
+                and wikipedia_page_id = any(${uniqueCitedPageIds}::bigint[])
+            )
+            or (
+                ${uniqueCitedArticleTitles.length} > 0
+                and lower(coalesce(original_title, title)) = any(${uniqueCitedArticleTitles}::text[])
+            )
+            or (
+                ${uniqueCitedArticleTitles.length} > 0
+                and lower(title) = any(${uniqueCitedArticleTitles}::text[])
+            )
+        )
           and coalesce(manual_number_of_reviews, number_of_reviews) >= ${minReviews}
           and wikilink is not null
           and length(wikilink) > 0
     `;
     return rows;
+}
+
+function titleArtistKey(title: string, artistName: string): string {
+    const normalizedTitle = normalizeTitleKey(title);
+    const normalizedArtist = normalizeTitleKey(artistName);
+    if (!normalizedTitle || !normalizedArtist) {
+        return "";
+    }
+    return `${normalizedTitle}|${normalizedArtist}`;
+}
+
+function normalizeTitleKey(value: string): string {
+    return (value || "")
+        .replace(/\s+/g, " ")
+        .trim()
+        .toLowerCase();
+}
+
+async function hydrateCitedRowPageIds(rows: CitedAlbumRow[]): Promise<void> {
+    const titleToRows = new Map<string, CitedAlbumRow[]>();
+    for (const row of rows) {
+        const title = wikipediaTitleFromUrl(row.albumWikilink);
+        if (!title) {
+            continue;
+        }
+        const existing = titleToRows.get(title) || [];
+        existing.push(row);
+        titleToRows.set(title, existing);
+    }
+
+    const titles = [...titleToRows.keys()];
+    const batchSize = 50;
+    for (let i = 0; i < titles.length; i += batchSize) {
+        const batch = titles.slice(i, i + batchSize);
+        const encodedTitles = batch.map((title) => encodeURIComponent(title)).join("|");
+        const apiUrl = `https://en.wikipedia.org/w/api.php?action=query&format=json&formatversion=2&redirects=1&titles=${encodedTitles}`;
+        const response = await fetch(apiUrl);
+        if (!response.ok) {
+            continue;
+        }
+        const data = await response.json() as {
+            query?: {
+                normalized?: Array<{ from?: string; to?: string }>;
+                redirects?: Array<{ from?: string; to?: string }>;
+                pages?: Array<{ pageid?: number; title?: string; missing?: boolean }>;
+            };
+        };
+
+        const titleAliases = new Map<string, string>();
+        for (const normalized of data.query?.normalized || []) {
+            if (normalized.from && normalized.to) {
+                titleAliases.set(normalized.from, normalized.to);
+            }
+        }
+        for (const redirect of data.query?.redirects || []) {
+            if (redirect.from && redirect.to) {
+                titleAliases.set(resolveTitleAlias(redirect.from, titleAliases), redirect.to);
+                titleAliases.set(redirect.from, redirect.to);
+            }
+        }
+
+        for (const page of data.query?.pages || []) {
+            if (!page.title || !page.pageid || page.missing) {
+                continue;
+            }
+            for (const inputTitle of batch) {
+                const resolvedTitle = resolveTitleAlias(inputTitle, titleAliases);
+                if (resolvedTitle !== page.title) {
+                    continue;
+                }
+                for (const row of titleToRows.get(inputTitle) || []) {
+                    row.wikipediaPageId = page.pageid;
+                }
+            }
+        }
+    }
+}
+
+function resolveTitleAlias(title: string, aliases: Map<string, string>): string {
+    let current = title;
+    const seen = new Set<string>();
+    while (aliases.has(current) && !seen.has(current)) {
+        seen.add(current);
+        current = aliases.get(current) || current;
+    }
+    return current;
+}
+
+function wikipediaTitleFromUrl(url: string): string {
+    const input = (url || "").trim();
+    if (!input) {
+        return "";
+    }
+
+    try {
+        const parsed = new URL(input);
+        if (parsed.hostname !== "en.wikipedia.org" || !parsed.pathname.startsWith("/wiki/")) {
+            return "";
+        }
+        return decodeURIComponent(parsed.pathname.slice("/wiki/".length)).replace(/_/g, " ");
+    } catch {
+        return "";
+    }
 }
 
 function normalizeCellText(value: string): string {
@@ -408,8 +693,10 @@ function isDebugEnabled(): boolean {
 
 function parseReleaseDateFromCellText(value: string): { month: string; day: number | null } {
     const normalized = normalizeCellText(value);
-    const monthMatch = normalized.match(/\b(January|February|March|April|May|June|July|August|September|October|November|December)\b/i);
-    const dayMatch = normalized.match(/\b([1-2]?\d|3[0-1])\b/);
+    const monthMatch = normalized.match(/\b(January|February|March|April|May|June|July|August|September|October|November|December)(?=\b|\d)/i);
+    const dayMatch = monthMatch
+        ? normalized.slice(monthMatch.index! + monthMatch[0].length).match(/^\s*([1-2]?\d|3[0-1])(?=\D|$)/)
+        : normalized.match(/\b([1-2]?\d|3[0-1])\b/);
 
     return {
         month: monthMatch ? capitalize(monthMatch[1]) : "",
@@ -445,12 +732,41 @@ function formatDate(year: number | null, month: string, day: number | null): str
 }
 
 function getMatchedMonth(item: { row: CitedAlbumRow; release: ReleaseReviewRow }): string {
+    if (shouldPreferCitedRowDate(item)) {
+        const rowMonth = normalizeMonthName(item.row.releaseMonth);
+        return rowMonth || "Unknown";
+    }
     const releaseMonth = normalizeMonthName(item.release.datemonth);
     if (releaseMonth) {
         return releaseMonth;
     }
     const rowMonth = normalizeMonthName(item.row.releaseMonth);
     return rowMonth || "Unknown";
+}
+
+function getMatchedAlbumName(item: { row: CitedAlbumRow; release: ReleaseReviewRow }): string {
+    if (shouldPreferCitedRowDate(item) && item.row.albumName) {
+        return item.row.albumName;
+    }
+    return item.release.original_title || item.release.title;
+}
+
+function getMatchedAlbumWikilink(item: { row: CitedAlbumRow; release: ReleaseReviewRow }): string {
+    return item.row.albumWikilink || item.release.wikilink;
+}
+
+function formatMatchedDate(item: { row: CitedAlbumRow; release: ReleaseReviewRow }): string {
+    if (shouldPreferCitedRowDate(item)) {
+        return formatDate(item.row.releaseYear, item.row.releaseMonth, item.row.releaseDay);
+    }
+    return formatDate(item.release.dateyear, item.release.datemonth, item.release.dateday);
+}
+
+function shouldPreferCitedRowDate(item: { row: CitedAlbumRow; release: ReleaseReviewRow }): boolean {
+    return item.row.releaseYear !== null
+        && item.release.dateyear !== null
+        && item.row.releaseYear !== item.release.dateyear
+        && !!item.row.releaseMonth;
 }
 
 function normalizeMonthName(value: string): string {

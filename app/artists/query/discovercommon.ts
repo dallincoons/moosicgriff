@@ -7,6 +7,10 @@ const DISCOVERY_PAGE_OVERRIDES: Record<number, string[]> = {
         "https://en.wikipedia.org/wiki/List_of_2021_albums_(January%E2%80%93June)",
         "https://en.wikipedia.org/wiki/List_of_2021_albums_(July%E2%80%93December)",
     ],
+    2026: [
+        "https://en.wikipedia.org/wiki/List_of_2026_albums_(January%E2%80%93June)",
+        "https://en.wikipedia.org/wiki/List_of_2026_albums_(July%E2%80%93December)",
+    ],
 };
 const RECORD_LABEL_INDEX_PAGES = [
     "https://en.wikipedia.org/wiki/List_of_record_labels%3A_A%E2%80%93H",

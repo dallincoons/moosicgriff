@@ -9,6 +9,8 @@ const RECORD_LABEL_INDEX_PAGES = [
     "https://en.wikipedia.org/wiki/List_of_record_labels:_R%E2%80%93Z",
     "https://en.wikipedia.org/wiki/List_of_record_labels:_0%E2%80%939",
 ];
+const DEFAULT_INDEPENDENT_LABELS_BY_COUNTRY_CATEGORY =
+    "https://en.wikipedia.org/wiki/Category:Independent_record_labels_by_country";
 const WIKIPEDIA_API_USER_AGENT =
     "MoosicGraffBot/2.0 (https://github.com/dallincoons/moosicgraff; contact: dallincoons@gmail.com)";
 
@@ -25,14 +27,10 @@ type WikiQueryResponse = {
 };
 
 export async function scrape(limitArg?: string): Promise<void> {
-    let limit: number | null = null;
-    if ((limitArg || "").trim().length > 0) {
-        const parsed = parseInt(limitArg as string, 10);
-        if (Number.isNaN(parsed) || parsed <= 0) {
-            console.log(`[labels] invalid limit "${limitArg}"`);
-            return;
-        }
-        limit = parsed;
+    const limit = parseLimit(limitArg);
+    if ((limitArg || "").trim().length > 0 && limit === null) {
+        console.log(`[labels] invalid limit "${limitArg}"`);
+        return;
     }
 
     console.log(`[labels] collecting label links from ${RECORD_LABEL_INDEX_PAGES.length} index pages`);
@@ -67,6 +65,49 @@ export async function scrape(limitArg?: string): Promise<void> {
     }
 
     console.log(`[labels] complete processed=${processed} upserted=${upserted} skipped=${skipped} failed=${failed}`);
+}
+
+export async function scrapeFromCategoryTree(categoryPageUrlArg?: string, limitArg?: string): Promise<void> {
+    const categoryPageUrl = (categoryPageUrlArg || "").trim() || DEFAULT_INDEPENDENT_LABELS_BY_COUNTRY_CATEGORY;
+    const limit = parseLimit(limitArg);
+    if ((limitArg || "").trim().length > 0 && limit === null) {
+        console.log(`[labels.category] invalid limit "${limitArg}"`);
+        console.log(`[labels.category] example: labels.category ${DEFAULT_INDEPENDENT_LABELS_BY_COUNTRY_CATEGORY} 500`);
+        return;
+    }
+
+    console.log(`[labels.category] crawling category tree from ${categoryPageUrl}`);
+    const labelLinks = await getRecordLabelLinksFromCategoryTree(categoryPageUrl);
+    const selectedLinks = limit ? labelLinks.slice(0, limit) : labelLinks;
+    console.log(`[labels.category] discovered ${labelLinks.length} candidate label pages; scraping ${selectedLinks.length}${limit ? ` (limit=${limit})` : ""}`);
+
+    let processed = 0;
+    let upserted = 0;
+    let skipped = 0;
+    let failed = 0;
+
+    for (const link of selectedLinks) {
+        processed += 1;
+        const prefix = `[labels.category] ${processed}/${selectedLinks.length}`;
+        try {
+            const label = await getLabelFromApi(link);
+            if (!label) {
+                skipped += 1;
+                console.log(`${prefix} skipped=${link}`);
+                continue;
+            }
+
+            await labels.upsertLabel(label);
+            upserted += 1;
+            console.log(`${prefix} upserted="${label.name}"`);
+        } catch (e) {
+            failed += 1;
+            const message = e instanceof Error ? e.message : String(e);
+            console.log(`${prefix} failed=${link} error=${message}`);
+        }
+    }
+
+    console.log(`[labels.category] complete processed=${processed} upserted=${upserted} skipped=${skipped} failed=${failed}`);
 }
 
 async function getRecordLabelLinksFromIndexes(indexPageUrls: string[]): Promise<string[]> {
@@ -110,16 +151,106 @@ async function getRecordLabelLinksFromIndexes(indexPageUrls: string[]): Promise<
     return [...links].sort((a, b) => a.localeCompare(b));
 }
 
+async function getRecordLabelLinksFromCategoryTree(rootCategoryPageUrl: string): Promise<string[]> {
+    const links = new Set<string>();
+    const seedCategoryPages = await getSeedCategoryPagesFromRoot(rootCategoryPageUrl);
+    const crawlTargets = seedCategoryPages.length > 0 ? seedCategoryPages : [rootCategoryPageUrl];
+
+    for (let i = 0; i < crawlTargets.length; i++) {
+        const seedCategoryPage = crawlTargets[i];
+        console.log(`[labels.category] country category ${i + 1}/${crawlTargets.length}: ${seedCategoryPage}`);
+        await collectLabelLinksFromCategoryListing(seedCategoryPage, links);
+    }
+
+    return [...links].sort((a, b) => a.localeCompare(b));
+}
+
+async function getSeedCategoryPagesFromRoot(rootCategoryPageUrl: string): Promise<string[]> {
+    const html = await getHtml(rootCategoryPageUrl);
+    const $ = cheerio.load(html);
+    const categories = new Set<string>();
+
+    $("#mw-subcategories a[href^='/wiki/Category:']").each((_, element) => {
+        const href = $(element).attr("href") || "";
+        if (!href.startsWith("/wiki/Category:")) {
+            return;
+        }
+        const label = ($(element).text() || "").trim().toLowerCase();
+        if (label === "next page" || label === "previous page") {
+            return;
+        }
+        categories.add(`https://en.wikipedia.org${href}`);
+    });
+
+    return [...categories].sort((a, b) => a.localeCompare(b));
+}
+
+async function collectLabelLinksFromCategoryListing(seedCategoryPageUrl: string, links: Set<string>): Promise<void> {
+    const visitedCategoryPages = new Set<string>();
+    const queue: string[] = [seedCategoryPageUrl];
+
+    while (queue.length > 0) {
+        const pageUrl = queue.shift() || "";
+        if (!pageUrl || visitedCategoryPages.has(pageUrl)) {
+            continue;
+        }
+        visitedCategoryPages.add(pageUrl);
+
+        const html = await getHtml(pageUrl);
+        const $ = cheerio.load(html);
+
+        $("#mw-pages a[href^='/wiki/']").each((_, element) => {
+            const href = $(element).attr("href") || "";
+            if (!href.startsWith("/wiki/")) {
+                return;
+            }
+            if (href.includes(":") || href.includes("#")) {
+                return;
+            }
+            links.add(`https://en.wikipedia.org${href}`);
+        });
+
+        for (const nextPageHref of getNextCategoryPageHrefs($)) {
+            queue.push(`https://en.wikipedia.org${nextPageHref}`);
+        }
+    }
+}
+
+function getNextCategoryPageHrefs($: cheerio.CheerioAPI): string[] {
+    const nextHrefs = new Set<string>();
+
+    $("#mw-pages a, #mw-subcategories a").each((_, element) => {
+        const href = $(element).attr("href") || "";
+        if (!href.startsWith("/wiki/Category:")) {
+            return;
+        }
+        const label = ($(element).text() || "").trim().toLowerCase();
+        if (label !== "next page") {
+            return;
+        }
+        nextHrefs.add(href);
+    });
+
+    return [...nextHrefs];
+}
+
+function parseLimit(limitArg?: string): number | null {
+    if ((limitArg || "").trim().length === 0) {
+        return null;
+    }
+
+    const parsed = parseInt(limitArg as string, 10);
+    if (Number.isNaN(parsed) || parsed <= 0) {
+        return null;
+    }
+
+    return parsed;
+}
+
 async function getLabelFromApi(pageUrl: string): Promise<Label | null> {
     const title = getPageTitleFromUrl(pageUrl);
     const apiUrl = getWikiApiUrl(title);
-    const response = await fetch(apiUrl, {
-        headers: {
-            "User-Agent": WIKIPEDIA_API_USER_AGENT,
-        },
-    });
-
-    const data = (await response.json()) as WikiQueryResponse;
+    const data = await fetchWikiApiJsonWithRetry(apiUrl, title);
     const page = data.query?.pages?.[0];
     if (!page || page.missing) {
         return null;
@@ -150,6 +281,73 @@ async function getLabelFromApi(pageUrl: string): Promise<Label | null> {
         genre: normalizeListValue(rawGenre),
         founder: normalizeListValue(rawFounder),
     };
+}
+
+async function fetchWikiApiJsonWithRetry(apiUrl: string, pageTitle: string): Promise<WikiQueryResponse> {
+    const maxAttempts = 5;
+    const requestTimeoutMs = 30000;
+    let attempt = 0;
+
+    while (true) {
+        attempt += 1;
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), requestTimeoutMs);
+
+        try {
+            const response = await fetch(apiUrl, {
+                headers: {
+                    "User-Agent": WIKIPEDIA_API_USER_AGENT,
+                },
+                signal: controller.signal,
+            });
+            const contentType = (response.headers.get("content-type") || "").toLowerCase();
+            const bodyText = await response.text();
+
+            if (response.status === 429 || !contentType.includes("application/json")) {
+                if (attempt >= maxAttempts) {
+                    throw new Error(
+                        `[labels.api] status=${response.status} content_type="${contentType}" title="${pageTitle}"`,
+                    );
+                }
+
+                const retryAfterHeader = response.headers.get("retry-after");
+                const retryAfterSeconds = retryAfterHeader ? parseInt(retryAfterHeader, 10) : NaN;
+                const sleepMs = computeRetryDelayMs(attempt, retryAfterSeconds);
+                await sleep(sleepMs);
+                continue;
+            }
+
+            try {
+                return JSON.parse(bodyText) as WikiQueryResponse;
+            } catch (e) {
+                if (attempt >= maxAttempts) {
+                    throw new Error(`[labels.api] json_parse_failure title="${pageTitle}"`);
+                }
+                const sleepMs = computeRetryDelayMs(attempt, NaN);
+                await sleep(sleepMs);
+            }
+        } catch (e) {
+            if (attempt >= maxAttempts) {
+                throw e;
+            }
+            const sleepMs = computeRetryDelayMs(attempt, NaN);
+            await sleep(sleepMs);
+        } finally {
+            clearTimeout(timeout);
+        }
+    }
+}
+
+function computeRetryDelayMs(attempt: number, retryAfterSeconds: number): number {
+    const backoffMs = Number.isNaN(retryAfterSeconds)
+        ? Math.min(1000 * Math.pow(2, attempt - 1), 15000)
+        : retryAfterSeconds * 1000;
+    const jitterMs = Math.floor(Math.random() * 500);
+    return backoffMs + jitterMs;
+}
+
+function sleep(ms: number): Promise<void> {
+    return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 function getWikiApiUrl(pageTitle: string): string {

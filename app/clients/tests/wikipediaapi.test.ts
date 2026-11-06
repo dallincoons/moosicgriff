@@ -1,4 +1,74 @@
-import {__private} from "app/clients/wikipediaapi";
+import {__private, getAlbumReleaseFromApi} from "app/clients/wikipediaapi";
+
+describe("wikipediaapi album artist identity", () => {
+    const rawArtist = "[[Omni (Minus the Bear album)|Omni]]";
+    const wikitext = `{{Infobox album
+| name = Networker
+| type = studio
+| artist = ${rawArtist}
+| released = {{start date|2019|11|01}}
+}}
+'''''Networker''''' is the third studio album by American [[post-punk]] band [[Omni (band)|Omni]].
+
+==Critical reception==
+{{Music ratings
+| rev1 = Exclaim!
+| rev2 = Pitchfork
+| rev3 = PopMatters
+| rev4 = Q
+| rev5 = Uncut
+}}`;
+
+    it("uses Networker's band link from the lead when its infobox links to an album", async () => {
+        const fetchMock = jest.spyOn(globalThis, "fetch").mockResolvedValue(new Response(JSON.stringify({
+            query: {pages: [{
+                title: "Networker (album)", pageid: 123,
+                revisions: [{slots: {main: {content: wikitext}}}],
+            }]},
+        }), {headers: {"content-type": "application/json"}}));
+        const log = jest.spyOn(console, "log").mockImplementation(() => {});
+        try {
+            const release = await getAlbumReleaseFromApi("https://en.wikipedia.org/wiki/Networker_(album)");
+            expect(release).toMatchObject({
+                name: "Networker", original_title: "Networker (album)",
+                wikilink: "https://en.wikipedia.org/wiki/Networker_(album)",
+                artist_name: "Omni", artist_display_name: "Omni",
+                artist_wikilink: "https://en.wikipedia.org/wiki/Omni_(band)",
+                year: 2019, month: "November", day: 1, number_of_reviews: 5,
+            });
+            expect(fetchMock).toHaveBeenCalledTimes(1);
+        } finally {
+            fetchMock.mockRestore();
+            log.mockRestore();
+        }
+    });
+
+    it("preserves an ordinary artist link even when the lead links to other same-name pages", () => {
+        expect(__private.parseArtistNames("[[Omni (band)|Omni]]", wikitext)).toEqual({
+            articleName: "Omni", displayName: "Omni",
+            artistWikilink: "https://en.wikipedia.org/wiki/Omni_(band)",
+        });
+    });
+
+    it.each(["Omni (album)", "Omni (Minus the Bear album)", "Omni (EP)", "Omni (single)"])(
+        "does not store %s as an artist when no replacement can be established", (target) => {
+            expect(__private.parseArtistNames(`[[${target}|Omni]]`)).toEqual({
+                articleName: "Omni", displayName: "Omni", artistWikilink: "",
+            });
+        },
+    );
+
+    it("does not guess when the lead has multiple different same-name targets", () => {
+        const ambiguous = wikitext.replace("==Critical reception==", "[[Omni (musician)|Omni]]\n==Critical reception==");
+        expect(__private.parseArtistNames(rawArtist, ambiguous).artistWikilink).toBe("");
+    });
+
+    it("does not take a replacement from references or later sections", () => {
+        const noLeadLink = wikitext.replace("[[Omni (band)|Omni]]", "Omni<ref>[[Omni (musician)|Omni]]</ref>")
+            + "\n[[Omni (band)|Omni]]";
+        expect(__private.parseArtistNames(rawArtist, noLeadLink).artistWikilink).toBe("");
+    });
+});
 
 describe("wikipediaapi parseReleaseDate", () => {
     it("uses the first date when multiple dates are present on separate lines", () => {
@@ -118,6 +188,36 @@ describe("wikipediaapi collectReviewEvidence", () => {
 
         const result = __private.collectReviewEvidence(wikitext);
         expect(result.count).toBe(1);
+    });
+
+    it("counts named refs used in critical reception from definitions elsewhere on the page", () => {
+        const wikitext = `==Critical reception==
+In ''Glide Magazine'', Doug Collette said it was great.<ref name=Glide/>
+In ''Rock & Blues Muse'', Hal Horowitz wrote about the album.<ref name="R&B-Muse" />
+In ''Bourbon and Vinyl'', Kenneth Corsini wrote about the performance.<ref name='B&V'/>
+
+==References==
+<ref name=Glide>{{cite web |url=https://glidemagazine.com/example-album-review/ |title=Review |work=Glide Magazine}}</ref>
+<ref name="R&B-Muse">{{cite web |url=https://rockandbluesmuse.com/review/example/ |title=Review |work=Rock & Blues Muse}}</ref>
+<ref name='B&V'>{{cite web |url=https://bourbonandvinyl.net/review/example/ |title=Review |work=Bourbon and Vinyl}}</ref>`;
+
+        const result = __private.collectReviewEvidence(wikitext);
+        expect(result.count).toBe(3);
+    });
+
+    it("does not treat self-closing named refs as full ref definitions", () => {
+        const wikitext = `{{Infobox album
+| recorded = Somewhere<ref name="ABC Country"/>
+| single1date = March 2025<ref name="WfT">{{cite web |url=https://onyourmarkus.au/example |title=Announcement |website=On Your Mark Us}}</ref>
+}}
+
+==Reception==
+''ABC Country'' said it was personal.<ref name="ABC Country">{{cite web |url=https://www.abc.net.au/example |title=Review |website=ABC Country}}</ref>
+Paul Cashmere from ''Noise11'' said it was confident.<ref>{{cite web |url=https://www.noise11.com/example |title=Review |website=Noise11}}</ref>`;
+
+        const result = __private.collectReviewEvidence(wikitext);
+        expect(result.count).toBe(2);
+        expect(result.links).not.toContain("https://onyourmarkus.au/example");
     });
 
     it("ignores known press-release wire sources from review counts", () => {

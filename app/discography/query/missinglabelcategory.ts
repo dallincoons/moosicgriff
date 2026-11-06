@@ -1,5 +1,6 @@
 import * as fs from "fs";
 import discography from "app/repositories/discography/discography";
+import labels from "app/repositories/labels/labels";
 import {DBRelease} from "app/discography/release";
 import {getAlbumReleaseFromApi} from "app/clients/wikipediaapi";
 
@@ -13,19 +14,32 @@ type MissingCategoryRow = {
 };
 
 export async function releasesMissingLabelCategory(labelArg?: string, outputFileArg?: string): Promise<void> {
-    const label = (labelArg || "").trim();
-    if (!label) {
+    const requestedLabel = (labelArg || "").trim();
+    if (!requestedLabel) {
         console.log("[releases.categories.missing.label] missing label argument");
         console.log('[releases.categories.missing.label] example: releases.categories.missing.label "Capitol Records" tmp/capitol_missing_categories.txt');
         return;
     }
 
-    const expectedCategory = `${label} albums`;
-    const acceptedCategories = buildAcceptedLabelCategories(label);
-    const outputFile = (outputFileArg || "").trim() || defaultOutputPath(label);
-    const releases = await discography.getReleasesLikelyOnLabel(label);
-    const exactLabelMatches = releases.filter((release) => hasLabelMatch(release, label));
+    const outputFile = (outputFileArg || "").trim() || defaultOutputPath(requestedLabel);
+    const verifiedLabel = await labels.findVerifiedLabelByName(requestedLabel);
+    if (!verifiedLabel) {
+        console.log(`[releases.categories.missing.label] skipped: label_not_found_or_redlink="${requestedLabel}" source=labels`);
+        if (fs.existsSync(outputFile)) {
+            fs.unlinkSync(outputFile);
+            console.log(`[releases.categories.missing.label] report_deleted_unverified_label=${outputFile}`);
+        }
+        return;
+    }
+
+    const effectiveLabel = verifiedLabel.name;
+    const expectedCategory = `${effectiveLabel} albums`;
+    const acceptedCategories = buildAcceptedLabelCategories(effectiveLabel);
+    const releases = await discography.getReleasesLikelyOnLabel(effectiveLabel);
+    const exactLabelMatches = releases.filter((release) => hasLabelMatch(release, effectiveLabel));
     const provisionalMissing = exactLabelMatches.filter((release) => !hasCategory(release.original_categories_text, expectedCategory));
+    const verifiedLabels = await labels.getVerifiedLabels();
+    const verifiedLabelTokens = buildVerifiedLabelTokenSet(verifiedLabels.map((labelRow) => labelRow.name));
     const {
         confirmedMissing,
         refreshedFromApi,
@@ -33,6 +47,7 @@ export async function releasesMissingLabelCategory(labelArg?: string, outputFile
     } = await confirmMissingCategories(
         provisionalMissing,
         acceptedCategories,
+        verifiedLabelTokens,
     );
 
     const reportRows = confirmedMissing.map((release) => ({
@@ -44,7 +59,9 @@ export async function releasesMissingLabelCategory(labelArg?: string, outputFile
         categories: release.original_categories_text || "",
     }));
 
-    console.log(`[releases.categories.missing.label] label="${label}" expected_category="${expectedCategory}"`);
+    console.log(
+        `[releases.categories.missing.label] requested_label="${requestedLabel}" resolved_label="${effectiveLabel}" expected_category="${expectedCategory}"`,
+    );
     console.log(
         `[releases.categories.missing.label] candidates=${releases.length} exact_label_matches=${exactLabelMatches.length} provisional_missing=${provisionalMissing.length} missing_category=${confirmedMissing.length} refreshed_from_api=${refreshedFromApi} excluded_by_variant_category=${excludedByAcceptedVariantCategory}`,
     );
@@ -59,7 +76,7 @@ export async function releasesMissingLabelCategory(labelArg?: string, outputFile
         return;
     }
 
-    const report = formatReport(label, expectedCategory, releases.length, exactLabelMatches.length, reportRows);
+    const report = formatReport(effectiveLabel, expectedCategory, releases.length, exactLabelMatches.length, reportRows);
     fs.writeFileSync(outputFile, report, "utf8");
     console.log(`[releases.categories.missing.label] report_written=${outputFile}`);
 }
@@ -67,6 +84,7 @@ export async function releasesMissingLabelCategory(labelArg?: string, outputFile
 async function confirmMissingCategories(
     releases: DBRelease[],
     acceptedCategories: string[],
+    verifiedLabelTokens: Set<string>,
 ): Promise<{
     confirmedMissing: DBRelease[];
     refreshedFromApi: number;
@@ -78,7 +96,7 @@ async function confirmMissingCategories(
 
     for (const release of releases) {
         let effectiveCategories = release.original_categories_text || "";
-        const releaseAcceptedCategories = buildReleaseAcceptedCategories(release, acceptedCategories);
+        const releaseAcceptedCategories = buildReleaseAcceptedCategories(release, acceptedCategories, verifiedLabelTokens);
 
         try {
             const hydrated = await getAlbumReleaseFromApi(release.wikilink);
@@ -156,17 +174,47 @@ function hasAnyCategory(rawCategories: string | null | undefined, acceptedCatego
     return false;
 }
 
-function buildReleaseAcceptedCategories(release: DBRelease, baseAcceptedCategories: string[]): string[] {
+function buildReleaseAcceptedCategories(
+    release: DBRelease,
+    baseAcceptedCategories: string[],
+    verifiedLabelTokens: Set<string>,
+): string[] {
     const categories = new Set<string>(baseAcceptedCategories);
     const aliases = getFirstLabelAliasCandidates(release.original_labels_text || "");
 
     for (const alias of aliases) {
+        if (!isVerifiedLabelName(alias, verifiedLabelTokens)) {
+            continue;
+        }
         for (const category of buildAcceptedLabelCategories(alias)) {
             categories.add(category);
         }
     }
 
     return [...categories];
+}
+
+function isVerifiedLabelName(label: string, verifiedLabelTokens: Set<string>): boolean {
+    const normalized = normalizeToken(label);
+    if (!normalized) {
+        return false;
+    }
+
+    const canonical = canonicalizeRecordLabelToken(normalized);
+    return verifiedLabelTokens.has(normalized) || verifiedLabelTokens.has(canonical);
+}
+
+function buildVerifiedLabelTokenSet(labelNames: string[]): Set<string> {
+    const tokens = new Set<string>();
+    for (const labelName of labelNames) {
+        const normalized = normalizeToken(labelName);
+        if (!normalized) {
+            continue;
+        }
+        tokens.add(normalized);
+        tokens.add(canonicalizeRecordLabelToken(normalized));
+    }
+    return tokens;
 }
 
 function getFirstLabelAliasCandidates(rawLabelText: string): string[] {

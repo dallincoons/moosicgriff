@@ -4,7 +4,8 @@ import {YearlyAlbumReference} from "app/yearlyalbums/reference";
 import artists from "app/repositories/artists/artists";
 import * as cheerio from "cheerio";
 import {db} from "app/repositories/db";
-import {normalizeWikipediaUrl, shouldProcessEntry} from "app/yearlyalbums/syncmatch";
+import {isSkippableWikipediaHref, normalizeWikipediaUrl, shouldProcessEntry} from "app/yearlyalbums/syncmatch";
+import {extractAlbumEntriesFromYearlyListHtml, YearlyListEntry} from "app/yearlyalbums/listparser";
 import {getAlbumReleaseFromApi} from "app/clients/wikipediaapi";
 import discography from "app/repositories/discography/discography";
 import {handleLink as handleArtistLink} from "app/artists/scrape";
@@ -41,6 +42,7 @@ export async function syncYearlyAlbumReferences(yearArg?: string, modeArg?: stri
         : buildYearlyAlbumListPages(START_YEAR, END_YEAR);
     const rangeLabel = specificYear ? `${specificYear}` : `${START_YEAR}-${END_YEAR}`;
     console.log(`[yearly.albums.sync] syncing ${pages.length} yearly list pages (${rangeLabel})`);
+    console.log("[yearly.albums.sync] loading artist wikilink index...");
     const artistRows = await artists.getAll();
     const artistWikilinks = new Set<string>();
     for (const artist of artistRows) {
@@ -182,8 +184,8 @@ function parseYearArg(yearArg?: string): number | undefined {
     }
 
     const parsed = parseInt(yearArg, 10);
-    if (Number.isNaN(parsed) || parsed < MIN_YEARLY_ALBUM_YEAR || parsed > END_YEAR) {
-        console.log(`[yearly.albums.sync] invalid year "${yearArg}". expected ${MIN_YEARLY_ALBUM_YEAR}-${END_YEAR}`);
+    if (Number.isNaN(parsed) || parsed < MIN_YEARLY_ALBUM_YEAR) {
+        console.log(`[yearly.albums.sync] invalid year "${yearArg}". expected ${MIN_YEARLY_ALBUM_YEAR} or later`);
         return undefined;
     }
 
@@ -353,238 +355,6 @@ async function getCategorySourcePayload(year: number): Promise<CategorySourcePay
     };
 }
 
-type YearlyListEntry = {
-    artistWikilink: string;
-    albumWikilink: string;
-    albumName: string;
-    genre: string;
-    recordLabel: string;
-    releaseYear: number | null;
-    releaseMonth: string;
-    releaseDay: number | null;
-};
-
-function extractAlbumEntriesFromYearlyListHtml(sourcePageUrl: string, html: string): YearlyListEntry[] {
-    const $ = cheerio.load(html);
-    const entries: YearlyListEntry[] = [];
-    const tables = selectYearlyAlbumTables($, sourcePageUrl);
-    const releaseYear = parseYearFromSourceListUrl(sourcePageUrl);
-
-    tables.each((_, tableEl) => {
-        const rows = $(tableEl).find("tr");
-        const columns = detectYearlyAlbumTableColumns($, rows);
-        let activeMonth = "";
-        let activeDay: number | null = null;
-
-        rows.each((rowIndex, rowEl) => {
-            if (rowIndex === 0) {
-                return;
-            }
-            const row = $(rowEl);
-            const cells = row.children("th,td");
-            if (cells.length < 3) {
-                return;
-            }
-
-            const leftShift = Math.max(0, columns.headerWidth - cells.length);
-            const resolvedArtistIndex = resolveShiftedColumnIndex(columns.artistIndex, leftShift);
-            const resolvedAlbumIndex = resolveShiftedColumnIndex(columns.albumIndex, leftShift);
-            const resolvedGenreIndex = resolveShiftedColumnIndex(columns.genreIndex, leftShift);
-            const resolvedLabelIndex = resolveShiftedColumnIndex(columns.labelIndex, leftShift);
-
-            const firstCell = cells.eq(0);
-            const firstIsDateHeader = firstCell.is("th") && firstCell.attr("scope") === "row";
-            const fallbackArtistCell = firstIsDateHeader ? cells.eq(1) : cells.eq(0);
-            const fallbackAlbumCell = firstIsDateHeader ? cells.eq(2) : cells.eq(1);
-            const fallbackGenreCell = firstIsDateHeader ? cells.eq(3) : cells.eq(2);
-            const fallbackLabelCell = firstIsDateHeader ? cells.eq(4) : cells.eq(3);
-            const artistCell = hasColumnIndex(cells, resolvedArtistIndex) ? cells.eq(resolvedArtistIndex) : fallbackArtistCell;
-            const albumCell = hasColumnIndex(cells, resolvedAlbumIndex) ? cells.eq(resolvedAlbumIndex) : fallbackAlbumCell;
-            const genreCell = hasColumnIndex(cells, resolvedGenreIndex) ? cells.eq(resolvedGenreIndex) : fallbackGenreCell;
-            const labelCell = hasColumnIndex(cells, resolvedLabelIndex) ? cells.eq(resolvedLabelIndex) : fallbackLabelCell;
-
-            const albumHref = albumCell.find('a[href^="/wiki/"]').first().attr("href");
-            const artistHref = artistCell.find('a[href^="/wiki/"]').first().attr("href");
-            if (!albumHref) {
-                return;
-            }
-            if (albumHref.includes(":") || albumHref.includes("#")) {
-                return;
-            }
-            if (artistHref && (artistHref.includes(":") || artistHref.includes("#"))) {
-                return;
-            }
-
-            const dateColumnStop = Math.min(
-                resolvedArtistIndex >= 0 ? resolvedArtistIndex : Number.MAX_SAFE_INTEGER,
-                resolvedAlbumIndex >= 0 ? resolvedAlbumIndex : Number.MAX_SAFE_INTEGER,
-            );
-            const fallbackDateColumnStop = Math.min(firstIsDateHeader ? 1 : 0, cells.length);
-            const dateCellsToRead = dateColumnStop === Number.MAX_SAFE_INTEGER
-                ? fallbackDateColumnStop
-                : Math.max(0, Math.min(dateColumnStop, cells.length));
-
-            for (let i = 0; i < dateCellsToRead; i++) {
-                const parsedDate = parseReleaseDateFromCellText(cells.eq(i).text());
-                if (parsedDate.month) {
-                    activeMonth = parsedDate.month;
-                }
-                if (parsedDate.day !== null) {
-                    activeDay = parsedDate.day;
-                }
-            }
-
-            entries.push({
-                artistWikilink: artistHref ? `https://en.wikipedia.org${artistHref}` : "",
-                albumWikilink: `https://en.wikipedia.org${albumHref}`,
-                albumName: normalizeCellText(albumCell.text()),
-                genre: normalizeCellText(genreCell.text()),
-                recordLabel: normalizeCellText(labelCell.text()),
-                releaseYear,
-                releaseMonth: activeMonth,
-                releaseDay: activeDay,
-            });
-        });
-    });
-
-    return entries;
-}
-
-type YearlyTableColumns = {
-    headerWidth: number;
-    artistIndex: number;
-    albumIndex: number;
-    genreIndex: number;
-    labelIndex: number;
-};
-
-function selectYearlyAlbumTables($: cheerio.CheerioAPI, sourcePageUrl: string): cheerio.Cheerio<any> {
-    const year = parseYearFromSourceListUrl(sourcePageUrl);
-    if (year !== null && year <= 2004) {
-        const legacySectionTables = selectLegacyAlbumsReleasedTables($);
-        if (legacySectionTables.length > 0) {
-            return legacySectionTables;
-        }
-    }
-
-    const plainRowHeaderTables = $(".wikitable.plainrowheaders");
-    if (plainRowHeaderTables.length > 0) {
-        return plainRowHeaderTables;
-    }
-
-    return $(".wikitable");
-}
-
-function selectLegacyAlbumsReleasedTables($: cheerio.CheerioAPI): cheerio.Cheerio<any> {
-    const contentRoot = $("#mw-content-text .mw-parser-output").first();
-    const scope = contentRoot.length ? contentRoot : $("body").first();
-    const heading = scope.find("h2, h3").filter((_, el) => {
-        const node = $(el);
-        const headingId = (node.find(".mw-headline").first().attr("id") || "").trim().toLowerCase();
-        const headingText = normalizeCellText(node.text()).toLowerCase();
-        return headingId === "albums_released" || headingText === "albums released";
-    }).first();
-
-    if (!heading.length) {
-        return $();
-    }
-
-    const tables: any[] = [];
-    const headingContainer = heading.parent().is("div.mw-heading") ? heading.parent() : heading;
-    let cursor = headingContainer.next();
-    while (cursor.length) {
-        if (isLegacySectionBoundary(cursor)) {
-            break;
-        }
-        if (cursor.is("table.wikitable")) {
-            const tableNode = cursor.get(0);
-            if (tableNode) {
-                tables.push(tableNode);
-            }
-        }
-        cursor.find("table.wikitable").each((_, tableEl) => {
-            tables.push(tableEl);
-        });
-        cursor = cursor.next();
-    }
-
-    return $(tables);
-}
-
-function isLegacySectionBoundary(node: cheerio.Cheerio<any>): boolean {
-    if (node.is("h2")) {
-        return true;
-    }
-
-    if (node.is("div.mw-heading")) {
-        const className = node.attr("class") || "";
-        if (/\bmw-heading2\b/.test(className)) {
-            return true;
-        }
-        const childHeading = node.children("h2");
-        if (childHeading.length > 0) {
-            return true;
-        }
-    }
-
-    return false;
-}
-
-function detectYearlyAlbumTableColumns($: cheerio.CheerioAPI, rows: cheerio.Cheerio<any>): YearlyTableColumns {
-    const headerRow = rows.first();
-    const headerCells = headerRow.children("th,td");
-    const labels = headerCells
-        .toArray()
-        .map((cell) => normalizeCellText($(cell).text()).toLowerCase());
-
-    return {
-        headerWidth: Math.max(1, headerCells.length),
-        artistIndex: findColumnIndex(labels, ["artist", "artists", "performer"]),
-        albumIndex: findColumnIndex(labels, ["album", "title"]),
-        genreIndex: findColumnIndex(labels, ["genre"]),
-        labelIndex: findColumnIndex(labels, ["label", "record label"]),
-    };
-}
-
-function findColumnIndex(labels: string[], candidates: string[]): number {
-    for (let i = 0; i < labels.length; i++) {
-        const label = labels[i];
-        if (candidates.some((candidate) => label.includes(candidate))) {
-            return i;
-        }
-    }
-    return -1;
-}
-
-function resolveShiftedColumnIndex(index: number, leftShift: number): number {
-    if (index < 0) {
-        return -1;
-    }
-    return Math.max(0, index - leftShift);
-}
-
-function hasColumnIndex(cells: cheerio.Cheerio<any>, index: number): boolean {
-    return index >= 0 && index < cells.length;
-}
-
-function normalizeCellText(value: string): string {
-    return (value || "")
-        .replace(/\[[0-9]+\]/g, "")
-        .replace(/\s+/g, " ")
-        .trim();
-}
-
-function parseReleaseDateFromCellText(value: string): { month: string; day: number | null } {
-    const normalized = normalizeCellText(value);
-    const monthMatch = normalized.match(/\b(January|February|March|April|May|June|July|August|September|October|November|December)\b/i);
-    const dayMatch = normalized.match(/\b([1-2]?\d|3[0-1])\b/);
-
-    return {
-        month: monthMatch ? capitalize(monthMatch[1]) : "",
-        day: dayMatch ? parseInt(dayMatch[1], 10) : null,
-    };
-}
-
 function parseYearFromSourceListUrl(sourcePageUrl: string): number | null {
     const listMatch = sourcePageUrl.match(/List_of_(\d{4})_albums/);
     const legacyMatch = sourcePageUrl.match(/\/(\d{4})_in_music(?:$|[?#])/);
@@ -596,14 +366,6 @@ function parseYearFromSourceListUrl(sourcePageUrl: string): number | null {
     const year = parseInt(yearRaw, 10);
     return Number.isNaN(year) ? null : year;
 }
-
-function capitalize(value: string): string {
-    if (!value) {
-        return "";
-    }
-    return value.charAt(0).toUpperCase() + value.slice(1).toLowerCase();
-}
-
 
 function isMissingArticleHtml(html: string): boolean {
     return /id="noarticletext"/i.test(html) || /Wikipedia does not have an article with this exact name/i.test(html);
@@ -631,10 +393,7 @@ async function collectAlbumLinksFromCategoryPages(year: number): Promise<{ album
 
         $("#mw-pages a[href^='/wiki/']").each((_, el) => {
             const href = $(el).attr("href");
-            if (!href) {
-                return;
-            }
-            if (href.includes(":") || href.includes("#") || href.startsWith("/wiki/Category:")) {
+            if (isSkippableWikipediaHref(href || "")) {
                 return;
             }
             links.add(`https://en.wikipedia.org${href}`);
@@ -942,7 +701,11 @@ async function ensureReleaseExistsForAlbum(albumWikilink: string): Promise<{
         artist = await artists.getArtistByUrl(artistWikilink);
     }
     if (!artist) {
-        return { release: existing, updated: false };
+        await discography.upsertReleaseWithoutArtist(apiRelease, contentHash);
+        return {
+            release: await getReleaseByAlbumWikilink(albumWikilink),
+            updated: true,
+        };
     }
 
     await discography.upsertRelease(apiRelease, artist, contentHash);

@@ -1,0 +1,13 @@
+# One job per line:
+# <minute> <hour> <day_of_month> <month> <day_of_week> <command>
+#
+# Examples:
+# */5 * * * * node /app/build/index.js releases.rescrape 200
+# */30 * * * * node /app/build/index.js artists
+# 0 */6 * * * node /app/build/index.js yearly.albums.sync 2026
+# 15 2 * * * node /app/build/index.js releases.labels.backfill 500
+# 30 2 * * * node /app/build/index.js releases.categories.missing.label "ArtistShare" tmp/artistshare_missing_category_albums.txt
+#
+# Jobs use UTC and run from /app with the container environment.
+# Output files under tmp/ and logs/ persist to the host.
+# Restart app-cron after editing the jobs file. See docker/README.md.

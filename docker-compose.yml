@@ -3,9 +3,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    restart: unless-stopped
+    restart: "no"
+    profiles: ["manual"]
     depends_on:
-      - postgres
+      postgres:
+        condition: service_healthy
     environment:
       - OPEN_API_API_KEY=${OPEN_API_API_KEY}
       - MAX_DEPTH=${MAX_DEPTH:-500}
@@ -14,11 +16,64 @@ services:
       - GOOSE_MIGRATION_DIR=./migrations
     volumes:
       - ./logs:/app/logs
+      - ./tmp:/app/tmp
     command: ["artists"]
+
+  app-loop:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    profiles: ["loop"]
+    environment:
+      - OPEN_API_API_KEY=${OPEN_API_API_KEY}
+      - MAX_DEPTH=${MAX_DEPTH:-500}
+      - GOOSE_DBSTRING=postgresql://postgres:password@postgres:5432/moosicgraff
+      - GOOSE_DRIVER=postgres
+      - GOOSE_MIGRATION_DIR=./migrations
+      - JOB_INTERVAL_SECONDS=${JOB_INTERVAL_SECONDS:-300}
+    volumes:
+      - ./logs:/app/logs
+      - ./tmp:/app/tmp
+    entrypoint: ["/app/docker/job-loop.sh"]
+    command: ["artists"]
+
+  app-cron:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    profiles: ["cron"]
+    environment:
+      - OPEN_API_API_KEY=${OPEN_API_API_KEY}
+      - MAX_DEPTH=${MAX_DEPTH:-500}
+      - GOOSE_DBSTRING=postgresql://postgres:password@postgres:5432/moosicgraff
+      - GOOSE_DRIVER=postgres
+      - GOOSE_MIGRATION_DIR=./migrations
+      - CRON_SCHEDULE=${CRON_SCHEDULE:-*/30 * * * *}
+      - CRON_COMMAND=${CRON_COMMAND:-node /app/build/index.js artists}
+      - CRON_JOBS_FILE=${CRON_JOBS_FILE:-/app/docker/cron-jobs.conf}
+      - CRON_LOG_FILE=${CRON_LOG_FILE:-/app/logs/cron.log}
+    volumes:
+      - ./logs:/app/logs
+      - ./tmp:/app/tmp
+      - ./docker/cron-jobs.conf:/app/docker/cron-jobs.conf:ro
+    entrypoint: ["/app/docker/job-cron.sh"]
 
   postgres:
     image: postgres:17.2
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d moosicgraff"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
     ports:
       - 5432:5432
     volumes:

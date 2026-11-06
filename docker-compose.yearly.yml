@@ -1,0 +1,41 @@
+x-yearly: &yearly
+  image: moosicgraff-yearly:server
+  build: .
+  restart: unless-stopped
+  init: true
+  user: "1000:1000"
+  cpus: 0.5
+  mem_limit: 768m
+  memswap_limit: 768m
+  pids_limit: 128
+  stop_grace_period: 30s
+  environment:
+    GOOSE_DBSTRING: ${YEARLY_DATABASE_URL:?Configure the shared server database}
+    DB_MAX_CONNECTIONS: "2"
+    YEARLY_TIMEZONE: America/Denver
+    NODE_OPTIONS: --max-old-space-size=512
+  networks: [rss]
+  volumes:
+    - ./config/yearly:/app/job-config:ro
+    - ./output/yearly:/app/tmp/yearly
+    - ./logs:/app/logs
+  logging:
+    driver: json-file
+    options:
+      max-size: 10m
+      max-file: "3"
+
+services:
+  current-year:
+    <<: *yearly
+    cpu_shares: 1024
+    entrypoint: ["flock", "--no-fork", "--nonblock", "/app/tmp/yearly/current.lock", "node", "/app/docker/yearly-scheduler.cjs", "current"]
+  historical-years:
+    <<: *yearly
+    cpu_shares: 256
+    entrypoint: ["flock", "--no-fork", "--nonblock", "/app/tmp/yearly/historical.lock", "node", "/app/docker/yearly-scheduler.cjs", "historical"]
+
+networks:
+  rss:
+    external: true
+    name: music-release-rss_default

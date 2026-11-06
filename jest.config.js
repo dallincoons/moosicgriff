@@ -17,6 +17,7 @@ module.exports = {
   ],
   // moduleDirectories: ['node_modules', '<rootDir>'],
   testEnvironment: "node",
+  testPathIgnorePatterns: ["/node_modules/", "<rootDir>/build/"],
   transform: {
     "^.+.tsx?$": ["ts-jest",{}],
   },

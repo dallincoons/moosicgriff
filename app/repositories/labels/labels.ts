@@ -51,6 +51,59 @@ class Labels {
                 order by name asc
             `;
     }
+
+    async getVerifiedLabels(): Promise<DBLabel[]> {
+        return await db`
+            select *
+            from labels
+            where wikipedia_page_id is not null
+              and wikilink is not null
+              and length(trim(wikilink)) > 0
+            order by name asc
+        `;
+    }
+
+    async findVerifiedLabelByName(labelName: string): Promise<DBLabel | null> {
+        const normalized = normalizeLabelToken(labelName);
+        if (!normalized) {
+            return null;
+        }
+
+        const verified = await this.getVerifiedLabels();
+        for (const label of verified) {
+            if (normalizeLabelToken(label.name) === normalized) {
+                return label;
+            }
+            if (canonicalizeLabelToken(label.name) === canonicalizeLabelToken(normalized)) {
+                return label;
+            }
+        }
+
+        return null;
+    }
 }
 
 export default new Labels();
+
+function normalizeLabelToken(value: string): string {
+    return (value || "")
+        .replace(/\[\[([^|\]]+)(?:\|[^\]]+)?]]/g, "$1")
+        .replace(/''+/g, "")
+        .replace(/\s*\([^)]*\)\s*/g, " ")
+        .replace(/\s+/g, " ")
+        .trim()
+        .toLowerCase();
+}
+
+function canonicalizeLabelToken(value: string): string {
+    const normalized = normalizeLabelToken(value);
+    if (!normalized) {
+        return normalized;
+    }
+
+    if (normalized.endsWith(" records")) {
+        return normalized;
+    }
+
+    return `${normalized} records`;
+}

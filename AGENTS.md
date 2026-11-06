@@ -63,3 +63,29 @@ When asked for an update:
 ## CLI Command Maintenance
 
 - When adding a new CLI command, also add it to the `help` command output (`COMMAND_HELP` in `index.ts`) in the same change.
+
+## Production Database
+
+- Native CLI commands use the shared `moosicgraff` database on `forge@142.93.6.169`
+  through the ignored `.env` and automatic `DB_SSH_HOST` transport. Check with
+  `npx esrun index.ts db.status`; never print the connection URL or passwords.
+- The server RSS worker reads the same artists/labels with a read-only role.
+  Operations, backups, and local development limitations are documented in
+  `docker/REMOTE_DATABASE.md`.
+- The original Mac database and the old server lookup database are retained
+  cutover snapshots. They are not production and receive no automatic updates.
+  Existing Docker development services and package migration scripts still
+  explicitly target the local development database.
+
+## Scheduled Yearly Jobs
+
+- Server schedules live at `/home/forge/moosicgraff` using
+  `docker-compose.yearly.yml`. The current year runs every 12 hours in one lane;
+  configured historical years run sequentially in a separate lane that may overlap
+  the current-year lane. See `docker/YEARLY_SCHEDULE.md` for config/state/log paths.
+- Preserve server `config/yearly/jobs.json` and `output/` during future deployments.
+  Do not start duplicate schedules on the Mac.
+
+- Deploy committed `main` changes with `npm run deploy`. The background deployment
+  waits for active yearly jobs before replacing containers; follow its server log
+  at `output/yearly/deploy.log`. See `docker/YEARLY_SCHEDULE.md`.

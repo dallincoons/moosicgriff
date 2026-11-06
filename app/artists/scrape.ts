@@ -29,26 +29,47 @@ const logger = winston.createLogger({
 const green = "\x1b[32m";
 const reset = "\x1b[0m";
 
+type HandleLinkOptions = {
+    skipDeadlinkCheck?: boolean;
+    requireDiscographySource?: boolean;
+    requireMusicArtistPage?: boolean;
+};
+
 export function closeArtistScrapeResources(): void {
     logger.close();
 }
 
-export async function handleLink(link: string, parentLink: string = ""): Promise<void> {
+export async function handleExplicitArtistLink(link: string, parentLink: string = ""): Promise<void> {
+    await handleLink(link, parentLink, {
+        skipDeadlinkCheck: true,
+        requireDiscographySource: false,
+        requireMusicArtistPage: false,
+    });
+}
+
+export async function handleLink(link: string, parentLink: string = "", options: HandleLinkOptions = {}): Promise<void> {
+    const requireDiscographySource = options.requireDiscographySource !== false;
+    const requireMusicArtistPage = options.requireMusicArtistPage !== false;
+
     if (await artists.getArtistByUrl(link)) {
         return;
     }
 
-    if (await deadlinks.doesDeadLinkExist(link)) {
+    if (!options.skipDeadlinkCheck && await deadlinks.doesDeadLinkExist(link)) {
         return;
     }
 
-    let bandName = await getBandName(link);
+    let bandName = requireMusicArtistPage
+        ? await getBandName(link)
+        : await getPageTitleName(link);
     if (!bandName || bandName == `""`) {
         console.log("inserting dead link: " + link);
         if (isStopRequested()) {
             return;
         }
-        await deadlinks.insertNew(link);
+        if (!options.skipDeadlinkCheck) {
+            await deadlinks.insertNew(link);
+        }
         recordDeadlinkAdded();
         return;
     }
@@ -67,27 +88,31 @@ export async function handleLink(link: string, parentLink: string = ""): Promise
     }
 
     if (resolvedLink !== link) {
-        if (await deadlinks.doesDeadLinkExist(resolvedLink)) {
+        if (!options.skipDeadlinkCheck && await deadlinks.doesDeadLinkExist(resolvedLink)) {
             return;
         }
         if (await artists.getArtistByUrl(resolvedLink)) {
             return;
         }
 
-        const resolvedBandName = await getBandName(resolvedLink);
+        const resolvedBandName = requireMusicArtistPage
+            ? await getBandName(resolvedLink)
+            : await getPageTitleName(resolvedLink);
         if (resolvedBandName && resolvedBandName !== `""`) {
             bandName = resolvedBandName;
         }
     }
 
-    const hasDiscography = await hasDiscographySource(resolvedLink);
-    if (!hasDiscography) {
-        console.log(`skipping artist without discography source: ${resolvedLink}`);
-        if (isStopRequested()) {
+    if (requireDiscographySource) {
+        const hasDiscography = await hasDiscographySource(resolvedLink);
+        if (!hasDiscography) {
+            console.log(`skipping artist without discography source: ${resolvedLink}`);
+            if (isStopRequested()) {
+                return;
+            }
+            await deadlinks.insertNew(resolvedLink);
             return;
         }
-        await deadlinks.insertNew(resolvedLink);
-        return;
     }
 
     if (pageId) {
@@ -107,6 +132,30 @@ export async function handleLink(link: string, parentLink: string = ""): Promise
         console.log(`${green}saved new artist: ${resolvedLink}${reset}`);
     } catch (e) {
         // console.log("error persisting child: " + e);
+    }
+}
+
+async function getPageTitleName(link: string): Promise<string> {
+    try {
+        const html = await getHtml(link);
+        const $ = cheerio.load(html);
+        const titleText = $("title").first().text();
+        const title = titleText.replace(/\s*-\s*Wikipedia\s*$/i, "").trim();
+        if (title) {
+            return title.replace(/\s*\(.*?\)\s*$/, "").trim();
+        }
+    } catch (e) {
+        // Fall back to the URL when an explicitly requested insert cannot fetch a title.
+    }
+
+    try {
+        const pathname = new URL(link).pathname;
+        return decodeURIComponent(pathname.replace(/^\/wiki\//, ""))
+            .replace(/_/g, " ")
+            .replace(/\s*\(.*?\)\s*$/, "")
+            .trim();
+    } catch (e) {
+        return "";
     }
 }
 

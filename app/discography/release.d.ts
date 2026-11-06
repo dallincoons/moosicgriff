@@ -52,4 +52,6 @@ export interface DBRelease {
     number_of_reviews: number
     manual_number_of_reviews?: number | null
     review_links?: string | null
+    scrape_version?: number
+    last_scraped_at?: string | null
 }

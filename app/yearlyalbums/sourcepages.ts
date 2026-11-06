@@ -6,6 +6,10 @@ const YEARLY_ALBUM_PAGE_OVERRIDES: Record<number, string[]> = {
         "https://en.wikipedia.org/wiki/List_of_2021_albums_(January%E2%80%93June)",
         "https://en.wikipedia.org/wiki/List_of_2021_albums_(July%E2%80%93December)",
     ],
+    2026: [
+        "https://en.wikipedia.org/wiki/List_of_2026_albums_(January%E2%80%93June)",
+        "https://en.wikipedia.org/wiki/List_of_2026_albums_(July%E2%80%93December)",
+    ],
 };
 
 export function buildYearlyAlbumSourcePages(year: number): string[] {

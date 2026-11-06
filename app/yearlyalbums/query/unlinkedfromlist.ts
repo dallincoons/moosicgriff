@@ -1,4 +1,6 @@
 import {getHtml, isMissingArticlePage} from "app/clients/wikipedia";
+import {extractAlbumEntriesFromYearlyListHtml} from "app/yearlyalbums/listparser";
+import {normalizeWikipediaArticleHref} from "app/yearlyalbums/syncmatch";
 import discography from "app/repositories/discography/discography";
 import discographyDeadlinks from "app/repositories/discographydeadlinks/discographydeadlinks";
 import {db} from "app/repositories/db";
@@ -7,12 +9,15 @@ import * as cheerio from "cheerio";
 type UnlinkedRow = {
     albumName: string;
     artistName: string;
+    artistWikilink: string;
+    month: string;
 };
 
 type ReleaseRow = {
     title: string;
     original_title: string | null;
     artist_name: string;
+    artist_display_name: string | null;
     wikilink: string;
     artist_wikilink: string | null;
 };
@@ -21,6 +26,10 @@ const UNLINKED_PAGE_OVERRIDES: Record<number, string[]> = {
     2021: [
         "https://en.wikipedia.org/wiki/List_of_2021_albums_(January%E2%80%93June)",
         "https://en.wikipedia.org/wiki/List_of_2021_albums_(July%E2%80%93December)",
+    ],
+    2026: [
+        "https://en.wikipedia.org/wiki/List_of_2026_albums_(January%E2%80%93June)",
+        "https://en.wikipedia.org/wiki/List_of_2026_albums_(July%E2%80%93December)",
     ],
 };
 
@@ -39,11 +48,22 @@ export async function yearlyAlbumsUnlinked(yearArg?: string): Promise<void> {
     console.log(`[yearly.albums.unlinked] mode=db-only`);
     const rows: UnlinkedRow[] = [];
     const seenRowKeys = new Set<string>();
+    const linkedAlbumKeys = new Set<string>();
+    const linkedAlbumTitleKeys = new Set<string>();
     for (const pageUrl of pageUrls) {
         const html = await getHtml(pageUrl);
+        for (const entry of extractAlbumEntriesFromYearlyListHtml(pageUrl, html)) {
+            linkedAlbumTitleKeys.add(normalizeTitleKey(entry.albumName));
+        }
+        for (const linkedAlbumKey of extractLinkedAlbumKeysFromYearlyListHtml(pageUrl, html)) {
+            linkedAlbumKeys.add(linkedAlbumKey);
+        }
         const pageRows = extractUnlinkedAlbumRows(html);
         for (const row of pageRows) {
             const key = `${normalizeTitleKey(row.artistName)}|${normalizeTitleKey(row.albumName)}`;
+            if (linkedAlbumTitleKeys.has(normalizeTitleKey(row.albumName))) {
+                continue;
+            }
             if (seenRowKeys.has(key)) {
                 continue;
             }
@@ -59,9 +79,11 @@ export async function yearlyAlbumsUnlinked(yearArg?: string): Promise<void> {
 
     const releases = await loadReleasesForYear(year);
     let withSuggestion = 0;
+    let withoutSuggestion = 0;
     let skippedArtistRedirects = 0;
-    let prunedDeletedReleaseLinks = 0;
-    const suggestedRows: Array<{ row: UnlinkedRow; suggestedLink: string; source: string }> = [];
+    let prunedDeletedReleaseRows = 0;
+    let skippedAlreadyLinked = 0;
+    const resultRows: Array<{ row: UnlinkedRow; suggestedLink: string; source: string }> = [];
     const redirectCheckCache = new Map<string, boolean>();
     const missingArticleCache = new Map<string, boolean>();
 
@@ -71,11 +93,16 @@ export async function yearlyAlbumsUnlinked(yearArg?: string): Promise<void> {
         let source = fromReleases ? "releases" : "";
 
         if (suggestedLink) {
+            if (isSuggestedLinkAlreadyPresent(suggestedLink, linkedAlbumKeys)) {
+                skippedAlreadyLinked += 1;
+                continue;
+            }
+
             const missing = await isMissingReleaseSuggestion(suggestedLink, missingArticleCache);
             if (missing) {
-                await discography.clearReleaseLink(suggestedLink);
+                const deletedRows = await discography.deleteReleaseByWikilink(suggestedLink);
                 await discographyDeadlinks.insertNew(suggestedLink);
-                prunedDeletedReleaseLinks += 1;
+                prunedDeletedReleaseRows += deletedRows;
                 continue;
             }
 
@@ -90,25 +117,95 @@ export async function yearlyAlbumsUnlinked(yearArg?: string): Promise<void> {
                 continue;
             }
             withSuggestion += 1;
-            suggestedRows.push({ row, suggestedLink, source });
+            resultRows.push({ row, suggestedLink, source });
+        } else {
+            withoutSuggestion += 1;
         }
     }
 
-    for (const suggestion of suggestedRows) {
-        console.log(`Album: ${suggestion.row.albumName}`);
-        console.log(`Artist: ${suggestion.row.artistName || "(unknown)"}`);
-        console.log(`Suggested Link: ${suggestion.suggestedLink}`);
-        console.log(`Source: ${suggestion.source}`);
+    const groupedByMonth = new Map<string, Array<{ row: UnlinkedRow; suggestedLink: string; source: string }>>();
+    for (const suggestion of resultRows) {
+        const monthKey = suggestion.row.month || "Unknown";
+        if (!groupedByMonth.has(monthKey)) {
+            groupedByMonth.set(monthKey, []);
+        }
+        groupedByMonth.get(monthKey)!.push(suggestion);
+    }
+
+    const monthOrder = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December",
+    ];
+    const sortedMonths = [...groupedByMonth.keys()].sort((a, b) => {
+        const aIndex = monthOrder.indexOf(a);
+        const bIndex = monthOrder.indexOf(b);
+        const aSort = aIndex >= 0 ? aIndex : Number.MAX_SAFE_INTEGER;
+        const bSort = bIndex >= 0 ? bIndex : Number.MAX_SAFE_INTEGER;
+        if (aSort !== bSort) {
+            return aSort - bSort;
+        }
+        return a.localeCompare(b);
+    });
+
+    for (const month of sortedMonths) {
+        console.log(`Month: ${month}`);
         console.log("");
+        const monthSuggestions = groupedByMonth.get(month) || [];
+        for (const suggestion of monthSuggestions) {
+            console.log(`Album: ${suggestion.row.albumName}`);
+            console.log(`Artist: ${suggestion.row.artistName || "(unknown)"}`);
+            if (suggestion.row.artistWikilink) {
+                console.log(`Artist Link: ${suggestion.row.artistWikilink}`);
+            }
+            console.log(`Suggested Link: ${suggestion.suggestedLink}`);
+            console.log(`Source: ${suggestion.source}`);
+            console.log("");
+        }
     }
 
     console.log(`[yearly.albums.unlinked] suggestions=${withSuggestion}/${rows.length}`);
-    if (prunedDeletedReleaseLinks > 0) {
-        console.log(`[yearly.albums.unlinked] pruned_deleted_release_links=${prunedDeletedReleaseLinks}`);
+    console.log(`[yearly.albums.unlinked] without_suggestion=${withoutSuggestion}`);
+    if (prunedDeletedReleaseRows > 0) {
+        console.log(`[yearly.albums.unlinked] pruned_deleted_release_rows=${prunedDeletedReleaseRows}`);
     }
     if (skippedArtistRedirects > 0) {
         console.log(`[yearly.albums.unlinked] skipped_artist_redirects=${skippedArtistRedirects}`);
     }
+    if (skippedAlreadyLinked > 0) {
+        console.log(`[yearly.albums.unlinked] skipped_already_linked=${skippedAlreadyLinked}`);
+    }
+}
+
+
+export function isSuggestedLinkAlreadyPresent(suggestedLink: string, linkedAlbumKeys: Set<string>): boolean {
+    const normalized = normalizeWikipediaArticleUrl(suggestedLink);
+    return normalized.length > 0 && linkedAlbumKeys.has(normalized);
+}
+
+export function extractLinkedAlbumKeysFromYearlyListHtml(sourcePageUrl: string, html: string): Set<string> {
+    const linkedAlbumKeys = new Set<string>();
+    for (const entry of extractAlbumEntriesFromYearlyListHtml(sourcePageUrl, html)) {
+        const linkedAlbumKey = normalizeWikipediaArticleUrl(entry.albumWikilink);
+        if (linkedAlbumKey) {
+            linkedAlbumKeys.add(linkedAlbumKey);
+        }
+    }
+
+    // Keep duplicate suppression resilient to table-column markup changes.
+    const $ = cheerio.load(html);
+    $(".wikitable.plainrowheaders a[href]").each((_, element) => {
+        const href = $(element).attr("href") || "";
+        const normalized = normalizeWikipediaArticleUrl(href);
+        if (normalized && !isNamespaceOrFragmentLink(href)) {
+            linkedAlbumKeys.add(normalized);
+        }
+    });
+    return linkedAlbumKeys;
+}
+
+function isNamespaceOrFragmentLink(href: string): boolean {
+    return !href || href.includes("#") || !/^\/?wiki\//i.test(href)
+        || /^\/?wiki\/(?:Category|File|Image|Help|Template|Wikipedia|Portal|Special):/i.test(href);
 }
 
 function buildUnlinkedSourcePages(year: number): string[] {
@@ -126,30 +223,42 @@ function extractUnlinkedAlbumRows(html: string): UnlinkedRow[] {
 
     tables.each((_, tableEl) => {
         const rows = $(tableEl).find("tr");
+        let activeMonth = "";
         rows.each((__, rowEl) => {
             const row = $(rowEl);
             const cells = row.children("th,td");
-            if (cells.length < 3) {
+            if (cells.length < 3 || row.children("td").length === 0) {
                 return;
             }
 
             const firstCell = cells.eq(0);
             const firstIsDateHeader = firstCell.is("th") && firstCell.attr("scope") === "row";
+            if (firstIsDateHeader) {
+                const parsedMonth = parseMonthFromDateCellText(firstCell.text());
+                if (parsedMonth) {
+                    activeMonth = parsedMonth;
+                }
+            }
             const artistCell = firstIsDateHeader ? cells.eq(1) : cells.eq(0);
             const albumCell = firstIsDateHeader ? cells.eq(2) : cells.eq(1);
 
-            const albumHref = albumCell.find('a[href^="/wiki/"]').first().attr("href");
-            if (albumHref) {
+            const hasAlbumLink = albumCell.find("a[href]").toArray().some((element) => {
+                return Boolean(normalizeWikipediaArticleHref($(element).attr("href") || ""));
+            });
+            if (hasAlbumLink) {
                 return;
             }
 
             const albumName = normalizeCellText(albumCell.text());
             const artistName = normalizeCellText(artistCell.text());
+            const artistWikilink = artistCell.find("a[href]").toArray()
+                .map((element) => normalizeWikipediaArticleHref($(element).attr("href") || ""))
+                .find((href) => !!href) || "";
             if (!albumName) {
                 return;
             }
 
-            out.push({albumName, artistName});
+            out.push({albumName, artistName, artistWikilink, month: activeMonth});
         });
     });
 
@@ -158,7 +267,7 @@ function extractUnlinkedAlbumRows(html: string): UnlinkedRow[] {
 
 async function loadReleasesForYear(year: number): Promise<ReleaseRow[]> {
     const rows: ReleaseRow[] = await db`
-        select title, original_title, artist_name, artist_wikilink, wikilink
+        select title, original_title, artist_name, artist_display_name, artist_wikilink, wikilink
         from releases
         where dateyear = ${year}
           and wikilink is not null
@@ -216,8 +325,10 @@ function findReleaseSuggestion(row: UnlinkedRow, releases: ReleaseRow[], year: n
     }
 
     const artistMatched = candidates.filter((candidate) => {
-        const candidateArtist = normalizeArtistKey(candidate.artist_name);
-        return isLikelySameArtistKey(artistKey, candidateArtist);
+        const candidateArtistName = normalizeArtistKey(candidate.artist_name);
+        const candidateArtistDisplayName = normalizeArtistKey(candidate.artist_display_name || "");
+        return isLikelySameArtistKey(artistKey, candidateArtistName)
+            || isLikelySameArtistKey(artistKey, candidateArtistDisplayName);
     });
 
     if (artistMatched.length === 1) {
@@ -232,6 +343,21 @@ function normalizeCellText(value: string): string {
         .replace(/\[[0-9]+\]/g, "")
         .replace(/\s+/g, " ")
         .trim();
+}
+
+function parseMonthFromDateCellText(value: string): string {
+    const normalized = normalizeCellText(value);
+    const months = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December",
+    ];
+    const lowerNormalized = normalized.toLowerCase();
+    for (const month of months) {
+        if (lowerNormalized.includes(month.toLowerCase())) {
+            return month;
+        }
+    }
+    return "";
 }
 
 function normalizeTitleKey(value: string): string {
@@ -325,7 +451,9 @@ function normalizeWikipediaArticleUrl(url: string): string {
     if (!title) {
         return "";
     }
-    return title.toLowerCase();
+    return title
+        .replace(/\s+\(album\)$/i, "")
+        .toLowerCase();
 }
 
 function wikipediaTitleFromUrl(url: string): string {

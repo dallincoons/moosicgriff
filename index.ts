@@ -15,6 +15,7 @@ type CommandHelp = {
 
 const COMMAND_HELP: CommandHelp[] = [
     { name: "help", description: "Show all available commands and what they do.", section: "General" },
+    { name: "db.status", description: "Show the connected database, user, SSH destination, and album/artist/label row counts.", section: "General" },
     { name: "artists", description: "Run the artist peer scraping pipeline.", section: "Artists" },
     { name: "artist.query <artist_url>", description: "Query artist peers for a specific artist page URL.", section: "Artists" },
     { name: "artists.reset.all", description: "Reset artist peer/discography progress flags for all artists.", section: "Artists" },
@@ -39,12 +40,15 @@ const COMMAND_HELP: CommandHelp[] = [
     { name: "releases.labels.backfill [limit] [retry-blanks]", description: "Backfill normalized and raw release label data for releases not yet scraped, optionally retrying previously blank results.", section: "Discography & Releases" },
     { name: "releases.producers.backfill [limit] [retry-blanks]", description: "Backfill release producer data for releases not yet scraped, optionally retrying previously blank results.", section: "Discography & Releases" },
     { name: "releases.review.override <album_wikilink> <review_count|clear>", description: "Set or clear a manual review-count override for one release.", section: "Discography & Releases" },
+    { name: "releases.rescrape [limit]", description: "Rescrape releases whose page content hash changed; upsert only when meaningful fields changed.", section: "Discography & Releases" },
+    { name: "releases.rescrape.check [limit]", description: "Alias for releases.rescrape.", section: "Discography & Releases" },
     { name: "labels [limit]", description: "Run label scraping from the record-label index (0–9) and follow linked label pages.", section: "Labels" },
+    { name: "labels.category [category_url] [limit]", description: "Crawl a label category tree (for example independent labels by country) and scrape all linked label pages.", section: "Labels" },
     { name: "yearly.albums.sync [year] [fresh]", description: "Sync yearly album references (optionally for a specific year). Add 'fresh' to clear release content hashes for that year first.", section: "Yearly Albums" },
     { name: "yearly.albums.missing <year> [full] [fresh|no-sync]", description: "List releases in a year missing from yearly album references. Add 'fresh' to clear release content hashes before syncing, or 'no-sync' to use database state only.", section: "Yearly Albums" },
     { name: "yearly.albums.needs_review.mark <year> <album_wikilink>", description: "Mark one yearly album reference as needs review.", section: "Yearly Albums" },
     { name: "yearly.albums.needs_review.list [year]", description: "List yearly album references marked needs review.", section: "Yearly Albums" },
-    { name: "yearly.albums.unlinked <year>", description: "Find unlinked album rows on yearly list pages and suggest links.", section: "Yearly Albums" },
+    { name: "yearly.albums.unlinked <year>", description: "Show only unlinked album rows with an existing album page and a suggested link from matching database releases.", section: "Yearly Albums" },
     { name: "yearly.albums.cited.reviews <year> [min_reviews]", description: "List albums that have a Ref citation on yearly list page(s) and at least min reviews in releases (default 3).", section: "Yearly Albums" },
 ];
 
@@ -107,6 +111,11 @@ async function shutdown(): Promise<void> {
 }
 
 async function main(): Promise<void> {
+    if (args[0] === "db.status") {
+        const {printDatabaseStatus} = await import("./app/repositories/status");
+        await printDatabaseStatus();
+        return;
+    }
     if (!args[0]) {
         printHelp();
         return;
@@ -237,9 +246,24 @@ async function main(): Promise<void> {
             await discographyReviewOverride(args[1], args[2]);
             return;
         }
+        case 'releases.rescrape': {
+            const { releasesRescrape } = await import("./app/discography/query/checkrescrape");
+            await releasesRescrape(args[1]);
+            return;
+        }
+        case 'releases.rescrape.check': {
+            const { releasesRescrape } = await import("./app/discography/query/checkrescrape");
+            await releasesRescrape(args[1]);
+            return;
+        }
         case 'labels': {
             const { scrape } = await import("./app/labels/scrape");
             await scrape(args[1]);
+            return;
+        }
+        case 'labels.category': {
+            const { scrapeFromCategoryTree } = await import("./app/labels/scrape");
+            await scrapeFromCategoryTree(args[1], args[2]);
             return;
         }
         case 'yearly.albums.sync': {

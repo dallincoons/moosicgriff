@@ -1,6 +1,6 @@
 import {db} from "app/repositories/db";
 import {DateCompletenessMode, parseDateCompletenessMode} from "app/yearlyalbums/query/missingmode";
-import {getPrimaryYearlyAlbumSourceWikilink} from "app/yearlyalbums/sourcepages";
+import {buildYearlyAlbumSourcePages} from "app/yearlyalbums/sourcepages";
 
 type MissingAlbumRow = {
     artist_name: string;
@@ -44,7 +44,7 @@ export async function yearlyAlbumsMissingFromReference(
         console.log(`[yearly.albums.missing] skip sync enabled; querying database state only for ${year}`);
     }
 
-    const sourceListWikilink = getPrimaryYearlyAlbumSourceWikilink(year);
+    const sourceListWikilinks = buildYearlyAlbumSourcePages(year);
     const rows: MissingAlbumRow[] = await db`
         select
             r.artist_name,
@@ -59,8 +59,7 @@ export async function yearlyAlbumsMissingFromReference(
             (${mode}::text = 'all')
             or (${mode}::text = 'full' and r.dateyear is not null and coalesce(trim(r.datemonth), '') <> '' and r.dateday is not null)
           )
-          and coalesce(r.manual_number_of_reviews, r.number_of_reviews) >= 3
-          and coalesce(r.releasetype, '') not in ('greatest', 'compilation', 'soundtrack', 'film', 'cast')
+          and lower(coalesce(r.releasetype, '')) not in ('greatest', 'compilation', 'soundtrack', 'film', 'cast', 'box')
           and lower(coalesce(r.releasetype, '')) not like '%box set%'
           and lower(coalesce(r.releasetype, '')) not like '%boxset%'
           and lower(coalesce(r.title, '')) not like '%compilation%'
@@ -69,10 +68,13 @@ export async function yearlyAlbumsMissingFromReference(
           and lower(coalesce(r.original_releasetype, '')) not like '%film%'
           and lower(coalesce(r.original_releasetype, '')) not like '%box set%'
           and lower(coalesce(r.original_releasetype, '')) not like '%boxset%'
+          and lower(coalesce(r.original_releasetype, '')) <> 'box'
+          and lower(coalesce(r.original_categories_text, '')) not like '%compilation albums%'
+          and lower(coalesce(r.original_categories_text, '')) not like '%reissue albums%'
           and not exists (
             select 1
             from yearly_album_references yar
-            where yar.source_list_wikilink = ${sourceListWikilink}
+            where yar.source_list_wikilink = any(${sourceListWikilinks}::text[])
               and (
                 (r.wikipedia_page_id is not null and yar.wikipedia_page_id = r.wikipedia_page_id)
                 or (
@@ -123,12 +125,15 @@ export async function yearlyAlbumsMissingFromReference(
                         )
                     )
                 )
+                or regexp_replace(lower(yar.album_wikilink), '_\\(album\\)$', '') = regexp_replace(lower(r.wikilink), '_\\(album\\)$', '')
+                or lower(regexp_replace(coalesce(yar.album_name, ''), '\\s+\\(album\\)$', '')) = lower(regexp_replace(coalesce(r.original_title, ''), '\\s+\\(album\\)$', ''))
+                or lower(regexp_replace(coalesce(yar.album_name, ''), '\\s+\\(album\\)$', '')) = lower(regexp_replace(coalesce(r.title, ''), '\\s+\\(album\\)$', ''))
               )
           )
           and not exists (
             select 1
             from yearly_album_references yar_review
-            where yar_review.source_list_wikilink = ${sourceListWikilink}
+            where yar_review.source_list_wikilink = any(${sourceListWikilinks}::text[])
               and yar_review.needs_review = true
               and (
                 (r.wikipedia_page_id is not null and yar_review.wikipedia_page_id = r.wikipedia_page_id)
@@ -184,7 +189,7 @@ export async function yearlyAlbumsMissingFromReference(
         order by coalesce(r.manual_number_of_reviews, r.number_of_reviews) asc, r.artist_name asc, r.title asc
     `;
 
-    console.log(`[yearly.albums.missing] year=${year} mode=${mode} source=${sourceListWikilink} missing_count=${rows.length}`);
+    console.log(`[yearly.albums.missing] year=${year} mode=${mode} source=${sourceListWikilinks.join(",")} missing_count=${rows.length}`);
 
     for (const row of rows) {
         const title = row.original_title || row.title;

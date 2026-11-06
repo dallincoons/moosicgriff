@@ -127,6 +127,7 @@ class Discography {
             update releases
             set
                 artist_id = ${artist.id}::integer,
+                artist_wikilink = ${artist.wikilink}::text,
                 wikilink = ${release.wikilink}::text,
                 wikipedia_page_id = ${release.wikipedia_page_id ?? null}::bigint,
                 artist_name = ${(release.artist_name || artist.artistname)}::text,
@@ -612,6 +613,15 @@ class Discography {
                 content_hash = null,
                 last_updated_at = CURRENT_TIMESTAMP
             where wikilink = ${releaseWikilink}::text
+        `;
+
+        return rows.count || 0;
+    }
+
+    async deleteReleaseByWikilink(releaseWikilink: string): Promise<number> {
+        const rows = await db`
+            delete from releases
+            where lower(wikilink) = lower(${releaseWikilink}::text)
         `;
 
         return rows.count || 0;

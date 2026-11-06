@@ -69,7 +69,7 @@ async function getAlbumReleaseFromApiByTitle(pageTitle: string, depth: number): 
     const rawArtist = getInfoboxValue(wikitext, "artist");
     const rawGenre = getInfoboxValue(wikitext, "genre");
     const rawProducer = getInfoboxValue(wikitext, "producer") || getInfoboxValue(wikitext, "producers");
-    const artistNames = parseArtistNames(rawArtist);
+    const artistNames = parseArtistNames(rawArtist, wikitext);
     const {year, month, day} = parseReleaseDate(releasedRaw);
     const reviewEvidence = collectReviewEvidence(wikitext);
     const reviewLinksCsv = reviewEvidence.links.join(", ");
@@ -182,13 +182,34 @@ function sleep(ms: number): Promise<void> {
     return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-function parseArtistNames(rawArtistField: string): { articleName: string; displayName: string; artistWikilink: string } {
+function parseArtistNames(rawArtistField: string, wikitext: string = ""): { articleName: string; displayName: string; artistWikilink: string } {
     const raw = rawArtistField || "";
     const linkMatch = raw.match(/\[\[([^[\]|#]+)(?:#[^\]|]+)?(?:\|([^\]]+))?]]/);
 
     if (linkMatch && linkMatch[1]) {
         const articleName = stripBandSuffix(normalizeWikiTitle(linkMatch[1]));
         const displayName = stripBandSuffix(normalizeValue(linkMatch[2] || linkMatch[1]));
+        if (isReleaseArticleTitle(articleName)) {
+            // Some album infoboxes mistakenly link the artist to a same-name release.
+            // Use a unique same-name link in the lead rather than importing that album as an artist.
+            const infobox = extractInfobox(wikitext);
+            const afterInfobox = infobox ? wikitext.slice(wikitext.indexOf(infobox) + infobox.length) : "";
+            const lead = afterInfobox.split(/^\s*==/m)[0]
+                .replace(/<!--[\s\S]*?-->/g, "")
+                .replace(/<ref\b[^>]*\/>|<ref\b[^>]*>[\s\S]*?<\/ref\s*>/gi, "");
+            const candidates = new Map<string, string>();
+            for (const match of lead.matchAll(/\[\[([^[\]|#]+)(?:#[^\]|]+)?(?:\|([^\]]+))?]]/g)) {
+                const target = normalizeWikiTitle(match[1]);
+                const name = stripBandSuffix(normalizeValue(match[2] || match[1]));
+                if (name.toLowerCase() === displayName.toLowerCase() && !isReleaseArticleTitle(target) && !target.includes(":")) {
+                    candidates.set(target.toLowerCase(), match[0]);
+                }
+            }
+            if (candidates.size === 1) {
+                return parseArtistNames([...candidates.values()][0]);
+            }
+            return {articleName: displayName, displayName, artistWikilink: ""};
+        }
         return {
             articleName,
             displayName: displayName || articleName,
@@ -202,6 +223,10 @@ function parseArtistNames(rawArtistField: string): { articleName: string; displa
         displayName: normalized,
         artistWikilink: "",
     };
+}
+
+function isReleaseArticleTitle(title: string): boolean {
+    return /\((?:[^()]*\s)?(?:album|ep|single)\)$/i.test(title);
 }
 
 function normalizeWikiTitle(title: string): string {
@@ -219,6 +244,11 @@ function stripBandSuffix(value: string): string {
 }
 
 function isAlbumPage(wikitext: string, categories: Array<{ title?: string }>): boolean {
+    const firstInfoboxType = getFirstInfoboxType(wikitext);
+    if (firstInfoboxType && firstInfoboxType !== "album") {
+        return false;
+    }
+
     const hasAlbumInfobox = /\{\{\s*infobox\s+album/i.test(wikitext);
     const hasAlbumCategory = categories.some((category) => {
         const title = (category.title || "").toLowerCase();
@@ -226,6 +256,18 @@ function isAlbumPage(wikitext: string, categories: Array<{ title?: string }>): b
     });
 
     return hasAlbumInfobox || hasAlbumCategory;
+}
+
+function getFirstInfoboxType(wikitext: string): string {
+    const match = wikitext.match(/\{\{\s*infobox\s+([^\n|}]+)/i);
+    if (!match || !match[1]) {
+        return "";
+    }
+    const raw = match[1].trim().toLowerCase();
+    if (raw.startsWith("album")) {
+        return "album";
+    }
+    return raw;
 }
 
 function getInfoboxValue(wikitext: string, field: string): string {
@@ -344,6 +386,7 @@ function selectFirstReleaseDateCandidate(raw: string): string {
 }
 
 export const __private = {
+    parseArtistNames,
     parseReleaseDate,
     selectFirstReleaseDateCandidate,
     normalizeWikiTitle,
@@ -522,9 +565,11 @@ function collectReviewEvidence(wikitext: string): { links: string[]; count: numb
         extractSection(wikitext, "critical reception", false),
         extractSection(wikitext, "reception", false),
     ].filter((section) => section.trim().length > 0);
+    const namedRefs = extractNamedRefDefinitions(wikitext);
     for (const section of proseSections) {
-        addLinksToSet(section, links);
-        addCiteOutletFieldsToSet(section, criticalOutlets);
+        const expandedSection = expandNamedRefsInSection(section, namedRefs);
+        addLinksToSet(expandedSection, links);
+        addCiteOutletFieldsToSet(expandedSection, criticalOutlets);
     }
 
     const countedOutlets = new Set<string>();
@@ -556,6 +601,61 @@ function collectReviewEvidence(wikitext: string): { links: string[]; count: numb
         links: prioritizeReviewLinks([...links]),
         count,
     };
+}
+
+function extractNamedRefDefinitions(wikitext: string): Map<string, string> {
+    const refs = new Map<string, string>();
+    const namedRefRegex = /<ref\b(?![^>]*\/>)([^>]*)>([\s\S]*?)<\/ref>/gi;
+    let match: RegExpExecArray | null;
+    while ((match = namedRefRegex.exec(wikitext)) !== null) {
+        const name = extractRefName(match[1] || "");
+        const content = match[0] || "";
+        if (name && content.trim().length > 0 && !refs.has(name)) {
+            refs.set(name, content);
+        }
+    }
+    return refs;
+}
+
+function expandNamedRefsInSection(section: string, namedRefs: Map<string, string>): string {
+    if (namedRefs.size === 0) {
+        return section;
+    }
+
+    const additions: string[] = [];
+    const seen = new Set<string>();
+    const refTagRegex = /<ref\b([^>]*?)(?:\/>|>[\s\S]*?<\/ref>)/gi;
+    let match: RegExpExecArray | null;
+    while ((match = refTagRegex.exec(section)) !== null) {
+        const name = extractRefName(match[1] || "");
+        if (!name || seen.has(name)) {
+            continue;
+        }
+        seen.add(name);
+        const definition = namedRefs.get(name);
+        if (definition) {
+            additions.push(definition);
+        }
+    }
+
+    if (additions.length === 0) {
+        return section;
+    }
+
+    return `${section}\n${additions.join("\n")}`;
+}
+
+function extractRefName(attributes: string): string {
+    const match = (attributes || "").match(/\bname\s*=\s*(?:"([^"]+)"|'([^']+)'|([^\s/>]+))/i);
+    return normalizeRefName(match?.[1] || match?.[2] || match?.[3] || "");
+}
+
+function normalizeRefName(value: string): string {
+    return (value || "")
+        .replace(/&amp;/gi, "&")
+        .replace(/\s+/g, " ")
+        .trim()
+        .toLowerCase();
 }
 
 function extractNamedTemplates(wikitext: string, targetNames: Set<string>): string[] {
