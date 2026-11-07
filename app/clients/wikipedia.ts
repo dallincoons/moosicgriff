@@ -227,14 +227,82 @@ export async function isWikipediaDisambiguationPage(url: string): Promise<boolea
 }
 
 async function loadWikipediaPage(url: string) {
-    return cheerio.fromURL(url, {
-        requestOptions: {
-            headers: {
-                "User-Agent": WIKIPEDIA_USER_AGENT,
-            },
-            method: "GET",
-        },
-    });
+    const maxAttempts = 5;
+    for (let attempt = 1; ; attempt += 1) {
+        try {
+            // Await the complete body/parse so a reset during streaming is retried too.
+            return await cheerio.fromURL(url, {
+                requestOptions: {
+                    headers: { "User-Agent": WIKIPEDIA_USER_AGENT },
+                    method: "GET",
+                    maxRedirections: 5,
+                    throwOnError: true,
+                    headersTimeout: 30000,
+                    bodyTimeout: 30000,
+                    signal: AbortSignal.timeout(60000),
+                },
+            });
+        } catch (error) {
+            const failure = getTransientPageFailure(error);
+            if (!failure || attempt >= maxAttempts) {
+                throw new Error(`Wikipedia page fetch failed for ${url} (attempt ${attempt}/${maxAttempts}): ${
+                    error instanceof Error ? error.message : String(error)
+                }`, { cause: error });
+            }
+            const delayMs = getPageRetryDelayMs(attempt, failure.headers?.["retry-after"]);
+            console.warn(`[wiki-html] ${url} attempt ${attempt}/${maxAttempts}: ${failure.reason}; retrying in ${delayMs}ms`);
+            await new Promise((resolve) => setTimeout(resolve, delayMs));
+        }
+    }
+}
+
+const TRANSIENT_PAGE_CODES = new Set([
+    "ECONNRESET", "ETIMEDOUT", "EAI_AGAIN", "ECONNREFUSED", "EPIPE",
+    "UND_ERR_SOCKET", "UND_ERR_CONNECT_TIMEOUT", "UND_ERR_HEADERS_TIMEOUT",
+    "UND_ERR_BODY_TIMEOUT", "UND_ERR_ABORTED",
+]);
+
+function getTransientPageFailure(error: unknown): {
+    reason: string;
+    headers?: Record<string, string | string[] | undefined>;
+} | null {
+    // Fetch/Undici can wrap the transport failure in a cause (or AggregateError).
+    const pending: unknown[] = [error];
+    const visited = new Set<unknown>();
+    while (pending.length) {
+        const current = pending.shift();
+        if (!current || typeof current !== "object" || visited.has(current)) continue;
+        visited.add(current);
+        const failure = current as {
+            code?: string; name?: string; statusCode?: number;
+            headers?: Record<string, string | string[] | undefined>;
+            cause?: unknown; errors?: unknown[];
+        };
+        if (failure.statusCode !== undefined) {
+            return [429, 500, 502, 503, 504].includes(failure.statusCode)
+                ? { reason: `HTTP ${failure.statusCode}`, headers: failure.headers }
+                : null;
+        }
+        if (TRANSIENT_PAGE_CODES.has(failure.code || "") || failure.name === "TimeoutError") {
+            return { reason: failure.code || failure.name! };
+        }
+        pending.push(failure.cause);
+        if (Array.isArray(failure.errors)) pending.push(...failure.errors);
+    }
+    return null;
+}
+
+function getPageRetryDelayMs(attempt: number, retryAfter: string | string[] | undefined): number {
+    const backoffMs = 1000 * 2 ** (attempt - 1);
+    const value = Array.isArray(retryAfter) ? retryAfter[0] : retryAfter;
+    if (!value) return backoffMs;
+    const serverDelayMs = /^\d+(?:\.\d+)?$/.test(value)
+        ? Number(value) * 1000
+        : Date.parse(value) - Date.now();
+    // Bound server-requested delays too, so a CLI run cannot wait indefinitely.
+    return Number.isFinite(serverDelayMs)
+        ? Math.max(backoffMs, Math.min(serverDelayMs, 60000))
+        : backoffMs;
 }
 
 function getSectionContent($: cheerio.CheerioAPI, startHeader: string, endHeader: string): cheerio.Cheerio<any> {
