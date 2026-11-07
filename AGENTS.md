@@ -83,7 +83,8 @@ When asked for an update:
   `docker-compose.yearly.yml`. The current year runs every 12 hours in one lane;
   configured historical years run sequentially in a separate lane that may overlap
   the current-year lane. See `docker/YEARLY_SCHEDULE.md` for config/state/log paths.
-- Preserve server `config/yearly/jobs.json` and `output/` during future deployments.
+- `config/yearly/jobs.json` is tracked production configuration. Commit schedule
+  changes before deploying. Preserve ignored `output/` state and reports.
   Do not start duplicate schedules on the Mac.
 
 - Deploy committed `main` changes with `npm run deploy`. The background deployment

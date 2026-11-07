@@ -21,8 +21,9 @@ startup. CLI database writes completed before interruption remain saved.
 
 ## Historical list
 
-Edit `config/yearly/jobs.json` **on the server**. This ignored production configuration
-is preserved across Git pulls; `docker/yearly/jobs.json` is the tracked initial template:
+Edit and commit `config/yearly/jobs.json`, then deploy it to the server. This
+non-secret production configuration is tracked in Git; `docker/yearly/jobs.json`
+is the initial template used if the file is missing during setup:
 
 ```json
 {
@@ -88,13 +89,13 @@ docker compose -f docker-compose.yearly.yml run --rm --no-deps \
 docker compose -f docker-compose.yearly.yml up -d --no-build
 ```
 
-Preserve the server's ignored `config/yearly/` historical settings during future source syncs. Rebuild and
+Commit historical settings changes rather than leaving edits on the server. Rebuild and
 recreate services after code changes; persistent state and command logs stay on
 the host. No local Docker schedule should run these production jobs simultaneously.
 
 ## One-command deployment from the Mac
 
-Commit changes on `main`, then run:
+Commit code and `config/yearly/jobs.json` changes on `main`, then run:
 
 ```sh
 npm run deploy
