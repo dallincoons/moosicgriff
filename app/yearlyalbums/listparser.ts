@@ -34,6 +34,10 @@ export function extractAlbumEntriesFromYearlyListHtml(sourcePageUrl: string, htm
 
     tables.each((_, tableEl) => {
         const rows = $(tableEl).find("tr");
+        if (releaseYear !== null && releaseYear <= 2004) {
+            entries.push(...extractLegacyTableEntries($, rows, releaseYear));
+            return;
+        }
         const columns = detectYearlyAlbumTableColumns($, rows);
         let activeMonth = "";
         let activeDay: number | null = null;
@@ -140,6 +144,100 @@ export function extractAlbumEntriesFromYearlyListHtml(sourcePageUrl: string, htm
         }
     });
 
+    if (releaseYear !== null && releaseYear <= 2004) {
+        const unknown = selectLegacySectionNodes($, "release date unknown");
+        unknown.filter("ul,ol").add(unknown.find("ul,ol")).children("li").each((_, el) => {
+            const item = $(el);
+            const album = item.children("i").first();
+            const albumHref = firstWikipediaArticleHref(album);
+            if (!albumHref || isSkippableWikipediaHref(albumHref)) return;
+            const artist = item.clone();
+            artist.children("i").first().remove();
+            artist.find("sup.reference").remove();
+            const artistHref = firstWikipediaArticleHref(artist);
+            entries.push({
+                albumName: normalizeCellText(album.text()),
+                albumWikilink: normalizeWikipediaArticleHref(albumHref),
+                artistWikilink: artistHref && !isSkippableWikipediaHref(artistHref) ? normalizeWikipediaArticleHref(artistHref) : "",
+                releaseYear, releaseMonth: "", releaseDay: null, genre: "", recordLabel: "",
+            });
+        });
+    }
+    return entries;
+}
+
+function extractLegacyTableEntries(
+    $: cheerio.CheerioAPI, rows: cheerio.Cheerio<any>, releaseYear: number,
+): YearlyListEntry[] {
+    // Older tables have Date spanning two columns (month/day), followed by
+    // Album / Artist / Notes. Expand header colspans to find logical columns,
+    // then align payload cells from the right. Some live pages have incorrect
+    // month/day rowspan counts, so carry dates until the next explicit date cell
+    // instead of letting an expired span shift an artist into the Album column.
+    const physicalRows: Array<Array<cheerio.Cheerio<any>>> = [];
+    rows.each((_, rowEl) => {
+        physicalRows.push($(rowEl).children("th,td").toArray().map(cell => $(cell)));
+    });
+
+    let headerIndex = -1;
+    let artistIndex = -1;
+    let albumIndex = -1;
+    let genreIndex = -1;
+    let labelIndex = -1;
+    let headerWidth = 0;
+    for (let index = 0; index < physicalRows.length; index++) {
+        const labels = physicalRows[index].flatMap(cell => Array(parseRowspan(cell.attr("colspan")))
+            .fill(normalizeCellText(cell.text()).toLowerCase()));
+        artistIndex = findColumnIndex(labels, ["artist", "artists", "performer"]);
+        albumIndex = findColumnIndex(labels, ["album", "title"]);
+        if (artistIndex < 0 || albumIndex < 0) continue;
+        genreIndex = findColumnIndex(labels, ["genre"]);
+        labelIndex = findColumnIndex(labels, ["label", "record label"]);
+        headerWidth = labels.length;
+        headerIndex = index;
+        break;
+    }
+    if (headerIndex < 0) return [];
+
+    const entries: YearlyListEntry[] = [];
+    let month = "";
+    let day: number | null = null;
+    let sharedArtist: {cell: cheerio.Cheerio<any>; remaining: number} | null = null;
+    for (const physicalRow of physicalRows.slice(headerIndex + 1)) {
+        const row = [...physicalRow];
+        const carriedArtist = sharedArtist;
+        if (carriedArtist) {
+            const position = row.length - (headerWidth - artistIndex - 1);
+            row.splice(Math.max(0, position), 0, carriedArtist.cell);
+            carriedArtist.remaining -= 1;
+            if (!carriedArtist.remaining) sharedArtist = null;
+        }
+        const leftShift = Math.max(0, headerWidth - row.length);
+        const cellAt = (index: number) => index >= leftShift ? row[index - leftShift] || $() : $();
+        for (let column = 0; column < Math.max(0, Math.min(artistIndex, albumIndex) - leftShift); column++) {
+            const value = row[column]?.text() || "";
+            // Vertical month labels may contain line breaks/spaces between letters.
+            const parsed = parseReleaseDateFromCellText(value.replace(/\s+/g, ""));
+            if (parsed.month) { month = parsed.month; day = null; }
+            if (parsed.day !== null || !parsed.month) day = parsed.day;
+        }
+        const albumCell = cellAt(albumIndex);
+        const artistCell = cellAt(artistIndex);
+        if (!carriedArtist && parseRowspan(artistCell.attr("rowspan")) > 1) {
+            sharedArtist = {cell: artistCell, remaining: parseRowspan(artistCell.attr("rowspan")) - 1};
+        }
+        const albumHref = firstWikipediaArticleHref(albumCell);
+        const artistHref = firstWikipediaArticleHref(artistCell);
+        if (!albumHref || isSkippableWikipediaHref(albumHref) || (artistHref && isSkippableWikipediaHref(artistHref))) continue;
+        entries.push({
+            artistWikilink: artistHref ? normalizeWikipediaArticleHref(artistHref) : "",
+            albumWikilink: normalizeWikipediaArticleHref(albumHref),
+            albumName: normalizeCellText(albumCell.text()),
+            genre: genreIndex >= 0 ? normalizeCellText(cellAt(genreIndex).text()) : "",
+            recordLabel: labelIndex >= 0 ? normalizeCellText(cellAt(labelIndex).text()) : "",
+            releaseYear, releaseMonth: month, releaseDay: day,
+        });
+    }
     return entries;
 }
 
@@ -157,10 +255,11 @@ function firstWikipediaArticleHref(cell: cheerio.Cheerio<any>): string {
 function selectYearlyAlbumTables($: cheerio.CheerioAPI, sourcePageUrl: string): cheerio.Cheerio<any> {
     const year = parseYearFromSourceListUrl(sourcePageUrl);
     if (year !== null && year <= 2004) {
-        const legacySectionTables = selectLegacyAlbumsReleasedTables($);
-        if (legacySectionTables.length > 0) {
-            return legacySectionTables;
-        }
+        // Other sections contain charts, songs, events, etc.; never treat them
+        // as released-album rows if the expected section is missing or empty.
+        const tables = selectLegacyAlbumsReleasedTables($);
+        if (!tables.length) throw new Error(`No supported album tables found in the Albums released section of ${sourcePageUrl}`);
+        return tables;
     }
 
     const plainRowHeaderTables = $(".wikitable.plainrowheaders");
@@ -172,39 +271,37 @@ function selectYearlyAlbumTables($: cheerio.CheerioAPI, sourcePageUrl: string): 
 }
 
 function selectLegacyAlbumsReleasedTables($: cheerio.CheerioAPI): cheerio.Cheerio<any> {
+    const nodes = selectLegacySectionNodes($, "albums released");
+    return nodes.filter("table.wikitable").add(nodes.find("table.wikitable"));
+}
+
+function selectLegacySectionNodes($: cheerio.CheerioAPI, sectionName: string): cheerio.Cheerio<any> {
     const contentRoot = $("#mw-content-text .mw-parser-output").first();
     const scope = contentRoot.length ? contentRoot : $("body").first();
     const heading = scope.find("h2, h3").filter((_, el) => {
         const node = $(el);
-        const headingId = (node.find(".mw-headline").first().attr("id") || "").trim().toLowerCase();
+        const headingId = (node.attr("id") || node.find(".mw-headline").first().attr("id") || "").replace(/_/g, " ").trim().toLowerCase();
         const headingText = normalizeCellText(node.text()).toLowerCase();
-        return headingId === "albums_released" || headingText === "albums released";
+        return headingId === sectionName || headingText === sectionName;
     }).first();
 
     if (!heading.length) {
         return $();
     }
 
-    const tables: any[] = [];
+    const nodes: any[] = [];
     const headingContainer = heading.parent().is("div.mw-heading") ? heading.parent() : heading;
     let cursor = headingContainer.next();
     while (cursor.length) {
         if (isLegacySectionBoundary(cursor)) {
             break;
         }
-        if (cursor.is("table.wikitable")) {
-            const tableNode = cursor.get(0);
-            if (tableNode) {
-                tables.push(tableNode);
-            }
-        }
-        cursor.find("table.wikitable").each((_, tableEl) => {
-            tables.push(tableEl);
-        });
+        const node = cursor.get(0);
+        if (node) nodes.push(node);
         cursor = cursor.next();
     }
 
-    return $(tables);
+    return $(nodes);
 }
 
 function isLegacySectionBoundary(node: cheerio.Cheerio<any>): boolean {
