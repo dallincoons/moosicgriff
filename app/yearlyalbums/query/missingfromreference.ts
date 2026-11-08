@@ -1,5 +1,5 @@
 import {db} from "app/repositories/db";
-import {DateCompletenessMode, parseDateCompletenessMode} from "app/yearlyalbums/query/missingmode";
+import {parseDateCompletenessMode} from "app/yearlyalbums/query/missingmode";
 import {buildYearlyAlbumSourcePages} from "app/yearlyalbums/sourcepages";
 
 type MissingAlbumRow = {
@@ -46,6 +46,19 @@ export async function yearlyAlbumsMissingFromReference(
 
     const sourceListWikilinks = buildYearlyAlbumSourcePages(year);
     const rows: MissingAlbumRow[] = await db`
+        -- Normalize each reference once, then build independent hash lookups.
+        -- Keep subqueries uncorrelated and filter null keys so NOT IN stays null-safe.
+        with source_references as materialized (
+            select
+                yar.wikipedia_page_id,
+                yar.needs_review,
+                lower(replace(replace(replace(replace(replace(replace(yar.album_wikilink, '%27', ''''), '%28', '('), '%29', ')'), '%2C', ','), '%26', '&'), '%21', '!')) as decoded_wikilink,
+                regexp_replace(lower(yar.album_wikilink), '_\\(album\\)$', '') as album_link,
+                lower(regexp_replace(coalesce(yar.album_name, ''), '\\s+\\(album\\)$', '')) as album_title,
+                lower(coalesce(yar.album_name, '')) as review_title
+            from yearly_album_references yar
+            where yar.source_list_wikilink = any(${sourceListWikilinks}::text[])
+        )
         select
             r.artist_name,
             r.title,
@@ -71,120 +84,32 @@ export async function yearlyAlbumsMissingFromReference(
           and lower(coalesce(r.original_releasetype, '')) <> 'box'
           and lower(coalesce(r.original_categories_text, '')) not like '%compilation albums%'
           and lower(coalesce(r.original_categories_text, '')) not like '%reissue albums%'
-          and not exists (
-            select 1
-            from yearly_album_references yar
-            where yar.source_list_wikilink = any(${sourceListWikilinks}::text[])
-              and (
-                (r.wikipedia_page_id is not null and yar.wikipedia_page_id = r.wikipedia_page_id)
-                or (
-                    r.wikipedia_page_id is null
-                    and lower(
-                        replace(
-                            replace(
-                                replace(
-                                    replace(
-                                        replace(
-                                            replace(yar.album_wikilink, '%27', ''''),
-                                            '%28',
-                                            '('
-                                        ),
-                                        '%29',
-                                        ')'
-                                    ),
-                                    '%2C',
-                                    ','
-                                ),
-                                '%26',
-                                '&'
-                            ),
-                            '%21',
-                            '!'
-                        )
-                    ) = lower(
-                        replace(
-                            replace(
-                                replace(
-                                    replace(
-                                        replace(
-                                            replace(r.wikilink, '%27', ''''),
-                                            '%28',
-                                            '('
-                                        ),
-                                        '%29',
-                                        ')'
-                                    ),
-                                    '%2C',
-                                    ','
-                                ),
-                                '%26',
-                                '&'
-                            ),
-                            '%21',
-                            '!'
-                        )
-                    )
-                )
-                or regexp_replace(lower(yar.album_wikilink), '_\\(album\\)$', '') = regexp_replace(lower(r.wikilink), '_\\(album\\)$', '')
-                or lower(regexp_replace(coalesce(yar.album_name, ''), '\\s+\\(album\\)$', '')) = lower(regexp_replace(coalesce(r.original_title, ''), '\\s+\\(album\\)$', ''))
-                or lower(regexp_replace(coalesce(yar.album_name, ''), '\\s+\\(album\\)$', '')) = lower(regexp_replace(coalesce(r.title, ''), '\\s+\\(album\\)$', ''))
-              )
+          and (r.wikipedia_page_id is null or r.wikipedia_page_id not in (
+            select wikipedia_page_id from source_references where wikipedia_page_id is not null
+          ))
+          and (r.wikipedia_page_id is not null or r.wikilink is null or lower(replace(replace(replace(replace(replace(replace(r.wikilink, '%27', ''''), '%28', '('), '%29', ')'), '%2C', ','), '%26', '&'), '%21', '!')) not in (
+            select decoded_wikilink from source_references where decoded_wikilink is not null
+          ))
+          and (r.wikilink is null or regexp_replace(lower(r.wikilink), '_\\(album\\)$', '') not in (
+            select album_link from source_references where album_link is not null
+          ))
+          and lower(regexp_replace(coalesce(r.original_title, ''), '\\s+\\(album\\)$', '')) not in (
+            select album_title from source_references
           )
-          and not exists (
-            select 1
-            from yearly_album_references yar_review
-            where yar_review.source_list_wikilink = any(${sourceListWikilinks}::text[])
-              and yar_review.needs_review = true
-              and (
-                (r.wikipedia_page_id is not null and yar_review.wikipedia_page_id = r.wikipedia_page_id)
-                or lower(
-                    replace(
-                        replace(
-                            replace(
-                                replace(
-                                    replace(
-                                        replace(yar_review.album_wikilink, '%27', ''''),
-                                        '%28',
-                                        '('
-                                    ),
-                                    '%29',
-                                    ')'
-                                ),
-                                '%2C',
-                                ','
-                            ),
-                            '%26',
-                            '&'
-                        ),
-                        '%21',
-                        '!'
-                    )
-                ) = lower(
-                    replace(
-                        replace(
-                            replace(
-                                replace(
-                                    replace(
-                                        replace(r.wikilink, '%27', ''''),
-                                        '%28',
-                                        '('
-                                    ),
-                                    '%29',
-                                    ')'
-                                ),
-                                '%2C',
-                                ','
-                            ),
-                            '%26',
-                            '&'
-                        ),
-                        '%21',
-                        '!'
-                    )
-                )
-                or lower(coalesce(yar_review.album_name, '')) = lower(coalesce(r.original_title, ''))
-                or lower(coalesce(yar_review.album_name, '')) = lower(coalesce(r.title, ''))
-              )
+          and lower(regexp_replace(coalesce(r.title, ''), '\\s+\\(album\\)$', '')) not in (
+            select album_title from source_references
+          )
+          -- Review flags also suppress URL matches when the release has a page ID.
+          -- Their page-ID matches are already covered by the first lookup.
+          and (r.wikilink is null or lower(replace(replace(replace(replace(replace(replace(r.wikilink, '%27', ''''), '%28', '('), '%29', ')'), '%2C', ','), '%26', '&'), '%21', '!')) not in (
+            select decoded_wikilink from source_references
+            where needs_review = true and decoded_wikilink is not null
+          ))
+          and lower(coalesce(r.original_title, '')) not in (
+            select review_title from source_references where needs_review = true
+          )
+          and lower(coalesce(r.title, '')) not in (
+            select review_title from source_references where needs_review = true
           )
         order by coalesce(r.manual_number_of_reviews, r.number_of_reviews) asc, r.artist_name asc, r.title asc
     `;

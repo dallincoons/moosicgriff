@@ -25,6 +25,17 @@ npx esrun index.ts db.status
 npx esrun index.ts yearly.albums.missing 2026 full
 ```
 
+If a run printed `[yearly.albums.sync] complete.` before the missing-list query
+failed, the sync is already saved. Retry only the list query with the same year:
+
+```sh
+npx esrun index.ts yearly.albums.missing 2003 full no-sync
+```
+
+The missing-list query normalizes that year's references once and uses reusable
+hash lookups. It keeps the normal 60-second statement timeout; no database setting
+or schema change is needed.
+
 `db.status` reports the connected database, role, SSH destination, and row counts
 without printing credentials. Database writes happen directly on the server;
 RSS reads them on its next lookup. If SSH or Postgres is unavailable, the command
